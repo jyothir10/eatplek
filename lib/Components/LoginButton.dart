@@ -9,18 +9,23 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-      ),
-      child: Text(
-        text,
-        style: const TextStyle(
-          color: Color(0xff042e60),
-          fontSize: 18,
-          fontFamily: 'SFUIText',
-          fontWeight: FontWeight.w600,
+    return Container(
+      width: MediaQuery.of(context).size.width * .85,
+      height: MediaQuery.of(context).size.height * .05,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+            shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8)))),
+        child: Text(
+          text,
+          style: const TextStyle(
+            color: Color(0xff042e60),
+            fontSize: 18,
+            fontFamily: 'SFUIText',
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
     );

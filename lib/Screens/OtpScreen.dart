@@ -1,5 +1,7 @@
 import 'package:eatplek/Components/LoginButton.dart';
+import 'package:eatplek/Constants.dart';
 import 'package:flutter/material.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:toast/toast.dart';
 
 class OtpScreen extends StatefulWidget {
@@ -73,23 +75,54 @@ class _OtpScreenState extends State<OtpScreen> {
                   ),
                 ],
               ),
-              Column(
-                children: [
-                  Text(
-                    'Resend OTP',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontFamily: 'SFUIText',
-                      fontWeight: FontWeight.w500,
-                    ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: PinCodeTextField(
+                  keyboardType: TextInputType.number,
+                  appContext: context,
+                  length: 6,
+                  onChanged: (value) {
+                    print(value);
+                  },
+                  enableActiveFill: true,
+                  enablePinAutofill: true,
+                  pinTheme: PinTheme(
+                    shape: PinCodeFieldShape.box,
+                    borderRadius: BorderRadius.circular(5),
+                    fieldHeight: 50,
+                    fieldWidth: 40,
+                    activeFillColor: otpColor,
+                    inactiveFillColor: otpColor,
+                    selectedFillColor: otpColor,
+                    activeColor: otpColor,
+                    inactiveColor: otpColor,
+                    selectedColor: otpColor,
                   ),
-                  LoginButton(
-                      onPressed: () {
-                        //todo:Navigation
-                      },
-                      text: "Next"),
-                ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: Column(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'Resend OTP',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: 'SFUIText',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    LoginButton(
+                        onPressed: () {
+                          //todo:Navigation
+                        },
+                        text: "Next"),
+                  ],
+                ),
               ),
             ],
           ),

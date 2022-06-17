@@ -133,16 +133,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width * .85,
-                              height: MediaQuery.of(context).size.height * .05,
-                              child: LoginButton(
-                                onPressed: () {
-                                  Navigator.pushReplacementNamed(
-                                      context, OtpScreen.id);
-                                },
-                                text: 'Get OTP',
-                              ),
+                            LoginButton(
+                              onPressed: () {
+                                Navigator.pushReplacementNamed(
+                                    context, OtpScreen.id);
+                              },
+                              text: 'Get OTP',
                             ),
                           ],
                         ),
