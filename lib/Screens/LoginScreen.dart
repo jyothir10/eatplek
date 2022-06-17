@@ -1,3 +1,4 @@
+import 'package:eatplek/Components/LoginButton.dart';
 import 'package:eatplek/Screens/OtpScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
@@ -135,25 +136,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             Container(
                               width: MediaQuery.of(context).size.width * .85,
                               height: MediaQuery.of(context).size.height * .05,
-                              child: ElevatedButton(
+                              child: LoginButton(
                                 onPressed: () {
-                                  Navigator.pushNamedAndRemoveUntil(
-                                      context, OtpScreen.id, (route) => false);
+                                  Navigator.pushReplacementNamed(
+                                      context, OtpScreen.id);
                                 },
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.white),
-                                ),
-                                child: const Text(
-                                  'Get OTP',
-                                  style: TextStyle(
-                                    color: Color(0xff042e60),
-                                    fontSize: 18,
-                                    fontFamily: 'SFUIText',
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
+                                text: 'Get OTP',
                               ),
                             ),
                           ],
