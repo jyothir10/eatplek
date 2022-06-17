@@ -1,24 +1,22 @@
+import 'package:eatplek/Screens/LoginScreen.dart';
+import 'package:eatplek/Screens/OtpScreen.dart';
 import 'package:flutter/material.dart';
-import 'optionScreen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: OptionScreen.id,
-      routes: {
-        OptionScreen.id: (context) => OptionScreen()
-      },
-    );
+        debugShowCheckedModeBanner: false,
+        initialRoute: LoginScreen.id,
+        routes: {
+          //OnboardingScreen.id: (context) => OnboardingScreen(),
+          LoginScreen.id: (context) => LoginScreen(),
+          OtpScreen.id: (context) => OtpScreen(),
+        });
   }
 }
-
-
