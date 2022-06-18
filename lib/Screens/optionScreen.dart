@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class OptionScreen extends StatefulWidget {
   static const String id = '/option';
 
   @override
   State<OptionScreen> createState() => _OptionScreenState();
+
 }
 
 class _OptionScreenState extends State<OptionScreen> {
@@ -14,7 +16,7 @@ class _OptionScreenState extends State<OptionScreen> {
       body: Container(
         color: Color(0xff042e60),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 15),
+          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * .1,vertical: 15),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,6 +61,8 @@ class _OptionScreenState extends State<OptionScreen> {
                       textAlign: TextAlign.left
                   ),
                   TextField(
+                    style: TextStyle(color: Colors.white),
+                    keyboardType: TextInputType.name,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
@@ -67,7 +71,7 @@ class _OptionScreenState extends State<OptionScreen> {
                       ),
                       border: OutlineInputBorder(
                       ),
-                      labelText: "",
+                      hintText: "",
                     ),
                   ),
                 ],
@@ -86,6 +90,8 @@ class _OptionScreenState extends State<OptionScreen> {
                       textAlign: TextAlign.left
                   ),
                   TextField(
+                    style: TextStyle(color: Colors.white),
+                    keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
@@ -100,7 +106,6 @@ class _OptionScreenState extends State<OptionScreen> {
                 ],
               ),
               Row(
-
                 children: [
                   Column(
                     children: [
@@ -114,6 +119,7 @@ class _OptionScreenState extends State<OptionScreen> {
                          child: Column(
                            children: const [
                              // Dine In
+                             Image(image: AssetImage("images/dinein.png"),),
                              Opacity(
                                opacity : 0.5,
                                child:   Text(
@@ -132,12 +138,13 @@ class _OptionScreenState extends State<OptionScreen> {
                          ),
                        ),
                       ),
+
                       Card(
                         elevation: 5,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.check,
                           color: Color(0xff042e60),
                         ),
@@ -156,6 +163,7 @@ class _OptionScreenState extends State<OptionScreen> {
                           child: Column(
                             children: const [
                               // Dine In
+                              Image(image: AssetImage("images/takeaway.png"),),
                               Opacity(
                                 opacity : 0.5,
                                 child:   Text(
@@ -185,6 +193,35 @@ class _OptionScreenState extends State<OptionScreen> {
                         ),
                       ),
                     ],
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width * .8,
+                    height: MediaQuery.of(context).size.height * .05,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        /*Navigator.pushNamedAndRemoveUntil(
+                            context, OtpScreen.id, (route) => false);*/
+                      },
+                      style: ButtonStyle(
+                        backgroundColor:
+                        MaterialStateProperty.all<Color>(
+                            Colors.white),
+                      ),
+                      child: const Text(
+                        'Next',
+                        style: TextStyle(
+                          color: Color(0xff042e60),
+                          fontSize: 18,
+                          fontFamily: 'SFUIText',
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
