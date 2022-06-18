@@ -1,3 +1,4 @@
+import 'package:eatplek/Components/BottomBar.dart';
 import 'package:eatplek/Components/ProfileOption.dart';
 import 'package:flutter/material.dart';
 
@@ -30,6 +31,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: const BottomBar(
+        index: 3,
+      ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -132,7 +136,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     ProfileOption(
                       text: "Rate us on Play Store/App Store",
-                      img: 'edit',
+                      img: 'Star',
                     ),
                   ],
                 ),
