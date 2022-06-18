@@ -11,12 +11,12 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  late DateTime currentBackPressTime;
-  @override
+  DateTime? currentBackPressTime;
+
   Future<bool> onWillPop() {
     DateTime now = DateTime.now();
     if (currentBackPressTime == null ||
-        now.difference(currentBackPressTime) > Duration(seconds: 2)) {
+        now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
       currentBackPressTime = now;
 
       Toast.show("Press back again to exit",
@@ -26,6 +26,8 @@ class _LoginScreenState extends State<LoginScreen> {
     return Future.value(true);
   }
 
+  String number = "";
+  @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: onWillPop,
@@ -101,15 +103,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: EdgeInsets.only(
                             left: 15,
                             right: MediaQuery.of(context).size.width * .2),
-                        child: const TextField(
+                        child: TextField(
                           cursorColor: Colors.white,
-                          style: TextStyle(
+                          onChanged: (text) {
+                            number = text;
+                          },
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 16,
                             fontFamily: 'SFUIText',
                             fontWeight: FontWeight.w500,
                           ),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.white),
                             ),
@@ -135,8 +140,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             LoginButton(
                               onPressed: () {
-                                Navigator.pushReplacementNamed(
-                                    context, OtpScreen.id);
+                                if (number.length == 10) {
+                                  Navigator.pushReplacementNamed(
+                                      context, OtpScreen.id);
+                                } else {
+                                  //todo:Show toast
+                                }
                               },
                               text: 'Get OTP',
                             ),
