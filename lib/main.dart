@@ -1,5 +1,6 @@
 import 'package:eatplek/Screens/LoginScreen.dart';
 import 'package:eatplek/Screens/OtpScreen.dart';
+import 'Screens/optionScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,9 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: OtpScreen.id,
+        initialRoute: OptionScreen.id,
         routes: {
-          //OnboardingScreen.id: (context) => OnboardingScreen(),
+          OptionScreen.id: (context) => OptionScreen(),
           LoginScreen.id: (context) => LoginScreen(),
           OtpScreen.id: (context) => OtpScreen(),
         });
