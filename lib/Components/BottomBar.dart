@@ -16,6 +16,7 @@ class _BottomBarState extends State<BottomBar> {
       onTap: (value) {
         print(value);
       },
+      type: BottomNavigationBarType.fixed,
       currentIndex: widget.index,
       selectedLabelStyle: const TextStyle(
         color: Color(0x33042e60),
@@ -29,23 +30,47 @@ class _BottomBarState extends State<BottomBar> {
       ),
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-            icon: Image.asset('images/bottomnavigationbar/home.png'),
-            label: 'Home',
-            activeIcon: Image.asset('images/bottomnavigationbar/home1.png')),
+            icon: Image.asset(
+              'images/bottomnavigationbar/home.png',
+              height: 23,
+            ),
+            label: ' Home',
+            activeIcon: Image.asset(
+              'images/bottomnavigationbar/home1.png',
+              height: 23,
+            )),
         BottomNavigationBarItem(
-          icon: Image.asset('images/bottomnavigationbar/cart.png'),
-          label: 'Cart',
-          activeIcon: Image.asset('images/bottomnavigationbar/cart1.png'),
+          icon: Image.asset(
+            'images/bottomnavigationbar/cart.png',
+            height: 23,
+          ),
+          label: ' Cart',
+          activeIcon: Image.asset(
+            'images/bottomnavigationbar/cart1.png',
+            height: 23,
+          ),
         ),
         BottomNavigationBarItem(
-          icon: Image.asset('images/bottomnavigationbar/history.png'),
-          label: 'History',
-          activeIcon: Image.asset('images/bottomnavigationbar/history1.png'),
+          icon: Image.asset(
+            'images/bottomnavigationbar/history.png',
+            height: 23,
+          ),
+          label: ' History',
+          activeIcon: Image.asset(
+            'images/bottomnavigationbar/history1.png',
+            height: 23,
+          ),
         ),
         BottomNavigationBarItem(
-          icon: Image.asset('images/bottomnavigationbar/profile.png'),
+          icon: Image.asset(
+            'images/bottomnavigationbar/profile.png',
+            height: 23,
+          ),
           label: 'Profile',
-          activeIcon: Image.asset('images/bottomnavigationbar/profile1.png'),
+          activeIcon: Image.asset(
+            'images/bottomnavigationbar/profile1.png',
+            height: 23,
+          ),
         ),
       ],
       elevation: 30,

@@ -121,22 +121,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: MediaQuery.of(context).size.height * .3,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
+                  children: [
                     ProfileOption(
                       text: "Edit Profile",
                       img: 'edit',
+                      onTap: () {},
                     ),
                     ProfileOption(
                       text: "Notifications",
                       img: 'notification',
+                      onTap: () {},
                     ),
                     ProfileOption(
                       text: "Send Feedback",
                       img: 'feedback',
+                      onTap: () {},
                     ),
                     ProfileOption(
                       text: "Rate us on Play Store/App Store",
                       img: 'Star',
+                      onTap: () {},
                     ),
                   ],
                 ),
