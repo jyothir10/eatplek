@@ -1,5 +1,6 @@
 import 'package:eatplek/Components/LoginButton.dart';
 import 'package:eatplek/Constants.dart';
+import 'package:eatplek/Screens/optionScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:toast/toast.dart';
@@ -44,13 +45,16 @@ class _OtpScreenState extends State<OtpScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: const [
-                        Text(
-                          'OTP Verification',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
-                            fontFamily: 'SFUIText',
-                            fontWeight: FontWeight.w700,
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 9),
+                          child: Text(
+                            'OTP Verification',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 24,
+                              fontFamily: 'SFUIText',
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                         ),
                       ],
@@ -105,7 +109,7 @@ class _OtpScreenState extends State<OtpScreen> {
                 child: Column(
                   children: [
                     const Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(15.0),
                       child: Text(
                         'Resend OTP',
                         style: TextStyle(
@@ -116,11 +120,15 @@ class _OtpScreenState extends State<OtpScreen> {
                         ),
                       ),
                     ),
-                    LoginButton(
-                        onPressed: () {
-                          //todo:Navigation
-                        },
-                        text: "Next"),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 9),
+                      child: LoginButton(
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(
+                                context, OptionScreen.id);
+                          },
+                          text: "Next"),
+                    ),
                   ],
                 ),
               ),
