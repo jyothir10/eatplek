@@ -1,4 +1,5 @@
 import 'package:eatplek/Components/BottomBar.dart';
+import 'package:eatplek/Components/ProfileButton.dart';
 import 'package:eatplek/Components/ProfileOption.dart';
 import 'package:flutter/material.dart';
 
@@ -146,24 +147,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
+            ProfileButton(
+              text: 'Log Out',
+              onTap: () {
                 //todo:Logout
               },
-              style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(const Color(0xff042e60)),
-                shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6.1))),
-              ),
-              child: const Text(
-                'Log Out',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 13,
-                  fontFamily: 'SFUIText',
-                ),
-              ),
             ),
           ],
         ),
