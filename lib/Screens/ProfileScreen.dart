@@ -148,7 +148,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             ProfileButton(
-              text: 'Log Out',
+              text: '       Log Out       ',
               onTap: () {
                 //todo:Logout
               },

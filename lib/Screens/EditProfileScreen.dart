@@ -48,13 +48,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               ),
             ],
           ),
-          leading: const Icon(
-            Icons.arrow_back,
-            color: Color(0xff1A191A),
+          leading: InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: const Icon(
+              Icons.arrow_back,
+              color: Color(0xff1A191A),
+            ),
           ),
         ),
         body: Container(
           width: MediaQuery.of(context).size.width,
+          color: Colors.white,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -100,7 +106,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 text: 'E-mail(Optional)',
               ),
               ProfileButton(
-                  text: "Save",
+                  text: "       Save       ",
                   onTap: () {
                     //todo:Save settings
                   }),
