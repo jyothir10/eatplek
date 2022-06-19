@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class OptionScreen extends StatefulWidget {
   static const String id = '/option';
 
   @override
   State<OptionScreen> createState() => _OptionScreenState();
-
 }
 
 class _OptionScreenState extends State<OptionScreen> {
@@ -16,61 +14,52 @@ class _OptionScreenState extends State<OptionScreen> {
       body: Container(
         color: Color(0xff042e60),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * .1,vertical: 15),
+          padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * .1, vertical: 15),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Column(
                 children: const [
-                  Text(
-                      "Choose Your Option",
+                  Text("Choose Your Option",
                       style: TextStyle(
-                          color:  Color(0xffffffff),
+                          color: Color(0xffffffff),
                           fontWeight: FontWeight.w700,
                           fontFamily: "SFUIText",
-                          fontStyle:  FontStyle.normal,
-                          fontSize: 24.0
-                      ),
-                      textAlign: TextAlign.left
-                  ),
+                          fontStyle: FontStyle.normal,
+                          fontSize: 24.0),
+                      textAlign: TextAlign.left),
                   Text(
                       "You can select any of one option from these \n(you can change it later)",
                       style: TextStyle(
-                          color:  Color(0xffffffff),
+                          color: Color(0xffffffff),
                           fontWeight: FontWeight.w700,
                           fontFamily: "SFUIText",
-                          fontStyle:  FontStyle.normal,
-                          fontSize: 16.0
-                      ),
-                      textAlign: TextAlign.left
-                  ),
+                          fontStyle: FontStyle.normal,
+                          fontSize: 16.0),
+                      textAlign: TextAlign.left),
                 ],
               ),
               Column(
                 children: const [
-                  Text(
-                      "Name",
+                  Text("Name",
                       style: TextStyle(
-                          color:  Color(0x61ffffff),
+                          color: Color(0x61ffffff),
                           fontWeight: FontWeight.w500,
                           fontFamily: "SFUIText",
-                          fontStyle:  FontStyle.normal,
-                          fontSize: 16.0
-                      ),
-                      textAlign: TextAlign.left
-                  ),
+                          fontStyle: FontStyle.normal,
+                          fontSize: 16.0),
+                      textAlign: TextAlign.left),
                   TextField(
                     style: TextStyle(color: Colors.white),
                     keyboardType: TextInputType.name,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Color(0xffffffff),
-                          )
-                      ),
-                      border: OutlineInputBorder(
-                      ),
+                        color: Color(0xffffffff),
+                      )),
+                      border: OutlineInputBorder(),
                       hintText: "",
                     ),
                   ),
@@ -78,28 +67,23 @@ class _OptionScreenState extends State<OptionScreen> {
               ),
               Column(
                 children: const [
-                  Text(
-                      "Email(Optional)",
+                  Text("Email(Optional)",
                       style: TextStyle(
-                          color:  Color(0x61ffffff),
+                          color: Color(0x61ffffff),
                           fontWeight: FontWeight.w500,
                           fontFamily: "SFUIText",
-                          fontStyle:  FontStyle.normal,
-                          fontSize: 16.0
-                      ),
-                      textAlign: TextAlign.left
-                  ),
+                          fontStyle: FontStyle.normal,
+                          fontSize: 16.0),
+                      textAlign: TextAlign.left),
                   TextField(
                     style: TextStyle(color: Colors.white),
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Color(0xffffffff),
-                          )
-                      ),
-                      border: OutlineInputBorder(
-                      ),
+                        color: Color(0xffffffff),
+                      )),
+                      border: OutlineInputBorder(),
                       labelText: "",
                     ),
                   ),
@@ -111,34 +95,33 @@ class _OptionScreenState extends State<OptionScreen> {
                     children: [
                       Card(
                         elevation: 5,
-                       shape: RoundedRectangleBorder(
-                         borderRadius: BorderRadius.circular(10),
-                       ),
-                       child: Padding(
-                         padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
-                         child: Column(
-                           children: const [
-                             // Dine In
-                             Image(image: AssetImage("images/dinein.png"),),
-                             Opacity(
-                               opacity : 0.5,
-                               child:   Text(
-                                   "Dine In",
-                                   style: TextStyle(
-                                       color:  Color(0xff042e60),
-                                       fontWeight: FontWeight.w700,
-                                       fontFamily: "SFUIText",
-                                       fontStyle:  FontStyle.normal,
-                                       fontSize: 9.9
-                                   ),
-                                   textAlign: TextAlign.left
-                               ),
-                             )
-                           ],
-                         ),
-                       ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 5),
+                          child: Column(
+                            children: const [
+                              // Dine In
+                              Image(
+                                image: AssetImage("images/dinein.png"),
+                              ),
+                              Opacity(
+                                opacity: 0.5,
+                                child: Text("Dine In",
+                                    style: TextStyle(
+                                        color: Color(0xff042e60),
+                                        fontWeight: FontWeight.w700,
+                                        fontFamily: "SFUIText",
+                                        fontStyle: FontStyle.normal,
+                                        fontSize: 9.9),
+                                    textAlign: TextAlign.left),
+                              )
+                            ],
+                          ),
+                        ),
                       ),
-
                       Card(
                         elevation: 5,
                         shape: RoundedRectangleBorder(
@@ -159,24 +142,24 @@ class _OptionScreenState extends State<OptionScreen> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 5),
                           child: Column(
                             children: const [
                               // Dine In
-                              Image(image: AssetImage("images/takeaway.png"),),
+                              Image(
+                                image: AssetImage("images/takeaway.png"),
+                              ),
                               Opacity(
-                                opacity : 0.5,
-                                child:   Text(
-                                    "Take Away",
+                                opacity: 0.5,
+                                child: Text("Take Away",
                                     style: TextStyle(
-                                        color:  Color(0xff042e60),
+                                        color: Color(0xff042e60),
                                         fontWeight: FontWeight.w700,
                                         fontFamily: "SFUIText",
-                                        fontStyle:  FontStyle.normal,
-                                        fontSize: 9.9
-                                    ),
-                                    textAlign: TextAlign.left
-                                ),
+                                        fontStyle: FontStyle.normal,
+                                        fontSize: 9.9),
+                                    textAlign: TextAlign.left),
                               )
                             ],
                           ),
@@ -209,8 +192,7 @@ class _OptionScreenState extends State<OptionScreen> {
                       },
                       style: ButtonStyle(
                         backgroundColor:
-                        MaterialStateProperty.all<Color>(
-                            Colors.white),
+                            MaterialStateProperty.all<Color>(Colors.white),
                       ),
                       child: const Text(
                         'Next',
