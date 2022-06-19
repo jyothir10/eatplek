@@ -1,4 +1,5 @@
 import 'package:eatplek/Screens/EditProfileScreen.dart';
+import 'package:eatplek/Screens/FeedbackScreen.dart';
 import 'package:eatplek/Screens/LoginScreen.dart';
 import 'package:eatplek/Screens/OnboardingScreen.dart';
 import 'package:eatplek/Screens/OtpScreen.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: EditProfileScreen.id,
+        initialRoute: FeedbackScreen.id,
         routes: {
           OnboardingScreen.id: (context) => OnboardingScreen(),
           LoginScreen.id: (context) => LoginScreen(),
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
           OptionScreen.id: (context) => OptionScreen(),
           ProfileScreen.id: (context) => ProfileScreen(),
           EditProfileScreen.id: (context) => EditProfileScreen(),
+          FeedbackScreen.id: (context) => FeedbackScreen(),
         });
   }
 }
