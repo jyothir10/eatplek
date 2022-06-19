@@ -15,9 +15,9 @@ class _OptionScreenState extends State<OptionScreen> {
         color: Color(0xff042e60),
         child: Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width * .1, vertical: 15),
+              horizontal: MediaQuery.of(context).size.width * .08, vertical: 15),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Column(
@@ -90,17 +90,20 @@ class _OptionScreenState extends State<OptionScreen> {
                 ],
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Column(
                     children: [
-                      Card(
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                      Container(
+                        height: MediaQuery.of(context).size.height * .1,
+                        width: MediaQuery.of(context).size.width * .21,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(15),),
+                          color: Color(0xffffffff),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 5),
+                        child: GestureDetector(
+                          onTap: (){
+                          },
                           child: Column(
                             children: const [
                               // Dine In
@@ -122,28 +125,36 @@ class _OptionScreenState extends State<OptionScreen> {
                           ),
                         ),
                       ),
-                      Card(
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: const Icon(
-                          Icons.check,
-                          color: Color(0xff042e60),
+                      Padding(
+                        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * .01),
+                        child: Card(
+                          elevation: 5,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: const Icon(
+                            Icons.check,
+                            size: 25,
+                            color: Color(0xff042e60),
+                          ),
                         ),
                       ),
                     ],
                   ),
                   Column(
                     children: [
-                      Card(
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                      Container(
+
+                        height: MediaQuery.of(context).size.height * .1,
+                        width: MediaQuery.of(context).size.width * .21,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(15),),
+                          color: Color(0xffffffff),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 5),
+                        child: GestureDetector(
+                          onTap: (){
+
+                          },
                           child: Column(
                             children: const [
                               // Dine In
@@ -165,14 +176,18 @@ class _OptionScreenState extends State<OptionScreen> {
                           ),
                         ),
                       ),
-                      Card(
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: const Icon(
-                          Icons.check,
-                          color: Color(0xff042e60),
+                      Padding(
+                        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * .01),
+                        child: Card(
+                          elevation: 5,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: const Icon(
+                            Icons.check,
+                            size: 25,
+                            color: Color(0xff042e60),
+                          ),
                         ),
                       ),
                     ],
