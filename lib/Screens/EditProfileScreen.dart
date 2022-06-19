@@ -106,7 +106,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 text: 'E-mail(Optional)',
               ),
               ProfileButton(
-                  text: "Save",
+                  text: "       Save       ",
                   onTap: () {
                     //todo:Save settings
                   }),
