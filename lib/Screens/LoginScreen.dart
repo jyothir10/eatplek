@@ -105,6 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             right: MediaQuery.of(context).size.width * .2),
                         child: TextField(
                           cursorColor: Colors.white,
+                          keyboardType: TextInputType.number,
                           onChanged: (text) {
                             number = text;
                           },

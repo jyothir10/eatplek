@@ -68,7 +68,7 @@ class _OtpScreenState extends State<OtpScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: const [
                         Text(
-                          'A verification code has been sent to (+91) 920702****', //todo:phone number
+                          'A verification code has been sent to\n(+91) 920702****', //todo:phone number
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
