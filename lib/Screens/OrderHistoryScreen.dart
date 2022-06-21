@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:eatplek/Components/OrderHistoryListCard.dart';
 
 class OrderHistoryScreen extends StatefulWidget {
   static const String id = '/history';
@@ -41,7 +42,7 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 15),
                 child: Container(
-                  height: MediaQuery.of(context).size.height * .25,
+                  height: MediaQuery.of(context).size.height * .27,
                   width: MediaQuery.of(context).size.width * .9,
                   child: Card(
                     shape: RoundedRectangleBorder(
@@ -51,94 +52,75 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              // The Smocky Shack
-                              Text("The Smocky Shack",
-                                  style: TextStyle(
-                                      color: Color(0xff000000),
-                                      fontWeight: FontWeight.w600,
-                                      fontFamily: "SFUIText",
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 14.0),
-                                  textAlign: TextAlign.left),
-                              // 21-10-2022
-                              Text("21-10-2022",
-                                  style: TextStyle(
-                                      color: Color(0xff000000),
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: "SFUIText",
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 9.0),
-                                  textAlign: TextAlign.left)
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              // Chengannur
-                              Text("Chengannur",
-                                  style: TextStyle(
-                                      color: Color(0xff000000),
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: "SFUIText",
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 10.0),
-                                  textAlign: TextAlign.left),
-                              // 21-10-2022
-                              // 10:00 AM
-                              Text("10:00 AM",
-                                  style: TextStyle(
-                                      color: Color(0xff000000),
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: "SFUIText",
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 9.0),
-                                  textAlign: TextAlign.left),
+                          Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: const [
+                                  // The Smocky Shack
+                                  Text("The Smocky Shack",
+                                      style: TextStyle(
+                                          color: Color(0xff000000),
+                                          fontWeight: FontWeight.w600,
+                                          fontFamily: "SFUIText",
+                                          fontStyle: FontStyle.normal,
+                                          fontSize: 14.0),
+                                      textAlign: TextAlign.left),
+                                  // 21-10-2022
+                                  Text("21-10-2022",
+                                      style: TextStyle(
+                                          color: Color(0xff000000),
+                                          fontWeight: FontWeight.w500,
+                                          fontFamily: "SFUIText",
+                                          fontStyle: FontStyle.normal,
+                                          fontSize: 9.0),
+                                      textAlign: TextAlign.left)
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: const [
+                                  // Chengannur
+                                  Text("Chengannur",
+                                      style: TextStyle(
+                                          color: Color(0xff000000),
+                                          fontWeight: FontWeight.w400,
+                                          fontFamily: "SFUIText",
+                                          fontStyle: FontStyle.normal,
+                                          fontSize: 10.0),
+                                      textAlign: TextAlign.left),
+                                  // 21-10-2022
+                                  // 10:00 AM
+                                  Text("10:00 AM",
+                                      style: TextStyle(
+                                          color: Color(0xff000000),
+                                          fontWeight: FontWeight.w500,
+                                          fontFamily: "SFUIText",
+                                          fontStyle: FontStyle.normal,
+                                          fontSize: 9.0),
+                                      textAlign: TextAlign.left),
+                                ],
+                              ),
                             ],
                           ),
                           Card(
-                            color: const Color(0xff57e0e0e0),
+                            color: const Color(0xffeeeeee),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.symmetric(horizontal: 8),
                               child: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: const [
-                                      // Zinger Burger
-                                      Text(
-                                          "Zinger Burger",
-                                          style: TextStyle(
-                                              color:  const Color(0xff000000),
-                                              fontWeight: FontWeight.w400,
-                                              fontFamily: "SFUIText",
-                                              fontStyle:  FontStyle.normal,
-                                              fontSize: 10.0
-                                          ),
-                                          textAlign: TextAlign.left
-                                      ),
-                                      // ₹ 250
-                                      Text(
-                                          "₹ 250",
-                                          style: TextStyle(
-                                              color:  const Color(0xff000000),
-                                              fontWeight: FontWeight.w400,
-                                              fontFamily: "SFUIText",
-                                              fontStyle:  FontStyle.normal,
-                                              fontSize: 10.0
-                                          ),
-                                          textAlign: TextAlign.left
-                                      )
-                                  ],),
-                                  const Divider(
-                                    height: 1,
-                                    color: Colors.red,
+                                children: const [
+                                  OrderHistoryListCard(
+                                    name: "Zinger Burger",
+                                    rate: "₹ 250",
+                                  ),
+                                  OrderHistoryListCard(
+                                    name: "Zinger Burger",
+                                    rate: "₹ 250",
                                   ),
                                 ],
                               ),
@@ -148,14 +130,14 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
-                                children: [
+                                children: const [
                                   Icon(
                                     Icons.check_circle_sharp,
                                     color: Color(0xffbfbebf),
                                   ),
                                   Text("Delivered",
                                       style: TextStyle(
-                                          color: const Color(0xff000000),
+                                          color: Color(0xff000000),
                                           fontWeight: FontWeight.w600,
                                           fontFamily: "SFUIText",
                                           fontStyle: FontStyle.normal,
@@ -205,3 +187,5 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
     );
   }
 }
+
+

@@ -1,6 +1,7 @@
 import 'package:eatplek/Screens/DashBoardScreen.dart';
 import 'package:eatplek/Screens/EditProfileScreen.dart';
 import 'package:eatplek/Screens/FeedbackScreen.dart';
+import 'package:eatplek/Screens/InvoiceScreen.dart';
 import 'package:eatplek/Screens/LoginScreen.dart';
 import 'package:eatplek/Screens/NotificationScreen.dart';
 import 'package:eatplek/Screens/OnboardingScreen.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: OrderHistoryScreen.id,
+        initialRoute: InvoiceScreen.id,
         routes: {
           OnboardingScreen.id: (context) => OnboardingScreen(),
           LoginScreen.id: (context) => LoginScreen(),
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
           DashBoardScreen.id: (context) => DashBoardScreen(),
           NotificationScreen.id: (context) => NotificationScreen(),
           OrderHistoryScreen.id: (context) => OrderHistoryScreen(),
+          InvoiceScreen.id: (context) => InvoiceScreen(),
         });
   }
 }
