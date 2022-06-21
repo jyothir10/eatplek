@@ -16,16 +16,14 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
       child: Container(
         color: Colors.white,
         child: Center(
-          child: SizedBox(
+          child: Container(
             height: MediaQuery.of(context).size.height * .48,
             width: MediaQuery.of(context).size.width * .925,
             child: Card(
               elevation: 15,
               color: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(0),
-              ),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -107,37 +105,44 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                       ),
                     ],
                   ),
-                  const Text("Ceylon Bake House Marian Drive",
-                      style: TextStyle(
-                          color: Color(0xff042e60),
-                          fontWeight: FontWeight.w700,
-                          fontFamily: "SFUIText",
-                          fontStyle: FontStyle.normal,
-                          fontSize: 14.0),
-                      textAlign:
-                          TextAlign.left), // Ceylon Bake House Marian Drive
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Text("Chengannur, ",
+                  Column(
+                    children: [
+                      const Text("Ceylon Bake House Marian Drive",
                           style: TextStyle(
-                              color: Color(0xff000000),
-                              fontWeight: FontWeight.w400,
+                              color: Color(0xff042e60),
+                              fontWeight: FontWeight.w700,
                               fontFamily: "SFUIText",
                               fontStyle: FontStyle.normal,
-                              fontSize: 9.0),
-                          textAlign: TextAlign.left),
-                      // 9854654213
-                      Text("9854654213",
-                          style: TextStyle(
-                              color: Color(0xff000000),
-                              fontWeight: FontWeight.w400,
-                              fontFamily: "SFUIText",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 9.0),
-                          textAlign: TextAlign.left)
+                              fontSize: 14.0),
+                          textAlign:
+                              TextAlign.left),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Text("Chengannur, ",
+                                style: TextStyle(
+                                    color: Color(0xff000000),
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "SFUIText",
+                                    fontStyle: FontStyle.normal,
+                                    fontSize: 9.0),
+                                textAlign: TextAlign.left),
+                            // 9854654213
+                            Text("9854654213",
+                                style: TextStyle(
+                                    color: Color(0xff000000),
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "SFUIText",
+                                    fontStyle: FontStyle.normal,
+                                    fontSize: 9.0),
+                                textAlign: TextAlign.left)
+                          ],
+                        ),
+                      ), // Chengannur,
                     ],
-                  ), // Chengannur,
+                  ), // Ceylon Bake House Marian Drive
                   const DottedLine(
                     direction: Axis.horizontal,
                     dashColor: Color(0xff23000000),
@@ -215,13 +220,13 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                                     fontSize: 10.0),
                                 textAlign: TextAlign.left), // 1
                             Text("179",
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: const Color(0xff000000),
                                     fontWeight: FontWeight.w400,
                                     fontFamily: "SFUIText",
                                     fontStyle: FontStyle.normal,
                                     fontSize: 10.0),
-                                textAlign: TextAlign.left)// 179
+                                textAlign: TextAlign.left) // 179
                           ],
                         ),
                         const Divider(
@@ -262,78 +267,132 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                                     fontFamily: "SFUIText",
                                     fontStyle: FontStyle.normal,
                                     fontSize: 10.0),
-                                textAlign: TextAlign.left)// 179
+                                textAlign: TextAlign.left) // 179
                           ],
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text(
-                                "Taxes and Charges",
-                                style: TextStyle(
-                                    color:  Color(0xff000000),
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: "SFUIText",
-                                    fontStyle:  FontStyle.normal,
-                                    fontSize: 8.0
-                                ),
-                                textAlign: TextAlign.left
-                            ),// Taxes and Charges
-                            Text(
-                                "₹ 53.2",
-                                style: TextStyle(
-                                    color:  Color(0xff000000),
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: "SFUIText",
-                                    fontStyle:  FontStyle.normal,
-                                    fontSize: 8.0
-                                ),
-                                textAlign: TextAlign.left
-                            ),// ₹ 53.2
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: const [
-                            Text(
-                                "Total Price: Rs ",
-                                style: TextStyle(
-                                    color:  Color(0xff042e60),
-                                    fontWeight: FontWeight.w700,
-                                    fontFamily: "SFUIText",
-                                    fontStyle:  FontStyle.normal,
-                                    fontSize: 10.0
-                                ),
-                                textAlign: TextAlign.left
-                            ),
-                            Text(
-                                "818/-",
-                                style: TextStyle(
-                                    color:  Color(0xff042e60),
-                                    fontWeight: FontWeight.w700,
-                                    fontFamily: "SFUIText",
-                                    fontStyle:  FontStyle.normal,
-                                    fontSize: 10.0
-                                ),
-                                textAlign: TextAlign.left
-                            ),// Total Price: Rs 818/-
-                          ],
-                        ),
-                        // THANK YOU
-                        const Text(
-                            "THANK YOU",
-                            style: TextStyle(
-                                color:  Color(0xff042e60),
-                                fontWeight: FontWeight.w900,
-                                fontFamily: "SFUIText",
-                                fontStyle:  FontStyle.normal,
-                                fontSize: 10.0
-                            ),
-                            textAlign: TextAlign.left
-                        )
                       ],
                     ),
-                  )
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        Text("Taxes and Charges",
+                            style: TextStyle(
+                                color: Color(0xff000000),
+                                fontWeight: FontWeight.w500,
+                                fontFamily: "SFUIText",
+                                fontStyle: FontStyle.normal,
+                                fontSize: 8.0),
+                            textAlign: TextAlign.left), // Taxes and Charges
+                        Text("₹ 53.2",
+                            style: TextStyle(
+                                color: Color(0xff000000),
+                                fontWeight: FontWeight.w500,
+                                fontFamily: "SFUIText",
+                                fontStyle: FontStyle.normal,
+                                fontSize: 8.0),
+                            textAlign: TextAlign.left), // ₹ 53.2
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: const [
+                        Text("Total Price: Rs ",
+                            style: TextStyle(
+                                color: Color(0xff042e60),
+                                fontWeight: FontWeight.w700,
+                                fontFamily: "SFUIText",
+                                fontStyle: FontStyle.normal,
+                                fontSize: 10.0),
+                            textAlign: TextAlign.left),
+                        Text("818/-",
+                            style: TextStyle(
+                                color: Color(0xff042e60),
+                                fontWeight: FontWeight.w700,
+                                fontFamily: "SFUIText",
+                                fontStyle: FontStyle.normal,
+                                fontSize: 10.0),
+                            textAlign:
+                            TextAlign.left), // Total Price: Rs 818/-
+                      ],
+                    ),
+                  ),
+                  const Text("THANK YOU",
+                      style: TextStyle(
+                        letterSpacing: 5,
+                          color: Color(0xff042e60),
+                          fontWeight: FontWeight.w900,
+                          fontFamily: "SFUIText",
+                          fontStyle: FontStyle.normal,
+                          fontSize: 10.0),
+                      textAlign: TextAlign.left), // THANK YOU
+                  Container(
+                    color: const Color(0xff042e60),
+                    height: MediaQuery.of(context).size.height * .038,
+                    width: MediaQuery.of(context).size.width * .925,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children:  [
+                        Row(
+                          children: const [
+                            Text(
+                                "Billing Date: ",
+                                style: TextStyle(
+                                    color:  Color(0xffffffff),
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "SFUIText",
+                                    fontStyle:  FontStyle.normal,
+                                    fontSize: 10.0
+                                ),
+                                textAlign: TextAlign.left
+                            ),
+                            Text(
+                                "10/02/2022",
+                                style: TextStyle(
+                                    color:  Color(0xffffffff),
+                                    fontWeight: FontWeight.w600,
+                                    fontFamily: "SFUIText",
+                                    fontStyle:  FontStyle.normal,
+                                    fontSize: 10.0
+                                ),
+                                textAlign: TextAlign.left
+                            ),// 10/02/2022
+                          ],
+                        ),// Billing Date:
+                        Row(
+                          children: const [
+                            Text(
+                                "Billing Time: ",
+                                style: TextStyle(
+                                    color:  Color(0xffffffff),
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "SFUIText",
+                                    fontStyle:  FontStyle.normal,
+                                    fontSize: 10.0
+                                ),
+                                textAlign: TextAlign.left
+                            ),
+                            Text(
+                                "10:00 AM",
+                                style: TextStyle(
+                                    color:  Color(0xffffffff),
+                                    fontWeight: FontWeight.w600,
+                                    fontFamily: "SFUIText",
+                                    fontStyle:  FontStyle.normal,
+                                    fontSize: 10.0
+                                ),
+                                textAlign: TextAlign.left
+                            ),// 10:00 AM
+                          ],
+                        ), // Billing Time:
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

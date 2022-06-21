@@ -81,6 +81,7 @@ class _OptionScreenState extends State<OptionScreen> {
                               children: const [
                                 // Dine In
                                 Image(
+                                  height: 60,
                                   image: AssetImage("images/dinein.png"),
                                 ),
                                 Opacity(
@@ -123,7 +124,7 @@ class _OptionScreenState extends State<OptionScreen> {
                           height: MediaQuery.of(context).size.height * .1,
                           width: MediaQuery.of(context).size.width * .21,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(
+                            borderRadius: const BorderRadius.all(
                               Radius.circular(15),
                             ),
                             color:
@@ -140,6 +141,7 @@ class _OptionScreenState extends State<OptionScreen> {
                               children: const [
                                 // Dine In
                                 Image(
+                                  height: 60,
                                   image: AssetImage("images/takeaway.png"),
                                 ),
                                 Opacity(

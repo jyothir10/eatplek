@@ -1,5 +1,7 @@
+import 'package:eatplek/Screens/InvoiceScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:eatplek/Components/OrderHistoryListCard.dart';
+import 'package:eatplek/Components/BottomBar.dart';
 
 class OrderHistoryScreen extends StatefulWidget {
   static const String id = '/history';
@@ -145,15 +147,24 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
                                       textAlign: TextAlign.left),
                                 ],
                               ), // Delivered
-                              const Text("View Bill",
-                                  style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      color: Color(0xff284aff),
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: "SFUIText",
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 8.0),
-                                  textAlign: TextAlign.left), // View Bill
+                              InkWell(
+                                radius: 5,
+                                onTap: (){
+                                  setState((){
+                                    Navigator.pushNamed(
+                                        context, InvoiceScreen.id);
+                                  });
+                                },
+                                child: const Text("View Bill",
+                                    style: TextStyle(
+                                        decoration: TextDecoration.underline,
+                                        color: Color(0xff284aff),
+                                        fontWeight: FontWeight.w500,
+                                        fontFamily: "SFUIText",
+                                        fontStyle: FontStyle.normal,
+                                        fontSize: 8.0),
+                                    textAlign: TextAlign.left),
+                              ), // View Bill
                               Card(
                                 color: Color(0xff042e60),
                                 shape: RoundedRectangleBorder(
@@ -183,6 +194,7 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
             ],
           ),
         ),
+        bottomNavigationBar: const BottomBar(index: 2,),
       ),
     );
   }

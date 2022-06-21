@@ -1,3 +1,6 @@
+import 'package:eatplek/Screens/DashBoardScreen.dart';
+import 'package:eatplek/Screens/OrderHistoryScreen.dart';
+import 'package:eatplek/Screens/ProfileScreen.dart';
 import 'package:flutter/material.dart';
 
 class BottomBar extends StatefulWidget {
@@ -9,7 +12,7 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBarState extends State<BottomBar> {
-  final pages = [];
+  final pages = [DashBoardScreen.id,OrderHistoryScreen.id,ProfileScreen.id];
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
