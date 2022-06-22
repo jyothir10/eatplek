@@ -2,6 +2,7 @@ import 'package:eatplek/Components/LoginButton.dart';
 import 'package:eatplek/Screens/OtpScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = '/login';

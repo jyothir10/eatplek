@@ -1,7 +1,7 @@
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 import 'LoginScreen.dart';
 
 class OnboardingScreen extends StatefulWidget {

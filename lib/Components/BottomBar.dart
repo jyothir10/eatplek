@@ -12,13 +12,21 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBarState extends State<BottomBar> {
-  final pages = [DashBoardScreen.id,OrderHistoryScreen.id,ProfileScreen.id];
+  int _selectedIndex = 0;
+  final pages = [DashBoardScreen.id,OrderHistoryScreen.id,OrderHistoryScreen.id,ProfileScreen.id];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+      Navigator.pushReplacementNamed(
+          context, pages[index]);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      onTap: (value) {
-        print(value);
-      },
+      onTap: _onItemTapped,
       type: BottomNavigationBarType.fixed,
       currentIndex: widget.index,
       selectedLabelStyle: const TextStyle(
