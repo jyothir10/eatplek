@@ -1,6 +1,7 @@
 import 'package:eatplek/Components/BottomBar.dart';
 import 'package:eatplek/Components/ProfileButton.dart';
 import 'package:eatplek/Components/ProfileOption.dart';
+import 'package:eatplek/Screens/EditProfileScreen.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -56,7 +57,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ],
               ),
             ),
-            CircleAvatar(
+            const CircleAvatar(
               backgroundColor: Color(0xffefeeee),
               radius: 51.2,
               child: Text(
@@ -126,7 +127,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ProfileOption(
                       text: "Edit Profile",
                       img: 'edit',
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, EditProfileScreen.id);
+                      }
                     ),
                     ProfileOption(
                       text: "Notifications",
