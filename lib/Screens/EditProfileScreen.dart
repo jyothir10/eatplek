@@ -96,14 +96,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               EditProfileTextField(
                 myController: myController1,
                 text: 'Name',
+                type: TextInputType.name,
               ),
               EditProfileTextField(
                 myController: myController2,
                 text: 'Phone',
+                type: TextInputType.number,
               ),
               EditProfileTextField(
                 myController: myController3,
                 text: 'E-mail(Optional)',
+                type: TextInputType.emailAddress,
               ),
               ProfileButton(
                   text: "       Save       ",

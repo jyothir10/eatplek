@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 class EditProfileTextField extends StatelessWidget {
   final TextEditingController myController;
   final String text;
+  final TextInputType type;
   const EditProfileTextField({
     Key? key,
     required this.myController,
     required this.text,
+    required this.type,
   }) : super(key: key);
 
   @override
@@ -30,6 +32,7 @@ class EditProfileTextField extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 21),
           child: TextField(
             controller: myController,
+            keyboardType: type,
             cursorColor: const Color(0x80000000),
             onChanged: (text) {},
             style: const TextStyle(
