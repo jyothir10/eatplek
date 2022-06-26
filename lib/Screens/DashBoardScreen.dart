@@ -167,6 +167,43 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                   ),
                 ],
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 21),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Restaurants Near You',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 12,
+                        fontFamily: 'SFUIText',
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    InkWell(
+                        child: Image.asset("images/filter.png"),
+                        onTap: () {
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return SizedBox(
+                                  height: 200,
+                                  child: Center(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: const <Widget>[
+                                        //todo: Add contents of bottom sheet
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              });
+                        }),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
