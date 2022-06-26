@@ -2,6 +2,8 @@ import 'package:eatplek/Components/BottomBar.dart';
 import 'package:eatplek/Components/ProfileButton.dart';
 import 'package:eatplek/Components/ProfileOption.dart';
 import 'package:eatplek/Screens/EditProfileScreen.dart';
+import 'package:eatplek/Screens/FeedbackScreen.dart';
+import 'package:eatplek/Screens/NotificationScreen.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -134,12 +136,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ProfileOption(
                       text: "Notifications",
                       img: 'notification',
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, NotificationScreen.id);
+                      },
                     ),
                     ProfileOption(
                       text: "Send Feedback",
                       img: 'feedback',
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, FeedbackScreen.id);
+                      },
                     ),
                     ProfileOption(
                       text: "Rate us on Play Store/App Store",
