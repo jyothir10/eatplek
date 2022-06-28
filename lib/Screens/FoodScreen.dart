@@ -17,43 +17,97 @@ class _FoodScreenState extends State<FoodScreen> {
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize:
-              Size.fromHeight(MediaQuery.of(context).size.height * .166),
-          child: AppBar(
-            leading: InkWell(
-              onTap: () {},
-              child: const Icon(
-                Icons.arrow_back_outlined,
+              const Size.fromHeight(211),
+          child: Stack(
+            children: [
+              AppBar(
+                leading: InkWell(
+                  onTap: () {},
+                  child: const Icon(
+                    Icons.arrow_back_outlined,
+                  ),
+                ),
+                actions: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                        right: MediaQuery.of(context).size.width * .05),
+                    child: Row(
+                      children: [
+                        InkWell(
+                          onTap: () {},
+                          child: const Icon(
+                            Icons.search_rounded,
+                          ),
+                        ),
+                        const Text("Search",
+                            style: TextStyle(
+                                color: Color(0xffffffff),
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "SFUIText",
+                                fontStyle: FontStyle.normal,
+                                fontSize: 12.3),
+                            textAlign: TextAlign.left),
+                      ],
+                    ),
+                  ),
+                ],
+                flexibleSpace: Image(
+                  width: MediaQuery.of(context).size.width,
+                  image: AssetImage("images/bg.png"),
+                  fit: BoxFit.cover,
+                ),
+                backgroundColor: Colors.transparent,
               ),
-            ),
-            actions: [
-              Padding(
-                padding: EdgeInsets.only(
-                    right: MediaQuery.of(context).size.width * .05),
-                child: Row(
-                  children: [
-                    InkWell(
-                      onTap: () {},
-                      child: const Icon(
-                        Icons.search_rounded,
+              Positioned(
+                top: 65,
+                child: Container(
+                  height: 121,
+                  width: 388,
+                  child: Card(
+                    elevation: 10,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          const Image(
+                            image: AssetImage("images/rest.png"),
+                          ),
+                          Column(
+                            children: const [
+                              // The Smocky Shack
+                              Text(
+                                  "The Smocky Shack",
+                                  style: TextStyle(
+                                      color:  const Color(0xff1d1d1d),
+                                      fontWeight: FontWeight.w700,
+                                      fontFamily: "SFUIText",
+                                      fontStyle:  FontStyle.normal,
+                                      fontSize: 18.2
+                                  ),
+                                  textAlign: TextAlign.left
+                              ),
+                              // Arabian, Bevrages, Juices Chengannur
+                              Text(
+                                  "Arabian, Bevrages, Juices  Chengannur",
+                                  style: TextStyle(
+                                      color:  const Color(0xff1d1d1d),
+                                      fontWeight: FontWeight.w400,
+                                      fontFamily: "SFUIText",
+                                      fontStyle:  FontStyle.normal,
+                                      fontSize: 9.1
+                                  ),
+                                  textAlign: TextAlign.left
+                              ),
+
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                    const Text("Search",
-                        style: TextStyle(
-                            color: Color(0xffffffff),
-                            fontWeight: FontWeight.w400,
-                            fontFamily: "SFUIText",
-                            fontStyle: FontStyle.normal,
-                            fontSize: 12.3),
-                        textAlign: TextAlign.left),
-                  ],
+                  ),
                 ),
               ),
             ],
-            flexibleSpace: const Image(
-              image: AssetImage("images/bg.png"),
-              fit: BoxFit.cover,
-            ),
-            backgroundColor: Colors.transparent,
           ),
         ),
         body: Container(
@@ -63,9 +117,47 @@ class _FoodScreenState extends State<FoodScreen> {
                 horizontal: MediaQuery.of(context).size.width * .05),
             child: Column(
               children: [
-                Switch(
-                  value: v,
-                  onChanged: (v) {},
+                Row(
+                  children: [
+                    Switch(
+                      value: v,
+                      activeColor: const Color(0xff042e60),
+                      onChanged: (value) {
+                        setState(() {
+                          v = value;
+                        });
+                      },
+                    ),
+                    // Veg
+                    const Text(
+                      'Veg',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 10,
+                        fontFamily: 'SFUIText',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Switch(
+                      value: n,
+                      activeColor: const Color(0xff042e60),
+                      onChanged: (value) {
+                        setState(() {
+                          n = value;
+                        });
+                      },
+                    ),
+                    // Veg
+                    const Text(
+                      'Non- Veg',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 10,
+                        fontFamily: 'SFUIText',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -152,128 +244,6 @@ class _FoodScreenState extends State<FoodScreen> {
                                 Text("French Fires",
                                     style: TextStyle(
                                         color: const Color(0xff000000),
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: "SFUIText",
-                                        fontStyle: FontStyle.normal,
-                                        fontSize: 10.0),
-                                    textAlign: TextAlign.left)
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Icon(
-                        Icons.add_circle,
-                        color: Color(0xffffb800),
-                      ),
-                    ],
-                  ),
-                ),
-                Card(
-                  elevation: 0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          const Image(
-                            image: AssetImage("images/fd.png"),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: MediaQuery.of(context).size.width * .05),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // Zinger Burger
-                                Text("Zinger Burger",
-                                    style: TextStyle(
-                                        color: Color(0xff000000),
-                                        fontWeight: FontWeight.w600,
-                                        fontFamily: "SFUIText",
-                                        fontStyle: FontStyle.normal,
-                                        fontSize: 17.5),
-                                    textAlign: TextAlign.left),
-                                // ₹ 179
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical:
-                                          MediaQuery.of(context).size.height *
-                                              .02),
-                                  child: const Text("₹ 179",
-                                      style: TextStyle(
-                                          color: Color(0xff000000),
-                                          fontWeight: FontWeight.w500,
-                                          fontFamily: "SFUIText",
-                                          fontStyle: FontStyle.normal,
-                                          fontSize: 12.0),
-                                      textAlign: TextAlign.left),
-                                ),
-                                // French Fires
-                                Text("French Fires",
-                                    style: TextStyle(
-                                        color: const Color(0xff000000),
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: "SFUIText",
-                                        fontStyle: FontStyle.normal,
-                                        fontSize: 10.0),
-                                    textAlign: TextAlign.left)
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Icon(
-                        Icons.add_circle,
-                        color: Color(0xffffb800),
-                      ),
-                    ],
-                  ),
-                ),
-                Card(
-                  elevation: 0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          const Image(
-                            image: AssetImage("images/fd.png"),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: MediaQuery.of(context).size.width * .05),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // Zinger Burger
-                                const Text("Zinger Burger",
-                                    style: TextStyle(
-                                        color: Color(0xff000000),
-                                        fontWeight: FontWeight.w600,
-                                        fontFamily: "SFUIText",
-                                        fontStyle: FontStyle.normal,
-                                        fontSize: 17.5),
-                                    textAlign: TextAlign.left),
-                                // ₹ 179
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical:
-                                          MediaQuery.of(context).size.height *
-                                              .02),
-                                  child: const Text("₹ 179",
-                                      style: TextStyle(
-                                          color: Color(0xff000000),
-                                          fontWeight: FontWeight.w500,
-                                          fontFamily: "SFUIText",
-                                          fontStyle: FontStyle.normal,
-                                          fontSize: 12.0),
-                                      textAlign: TextAlign.left),
-                                ),
-                                // French Fires
-                                const Text("French Fires",
-                                    style: TextStyle(
-                                        color: Color(0xff000000),
                                         fontWeight: FontWeight.w500,
                                         fontFamily: "SFUIText",
                                         fontStyle: FontStyle.normal,
