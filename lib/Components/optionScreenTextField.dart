@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 class optionScreenTextField extends StatelessWidget {
   final String text;
+  final void Function(String)? onchanged;
 
   const optionScreenTextField({
     Key? key,
     required this.text,
+    required this.onchanged,
   }) : super(key: key);
 
   @override
@@ -15,8 +17,7 @@ class optionScreenTextField extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 10),
-          child: Text(
-              text,
+          child: Text(text,
               style: const TextStyle(
                   color: Color(0x61ffffff),
                   fontWeight: FontWeight.w500,
@@ -25,18 +26,28 @@ class optionScreenTextField extends StatelessWidget {
                   fontSize: 16.0),
               textAlign: TextAlign.left),
         ),
-        const TextField(
-          style: TextStyle(color: Colors.white),
+         TextField(
+          onChanged: onchanged,
+          style: const TextStyle(color: Colors.white),
           keyboardType: TextInputType.name,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
+            fillColor: Colors.white,
             enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10),
-                ),
-                borderSide: BorderSide(
-                  color: Color(0xffffffff),
-                )),
-            border: OutlineInputBorder(),
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+              borderSide: BorderSide(
+                color: Color(0xffffffff),
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+              borderSide: BorderSide(
+                color: Color(0xffffffff),
+              ),
+            ),
             hintText: "",
           ),
         ),
