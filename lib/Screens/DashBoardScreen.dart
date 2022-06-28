@@ -10,7 +10,7 @@ class DashBoardScreen extends StatefulWidget {
 }
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
-  int d = 0, t = 0;
+  int d = 0, t = 0, veg = 1, ac = 0, type = 0;
   @override
   Widget build(BuildContext context) {
     var items = ['Home', 'Office'];
@@ -182,25 +182,181 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       ),
                     ),
                     InkWell(
-                        child: Image.asset("images/filter.png"),
-                        onTap: () {
-                          showModalBottomSheet(
-                              context: context,
-                              builder: (BuildContext context) {
+                      child: Image.asset("images/filter.png"),
+                      onTap: () {
+                        showModalBottomSheet(
+                            context: context,
+                            builder: (context) {
+                              return StatefulBuilder(builder:
+                                  (BuildContext context, StateSetter setState) {
                                 return SizedBox(
-                                  height: 200,
+                                  height:
+                                      MediaQuery.of(context).size.height * .421,
                                   child: Center(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: const <Widget>[
-                                        //todo: Add contents of bottom sheet
-                                      ],
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 18),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Column(
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  const Text(
+                                                    'Filter',
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 16,
+                                                      fontFamily: 'SFUIText',
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                  InkWell(
+                                                    onTap: () {
+                                                      Navigator.pop(context);
+                                                    },
+                                                    child: const Icon(
+                                                      Icons.close,
+                                                      color: Colors.black,
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                              const Divider(
+                                                color: Color(0x1e000000),
+                                                thickness: 1,
+                                              ),
+                                            ],
+                                          ),
+                                          Container(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                .29,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: [
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          vertical: 8),
+                                                      child: InkWell(
+                                                        onTap: () {
+                                                          setState(() {
+                                                            ac = 0;
+                                                            veg = 1;
+                                                            type = 0;
+                                                          });
+                                                        },
+                                                        child: Text(
+                                                          'Veg/Non-veg',
+                                                          style: TextStyle(
+                                                            color: veg == 0
+                                                                ? const Color(
+                                                                    0x7f000000)
+                                                                : const Color(
+                                                                    0xffffb800),
+                                                            fontSize: 10,
+                                                            fontFamily:
+                                                                'SFUIText',
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          vertical: 8),
+                                                      child: InkWell(
+                                                        onTap: () {
+                                                          setState(() {
+                                                            ac = 0;
+                                                            veg = 0;
+                                                            type = 0;
+                                                          });
+                                                        },
+                                                        child: Text(
+                                                          'AC/Non-AC',
+                                                          style: TextStyle(
+                                                            color: ac == 0
+                                                                ? const Color(
+                                                                    0x7f000000)
+                                                                : const Color(
+                                                                    0xffffb800),
+                                                            fontSize: 10,
+                                                            fontFamily:
+                                                                'SFUIText',
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          vertical: 8),
+                                                      child: InkWell(
+                                                        onTap: () {
+                                                          setState(() {
+                                                            ac = 0;
+                                                            veg = 0;
+                                                            type = 0;
+                                                          });
+                                                        },
+                                                        child: Text(
+                                                          'Type',
+                                                          style: TextStyle(
+                                                            color: type == 0
+                                                                ? const Color(
+                                                                    0x7f000000)
+                                                                : const Color(
+                                                                    0xffffb800),
+                                                            fontSize: 10,
+                                                            fontFamily:
+                                                                'SFUIText',
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                const VerticalDivider(
+                                                  color: Color(0x1e000000),
+                                                  thickness: 2,
+                                                ),
+                                                Column()
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 );
                               });
-                        }),
+                            });
+                      },
+                    ),
                   ],
                 ),
               ),
