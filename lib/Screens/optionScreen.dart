@@ -9,6 +9,7 @@ class OptionScreen extends StatefulWidget {
 }
 
 class _OptionScreenState extends State<OptionScreen> {
+  String name = '',email = '';
   int d = 0, t = 0;
   @override
   Widget build(BuildContext context) {
@@ -49,19 +50,26 @@ class _OptionScreenState extends State<OptionScreen> {
                     ),
                   ],
                 ),
-                const optionScreenTextField(
+                optionScreenTextField(
+                  onchanged: (value){
+                    name = value;
+                  },
                   text: "Name",
                 ),
-                const optionScreenTextField(
+                optionScreenTextField(
+                  onchanged: (value){
+                    email = value;
+                  },
                   text: "Email(Optional)",
                 ),
+                MediaQuery.of(context).viewInsets.bottom == 0?
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Column(
                       children: [
                         Container(
-                          height: MediaQuery.of(context).size.height * .1,
+                          height: MediaQuery.of(context).size.height * .11,
                           width: MediaQuery.of(context).size.width * .21,
                           decoration: BoxDecoration(
                             borderRadius: const BorderRadius.all(
@@ -121,7 +129,7 @@ class _OptionScreenState extends State<OptionScreen> {
                     Column(
                       children: [
                         Container(
-                          height: MediaQuery.of(context).size.height * .1,
+                          height: MediaQuery.of(context).size.height * .11,
                           width: MediaQuery.of(context).size.width * .21,
                           decoration: BoxDecoration(
                             borderRadius: const BorderRadius.all(
@@ -179,7 +187,7 @@ class _OptionScreenState extends State<OptionScreen> {
                       ],
                     ),
                   ],
-                ),
+                ):Container(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -188,7 +196,7 @@ class _OptionScreenState extends State<OptionScreen> {
                       height: MediaQuery.of(context).size.height * .05,
                       child: ElevatedButton(
                         onPressed: () {
-                          if (d != 0 || t != 0) {
+                          if ((d != 0 || t != 0) & (name.isNotEmpty & email.isNotEmpty)) {
                             Navigator.pushNamedAndRemoveUntil(
                                 context, DashBoardScreen.id, (route) => false);
                           }

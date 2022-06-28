@@ -1,5 +1,6 @@
 import 'package:eatplek/Components/EditProfileTextField.dart';
 import 'package:eatplek/Components/ProfileButton.dart';
+import 'package:eatplek/Screens/ProfileScreen.dart';
 import 'package:flutter/material.dart';
 
 class EditProfileScreen extends StatefulWidget {
@@ -65,34 +66,36 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Stack(
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Color(0xffefeeee),
-                    radius: 51.2,
-                    child: Text(
-                      "S",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 35.826087951660156,
-                        fontFamily: 'SFUIText',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 65,
-                    left: 65,
-                    child: InkWell(
-                      onTap: () {},
-                      child: Image.asset(
-                        "images/edit_profile.png",
-                        height: 45,
-                      ),
-                    ),
-                  )
-                ],
-              ),
+              MediaQuery.of(context).viewInsets.bottom == 0
+                  ? Stack(
+                      children: [
+                        const CircleAvatar(
+                          backgroundColor: Color(0xffefeeee),
+                          radius: 51.2,
+                          child: Text(
+                            "S",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 35.826087951660156,
+                              fontFamily: 'SFUIText',
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: 65,
+                          left: 65,
+                          child: InkWell(
+                            onTap: () {},
+                            child: Image.asset(
+                              "images/edit_profile.png",
+                              height: 45,
+                            ),
+                          ),
+                        )
+                      ],
+                    )
+                  : Container(),
               EditProfileTextField(
                 myController: myController1,
                 text: 'Name',
@@ -111,7 +114,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               ProfileButton(
                   text: "       Save       ",
                   onTap: () {
-                    //todo:Save settings
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, ProfileScreen.id, (route) => false);
                   }),
             ],
           ),
