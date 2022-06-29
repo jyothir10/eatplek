@@ -15,9 +15,14 @@ class DashBoardScreen extends StatefulWidget {
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
   int d = 1, t = 0, veg = 1, ac = 0, type = 0;
-  bool? vegcheck = false, noncheck = false, accheck = false, nonaccheck = false;
+  bool? vegcheck = false,
+      noncheck = false,
+      accheck = false,
+      nonaccheck = false,
+      type1 = false,
+      type2 = false;
   var items = ['Home', 'Office'];
-  String dropdownvalue = 'Home';
+  String dropdownvalue = 'Home', filter = "veg";
   @override
   Widget build(BuildContext context) {
     String address = 'Mc Hostel, Aramana Road, Chengannur, Keral...';
@@ -205,6 +210,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                               ac = 0;
                                                               veg = 1;
                                                               type = 0;
+                                                              filter = 'veg';
                                                             });
                                                           },
                                                           child: Text(
@@ -236,6 +242,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                               ac = 1;
                                                               veg = 0;
                                                               type = 0;
+                                                              filter = "ac";
                                                             });
                                                           },
                                                           child: Text(
@@ -267,6 +274,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                               ac = 0;
                                                               veg = 0;
                                                               type = 1;
+                                                              filter = "type";
                                                             });
                                                           },
                                                           child: Text(
@@ -298,61 +306,72 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                       thickness: 2,
                                                     ),
                                                   ),
-                                                  Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
-                                                    children: [
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        children: const [
-                                                          Text(
-                                                            'Filter by',
-                                                            style: TextStyle(
-                                                              color: Color(
-                                                                  0x7f000000),
-                                                              fontSize: 10,
-                                                              fontFamily:
-                                                                  'SFUIText',
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 12),
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceEvenly,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: const [
+                                                            Text(
+                                                              'Filter by',
+                                                              style: TextStyle(
+                                                                color: Color(
+                                                                    0x7f000000),
+                                                                fontSize: 10,
+                                                                fontFamily:
+                                                                    'SFUIText',
+                                                              ),
                                                             ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceEvenly,
-                                                        children: [
-                                                          Checkbox(
-                                                            activeColor: Color(
-                                                                0xffffb800),
-                                                            value: vegcheck,
-                                                            onChanged:
-                                                                (bool? value) {
-                                                              setState(() {
+                                                          ],
+                                                        ),
+                                                        generateCheck(
+                                                          context,
+                                                          filter,
+                                                          (bool? value) {
+                                                            setState(() {
+                                                              if (filter ==
+                                                                  "veg") {
                                                                 vegcheck =
                                                                     value;
-                                                              });
-                                                            },
-                                                          ),
-                                                          const Text(
-                                                            'Veg',
-                                                            style: TextStyle(
-                                                              color: Color(
-                                                                  0x59000000),
-                                                              fontSize: 12,
-                                                              fontFamily:
-                                                                  'SFUIText',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      )
-                                                    ],
+                                                              } else if (filter ==
+                                                                  "ac") {
+                                                                accheck = value;
+                                                              } else if (filter ==
+                                                                  "type") {
+                                                                type1 = value;
+                                                              }
+                                                            });
+                                                          },
+                                                          (bool? value) {
+                                                            setState(() {
+                                                              if (filter ==
+                                                                  "veg") {
+                                                                noncheck =
+                                                                    value;
+                                                              } else if (filter ==
+                                                                  "ac") {
+                                                                nonaccheck =
+                                                                    value;
+                                                              } else if (filter ==
+                                                                  "type") {
+                                                                type2 = value;
+                                                              }
+                                                            });
+                                                          },
+                                                        ),
+                                                      ],
+                                                    ),
                                                   )
                                                 ],
                                               ),
@@ -424,7 +443,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     height: MediaQuery.of(context).size.height * 0.09,
                     child: ListView(
                       scrollDirection: Axis.horizontal,
-                      children: <Widget>[
+                      children: const <Widget>[
                         DashBoardTopItem(
                           text: "icecream",
                           img: "images/icecream.jpg",
@@ -538,5 +557,142 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
         ),
       ),
     );
+  }
+
+  Column generateCheck(BuildContext context, String type,
+      void Function(bool?)? onChanged1, void Function(bool?)? onChanged2) {
+    if (type == "veg") {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Checkbox(
+                activeColor: Color(0xffffb800),
+                value: vegcheck,
+                onChanged: onChanged1,
+              ),
+              const Text(
+                "Veg",
+                style: TextStyle(
+                  color: Color(0x59000000),
+                  fontSize: 12,
+                  fontFamily: 'SFUIText',
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Checkbox(
+                activeColor: Color(0xffffb800),
+                value: noncheck,
+                onChanged: onChanged2,
+              ),
+              const Text(
+                "Non-Veg",
+                style: TextStyle(
+                  color: Color(0x59000000),
+                  fontSize: 12,
+                  fontFamily: 'SFUIText',
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+        ],
+      );
+    } else if (type == "ac") {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Checkbox(
+                activeColor: Color(0xffffb800),
+                value: accheck,
+                onChanged: onChanged1,
+              ),
+              const Text(
+                "AC",
+                style: TextStyle(
+                  color: Color(0x59000000),
+                  fontSize: 12,
+                  fontFamily: 'SFUIText',
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Checkbox(
+                activeColor: Color(0xffffb800),
+                value: nonaccheck,
+                onChanged: onChanged2,
+              ),
+              const Text(
+                "Non-AC",
+                style: TextStyle(
+                  color: Color(0x59000000),
+                  fontSize: 12,
+                  fontFamily: 'SFUIText',
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+        ],
+      );
+    } else {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Checkbox(
+                activeColor: Color(0xffffb800),
+                value: type1,
+                onChanged: onChanged1,
+              ),
+              const Text(
+                "Type 1",
+                style: TextStyle(
+                  color: Color(0x59000000),
+                  fontSize: 12,
+                  fontFamily: 'SFUIText',
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Checkbox(
+                activeColor: Color(0xffffb800),
+                value: type2,
+                onChanged: onChanged2,
+              ),
+              const Text(
+                "Type 2",
+                style: TextStyle(
+                  color: Color(0x59000000),
+                  fontSize: 12,
+                  fontFamily: 'SFUIText',
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+        ],
+      );
+    }
   }
 }
