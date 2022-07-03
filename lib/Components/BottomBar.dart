@@ -1,5 +1,6 @@
 import 'package:eatplek/Screens/DashBoardScreen.dart';
 import 'package:eatplek/Screens/OrderHistoryScreen.dart';
+import 'package:eatplek/Screens/OrderScreen.dart';
 import 'package:eatplek/Screens/ProfileScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -13,13 +14,17 @@ class BottomBar extends StatefulWidget {
 
 class _BottomBarState extends State<BottomBar> {
   int _selectedIndex = 0;
-  final pages = [DashBoardScreen.id,OrderHistoryScreen.id,OrderHistoryScreen.id,ProfileScreen.id];
+  final pages = [
+    DashBoardScreen.id,
+    OrderScreen.id,
+    OrderHistoryScreen.id,
+    ProfileScreen.id
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-      Navigator.pushReplacementNamed(
-          context, pages[index]);
+      Navigator.pushReplacementNamed(context, pages[index]);
     });
   }
 
