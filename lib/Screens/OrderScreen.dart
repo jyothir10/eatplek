@@ -48,19 +48,22 @@ class _OrderScreenState extends State<OrderScreen> {
               padding: const EdgeInsets.only(left: 18, top: 8),
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: const [
-                      Text(
-                        'From',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 10,
-                          fontFamily: 'SFUIText',
-                          fontWeight: FontWeight.w600,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 9),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: const [
+                        Text(
+                          'From',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 10,
+                            fontFamily: 'SFUIText',
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -95,16 +98,98 @@ class _OrderScreenState extends State<OrderScreen> {
                       ),
                     ],
                   ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 18),
+                    child: Row(
+                      children: [
+                        const Text(
+                          'Choosen Option',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 10,
+                            fontFamily: 'SFUIText',
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 12),
+                          child: Container(
+                            height: MediaQuery.of(context).size.height * .042,
+                            width: MediaQuery.of(context).size.width * .2,
+                            decoration: BoxDecoration(
+                              color: Color(0xd1e1e1e1),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Center(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Image.asset(
+                                    "images/cutlery.png",
+                                    color: Color(0xff768BA3),
+                                    height: 12,
+                                    width: 15,
+                                  ),
+                                  Text(
+                                    'Dine In',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 10,
+                                      fontFamily: 'SFUIText',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 9),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: const [
+                        Text(
+                          'Items',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 10,
+                            fontFamily: 'SFUIText',
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: const [
-                      Text(
-                        'Items',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 10,
-                          fontFamily: 'SFUIText',
-                          fontWeight: FontWeight.w600,
+                    children: [
+                      Container(
+                        height: MediaQuery.of(context).size.height * .097,
+                        width: MediaQuery.of(context).size.width * .91,
+                        decoration: BoxDecoration(
+                          color: Color(0xd1e1e1e1),
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  'Zinger Burger',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 11,
+                                    fontFamily: 'SFUIText',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
                         ),
                       ),
                     ],
@@ -168,7 +253,7 @@ class _OrderScreenState extends State<OrderScreen> {
                       child: ProfileButton(
                           text: "Proceed",
                           onTap: () {
-                            //todo:add navigation here
+                            //todo:payment
                           }),
                     ),
                   ],
