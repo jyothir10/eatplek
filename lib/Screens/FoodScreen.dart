@@ -271,12 +271,14 @@ class _FoodScreenState extends State<FoodScreen> {
                   name: "Zinger Burger",
                   price: "₹ 179",
                   subname: "French Fires",
+                  description: "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
                 ),
                 const FoodScreenCard(
                   pic: "images/fd.png",
                   name: "Zinger Burger",
                   price: "₹ 179",
                   subname: "French Fires",
+                  description: "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
                 ),
               ],
             ),
@@ -373,6 +375,7 @@ class FoodScreenCard extends StatefulWidget {
   final String name;
   final String price;
   final String subname;
+  final String description;
 
   const FoodScreenCard({
     Key? key,
@@ -380,6 +383,7 @@ class FoodScreenCard extends StatefulWidget {
     required this.name,
     required this.price,
     required this.subname,
+    required this.description,
   }) : super(key: key);
 
   @override
@@ -389,6 +393,7 @@ class FoodScreenCard extends StatefulWidget {
 class _FoodScreenCardState extends State<FoodScreenCard> {
   int count = 01;
   bool countEnable = false;
+
   _showDetailsCard() {
     showDialog(
         context: context,
@@ -404,6 +409,7 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
                   height: MediaQuery.of(context).size.height * .323,
                   width: MediaQuery.of(context).size.width * .8,
                   child: Column(
+                    //mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -416,19 +422,31 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
                             },
                             child: const Icon(
                               Icons.close_rounded,
+                              size: 15,
                               color: Color(0xffde292d32),
                             ),
                           )
                         ],
                       ),
                       Image(
-                        image: AssetImage("images/fd.png"),
+                        image: AssetImage(widget.pic),
                         height: MediaQuery.of(context).size.height * .132,
                         width: MediaQuery.of(context).size.width * .31,
                       ),
-                      const Text(
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
-                        style: TextStyle(
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        child: Text(widget.name,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'SFUIText',
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        widget.description,
+                        style: const TextStyle(
                           color: Colors.black,
                           fontSize: 10,
                           fontFamily: 'SFUIText',
@@ -445,16 +463,16 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        _showDetailsCard();
-      },
-      child: Card(
-        elevation: 0,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
+    return Card(
+      elevation: 0,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          GestureDetector(
+            onTap: () {
+              _showDetailsCard();
+            },
+            child: Row(
               children: [
                 Image(
                   image: AssetImage(widget.pic),
@@ -503,59 +521,59 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
                 ),
               ],
             ),
-            countEnable
-                ? Row(
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            if (count > 0) {
-                              count--;
-                            }
-                          });
-                        },
-                        child: const Icon(
-                          Icons.remove_circle,
-                          color: Color(0xffc7c7c7),
-                          size: 17,
-                        ),
+          ),
+          countEnable
+              ? Row(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          if (count > 0) {
+                            count--;
+                          }
+                        });
+                      },
+                      child: const Icon(
+                        Icons.remove_circle,
+                        color: Color(0xffc7c7c7),
+                        size: 17,
                       ),
-                      Text(
-                        " $count ",
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 11.076922416687012,
-                          fontFamily: 'SFUIText',
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            count++;
-                          });
-                        },
-                        child: const Icon(
-                          Icons.add_circle,
-                          color: Color(0xffffb800),
-                          size: 17,
-                        ),
-                      ),
-                    ],
-                  )
-                : InkWell(
-                    onTap: () {
-                      setState(() {
-                        countEnable = true;
-                      });
-                    },
-                    child: const Icon(
-                      Icons.add_circle,
-                      color: Color(0xffffb800),
                     ),
+                    Text(
+                      " $count ",
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 11.076922416687012,
+                        fontFamily: 'SFUIText',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          count++;
+                        });
+                      },
+                      child: const Icon(
+                        Icons.add_circle,
+                        color: Color(0xffffb800),
+                        size: 17,
+                      ),
+                    ),
+                  ],
+                )
+              : InkWell(
+                  onTap: () {
+                    setState(() {
+                      countEnable = true;
+                    });
+                  },
+                  child: const Icon(
+                    Icons.add_circle,
+                    color: Color(0xffffb800),
                   ),
-          ],
-        ),
+                ),
+        ],
       ),
     );
   }
