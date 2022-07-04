@@ -17,6 +17,7 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: // Your Order
               const Text("Your Order",
                   style: TextStyle(
