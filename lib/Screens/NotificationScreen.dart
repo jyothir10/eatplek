@@ -46,7 +46,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 5),
                   child: Container(
                     width: MediaQuery.of(context).size.width * .885,
-                    height: MediaQuery.of(context).size.height * .08,
+                    height: MediaQuery.of(context).size.height * .1,
                     decoration: const BoxDecoration(
                       color: Colors.white,
                       border: Border(
@@ -59,6 +59,60 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       ),
                     ),
                     child: Card(
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            // Order delivered
+                            Text("Order delivered",
+                                style: TextStyle(
+                                    color: Color(0xff000000),
+                                    fontWeight: FontWeight.w600,
+                                    fontFamily: "SFUIText",
+                                    fontStyle: FontStyle.normal,
+                                    fontSize: 12.0),
+                                textAlign: TextAlign.left),
+                            // Your order has been delivered. Kindly rate us on Play store or App Store
+                            Text(
+                                "Your order has been delivered. Kindly rate us on Play store\n or App Store",
+                                style: TextStyle(
+                                    color: Color(0xff000000),
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "SFUIText",
+                                    fontStyle: FontStyle.normal,
+                                    fontSize: 10.0),
+                                textAlign: TextAlign.left)
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * .885,
+                    height: MediaQuery.of(context).size.height * .1,
+                    decoration: const BoxDecoration(
+                      color: Color(0xffF7F7F7),
+                      border: Border(
+                        top: BorderSide(
+                            color: Color(0xffececec)
+                        ),
+                        bottom: BorderSide(color: Color(0xffececec)),
+                        right: BorderSide(color: Color(0xffececec)),
+                        left: BorderSide(color: Color(0xff61ff8d), width: 5),
+                      ),
+                    ),
+                    child: Card(
+                      elevation: 0,
+                      color: const Color(0xffF7F7F7),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -97,12 +151,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 5),
                   child: Container(
                     width: MediaQuery.of(context).size.width * .885,
-                    height: MediaQuery.of(context).size.height * .08,
+                    height: MediaQuery.of(context).size.height * .1,
                     decoration: const BoxDecoration(
-                      color: Color(0xffececec),
+                      color: Color(0xffF7F7F7),
                       border: Border(
                         top: BorderSide(
-                          color: Color(0xffececec)
+                            color: Color(0xffececec)
                         ),
                         bottom: BorderSide(color: Color(0xffececec)),
                         right: BorderSide(color: Color(0xffececec)),
@@ -110,59 +164,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       ),
                     ),
                     child: Card(
-                      color: Color(0xffececec),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            // Order delivered
-                            Text("Order delivered",
-                                style: TextStyle(
-                                    color: Color(0xff000000),
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: "SFUIText",
-                                    fontStyle: FontStyle.normal,
-                                    fontSize: 12.0),
-                                textAlign: TextAlign.left),
-                            // Your order has been delivered. Kindly rate us on Play store or App Store
-                            Text(
-                                "Your order has been delivered. Kindly rate us on Play store \nor App Store",
-                                style: TextStyle(
-                                    color: Color(0xff000000),
-                                    fontWeight: FontWeight.w400,
-                                    fontFamily: "SFUIText",
-                                    fontStyle: FontStyle.normal,
-                                    fontSize: 10.0),
-                                textAlign: TextAlign.left)
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * .885,
-                    height: MediaQuery.of(context).size.height * .08,
-                    decoration: const BoxDecoration(
-                      color: Color(0xffececec),
-                      border: Border(
-                        top: BorderSide(
-                          color: Color(0xffececec),
-                        ),
-                        bottom: BorderSide(color: Color(0xffececec)),
-                        right: BorderSide(color: Color(0xffececec)),
-                        left: BorderSide(color: Color(0xff61ff8d), width: 5),
-                      ),
-                    ),
-                    child: Card(
-                      color: Color(0xffececec),
+                      elevation: 0,
+                      color: const Color(0xffF7F7F7),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
