@@ -1,8 +1,7 @@
 import 'package:eatplek/Components/LoginButton.dart';
 import 'package:eatplek/Screens/OtpScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:toast/toast.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 
 class LoginScreen extends StatefulWidget {
   static const String id = '/login';
@@ -20,8 +19,8 @@ class _LoginScreenState extends State<LoginScreen> {
         now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
       currentBackPressTime = now;
 
-      Toast.show("Press back again to exit",
-          duration: Toast.lengthShort, gravity: Toast.bottom);
+
+
       return Future.value(false);
     }
     return Future.value(true);
@@ -146,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Navigator.pushReplacementNamed(
                                       context, OtpScreen.id);
                                 } else {
-                                  //todo:Show toast
+
                                 }
                               },
                               text: 'Get OTP',
