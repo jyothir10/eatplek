@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:eatplek/Components/BottomBar.dart';
 import 'package:eatplek/Components/ClearFilterButton.dart';
 import 'package:eatplek/Components/DashBoardCard.dart';
@@ -14,6 +15,50 @@ class DashBoardScreen extends StatefulWidget {
 }
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
+
+  _showDetailsCard() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            child: AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              actions: [
+                Container(
+                  height: MediaQuery.of(context).size.height * .323,
+                  width: MediaQuery.of(context).size.width * .8,
+                  child: Column(
+                    //mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children:[
+                          InkWell(
+                            onTap: (){
+                              setState((){
+                                Navigator.pop(context);
+                              });
+                            },
+                            child: const Icon(
+                              Icons.close_rounded,
+                              size: 15,
+                              color: Color(0xffde292d32),
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
+  }
+
   int d = 1, t = 0, veg = 1, ac = 0, type = 0;
   bool? vegcheck = false,
       noncheck = false,
@@ -460,12 +505,15 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     child: ListView(
                       scrollDirection: Axis.vertical,
                       physics: const AlwaysScrollableScrollPhysics(),
-                      children: const [
+                      children: [
                         DashBoardCard(
                           img: "images/fd.png",
                           text: "The Smoky Shack",
                           rating: "4.85",
                           feeds: "555",
+                          ontap: (){
+                            _showDetailsCard();
+                          },
                           location: 'Arabian, Bevrages, Juice\nChengannur',
                         ),
                       ],
