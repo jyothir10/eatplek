@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:eatplek/Screens/OrderScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -26,7 +27,9 @@ class _FoodScreenState extends State<FoodScreen> {
               AppBar(
                 elevation: 0,
                 leading: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
                   child: const Icon(
                     Icons.arrow_back_outlined,
                   ),
@@ -65,7 +68,7 @@ class _FoodScreenState extends State<FoodScreen> {
               ),
               Positioned(
                 top: 65,
-                left: 10,
+                left:  MediaQuery.of(context).size.width * .047,
                 child: Container(
                   height: 121,
                   width: MediaQuery.of(context).size.width * .906,
@@ -74,101 +77,130 @@ class _FoodScreenState extends State<FoodScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          const Image(
-                            image: AssetImage("images/rest.png"),
-                            height: 101,
-                            width: 107.3,
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Row(
                             children: [
-                              // The Smocky Shack
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text("The Smocky Shack",
-                                      style: TextStyle(
-                                          color: Color(0xff1d1d1d),
-                                          fontWeight: FontWeight.w700,
-                                          fontFamily: "SFUIText",
-                                          fontStyle: FontStyle.normal,
-                                          fontSize: 18.2),
-                                      textAlign: TextAlign.left),
-                                  Text("Arabian, Bevrages, Juices  Chengannur",
-                                      style: TextStyle(
-                                          color: Color(0xff1d1d1d),
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: "SFUIText",
-                                          fontStyle: FontStyle.normal,
-                                          fontSize: 9.1),
-                                      textAlign: TextAlign.left),
-                                ],
+                              Image(
+                                image: AssetImage("images/rest.png"),
+                                height: 101,
+                                width: MediaQuery.of(context).size.width * .25,
                               ),
-                              // Arabian, Bevrages, Juices Chengannur
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.star,
-                                    size: 15,
-                                  ),
-                                  // 3.9
-                                  const Text(
-                                    ' 3.9',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 9.968466758728027,
-                                      fontFamily: 'SFUIText',
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 13),
-                                    child: Row(
+                              Padding(
+                                padding: const EdgeInsets.only(left: 13),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    // The Smocky Shack
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: const [
-                                        Icon(
-                                          Icons.location_on_outlined,
+                                        Text("The Smocky Shack",
+                                            style: TextStyle(
+                                                color: Color(0xff1d1d1d),
+                                                fontWeight: FontWeight.w700,
+                                                fontFamily: "SFUIText",
+                                                fontStyle: FontStyle.normal,
+                                                fontSize: 18.2),
+                                            textAlign: TextAlign.left),
+                                        Text("Arabian, Bevrages, Juices  Chengannur",
+                                            style: TextStyle(
+                                                color: Color(0xff1d1d1d),
+                                                fontWeight: FontWeight.w400,
+                                                fontFamily: "SFUIText",
+                                                fontStyle: FontStyle.normal,
+                                                fontSize: 9.1),
+                                            textAlign: TextAlign.left),
+                                      ],
+                                    ),
+                                    // Arabian, Bevrages, Juices Chengannur
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.star,
                                           size: 15,
                                         ),
-                                        Text(
-                                          ' 2.4 km',
+                                        // 3.9
+                                        const Text(
+                                          ' 3.9',
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 9.970605850219727,
+                                            fontSize: 9.968466758728027,
+                                            fontFamily: 'SFUIText',
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 13),
+                                          child: Row(
+                                            children: const [
+                                              Icon(
+                                                Icons.location_on_outlined,
+                                                size: 15,
+                                              ),
+                                              Text(
+                                                ' 2.4 km',
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 9.970605850219727,
+                                                  fontFamily: 'SFUIText',
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        // 2.4 km
+
+                                        const Icon(
+                                          Icons.hourglass_empty_outlined,
+                                          size: 15,
+                                        ),
+                                        const Text(
+                                          ' 15 min',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 9.970000267028809,
                                             fontFamily: 'SFUIText',
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),
                                       ],
                                     ),
-                                  ),
-                                  // 2.4 km
-
-                                  const Icon(
-                                    Icons.hourglass_empty_outlined,
-                                    size: 15,
-                                  ),
-                                  const Text(
-                                    ' 15 min',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 9.970000267028809,
-                                      fontFamily: 'SFUIText',
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ],
                           ),
-                        ],
-                      ),
+                        ),
+                         Card(
+                          color: Color(0xfffd8181),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(topRight: Radius.circular(10),),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(5.0),
+                            child: Row(
+                              children: const [
+                                Icon(Icons.circle_rounded,color: Color(0xffffb800),size: 10),
+                                Text('AC',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 8,
+                                    fontFamily: 'SFUIText',
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -351,14 +383,19 @@ class _FoodScreenState extends State<FoodScreen> {
                       ],
                     ),
                     // View Cart
-                    const Text("View Cart",
-                        style: TextStyle(
-                            color: Color(0xffffffff),
-                            fontWeight: FontWeight.w600,
-                            fontFamily: "SFUIText",
-                            fontStyle: FontStyle.normal,
-                            fontSize: 12.2),
-                        textAlign: TextAlign.left)
+                    InkWell(
+                      onTap: (){
+                        Navigator.pushReplacementNamed(context, OrderScreen.id);
+                      },
+                      child: const Text("View Cart",
+                          style: TextStyle(
+                              color: Color(0xffffffff),
+                              fontWeight: FontWeight.w600,
+                              fontFamily: "SFUIText",
+                              fontStyle: FontStyle.normal,
+                              fontSize: 12.2),
+                          textAlign: TextAlign.left),
+                    )
                   ],
                 ),
               ),

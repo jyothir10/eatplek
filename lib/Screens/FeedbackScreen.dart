@@ -74,7 +74,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                 child: ProfileButton(
                     text: "       Sent       ",
                     onTap: () {
-                      //todo:implement send functionality
+                      Navigator.pop(context);
                     }),
               )
             ],
