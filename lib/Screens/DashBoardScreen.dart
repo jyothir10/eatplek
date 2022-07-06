@@ -5,6 +5,7 @@ import 'package:eatplek/Components/ClearFilterButton.dart';
 import 'package:eatplek/Components/DashBoardCard.dart';
 import 'package:eatplek/Components/DashBoardTopItem.dart';
 import 'package:eatplek/Components/ProfileButton.dart';
+import 'package:eatplek/Screens/FoodScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
@@ -23,6 +24,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     int currentValue1 = 5;
     int persons = 2;
     final list = ['AM', 'PM'];
+    String dropdownval = "AM";
 
     showDialog(
         context: context,
@@ -172,6 +174,49 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                   ],
                                 ),
                               ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 18),
+                                child: Container(
+                                    height: 50,
+                                    width: 50,
+                                    decoration: const BoxDecoration(
+                                        color: Colors.white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black,
+                                            blurRadius: 2.0,
+                                            spreadRadius: 0.0,
+                                            offset: Offset(0.0,
+                                                1.0), // shadow direction: bottom right
+                                          )
+                                        ],
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10))),
+                                    child: Center(
+                                      child: DropdownButtonHideUnderline(
+                                        child: DropdownButton(
+                                          iconSize: 0,
+                                          style: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 12,
+                                            fontFamily: 'SFUIText',
+                                          ),
+                                          value: dropdownval,
+                                          items: list.map((String items) {
+                                            return DropdownMenuItem(
+                                              value: items,
+                                              child: Text(items),
+                                            );
+                                          }).toList(),
+                                          onChanged: (String? newValue) {
+                                            setState(() {
+                                              dropdownval = newValue!;
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                    )),
+                              ),
                             ],
                           ),
                           Row(
@@ -224,6 +269,11 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                               ),
                             ],
                           ),
+                          ProfileButton(
+                              text: "Proceed",
+                              onTap: () {
+                                Navigator.pushNamed(context, FoodScreen.id);
+                              })
                         ],
                       ),
                     ),
