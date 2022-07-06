@@ -62,14 +62,14 @@ class _OptionScreenState extends State<OptionScreen> {
                   },
                   text: "Email(Optional)",
                 ),
-                MediaQuery.of(context).viewInsets.bottom == 0?
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Column(
                       children: [
                         Container(
-                          height: MediaQuery.of(context).size.height * .11,
+                          height: MediaQuery.of(context).size.height * .1,
                           width: MediaQuery.of(context).size.width * .21,
                           decoration: BoxDecoration(
                             borderRadius: const BorderRadius.all(
@@ -129,7 +129,7 @@ class _OptionScreenState extends State<OptionScreen> {
                     Column(
                       children: [
                         Container(
-                          height: MediaQuery.of(context).size.height * .11,
+                          height: MediaQuery.of(context).size.height * .1,
                           width: MediaQuery.of(context).size.width * .21,
                           decoration: BoxDecoration(
                             borderRadius: const BorderRadius.all(
@@ -187,8 +187,8 @@ class _OptionScreenState extends State<OptionScreen> {
                       ],
                     ),
                   ],
-                ):Container(),
-                Row(
+                ),
+                MediaQuery.of(context).viewInsets.bottom == 0?Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
@@ -217,7 +217,7 @@ class _OptionScreenState extends State<OptionScreen> {
                       ),
                     ),
                   ],
-                ),
+                ):Container(),
                 // You can select any of one option from these (you can change it later
               ],
             ),

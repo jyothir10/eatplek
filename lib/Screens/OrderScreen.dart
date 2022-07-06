@@ -1,6 +1,7 @@
 import 'package:eatplek/Components/BottomBar.dart';
 import 'package:eatplek/Components/ProfileButton.dart';
 import 'package:eatplek/Screens/FoodScreen.dart';
+import 'package:eatplek/Screens/OrderHistoryScreen.dart';
 import 'package:flutter/material.dart';
 
 class OrderScreen extends StatefulWidget {
@@ -238,7 +239,7 @@ class _OrderScreenState extends State<OrderScreen> {
                               ),
                             ),
                             onTap: () {
-                              Navigator.pushReplacementNamed(
+                              Navigator.pushNamed(
                                   context, FoodScreen.id);
                             },
                           ),
@@ -425,7 +426,7 @@ class _OrderScreenState extends State<OrderScreen> {
                       child: ProfileButton(
                           text: "Proceed",
                           onTap: () {
-                            //todo:payment
+                            Navigator.pushReplacementNamed(context, OrderHistoryScreen.id);
                           }),
                     ),
                   ],

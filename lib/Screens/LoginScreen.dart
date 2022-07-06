@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 8, right: 15),
+                      padding: EdgeInsets.only(top: 8, right: 15,bottom: 10),
                       child: InkWell(
                         onTap: () {
                           //todo:Add navigation
