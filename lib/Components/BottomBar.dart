@@ -14,6 +14,7 @@ class BottomBar extends StatefulWidget {
 
 class _BottomBarState extends State<BottomBar> {
   int _selectedIndex = 0;
+  int prev_index = 0;
   final pages = [
     DashBoardScreen.id,
     OrderScreen.id,
@@ -23,8 +24,16 @@ class _BottomBarState extends State<BottomBar> {
 
   void _onItemTapped(int index) {
     setState(() {
+      print(_selectedIndex);
+      prev_index = _selectedIndex;
       _selectedIndex = index;
-      Navigator.pushReplacementNamed(context, pages[index]);
+      print(prev_index);
+
+      if (prev_index != 0) {
+        Navigator.pushReplacementNamed(context, pages[index]);
+      } else {
+        Navigator.pushNamed(context, pages[index]);
+      }
     });
   }
 
