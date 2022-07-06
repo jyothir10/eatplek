@@ -764,6 +764,30 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                             text: "icecream",
                             img: "images/icecream.jpg",
                           ),
+                          DashBoardTopItem(
+                            text: "icecream",
+                            img: "images/icecream.jpg",
+                          ),
+                          DashBoardTopItem(
+                            text: "icecream",
+                            img: "images/icecream.jpg",
+                          ),
+                          DashBoardTopItem(
+                            text: "icecream",
+                            img: "images/icecream.jpg",
+                          ),
+                          DashBoardTopItem(
+                            text: "icecream",
+                            img: "images/icecream.jpg",
+                          ),
+                          DashBoardTopItem(
+                            text: "icecream",
+                            img: "images/icecream.jpg",
+                          ),
+                          DashBoardTopItem(
+                            text: "icecream",
+                            img: "images/icecream.jpg",
+                          ),
                         ],
                       ),
                     ),
@@ -778,6 +802,56 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                         scrollDirection: Axis.vertical,
                         physics: const AlwaysScrollableScrollPhysics(),
                         children: [
+                          DashBoardCard(
+                            img: "images/fd.png",
+                            text: "The Smoky Shack",
+                            rating: "4.85",
+                            feeds: "555",
+                            ontap: () {
+                              _showDetailsCard();
+                            },
+                            location: 'Arabian, Bevrages, Juice\nChengannur',
+                          ),
+                          DashBoardCard(
+                            img: "images/fd.png",
+                            text: "The Smoky Shack",
+                            rating: "4.85",
+                            feeds: "555",
+                            ontap: () {
+                              _showDetailsCard();
+                            },
+                            location: 'Arabian, Bevrages, Juice\nChengannur',
+                          ),
+                          DashBoardCard(
+                            img: "images/fd.png",
+                            text: "The Smoky Shack",
+                            rating: "4.85",
+                            feeds: "555",
+                            ontap: () {
+                              _showDetailsCard();
+                            },
+                            location: 'Arabian, Bevrages, Juice\nChengannur',
+                          ),
+                          DashBoardCard(
+                            img: "images/fd.png",
+                            text: "The Smoky Shack",
+                            rating: "4.85",
+                            feeds: "555",
+                            ontap: () {
+                              _showDetailsCard();
+                            },
+                            location: 'Arabian, Bevrages, Juice\nChengannur',
+                          ),
+                          DashBoardCard(
+                            img: "images/fd.png",
+                            text: "The Smoky Shack",
+                            rating: "4.85",
+                            feeds: "555",
+                            ontap: () {
+                              _showDetailsCard();
+                            },
+                            location: 'Arabian, Bevrages, Juice\nChengannur',
+                          ),
                           DashBoardCard(
                             img: "images/fd.png",
                             text: "The Smoky Shack",
