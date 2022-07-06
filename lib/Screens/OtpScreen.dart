@@ -2,7 +2,6 @@ import 'package:eatplek/Components/LoginButton.dart';
 import 'package:eatplek/Constants.dart';
 import 'package:eatplek/Screens/optionScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OtpScreen extends StatefulWidget {
@@ -13,17 +12,18 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen> {
   DateTime? currentBackPressTime;
-  @override
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  String otp = "";
+
   Future<bool> onWillPop() {
     DateTime now = DateTime.now();
     if (currentBackPressTime == null ||
-        now.difference(currentBackPressTime!) > Duration(seconds: 2)) {
+        now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
       currentBackPressTime = now;
-      print("helllo");
-      showToast("Press back again to exit");
-
-      // Toast.show("Press back again to exit",
-      //     duration: Toast.lengthShort, gravity: Toast.bottom);
+      _scaffoldKey.currentState?.showSnackBar(const SnackBar(
+          behavior: SnackBarBehavior.floating,
+          duration: Duration(seconds: 1),
+          content: Text("Press back again to exit")));
       return Future.value(false);
     }
     return Future.value(true);
@@ -33,6 +33,7 @@ class _OtpScreenState extends State<OtpScreen> {
     return WillPopScope(
       onWillPop: onWillPop,
       child: Scaffold(
+        key: _scaffoldKey,
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
@@ -88,7 +89,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   appContext: context,
                   length: 6,
                   onChanged: (value) {
-                    print(value);
+                    otp = value;
                   },
                   enableActiveFill: true,
                   enablePinAutofill: true,
@@ -126,8 +127,16 @@ class _OtpScreenState extends State<OtpScreen> {
                       padding: const EdgeInsets.only(top: 9),
                       child: LoginButton(
                           onPressed: () {
-                            Navigator.pushReplacementNamed(
-                                context, OptionScreen.id);
+                            if (otp.length == 6) {
+                              Navigator.pushReplacementNamed(
+                                  context, OptionScreen.id);
+                            } else {
+                              _scaffoldKey.currentState?.showSnackBar(
+                                  const SnackBar(
+                                      behavior: SnackBarBehavior.floating,
+                                      duration: Duration(seconds: 1),
+                                      content: Text("Invalid OTP")));
+                            }
                           },
                           text: "Next"),
                     ),
