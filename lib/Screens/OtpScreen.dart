@@ -2,7 +2,6 @@ import 'package:eatplek/Components/LoginButton.dart';
 import 'package:eatplek/Constants.dart';
 import 'package:eatplek/Screens/optionScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OtpScreen extends StatefulWidget {
@@ -19,11 +18,7 @@ class _OtpScreenState extends State<OtpScreen> {
     if (currentBackPressTime == null ||
         now.difference(currentBackPressTime!) > Duration(seconds: 2)) {
       currentBackPressTime = now;
-      print("helllo");
-      showToast("Press back again to exit");
 
-      // Toast.show("Press back again to exit",
-      //     duration: Toast.lengthShort, gravity: Toast.bottom);
       return Future.value(false);
     }
     return Future.value(true);

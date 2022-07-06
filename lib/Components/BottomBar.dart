@@ -23,7 +23,6 @@ class _BottomBarState extends State<BottomBar> {
 
   void _onItemTapped(int index) {
     setState(() {
-      print(_selectedIndex);
       _selectedIndex = index;
       Navigator.pushReplacementNamed(context, pages[index]);
     });
