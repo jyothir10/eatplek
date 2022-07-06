@@ -44,7 +44,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
               height: MediaQuery.of(context).size.height * .48,
               width: MediaQuery.of(context).size.width * .925,
               child: Card(
-                elevation: 15,
+                elevation: 35,
                 color: Colors.white,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
