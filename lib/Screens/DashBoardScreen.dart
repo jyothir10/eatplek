@@ -393,7 +393,10 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                         ),
                       ),
                       InkWell(
-                        child: Image.asset("images/filter.png"),
+                        child: Image.asset(
+                          "images/filter.png",
+                          height: 25,
+                        ),
                         onTap: () {
                           showModalBottomSheet(
                               context: context,
@@ -675,7 +678,16 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                 children: [
                                                   ClearFilterButton(
                                                     text: "Clear Filter",
-                                                    onTap: () {},
+                                                    onTap: () {
+                                                      setState(() {
+                                                        vegcheck = false;
+                                                        noncheck = false;
+                                                        accheck = false;
+                                                        nonaccheck = false;
+                                                        type1 = false;
+                                                        type2 = false;
+                                                      });
+                                                    },
                                                   ),
                                                   Container(
                                                     width:
@@ -690,7 +702,11 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                             .039,
                                                     child: ProfileButton(
                                                         text: "Apply",
-                                                        onTap: () {}),
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                          //todo:Apply the filters
+                                                        }),
                                                   ),
                                                 ],
                                               ),
