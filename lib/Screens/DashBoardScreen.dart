@@ -20,8 +20,10 @@ class DashBoardScreen extends StatefulWidget {
 class _DashBoardScreenState extends State<DashBoardScreen> {
   _showDetailsCard() {
     int currentValue = 2;
-    int currentValue1 = 15;
+    int currentValue1 = 5;
     int persons = 2;
+    final list = ['AM', 'PM'];
+
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -96,6 +98,11 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                             fontSize: 12,
                                             fontFamily: 'SFUIText',
                                           ),
+                                          selectedTextStyle: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 12,
+                                            fontFamily: 'SFUIText',
+                                          ),
                                           zeroPad: true,
                                           haptics: true,
                                           infiniteLoop: true,
@@ -139,8 +146,13 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                               Radius.circular(10))),
                                       child: NumberPicker(
                                           zeroPad: true,
-                                          step: 15,
+                                          step: 5,
                                           textStyle: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 12,
+                                            fontFamily: 'SFUIText',
+                                          ),
+                                          selectedTextStyle: const TextStyle(
                                             color: Colors.black,
                                             fontSize: 12,
                                             fontFamily: 'SFUIText',
