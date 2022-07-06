@@ -83,136 +83,158 @@ class _OptionScreenState extends State<OptionScreen> {
                     },
                     text: "Email(Optional)",
                   ),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        children: [
-                          Container(
-                            height: MediaQuery.of(context).size.height * .12,
-                            width: MediaQuery.of(context).size.width * .21,
-                            decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(15),
-                              ),
-                              color: d == 0
-                                  ? Color(0xff8196af)
-                                  : Color(0xffffffff),
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                setState(() {
-                                  d = 1;
-                                  t = 0;
-                                });
-                              },
-                              child: Column(
-                                children: const [
-                                  // Dine In
-                                  Image(
-                                    height: 60,
-                                    image: AssetImage("images/dinein.png"),
+                  MediaQuery.of(context).viewInsets.bottom == 0
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Column(
+                              children: [
+                                Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * .1,
+                                  width:
+                                      MediaQuery.of(context).size.width * .21,
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(15),
+                                    ),
+                                    color: d == 0
+                                        ? Color(0xff8196af)
+                                        : Color(0xffffffff),
                                   ),
-                                  Opacity(
-                                    opacity: 0.5,
-                                    child: Text("Dine In",
-                                        style: TextStyle(
-                                            color: Color(0xff042e60),
-                                            fontWeight: FontWeight.w700,
-                                            fontFamily: "SFUIText",
-                                            fontStyle: FontStyle.normal,
-                                            fontSize: 9.9),
-                                        textAlign: TextAlign.left),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                top: MediaQuery.of(context).size.height * .01),
-                            child: Card(
-                              color: d == 0
-                                  ? Color(0xff8196af)
-                                  : Color(0xffffffff),
-                              elevation: 5,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: const Icon(
-                                Icons.check,
-                                size: 25,
-                                color: Color(0xff042e60),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Container(
-                            height: MediaQuery.of(context).size.height * .12,
-                            width: MediaQuery.of(context).size.width * .21,
-                            decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(15),
-                              ),
-                              color: t == 0
-                                  ? Color(0xff8196af)
-                                  : Color(0xffffffff),
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                setState(() {
-                                  t = 1;
-                                  d = 0;
-                                });
-                              },
-                              child: Column(
-                                children: const [
-                                  // Dine In
-                                  Image(
-                                    height: 60,
-                                    image: AssetImage("images/takeaway.png"),
+                                  child: InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        d = 1;
+                                        t = 0;
+                                      });
+                                    },
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        // Dine In
+                                        Image(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .06,
+                                          image:
+                                              AssetImage("images/dinein.png"),
+                                        ),
+                                        const Opacity(
+                                          opacity: 0.5,
+                                          child: Padding(
+                                            padding: EdgeInsets.only(top: 2),
+                                            child: Text("Dine In",
+                                                style: TextStyle(
+                                                    color: Color(0xff042e60),
+                                                    fontWeight: FontWeight.w700,
+                                                    fontFamily: "SFUIText",
+                                                    fontStyle: FontStyle.normal,
+                                                    fontSize: 9.9),
+                                                textAlign: TextAlign.left),
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                  Opacity(
-                                    opacity: 0.5,
-                                    child: Text("Take Away",
-                                        style: TextStyle(
-                                            color: Color(0xff042e60),
-                                            fontWeight: FontWeight.w700,
-                                            fontFamily: "SFUIText",
-                                            fontStyle: FontStyle.normal,
-                                            fontSize: 9.9),
-                                        textAlign: TextAlign.left),
-                                  )
-                                ],
-                              ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: MediaQuery.of(context).size.height *
+                                          .01),
+                                  child: Card(
+                                    color: d == 0
+                                        ? Color(0xff8196af)
+                                        : Color(0xffffffff),
+                                    elevation: 5,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    child: const Icon(
+                                      Icons.check,
+                                      size: 25,
+                                      color: Color(0xff042e60),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                top: MediaQuery.of(context).size.height * .01),
-                            child: Card(
-                              color: t == 0
-                                  ? Color(0xff8196af)
-                                  : Color(0xffffffff),
-                              elevation: 5,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: const Icon(
-                                Icons.check,
-                                size: 25,
-                                color: Color(0xff042e60),
-                              ),
+                            Column(
+                              children: [
+                                Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * .1,
+                                  width:
+                                      MediaQuery.of(context).size.width * .21,
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(15),
+                                    ),
+                                    color: t == 0
+                                        ? Color(0xff8196af)
+                                        : Color(0xffffffff),
+                                  ),
+                                  child: InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        t = 1;
+                                        d = 0;
+                                      });
+                                    },
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        // Dine In
+                                        Image(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .08,
+                                          image:
+                                              AssetImage("images/takeaway.png"),
+                                        ),
+                                        const Opacity(
+                                          opacity: 0.5,
+                                          child: Text("Take Away",
+                                              style: TextStyle(
+                                                  color: Color(0xff042e60),
+                                                  fontWeight: FontWeight.w700,
+                                                  fontFamily: "SFUIText",
+                                                  fontStyle: FontStyle.normal,
+                                                  fontSize: 9.9),
+                                              textAlign: TextAlign.left),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: MediaQuery.of(context).size.height *
+                                          .01),
+                                  child: Card(
+                                    color: t == 0
+                                        ? Color(0xff8196af)
+                                        : Color(0xffffffff),
+                                    elevation: 5,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    child: const Icon(
+                                      Icons.check,
+                                      size: 25,
+                                      color: Color(0xff042e60),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                          ],
+                        )
+                      : Container(),
                   MediaQuery.of(context).viewInsets.bottom == 0
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.start,

@@ -295,20 +295,17 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   var items = ['Home', 'Office'];
   String dropdownvalue = 'Home', filter = "veg";
   DateTime? currentBackPressTime;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   Future<bool> onWillPop() {
     DateTime now = DateTime.now();
     if (currentBackPressTime == null ||
-        now.difference(currentBackPressTime!) > Duration(seconds: 2)) {
+        now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
       currentBackPressTime = now;
-      final snackBar = SnackBar(
-        content: const Text('Hi, I am a SnackBar!'),
-        backgroundColor: (Colors.black12),
-        action: SnackBarAction(
-          label: 'dismiss',
-          onPressed: () {},
-        ),
-      );
+      _scaffoldKey.currentState?.showSnackBar(const SnackBar(
+          behavior: SnackBarBehavior.floating,
+          duration: Duration(seconds: 1),
+          content: Text("Press back again to exit")));
       return Future.value(false);
     }
     return Future.value(true);
@@ -320,6 +317,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     return WillPopScope(
       onWillPop: onWillPop,
       child: Scaffold(
+        key: _scaffoldKey,
         bottomNavigationBar: const BottomBar(
           index: 0,
         ),
