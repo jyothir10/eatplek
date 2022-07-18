@@ -64,7 +64,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           color: Colors.white,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               MediaQuery.of(context).viewInsets.bottom == 0
                   ? Stack(
@@ -96,21 +96,26 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ],
                     )
                   : Container(),
-              EditProfileTextField(
-                myController: myController1,
-                text: 'Name',
-                type: TextInputType.name,
+              Column(
+                children: [
+                  EditProfileTextField(
+                    myController: myController1,
+                    text: 'Name',
+                    type: TextInputType.name,
+                  ),
+                  EditProfileTextField(
+                    myController: myController2,
+                    text: 'Phone',
+                    type: TextInputType.number,
+                  ),
+                  EditProfileTextField(
+                    myController: myController3,
+                    text: 'E-mail(Optional)',
+                    type: TextInputType.emailAddress,
+                  ),
+                ],
               ),
-              EditProfileTextField(
-                myController: myController2,
-                text: 'Phone',
-                type: TextInputType.number,
-              ),
-              EditProfileTextField(
-                myController: myController3,
-                text: 'E-mail(Optional)',
-                type: TextInputType.emailAddress,
-              ),
+
               ProfileButton(
                   text: "       Save       ",
                   onTap: () {
