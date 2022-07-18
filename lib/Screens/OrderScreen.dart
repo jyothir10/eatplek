@@ -13,7 +13,7 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> {
-  int n = 2;
+  int n = 3;
   //todo:update n as no:of orders
   @override
   Widget build(BuildContext context) {
@@ -173,7 +173,7 @@ class _OrderScreenState extends State<OrderScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(
-                          height: MediaQuery.of(context).size.height * .056 * n,
+                          height: MediaQuery.of(context).size.height * .05 * n,
                           width: MediaQuery.of(context).size.width * .91,
                           decoration: BoxDecoration(
                             color: Color(0xd1e1e1e1),
@@ -181,9 +181,15 @@ class _OrderScreenState extends State<OrderScreen> {
                           ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 9),
+                                horizontal: 15,vertical: 8),
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
+                                OrderSummary(
+                                    name: "Zinger Burger",
+                                    count: 1,
+                                    price: "179",
+                                    img: "images/order_index.png"),
                                 OrderSummary(
                                     name: "Zinger Burger",
                                     count: 1,
@@ -248,8 +254,8 @@ class _OrderScreenState extends State<OrderScreen> {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const Padding(
+                      children: const [
+                        Padding(
                           padding: EdgeInsets.symmetric(vertical: 12),
                           child: Text(
                             'Bill Details',
@@ -461,88 +467,85 @@ class OrderSummary extends StatefulWidget {
 class _OrderSummaryState extends State<OrderSummary> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 12),
-                child: Image.asset(widget.img),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 12),
+              child: Image.asset(widget.img),
+            ),
+            Text(
+              widget.name,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 11,
+                fontFamily: 'SFUIText',
+                fontWeight: FontWeight.w500,
               ),
-              Text(
-                widget.name,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 11,
-                  fontFamily: 'SFUIText',
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 21),
-                child: Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          if (widget.count > 0) {
-                            widget.count--;
-                          }
-                        });
-                      },
-                      child: const Icon(
-                        Icons.remove_circle,
-                        color: Color(0xffc7c7c7),
-                        size: 17,
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 21),
+              child: Row(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        if (widget.count > 0) {
+                          widget.count--;
+                        }
+                      });
+                    },
+                    child: const Icon(
+                      Icons.remove_circle,
+                      color: Color(0xffc7c7c7),
+                      size: 17,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: Text(
+                      " ${widget.count} ",
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 11.076922416687012,
+                        fontFamily: 'SFUIText',
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      child: Text(
-                        " ${widget.count} ",
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 11.076922416687012,
-                          fontFamily: 'SFUIText',
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        widget.count++;
+                      });
+                    },
+                    child: const Icon(
+                      Icons.add_circle,
+                      color: Color(0xffffb800),
+                      size: 17,
                     ),
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          widget.count++;
-                        });
-                      },
-                      child: const Icon(
-                        Icons.add_circle,
-                        color: Color(0xffffb800),
-                        size: 17,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              Text(
-                '₹ ${widget.price}',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 10,
-                  fontFamily: 'SFUIText',
-                  fontWeight: FontWeight.w600,
-                ),
+            ),
+            Text(
+              '₹ ${widget.price}',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 10,
+                fontFamily: 'SFUIText',
+                fontWeight: FontWeight.w600,
               ),
-            ],
-          ),
-        ],
-      ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

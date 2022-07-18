@@ -55,7 +55,7 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
                             children: [
@@ -138,7 +138,7 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
                                     Icons.check_circle_sharp,
                                     color: Color(0xffbfbebf),
                                   ),
-                                  Text("Delivered",
+                                  Text(" Delivered",
                                       style: TextStyle(
                                           color: Color(0xff000000),
                                           fontWeight: FontWeight.w600,
@@ -163,7 +163,7 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
                                         fontWeight: FontWeight.w500,
                                         fontFamily: "SFUIText",
                                         fontStyle: FontStyle.normal,
-                                        fontSize: 8.0),
+                                        fontSize: 10),
                                     textAlign: TextAlign.left),
                               ), // View Bill
                               Card(
