@@ -2,7 +2,6 @@ import 'package:eatplek/Components/LoginButton.dart';
 import 'package:eatplek/Screens/OtpScreen.dart';
 import 'package:flutter/material.dart';
 
-
 class LoginScreen extends StatefulWidget {
   static const String id = '/login';
 
@@ -12,15 +11,17 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   DateTime? currentBackPressTime;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   Future<bool> onWillPop() {
     DateTime now = DateTime.now();
     if (currentBackPressTime == null ||
         now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
       currentBackPressTime = now;
-
-
-
+      _scaffoldKey.currentState?.showSnackBar(const SnackBar(
+          behavior: SnackBarBehavior.floating,
+          duration: Duration(seconds: 1),
+          content: Text("Press back again to exit")));
       return Future.value(false);
     }
     return Future.value(true);
@@ -33,6 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
       onWillPop: onWillPop,
       child: SafeArea(
         child: Scaffold(
+          key: _scaffoldKey,
           body: Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
@@ -47,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 8, right: 15,bottom: 10),
+                      padding: EdgeInsets.only(top: 8, right: 15, bottom: 10),
                       child: InkWell(
                         onTap: () {
                           //todo:Add navigation
@@ -69,6 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ? SizedBox(
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * .65,
+                        //child: SvgPicture.asset("images/logo.svg"),
                         child: Image.asset(
                           "images/login1.png",
                           fit: BoxFit.fill,
@@ -145,7 +148,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Navigator.pushReplacementNamed(
                                       context, OtpScreen.id);
                                 } else {
-
+                                  _scaffoldKey.currentState?.showSnackBar(
+                                      const SnackBar(
+                                          behavior: SnackBarBehavior.floating,
+                                          duration: Duration(seconds: 1),
+                                          content:
+                                              Text("Invalid mobile number")));
                                 }
                               },
                               text: 'Get OTP',

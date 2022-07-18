@@ -2,8 +2,6 @@ import 'dart:ui';
 
 import 'package:eatplek/Screens/OrderScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 
 class FoodScreen extends StatefulWidget {
   static const String id = '/food';
@@ -16,6 +14,7 @@ class FoodScreen extends StatefulWidget {
 class _FoodScreenState extends State<FoodScreen> {
   int count = 01;
   bool v = false, n = false, countEnable = false, tap = false;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -68,7 +67,7 @@ class _FoodScreenState extends State<FoodScreen> {
               ),
               Positioned(
                 top: 65,
-                left:  MediaQuery.of(context).size.width * .047,
+                left: MediaQuery.of(context).size.width * .047,
                 child: Container(
                   height: 121,
                   width: MediaQuery.of(context).size.width * .906,
@@ -93,12 +92,14 @@ class _FoodScreenState extends State<FoodScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 13),
                                 child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     // The Smocky Shack
                                     Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: const [
                                         Text("The Smocky Shack",
                                             style: TextStyle(
@@ -108,7 +109,8 @@ class _FoodScreenState extends State<FoodScreen> {
                                                 fontStyle: FontStyle.normal,
                                                 fontSize: 18.2),
                                             textAlign: TextAlign.left),
-                                        Text("Arabian, Bevrages, Juices  Chengannur",
+                                        Text(
+                                            "Arabian, Bevrages, Juices  Chengannur",
                                             style: TextStyle(
                                                 color: Color(0xff1d1d1d),
                                                 fontWeight: FontWeight.w400,
@@ -179,17 +181,21 @@ class _FoodScreenState extends State<FoodScreen> {
                             ],
                           ),
                         ),
-                         Card(
+                        Card(
                           color: Color(0xfffd8181),
                           shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(topRight: Radius.circular(10),),
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(10),
+                            ),
                           ),
                           child: Padding(
                             padding: EdgeInsets.all(5.0),
                             child: Row(
                               children: const [
-                                Icon(Icons.circle_rounded,color: Color(0xffffb800),size: 10),
-                                Text('AC',
+                                Icon(Icons.circle_rounded,
+                                    color: Color(0xffffb800), size: 10),
+                                Text(
+                                  'AC',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 8,
@@ -303,14 +309,16 @@ class _FoodScreenState extends State<FoodScreen> {
                   name: "Zinger Burger",
                   price: "₹ 179",
                   subname: "French Fires",
-                  description: "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
+                  description:
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
                 ),
                 const FoodScreenCard(
                   pic: "images/fd.png",
                   name: "Zinger Burger",
                   price: "₹ 179",
                   subname: "French Fires",
-                  description: "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
+                  description:
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
                 ),
               ],
             ),
@@ -384,7 +392,7 @@ class _FoodScreenState extends State<FoodScreen> {
                     ),
                     // View Cart
                     InkWell(
-                      onTap: (){
+                      onTap: () {
                         Navigator.pushReplacementNamed(context, OrderScreen.id);
                       },
                       child: const Text("View Cart",
@@ -450,10 +458,10 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
-                        children:[
+                        children: [
                           InkWell(
-                            onTap: (){
-                              setState((){
+                            onTap: () {
+                              setState(() {
                                 Navigator.pop(context);
                               });
                             },
@@ -472,7 +480,8 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5),
-                        child: Text(widget.name,
+                        child: Text(
+                          widget.name,
                           style: const TextStyle(
                             color: Colors.black,
                             fontSize: 16,

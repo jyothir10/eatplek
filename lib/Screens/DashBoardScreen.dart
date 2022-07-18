@@ -1,10 +1,14 @@
 import 'dart:ui';
+
 import 'package:eatplek/Components/BottomBar.dart';
 import 'package:eatplek/Components/ClearFilterButton.dart';
 import 'package:eatplek/Components/DashBoardCard.dart';
 import 'package:eatplek/Components/DashBoardTopItem.dart';
 import 'package:eatplek/Components/ProfileButton.dart';
+import 'package:eatplek/Screens/FoodScreen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:numberpicker/numberpicker.dart';
 
 class DashBoardScreen extends StatefulWidget {
   static const String id = '/dashboard';
@@ -15,47 +19,269 @@ class DashBoardScreen extends StatefulWidget {
 }
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
-
   _showDetailsCard() {
+    int currentValue = 2;
+    int currentValue1 = 5;
+    int persons = 2;
+    final list = ['AM', 'PM'];
+    String dropdownval = "AM";
+
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-            child: AlertDialog(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              actions: [
-                Container(
-                  height: MediaQuery.of(context).size.height * .323,
-                  width: MediaQuery.of(context).size.width * .8,
-                  child: Column(
-                    //mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children:[
-                          InkWell(
-                            onTap: (){
-                              setState((){
-                                Navigator.pop(context);
-                              });
-                            },
-                            child: const Icon(
-                              Icons.close_rounded,
-                              size: 15,
-                              color: Color(0xffde292d32),
-                            ),
-                          )
+          return StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+            return BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+              child: AlertDialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                actions: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * .323,
+                      width: MediaQuery.of(context).size.width * .8,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    Navigator.pop(context);
+                                  });
+                                },
+                                child: const Icon(
+                                  Icons.close_rounded,
+                                  size: 15,
+                                  color: Color(0xffde292d32),
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              const Text(
+                                'Time',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 12,
+                                  fontFamily: 'SFUIText',
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 25),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 45,
+                                      width: 45,
+                                      decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black,
+                                              blurRadius: 2.0,
+                                              spreadRadius: 0.0,
+                                              offset: Offset(0.0,
+                                                  1.0), // shadow direction: bottom right
+                                            )
+                                          ],
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10))),
+                                      child: NumberPicker(
+                                          textStyle: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 12,
+                                            fontFamily: 'SFUIText',
+                                          ),
+                                          selectedTextStyle: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 12,
+                                            fontFamily: 'SFUIText',
+                                          ),
+                                          zeroPad: true,
+                                          haptics: true,
+                                          infiniteLoop: true,
+                                          value: currentValue,
+                                          minValue: 1,
+                                          maxValue: 12,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              currentValue = value;
+                                              print(currentValue);
+                                            });
+                                          }),
+                                    ),
+                                    const Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 9),
+                                      child: Text(
+                                        ":",
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 12,
+                                            fontFamily: 'SFUIText',
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 45,
+                                      width: 45,
+                                      decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black,
+                                              blurRadius: 2.0,
+                                              spreadRadius: 0.0,
+                                              offset: Offset(0.0,
+                                                  1.0), // shadow direction: bottom right
+                                            )
+                                          ],
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10))),
+                                      child: NumberPicker(
+                                          zeroPad: true,
+                                          step: 5,
+                                          textStyle: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 12,
+                                            fontFamily: 'SFUIText',
+                                          ),
+                                          selectedTextStyle: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 12,
+                                            fontFamily: 'SFUIText',
+                                          ),
+                                          haptics: true,
+                                          infiniteLoop: true,
+                                          value: currentValue1,
+                                          minValue: 0,
+                                          maxValue: 59,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              currentValue1 = value;
+                                              print(currentValue);
+                                            });
+                                          }),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 18),
+                                child: Container(
+                                    height: 45,
+                                    width: 45,
+                                    decoration: const BoxDecoration(
+                                        color: Colors.white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black,
+                                            blurRadius: 2.0,
+                                            spreadRadius: 0.0,
+                                            offset: Offset(0.0,
+                                                1.0), // shadow direction: bottom right
+                                          )
+                                        ],
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10))),
+                                    child: Center(
+                                      child: DropdownButtonHideUnderline(
+                                        child: DropdownButton(
+                                          iconSize: 0,
+                                          style: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 12,
+                                            fontFamily: 'SFUIText',
+                                          ),
+                                          value: dropdownval,
+                                          items: list.map((String items) {
+                                            return DropdownMenuItem(
+                                              value: items,
+                                              child: Text(items),
+                                            );
+                                          }).toList(),
+                                          onChanged: (String? newValue) {
+                                            setState(() {
+                                              dropdownval = newValue!;
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                    )),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              const Text(
+                                'No of guests',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 12,
+                                  fontFamily: 'SFUIText',
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 9),
+                                child: Container(
+                                  height: 45,
+                                  width: 45,
+                                  decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black,
+                                          blurRadius: 2.0,
+                                          spreadRadius: 0.0,
+                                          offset: Offset(0.0,
+                                              1.0), // shadow direction: bottom right
+                                        )
+                                      ],
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10))),
+                                  child: NumberPicker(
+                                      zeroPad: true,
+                                      textStyle: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 12,
+                                        fontFamily: 'SFUIText',
+                                      ),
+                                      haptics: true,
+                                      infiniteLoop: true,
+                                      value: persons,
+                                      minValue: 0,
+                                      maxValue: 25,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          persons = value;
+                                          print(currentValue);
+                                        });
+                                      }),
+                                ),
+                              ),
+                            ],
+                          ),
+                          ProfileButton(
+                              text: "Proceed",
+                              onTap: () {
+                                Navigator.pushNamed(context, FoodScreen.id);
+                              })
                         ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-          );
+                ],
+              ),
+            );
+          });
         });
   }
 
@@ -68,18 +294,37 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
       type2 = false;
   var items = ['Home', 'Office'];
   String dropdownvalue = 'Home', filter = "veg";
+  DateTime? currentBackPressTime;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  Future<bool> onWillPop() {
+    DateTime now = DateTime.now();
+    if (currentBackPressTime == null ||
+        now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
+      currentBackPressTime = now;
+      _scaffoldKey.currentState?.showSnackBar(const SnackBar(
+          behavior: SnackBarBehavior.floating,
+          duration: Duration(seconds: 1),
+          content: Text("Press back again to exit")));
+      return Future.value(false);
+    }
+    return Future.value(true);
+  }
+
   @override
   Widget build(BuildContext context) {
     String address = 'Mc Hostel, Aramana Road, Chengannur, Keral...';
-    return Scaffold(
-      bottomNavigationBar: const BottomBar(
-        index: 0,
-      ),
-      appBar: buildAppBar(context, address), //look at bottom for code
-      body: Container(
-        color: Colors.white,
-        width: MediaQuery.of(context).size.width,
-        child: SingleChildScrollView(
+    return WillPopScope(
+      onWillPop: onWillPop,
+      child: Scaffold(
+        key: _scaffoldKey,
+        bottomNavigationBar: const BottomBar(
+          index: 0,
+        ),
+        appBar: buildAppBar(context, address), //look at bottom for code
+        body: Container(
+          color: Colors.white,
+          width: MediaQuery.of(context).size.width,
           child: Padding(
             padding: const EdgeInsets.only(top: 18),
             child: Column(
@@ -121,7 +366,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       ),
                     ),
                     Container(
-                      width: MediaQuery.of(context).size.width * .26,
+                      width: MediaQuery.of(context).size.width * .27,
                       height: 28,
                       child: ElevatedButton(
                         onPressed: () {
@@ -167,7 +412,10 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                         ),
                       ),
                       InkWell(
-                        child: Image.asset("images/filter.png"),
+                        child: Image.asset(
+                          "images/filter.png",
+                          height: 25,
+                        ),
                         onTap: () {
                           showModalBottomSheet(
                               context: context,
@@ -449,7 +697,16 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                 children: [
                                                   ClearFilterButton(
                                                     text: "Clear Filter",
-                                                    onTap: () {},
+                                                    onTap: () {
+                                                      setState(() {
+                                                        vegcheck = false;
+                                                        noncheck = false;
+                                                        accheck = false;
+                                                        nonaccheck = false;
+                                                        type1 = false;
+                                                        type2 = false;
+                                                      });
+                                                    },
                                                   ),
                                                   Container(
                                                     width:
@@ -464,7 +721,11 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                             .039,
                                                     child: ProfileButton(
                                                         text: "Apply",
-                                                        onTap: () {}),
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                          //todo:Apply the filters
+                                                        }),
                                                   ),
                                                 ],
                                               ),
@@ -493,6 +754,30 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           text: "icecream",
                           img: "images/icecream.jpg",
                         ),
+                        DashBoardTopItem(
+                          text: "icecream",
+                          img: "images/icecream.jpg",
+                        ),
+                        DashBoardTopItem(
+                          text: "icecream",
+                          img: "images/icecream.jpg",
+                        ),
+                        DashBoardTopItem(
+                          text: "icecream",
+                          img: "images/icecream.jpg",
+                        ),
+                        DashBoardTopItem(
+                          text: "icecream",
+                          img: "images/icecream.jpg",
+                        ),
+                        DashBoardTopItem(
+                          text: "icecream",
+                          img: "images/icecream.jpg",
+                        ),
+                        DashBoardTopItem(
+                          text: "icecream",
+                          img: "images/icecream.jpg",
+                        ),
                       ],
                     ),
                   ),
@@ -501,7 +786,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                   padding: const EdgeInsets.only(right: 18, left: 18, top: 12),
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * .57,
+                    height: MediaQuery.of(context).size.height * .47,
                     child: ListView(
                       scrollDirection: Axis.vertical,
                       physics: const AlwaysScrollableScrollPhysics(),
@@ -511,7 +796,57 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           text: "The Smoky Shack",
                           rating: "4.85",
                           feeds: "555",
-                          ontap: (){
+                          ontap: () {
+                            _showDetailsCard();
+                          },
+                          location: 'Arabian, Bevrages, Juice\nChengannur',
+                        ),
+                        DashBoardCard(
+                          img: "images/fd.png",
+                          text: "The Smoky Shack",
+                          rating: "4.85",
+                          feeds: "555",
+                          ontap: () {
+                            _showDetailsCard();
+                          },
+                          location: 'Arabian, Bevrages, Juice\nChengannur',
+                        ),
+                        DashBoardCard(
+                          img: "images/fd.png",
+                          text: "The Smoky Shack",
+                          rating: "4.85",
+                          feeds: "555",
+                          ontap: () {
+                            _showDetailsCard();
+                          },
+                          location: 'Arabian, Bevrages, Juice\nChengannur',
+                        ),
+                        DashBoardCard(
+                          img: "images/fd.png",
+                          text: "The Smoky Shack",
+                          rating: "4.85",
+                          feeds: "555",
+                          ontap: () {
+                            _showDetailsCard();
+                          },
+                          location: 'Arabian, Bevrages, Juice\nChengannur',
+                        ),
+                        DashBoardCard(
+                          img: "images/fd.png",
+                          text: "The Smoky Shack",
+                          rating: "4.85",
+                          feeds: "555",
+                          ontap: () {
+                            _showDetailsCard();
+                          },
+                          location: 'Arabian, Bevrages, Juice\nChengannur',
+                        ),
+                        DashBoardCard(
+                          img: "images/fd.png",
+                          text: "The Smoky Shack",
+                          rating: "4.85",
+                          feeds: "555",
+                          ontap: () {
                             _showDetailsCard();
                           },
                           location: 'Arabian, Bevrages, Juice\nChengannur',
