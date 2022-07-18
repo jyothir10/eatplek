@@ -414,10 +414,22 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           ),
                         ),
                         InkWell(
-                          child: Image.asset(
-                            "images/filter.png",
-                            height: 25,
-                          ),
+                          child: Container(
+                              height: 20,
+                              width: 20,
+                              decoration: BoxDecoration(
+                                color: const Color(0xff042e60),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(4)),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(1.0),
+                                child: Image.asset(
+                                  "images/filter.png",
+                                  color: Colors.white,
+                                  height: 12,
+                                ),
+                              )),
                           onTap: () {
                             showModalBottomSheet(
                                 context: context,
@@ -763,19 +775,19 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       scrollDirection: Axis.horizontal,
                       children: const <Widget>[
                         DashBoardTopItem(
-                          text: "icecream",
+                          text: "Icecream",
                           img: "images/icecream.jpg",
                         ),
                         DashBoardTopItem(
-                          text: "icecream",
+                          text: "Icecream",
                           img: "images/icecream.jpg",
                         ),
                         DashBoardTopItem(
-                          text: "icecream",
+                          text: "Icecream",
                           img: "images/icecream.jpg",
                         ),
                         DashBoardTopItem(
-                          text: "icecream",
+                          text: "Icecream",
                           img: "images/icecream.jpg",
                         ),
                         DashBoardTopItem(
@@ -914,10 +926,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(right: 5),
-                        child: Image.asset(
-                          "images/location.png",
-                          height: 20,
-                        ),
+                        child: Image.asset("images/location.png",
+                            height: 18, color: Color(0xff042e60)),
                       ),
                       DropdownButtonHideUnderline(
                         child: DropdownButton(
@@ -952,7 +962,21 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                   ),
                 ],
               ),
-              Image.asset("images/search.png"),
+              Container(
+                height: 37,
+                width: 31,
+                decoration: BoxDecoration(
+                  color: Color(0xfff0ecec),
+                  borderRadius: BorderRadius.circular(7),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset(
+                    "images/search.png",
+                    color: Color(0xff042e60),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
