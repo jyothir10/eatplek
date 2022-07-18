@@ -71,6 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ? SizedBox(
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * .65,
+                        //child: SvgPicture.asset("images/logo.svg"),
                         child: Image.asset(
                           "images/login1.png",
                           fit: BoxFit.fill,
