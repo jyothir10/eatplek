@@ -81,7 +81,8 @@ class _FoodScreenState extends State<FoodScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 5, vertical: 8),
                           child: Row(
                             children: [
                               Image(
@@ -90,7 +91,7 @@ class _FoodScreenState extends State<FoodScreen> {
                                 width: MediaQuery.of(context).size.width * .25,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 13),
+                                padding: const EdgeInsets.only(left: 10),
                                 child: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
@@ -189,7 +190,8 @@ class _FoodScreenState extends State<FoodScreen> {
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(5.0),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 3, vertical: 5),
                             child: Row(
                               children: const [
                                 Icon(Icons.circle_rounded,
