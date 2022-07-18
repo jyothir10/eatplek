@@ -398,355 +398,367 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 21, vertical: 18),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        'Restaurants Near You',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 12,
-                          fontFamily: 'SFUIText',
-                          fontWeight: FontWeight.w600,
+                      const EdgeInsets.symmetric(horizontal: 21, vertical: 14),
+                  child: SizedBox(
+                    height: 15,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Restaurants Near You',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                            fontFamily: 'SFUIText',
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                      InkWell(
-                        child: Image.asset(
-                          "images/filter.png",
-                          height: 25,
-                        ),
-                        onTap: () {
-                          showModalBottomSheet(
-                              context: context,
-                              builder: (context) {
-                                return StatefulBuilder(builder:
-                                    (BuildContext context,
-                                        StateSetter setState) {
-                                  return SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        .421,
-                                    child: Center(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Column(
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 18,
-                                                    right: 18,
-                                                    top: 12),
+                        InkWell(
+                          child: Image.asset(
+                            "images/filter.png",
+                            height: 25,
+                          ),
+                          onTap: () {
+                            showModalBottomSheet(
+                                context: context,
+                                builder: (context) {
+                                  return StatefulBuilder(builder:
+                                      (BuildContext context,
+                                          StateSetter setState) {
+                                    return SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              .421,
+                                      child: Center(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Column(
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 18,
+                                                          right: 18,
+                                                          top: 12),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      const Text(
+                                                        'Filter',
+                                                        style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontSize: 16,
+                                                          fontFamily:
+                                                              'SFUIText',
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                      InkWell(
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: const Icon(
+                                                          Icons.close,
+                                                          color: Colors.black,
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                                const Divider(
+                                                  color: Color(0x1e000000),
+                                                  thickness: 1,
+                                                ),
+                                              ],
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 18,
+                                                  right: 18,
+                                                  bottom: 12),
+                                              child: Container(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    .21,
                                                 child: Row(
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
+                                                      MainAxisAlignment.start,
                                                   children: [
-                                                    const Text(
-                                                      'Filter',
-                                                      style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 16,
-                                                        fontFamily: 'SFUIText',
-                                                        fontWeight:
-                                                            FontWeight.w500,
+                                                    Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceEvenly,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical: 8),
+                                                          child: InkWell(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                ac = 0;
+                                                                veg = 1;
+                                                                type = 0;
+                                                                filter = 'veg';
+                                                              });
+                                                            },
+                                                            child: Text(
+                                                              'Veg/Non-veg',
+                                                              style: TextStyle(
+                                                                color: veg == 0
+                                                                    ? const Color(
+                                                                        0x7f000000)
+                                                                    : const Color(
+                                                                        0xffffb800),
+                                                                fontSize: 10,
+                                                                fontFamily:
+                                                                    'SFUIText',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical: 8),
+                                                          child: InkWell(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                ac = 1;
+                                                                veg = 0;
+                                                                type = 0;
+                                                                filter = "ac";
+                                                              });
+                                                            },
+                                                            child: Text(
+                                                              'AC/Non-AC',
+                                                              style: TextStyle(
+                                                                color: ac == 0
+                                                                    ? const Color(
+                                                                        0x7f000000)
+                                                                    : const Color(
+                                                                        0xffffb800),
+                                                                fontSize: 10,
+                                                                fontFamily:
+                                                                    'SFUIText',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical: 8),
+                                                          child: InkWell(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                ac = 0;
+                                                                veg = 0;
+                                                                type = 1;
+                                                                filter = "type";
+                                                              });
+                                                            },
+                                                            child: Text(
+                                                              'Type',
+                                                              style: TextStyle(
+                                                                color: type == 0
+                                                                    ? const Color(
+                                                                        0x7f000000)
+                                                                    : const Color(
+                                                                        0xffffb800),
+                                                                fontSize: 10,
+                                                                fontFamily:
+                                                                    'SFUIText',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 18),
+                                                      child: VerticalDivider(
+                                                        color:
+                                                            Color(0x1e000000),
+                                                        thickness: 2,
                                                       ),
                                                     ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        Navigator.pop(context);
-                                                      },
-                                                      child: const Icon(
-                                                        Icons.close,
-                                                        color: Colors.black,
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 12),
+                                                      child: Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            children: const [
+                                                              Text(
+                                                                'Filter by',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: Color(
+                                                                      0x7f000000),
+                                                                  fontSize: 10,
+                                                                  fontFamily:
+                                                                      'SFUIText',
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          generateCheck(
+                                                            context,
+                                                            filter,
+                                                            (bool? value) {
+                                                              setState(() {
+                                                                if (filter ==
+                                                                    "veg") {
+                                                                  vegcheck =
+                                                                      value;
+                                                                } else if (filter ==
+                                                                    "ac") {
+                                                                  accheck =
+                                                                      value;
+                                                                } else if (filter ==
+                                                                    "type") {
+                                                                  type1 = value;
+                                                                }
+                                                              });
+                                                            },
+                                                            (bool? value) {
+                                                              setState(() {
+                                                                if (filter ==
+                                                                    "veg") {
+                                                                  noncheck =
+                                                                      value;
+                                                                } else if (filter ==
+                                                                    "ac") {
+                                                                  nonaccheck =
+                                                                      value;
+                                                                } else if (filter ==
+                                                                    "type") {
+                                                                  type2 = value;
+                                                                }
+                                                              });
+                                                            },
+                                                          ),
+                                                        ],
                                                       ),
                                                     )
                                                   ],
                                                 ),
                                               ),
-                                              const Divider(
-                                                color: Color(0x1e000000),
-                                                thickness: 1,
+                                            ),
+                                            Container(
+                                              decoration: const BoxDecoration(
+                                                color: Colors.white,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                      color:
+                                                          Color(0xff57000000),
+                                                      blurRadius: 10,
+                                                      offset: Offset(0, -5)),
+                                                ],
                                               ),
-                                            ],
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 18,
-                                                right: 18,
-                                                bottom: 12),
-                                            child: Container(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
                                               height: MediaQuery.of(context)
                                                       .size
                                                       .height *
-                                                  .21,
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .symmetric(
-                                                                vertical: 8),
-                                                        child: InkWell(
-                                                          onTap: () {
-                                                            setState(() {
-                                                              ac = 0;
-                                                              veg = 1;
-                                                              type = 0;
-                                                              filter = 'veg';
-                                                            });
-                                                          },
-                                                          child: Text(
-                                                            'Veg/Non-veg',
-                                                            style: TextStyle(
-                                                              color: veg == 0
-                                                                  ? const Color(
-                                                                      0x7f000000)
-                                                                  : const Color(
-                                                                      0xffffb800),
-                                                              fontSize: 10,
-                                                              fontFamily:
-                                                                  'SFUIText',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .symmetric(
-                                                                vertical: 8),
-                                                        child: InkWell(
-                                                          onTap: () {
-                                                            setState(() {
-                                                              ac = 1;
-                                                              veg = 0;
-                                                              type = 0;
-                                                              filter = "ac";
-                                                            });
-                                                          },
-                                                          child: Text(
-                                                            'AC/Non-AC',
-                                                            style: TextStyle(
-                                                              color: ac == 0
-                                                                  ? const Color(
-                                                                      0x7f000000)
-                                                                  : const Color(
-                                                                      0xffffb800),
-                                                              fontSize: 10,
-                                                              fontFamily:
-                                                                  'SFUIText',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .symmetric(
-                                                                vertical: 8),
-                                                        child: InkWell(
-                                                          onTap: () {
-                                                            setState(() {
-                                                              ac = 0;
-                                                              veg = 0;
-                                                              type = 1;
-                                                              filter = "type";
-                                                            });
-                                                          },
-                                                          child: Text(
-                                                            'Type',
-                                                            style: TextStyle(
-                                                              color: type == 0
-                                                                  ? const Color(
-                                                                      0x7f000000)
-                                                                  : const Color(
-                                                                      0xffffb800),
-                                                              fontSize: 10,
-                                                              fontFamily:
-                                                                  'SFUIText',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  const Padding(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 18),
-                                                    child: VerticalDivider(
-                                                      color: Color(0x1e000000),
-                                                      thickness: 2,
+                                                  .087,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: [
+                                                    ClearFilterButton(
+                                                      text: "Clear Filter",
+                                                      onTap: () {
+                                                        setState(() {
+                                                          vegcheck = false;
+                                                          noncheck = false;
+                                                          accheck = false;
+                                                          nonaccheck = false;
+                                                          type1 = false;
+                                                          type2 = false;
+                                                        });
+                                                      },
                                                     ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 12),
-                                                    child: Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceEvenly,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          children: const [
-                                                            Text(
-                                                              'Filter by',
-                                                              style: TextStyle(
-                                                                color: Color(
-                                                                    0x7f000000),
-                                                                fontSize: 10,
-                                                                fontFamily:
-                                                                    'SFUIText',
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        generateCheck(
-                                                          context,
-                                                          filter,
-                                                          (bool? value) {
-                                                            setState(() {
-                                                              if (filter ==
-                                                                  "veg") {
-                                                                vegcheck =
-                                                                    value;
-                                                              } else if (filter ==
-                                                                  "ac") {
-                                                                accheck = value;
-                                                              } else if (filter ==
-                                                                  "type") {
-                                                                type1 = value;
-                                                              }
-                                                            });
-                                                          },
-                                                          (bool? value) {
-                                                            setState(() {
-                                                              if (filter ==
-                                                                  "veg") {
-                                                                noncheck =
-                                                                    value;
-                                                              } else if (filter ==
-                                                                  "ac") {
-                                                                nonaccheck =
-                                                                    value;
-                                                              } else if (filter ==
-                                                                  "type") {
-                                                                type2 = value;
-                                                              }
-                                                            });
-                                                          },
-                                                        ),
-                                                      ],
+                                                    Container(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              .38,
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              .039,
+                                                      child: ProfileButton(
+                                                          text: "Apply",
+                                                          onTap: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                            //todo:Apply the filters
+                                                          }),
                                                     ),
-                                                  )
-                                                ],
+                                                  ],
+                                                ),
                                               ),
-                                            ),
-                                          ),
-                                          Container(
-                                            decoration: const BoxDecoration(
-                                              color: Colors.white,
-                                              boxShadow: [
-                                                BoxShadow(
-                                                    color: Color(0xff57000000),
-                                                    blurRadius: 10,
-                                                    offset: Offset(0, -5)),
-                                              ],
-                                            ),
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .087,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                children: [
-                                                  ClearFilterButton(
-                                                    text: "Clear Filter",
-                                                    onTap: () {
-                                                      setState(() {
-                                                        vegcheck = false;
-                                                        noncheck = false;
-                                                        accheck = false;
-                                                        nonaccheck = false;
-                                                        type1 = false;
-                                                        type2 = false;
-                                                      });
-                                                    },
-                                                  ),
-                                                  Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            .38,
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            .039,
-                                                    child: ProfileButton(
-                                                        text: "Apply",
-                                                        onTap: () {
-                                                          Navigator.pop(
-                                                              context);
-                                                          //todo:Apply the filters
-                                                        }),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          )
-                                        ],
+                                            )
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  );
+                                    );
+                                  });
                                 });
-                              });
-                        },
-                      ),
-                    ],
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                      const EdgeInsets.only(left: 18, right: 18, bottom: 5),
                   child: Container(
-                    height: MediaQuery.of(context).size.height * 0.09,
+                    height: 70,
+                    //MediaQuery.of(context).size.height * 0.09,
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       children: const <Widget>[
@@ -786,7 +798,10 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                   padding: const EdgeInsets.only(right: 18, left: 18, top: 12),
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * .47,
+                    height: MediaQuery.of(context).size.height -
+                        312 -
+                        MediaQuery.of(context).padding.top -
+                        MediaQuery.of(context).padding.bottom,
                     child: ListView(
                       scrollDirection: Axis.vertical,
                       physics: const AlwaysScrollableScrollPhysics(),
@@ -865,7 +880,10 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
 
   PreferredSize buildAppBar(BuildContext context, String address) {
     return PreferredSize(
-      preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * .09),
+      preferredSize: Size.fromHeight(74
+          //MediaQuery.of(context).size.height * .09
+
+          ),
       child: SafeArea(
         child: Container(
           width: MediaQuery.of(context).size.width,
