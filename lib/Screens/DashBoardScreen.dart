@@ -40,7 +40,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 ),
                 actions: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
                     child: Container(
                       height: t == 0 ? 250 : 150,
                       width: MediaQuery.of(context).size.width * .8,
@@ -139,7 +139,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                               ),
                                               const Padding(
                                                 padding: EdgeInsets.symmetric(
-                                                    horizontal: 9),
+                                                    horizontal: 5),
                                                 child: Text(
                                                   ":",
                                                   style: TextStyle(
@@ -198,7 +198,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsets.only(left: 18),
+                                                const EdgeInsets.only(left: 8),
                                             child: Container(
                                                 height: 45,
                                                 width: 45,
