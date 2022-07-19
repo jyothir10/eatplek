@@ -9,14 +9,14 @@ class DashBoardTopItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.09,
+        height: 44,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CircleAvatar(
-              radius: 23,
+              radius: 28,
               backgroundImage: AssetImage(img),
               backgroundColor: Colors.transparent,
             ),

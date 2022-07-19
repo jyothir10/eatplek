@@ -30,68 +30,71 @@ class _BottomBarState extends State<BottomBar> {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      onTap: _onItemTapped,
-      type: BottomNavigationBarType.fixed,
-      currentIndex: widget.index,
-      selectedLabelStyle: const TextStyle(
-        color: Color(0x33042e60),
-        fontSize: 9.45121955871582,
-        fontFamily: 'SFUIText',
-      ),
-      unselectedLabelStyle: const TextStyle(
-        color: Color(0xff042e60),
-        fontSize: 9.45121955871582,
-        fontFamily: 'SFUIText',
-      ),
-      items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
+    return SizedBox(
+      height: 62,
+      child: BottomNavigationBar(
+        onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: widget.index,
+        selectedLabelStyle: const TextStyle(
+          color: Color(0x33042e60),
+          fontSize: 9.45121955871582,
+          fontFamily: 'SFUIText',
+        ),
+        unselectedLabelStyle: const TextStyle(
+          color: Color(0xff042e60),
+          fontSize: 9.45121955871582,
+          fontFamily: 'SFUIText',
+        ),
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: Image.asset(
+                'images/bottomnavigationbar/home.png',
+                height: 23,
+              ),
+              label: ' Home',
+              activeIcon: Image.asset(
+                'images/bottomnavigationbar/home1.png',
+                height: 23,
+              )),
+          BottomNavigationBarItem(
             icon: Image.asset(
-              'images/bottomnavigationbar/home.png',
+              'images/bottomnavigationbar/cart.png',
               height: 23,
             ),
-            label: ' Home',
+            label: ' Cart',
             activeIcon: Image.asset(
-              'images/bottomnavigationbar/home1.png',
+              'images/bottomnavigationbar/cart1.png',
               height: 23,
-            )),
-        BottomNavigationBarItem(
-          icon: Image.asset(
-            'images/bottomnavigationbar/cart.png',
-            height: 23,
+            ),
           ),
-          label: ' Cart',
-          activeIcon: Image.asset(
-            'images/bottomnavigationbar/cart1.png',
-            height: 23,
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'images/bottomnavigationbar/history.png',
+              height: 23,
+            ),
+            label: ' History',
+            activeIcon: Image.asset(
+              'images/bottomnavigationbar/history1.png',
+              height: 23,
+            ),
           ),
-        ),
-        BottomNavigationBarItem(
-          icon: Image.asset(
-            'images/bottomnavigationbar/history.png',
-            height: 23,
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'images/bottomnavigationbar/profile.png',
+              height: 23,
+            ),
+            label: 'Profile',
+            activeIcon: Image.asset(
+              'images/bottomnavigationbar/profile1.png',
+              height: 23,
+            ),
           ),
-          label: ' History',
-          activeIcon: Image.asset(
-            'images/bottomnavigationbar/history1.png',
-            height: 23,
-          ),
-        ),
-        BottomNavigationBarItem(
-          icon: Image.asset(
-            'images/bottomnavigationbar/profile.png',
-            height: 23,
-          ),
-          label: 'Profile',
-          activeIcon: Image.asset(
-            'images/bottomnavigationbar/profile1.png',
-            height: 23,
-          ),
-        ),
-      ],
-      elevation: 30,
-      showSelectedLabels: true,
-      showUnselectedLabels: true,
+        ],
+        elevation: 30,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+      ),
     );
   }
 }
