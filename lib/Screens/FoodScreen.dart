@@ -72,7 +72,7 @@ class _FoodScreenState extends State<FoodScreen> {
                   height: 121,
                   width: MediaQuery.of(context).size.width * .906,
                   child: Card(
-                    elevation: 20,
+                    elevation: 5,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -81,7 +81,8 @@ class _FoodScreenState extends State<FoodScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 5, vertical: 8),
                           child: Row(
                             children: [
                               Image(
@@ -90,16 +91,16 @@ class _FoodScreenState extends State<FoodScreen> {
                                 width: MediaQuery.of(context).size.width * .25,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 13),
+                                padding: const EdgeInsets.only(left: 10),
                                 child: Column(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
+                                  MainAxisAlignment.spaceEvenly,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     // The Smocky Shack
                                     Column(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      CrossAxisAlignment.start,
                                       children: const [
                                         Text("The Smocky Shack",
                                             style: TextStyle(
@@ -189,7 +190,8 @@ class _FoodScreenState extends State<FoodScreen> {
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(5.0),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 3, vertical: 5),
                             child: Row(
                               children: const [
                                 Icon(Icons.circle_rounded,
@@ -310,7 +312,7 @@ class _FoodScreenState extends State<FoodScreen> {
                   price: "₹ 179",
                   subname: "French Fires",
                   description:
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
                 ),
                 const FoodScreenCard(
                   pic: "images/fd.png",
@@ -318,7 +320,7 @@ class _FoodScreenState extends State<FoodScreen> {
                   price: "₹ 179",
                   subname: "French Fires",
                   description:
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
                 ),
               ],
             ),
@@ -353,9 +355,9 @@ class _FoodScreenState extends State<FoodScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
+                      children: const [
                         // 1 Item
-                        const Text("1 Item",
+                        Text("1 Item",
                             style: TextStyle(
                                 color: Color(0xffffffff),
                                 fontWeight: FontWeight.w400,
@@ -364,30 +366,14 @@ class _FoodScreenState extends State<FoodScreen> {
                                 fontSize: 9.8),
                             textAlign: TextAlign.left),
                         // ₹ 179
-                        Row(
-                          children: const [
-                            Text("₹ 179 ",
-                                style: TextStyle(
-                                    color: Color(0xffffffff),
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: "SFUIText",
-                                    fontStyle: FontStyle.normal,
-                                    fontSize: 14.6),
-                                textAlign: TextAlign.left),
-                            // plus taxes
-                            Padding(
-                              padding: EdgeInsets.only(top: 4),
-                              child: Text("plus taxes",
-                                  style: TextStyle(
-                                      color: Color(0xffffffff),
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: "SFUIText",
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 7.3),
-                                  textAlign: TextAlign.left),
-                            )
-                          ],
-                        )
+                        Text("₹ 179 ",
+                            style: TextStyle(
+                                color: Color(0xffffffff),
+                                fontWeight: FontWeight.w600,
+                                fontFamily: "SFUIText",
+                                fontStyle: FontStyle.normal,
+                                fontSize: 14.6),
+                            textAlign: TextAlign.left)
                       ],
                     ),
                     // View Cart
@@ -540,10 +526,8 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
                               fontStyle: FontStyle.normal,
                               fontSize: 17.5),
                           textAlign: TextAlign.left),
-                      // ₹ 179
                       Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical: MediaQuery.of(context).size.height * .02),
+                        padding: const EdgeInsets.only(top: 10),
                         child: Text(widget.price,
                             style: const TextStyle(
                                 color: Color(0xff000000),
@@ -554,14 +538,6 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
                             textAlign: TextAlign.left),
                       ),
                       // French Fires
-                      Text(widget.subname,
-                          style: const TextStyle(
-                              color: Color(0xff000000),
-                              fontWeight: FontWeight.w500,
-                              fontFamily: "SFUIText",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 10.0),
-                          textAlign: TextAlign.left)
                     ],
                   ),
                 ),
@@ -570,55 +546,55 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
           ),
           countEnable
               ? Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          if (count > 0) {
-                            count--;
-                          }
-                        });
-                      },
-                      child: const Icon(
-                        Icons.remove_circle,
-                        color: Color(0xffc7c7c7),
-                        size: 17,
-                      ),
-                    ),
-                    Text(
-                      " $count ",
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 11.076922416687012,
-                        fontFamily: 'SFUIText',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          count++;
-                        });
-                      },
-                      child: const Icon(
-                        Icons.add_circle,
-                        color: Color(0xffffb800),
-                        size: 17,
-                      ),
-                    ),
-                  ],
-                )
-              : InkWell(
-                  onTap: () {
-                    setState(() {
-                      countEnable = true;
-                    });
-                  },
-                  child: const Icon(
-                    Icons.add_circle,
-                    color: Color(0xffffb800),
-                  ),
+            children: [
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    if (count > 0) {
+                      count--;
+                    }
+                  });
+                },
+                child: const Icon(
+                  Icons.remove_circle,
+                  color: Color(0xffc7c7c7),
+                  size: 20,
                 ),
+              ),
+              Text(
+                "  $count  ",
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 11.076922416687012,
+                  fontFamily: 'SFUIText',
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    count++;
+                  });
+                },
+                child: const Icon(
+                  Icons.add_circle,
+                  color: Color(0xffffb800),
+                  size: 20,
+                ),
+              ),
+            ],
+          )
+              : InkWell(
+            onTap: () {
+              setState(() {
+                countEnable = true;
+              });
+            },
+            child: const Icon(
+              Icons.add_circle,
+              color: Color(0xffffb800),
+            ),
+          ),
         ],
       ),
     );
