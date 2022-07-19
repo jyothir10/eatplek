@@ -19,6 +19,7 @@ class DashBoardScreen extends StatefulWidget {
 }
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
+  int d = 1, t = 0, veg = 1, ac = 0, type = 0;
   _showDetailsCard() {
     int currentValue = 2;
     int currentValue1 = 5;
@@ -41,233 +42,265 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: Container(
-                      height: MediaQuery.of(context).size.height * .323,
+                      height: t == 0 ? 250 : 150,
                       width: MediaQuery.of(context).size.width * .8,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    Navigator.pop(context);
-                                  });
-                                },
-                                child: const Icon(
-                                  Icons.close_rounded,
-                                  size: 15,
-                                  color: Color(0xffde292d32),
-                                ),
-                              )
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              const Text(
-                                'Time',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 12,
-                                  fontFamily: 'SFUIText',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 25),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      height: 45,
-                                      width: 45,
-                                      decoration: const BoxDecoration(
-                                          color: Colors.white,
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.black,
-                                              blurRadius: 2.0,
-                                              spreadRadius: 0.0,
-                                              offset: Offset(0.0,
-                                                  1.0), // shadow direction: bottom right
-                                            )
-                                          ],
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10))),
-                                      child: NumberPicker(
-                                          textStyle: const TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 12,
-                                            fontFamily: 'SFUIText',
-                                          ),
-                                          selectedTextStyle: const TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 12,
-                                            fontFamily: 'SFUIText',
-                                          ),
-                                          zeroPad: true,
-                                          haptics: true,
-                                          infiniteLoop: true,
-                                          value: currentValue,
-                                          minValue: 1,
-                                          maxValue: 12,
-                                          onChanged: (value) {
-                                            setState(() {
-                                              currentValue = value;
-                                              print(currentValue);
-                                            });
-                                          }),
-                                    ),
-                                    const Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 9),
-                                      child: Text(
-                                        ":",
+                          SizedBox(
+                            height: t == 0 ? 120 : 70,
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 15),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Text(
+                                        'Time',
                                         style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 12,
-                                            fontFamily: 'SFUIText',
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 45,
-                                      width: 45,
-                                      decoration: const BoxDecoration(
-                                          color: Colors.white,
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.black,
-                                              blurRadius: 2.0,
-                                              spreadRadius: 0.0,
-                                              offset: Offset(0.0,
-                                                  1.0), // shadow direction: bottom right
-                                            )
-                                          ],
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10))),
-                                      child: NumberPicker(
-                                          zeroPad: true,
-                                          step: 5,
-                                          textStyle: const TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 12,
-                                            fontFamily: 'SFUIText',
-                                          ),
-                                          selectedTextStyle: const TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 12,
-                                            fontFamily: 'SFUIText',
-                                          ),
-                                          haptics: true,
-                                          infiniteLoop: true,
-                                          value: currentValue1,
-                                          minValue: 0,
-                                          maxValue: 59,
-                                          onChanged: (value) {
-                                            setState(() {
-                                              currentValue1 = value;
-                                              print(currentValue);
-                                            });
-                                          }),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 18),
-                                child: Container(
-                                    height: 45,
-                                    width: 45,
-                                    decoration: const BoxDecoration(
-                                        color: Colors.white,
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.black,
-                                            blurRadius: 2.0,
-                                            spreadRadius: 0.0,
-                                            offset: Offset(0.0,
-                                                1.0), // shadow direction: bottom right
-                                          )
-                                        ],
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10))),
-                                    child: Center(
-                                      child: DropdownButtonHideUnderline(
-                                        child: DropdownButton(
-                                          iconSize: 0,
-                                          style: const TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 12,
-                                            fontFamily: 'SFUIText',
-                                          ),
-                                          value: dropdownval,
-                                          items: list.map((String items) {
-                                            return DropdownMenuItem(
-                                              value: items,
-                                              child: Text(items),
-                                            );
-                                          }).toList(),
-                                          onChanged: (String? newValue) {
-                                            setState(() {
-                                              dropdownval = newValue!;
-                                            });
-                                          },
+                                          color: Colors.black,
+                                          fontSize: 12,
+                                          fontFamily: 'SFUIText',
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       ),
-                                    )),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              const Text(
-                                'No of guests',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 12,
-                                  fontFamily: 'SFUIText',
+                                      t == 0
+                                          ? const Text(
+                                              'No of guests',
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 12,
+                                                fontFamily: 'SFUIText',
+                                              ),
+                                            )
+                                          : Container(),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 9),
-                                child: Container(
-                                  height: 45,
-                                  width: 45,
-                                  decoration: const BoxDecoration(
-                                      color: Colors.white,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.black,
-                                          blurRadius: 2.0,
-                                          spreadRadius: 0.0,
-                                          offset: Offset(0.0,
-                                              1.0), // shadow direction: bottom right
-                                        )
-                                      ],
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10))),
-                                  child: NumberPicker(
-                                      zeroPad: true,
-                                      textStyle: const TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 12,
-                                        fontFamily: 'SFUIText',
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 15),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Container(
+                                                height: 45,
+                                                width: 45,
+                                                decoration: const BoxDecoration(
+                                                    color: Colors.white,
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors.black,
+                                                        blurRadius: 2.0,
+                                                        spreadRadius: 0.0,
+                                                        offset: Offset(0.0,
+                                                            1.0), // shadow direction: bottom right
+                                                      )
+                                                    ],
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                10))),
+                                                child: NumberPicker(
+                                                    textStyle: const TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 12,
+                                                      fontFamily: 'SFUIText',
+                                                    ),
+                                                    selectedTextStyle:
+                                                        const TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 12,
+                                                      fontFamily: 'SFUIText',
+                                                    ),
+                                                    zeroPad: true,
+                                                    haptics: true,
+                                                    infiniteLoop: true,
+                                                    value: currentValue,
+                                                    minValue: 1,
+                                                    maxValue: 12,
+                                                    onChanged: (value) {
+                                                      setState(() {
+                                                        currentValue = value;
+                                                        print(currentValue);
+                                                      });
+                                                    }),
+                                              ),
+                                              const Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 9),
+                                                child: Text(
+                                                  ":",
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 12,
+                                                      fontFamily: 'SFUIText',
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                              ),
+                                              Container(
+                                                height: 45,
+                                                width: 45,
+                                                decoration: const BoxDecoration(
+                                                    color: Colors.white,
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors.black,
+                                                        blurRadius: 2.0,
+                                                        spreadRadius: 0.0,
+                                                        offset: Offset(0.0,
+                                                            1.0), // shadow direction: bottom right
+                                                      )
+                                                    ],
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                10))),
+                                                child: NumberPicker(
+                                                    zeroPad: true,
+                                                    step: 5,
+                                                    textStyle: const TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 12,
+                                                      fontFamily: 'SFUIText',
+                                                    ),
+                                                    selectedTextStyle:
+                                                        const TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 12,
+                                                      fontFamily: 'SFUIText',
+                                                    ),
+                                                    haptics: true,
+                                                    infiniteLoop: true,
+                                                    value: currentValue1,
+                                                    minValue: 0,
+                                                    maxValue: 59,
+                                                    onChanged: (value) {
+                                                      setState(() {
+                                                        currentValue1 = value;
+                                                        print(currentValue);
+                                                      });
+                                                    }),
+                                              ),
+                                            ],
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 18),
+                                            child: Container(
+                                                height: 45,
+                                                width: 45,
+                                                decoration: const BoxDecoration(
+                                                    color: Colors.white,
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors.black,
+                                                        blurRadius: 2.0,
+                                                        spreadRadius: 0.0,
+                                                        offset: Offset(0.0,
+                                                            1.0), // shadow direction: bottom right
+                                                      )
+                                                    ],
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                10))),
+                                                child: Center(
+                                                  child:
+                                                      DropdownButtonHideUnderline(
+                                                    child: DropdownButton(
+                                                      iconSize: 0,
+                                                      style: const TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 12,
+                                                        fontFamily: 'SFUIText',
+                                                      ),
+                                                      value: dropdownval,
+                                                      items: list
+                                                          .map((String items) {
+                                                        return DropdownMenuItem(
+                                                          value: items,
+                                                          child: Text(items),
+                                                        );
+                                                      }).toList(),
+                                                      onChanged:
+                                                          (String? newValue) {
+                                                        setState(() {
+                                                          dropdownval =
+                                                              newValue!;
+                                                        });
+                                                      },
+                                                    ),
+                                                  ),
+                                                )),
+                                          ),
+                                        ],
                                       ),
-                                      haptics: true,
-                                      infiniteLoop: true,
-                                      value: persons,
-                                      minValue: 0,
-                                      maxValue: 25,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          persons = value;
-                                          print(currentValue);
-                                        });
-                                      }),
+                                      t == 0
+                                          ? Row(
+                                              children: [
+                                                Container(
+                                                  height: 45,
+                                                  width: 45,
+                                                  decoration:
+                                                      const BoxDecoration(
+                                                          color: Colors.white,
+                                                          boxShadow: [
+                                                            BoxShadow(
+                                                              color:
+                                                                  Colors.black,
+                                                              blurRadius: 2.0,
+                                                              spreadRadius: 0.0,
+                                                              offset: Offset(
+                                                                  0.0,
+                                                                  1.0), // shadow direction: bottom right
+                                                            )
+                                                          ],
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          10))),
+                                                  child: NumberPicker(
+                                                      zeroPad: true,
+                                                      textStyle:
+                                                          const TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 12,
+                                                        fontFamily: 'SFUIText',
+                                                      ),
+                                                      haptics: true,
+                                                      infiniteLoop: true,
+                                                      value: persons,
+                                                      minValue: 0,
+                                                      maxValue: 25,
+                                                      onChanged: (value) {
+                                                        setState(() {
+                                                          persons = value;
+                                                          print(currentValue);
+                                                        });
+                                                      }),
+                                                ),
+                                              ],
+                                            )
+                                          : Container(),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                           ProfileButton(
                               text: "Proceed",
@@ -285,7 +318,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
         });
   }
 
-  int d = 1, t = 0, veg = 1, ac = 0, type = 0;
   bool? vegcheck = false,
       noncheck = false,
       accheck = false,
