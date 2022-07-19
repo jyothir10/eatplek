@@ -55,262 +55,316 @@ class _OrderScreenState extends State<OrderScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 18, top: 8),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 9),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: const [
-                            Text(
-                              'From',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 10,
-                                fontFamily: 'SFUIText',
-                                fontWeight: FontWeight.w600,
+              SizedBox(
+                height: MediaQuery.of(context).size.height -
+                    MediaQuery.of(context).padding.top -
+                    MediaQuery.of(context).padding.bottom -
+                    196,
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 18, top: 8),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 9),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: const [
+                              Text(
+                                'From',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 10,
+                                  fontFamily: 'SFUIText',
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: MediaQuery.of(context).size.height * .042,
-                            width: MediaQuery.of(context).size.width * .91,
-                            decoration: BoxDecoration(
-                              color: Color(0xd1e1e1e1),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 9),
-                                  child: Image.asset(
-                                    "images/loc.png",
-                                    height: 16,
-                                  ),
-                                ),
-                                Text(
-                                  'The Smocky Shack, Chengannur',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 10,
-                                    fontFamily: 'SFUIText',
-                                  ),
-                                ),
-                              ],
-                            ),
+                            ],
                           ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 18),
-                        child: Row(
-                          children: [
-                            const Text(
-                              'Choosen Option',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 10,
-                                fontFamily: 'SFUIText',
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 12),
-                              child: Container(
-                                height:
-                                    MediaQuery.of(context).size.height * .042,
-                                width: MediaQuery.of(context).size.width * .2,
-                                decoration: BoxDecoration(
-                                  color: Color(0xd1e1e1e1),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Center(
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Image.asset(
-                                        "images/cutlery.png",
-                                        color: Color(0xff768BA3),
-                                        height: 12,
-                                        width: 15,
-                                      ),
-                                      Text(
-                                        'Dine In',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 10,
-                                          fontFamily: 'SFUIText',
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 9),
-                        child: Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          children: const [
-                            Text(
-                              'Items',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 10,
-                                fontFamily: 'SFUIText',
-                                fontWeight: FontWeight.w600,
+                          children: [
+                            Container(
+                              height: MediaQuery.of(context).size.height * .042,
+                              width: MediaQuery.of(context).size.width * .91,
+                              decoration: BoxDecoration(
+                                color: Color(0xd1e1e1e1),
+                                borderRadius: BorderRadius.circular(8),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            height:
-                                MediaQuery.of(context).size.height * .05 * n,
-                            width: MediaQuery.of(context).size.width * .91,
-                            decoration: BoxDecoration(
-                              color: Color(0xd1e1e1e1),
-                              borderRadius: BorderRadius.circular(14),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 8),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                              child: Row(
                                 children: [
-                                  OrderSummary(
-                                      name: "Zinger Burger",
-                                      count: 1,
-                                      price: "179",
-                                      img: "images/order_index.png"),
-                                  OrderSummary(
-                                      name: "Zinger Burger",
-                                      count: 1,
-                                      price: "179",
-                                      img: "images/order_index.png"),
-                                  OrderSummary(
-                                      name: "Zinger Burger",
-                                      count: 1,
-                                      price: "179",
-                                      img: "images/order_index.png"),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 9),
+                                    child: Image.asset(
+                                      "images/loc.png",
+                                      height: 16,
+                                    ),
+                                  ),
+                                  Text(
+                                    'The Smocky Shack, Chengannur',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 10,
+                                      fontFamily: 'SFUIText',
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            InkWell(
-                              child: Container(
-                                height:
-                                    MediaQuery.of(context).size.height * .043,
-                                width: MediaQuery.of(context).size.width * .91,
-                                decoration: BoxDecoration(
-                                  color: Color(0xd1e1e1e1),
-                                  borderRadius: BorderRadius.circular(8),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 18),
+                          child: Row(
+                            children: [
+                              const Text(
+                                'Choosen Option',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 10,
+                                  fontFamily: 'SFUIText',
+                                  fontWeight: FontWeight.w600,
                                 ),
-                                child: Center(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const [
-                                      Padding(
-                                        padding: EdgeInsets.only(right: 3),
-                                        child: Icon(
-                                          Icons.add,
-                                          color: Colors.black,
-                                          size: 15,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 12),
+                                child: Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * .042,
+                                  width: MediaQuery.of(context).size.width * .2,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xd1e1e1e1),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Center(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Image.asset(
+                                          "images/cutlery.png",
+                                          color: Color(0xff768BA3),
+                                          height: 12,
+                                          width: 15,
                                         ),
-                                      ),
-                                      Text(
-                                        'Add More',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 11,
-                                          fontFamily: 'SFUIText',
-                                          fontWeight: FontWeight.w500,
+                                        Text(
+                                          'Dine In',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 10,
+                                            fontFamily: 'SFUIText',
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
-                              onTap: () {
-                                Navigator.pushNamed(context, FoodScreen.id);
-                              },
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 9),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: const [
+                              Text(
+                                'Items',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 10,
+                                  fontFamily: 'SFUIText',
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              height:
+                                  MediaQuery.of(context).size.height * .05 * n,
+                              width: MediaQuery.of(context).size.width * .91,
+                              decoration: BoxDecoration(
+                                color: Color(0xd1e1e1e1),
+                                borderRadius: BorderRadius.circular(14),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 8),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    OrderSummary(
+                                        name: "Zinger Burger",
+                                        count: 1,
+                                        price: "179",
+                                        img: "images/order_index.png"),
+                                    OrderSummary(
+                                        name: "Zinger Burger",
+                                        count: 1,
+                                        price: "179",
+                                        img: "images/order_index.png"),
+                                    OrderSummary(
+                                        name: "Zinger Burger",
+                                        count: 1,
+                                        price: "179",
+                                        img: "images/order_index.png"),
+                                  ],
+                                ),
+                              ),
                             ),
                           ],
                         ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: const [
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 12),
-                            child: Text(
-                              'Bill Details',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 10,
-                                fontFamily: 'SFUIText',
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: MediaQuery.of(context).size.height * .135,
-                            width: MediaQuery.of(context).size.width * .91,
-                            decoration: BoxDecoration(
-                              color: Color(0xd1e1e1e1),
-                              borderRadius: BorderRadius.circular(14),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 18, vertical: 12),
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(bottom: 9),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              InkWell(
+                                child: Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * .043,
+                                  width:
+                                      MediaQuery.of(context).size.width * .91,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xd1e1e1e1),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Center(
                                     child: Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.center,
                                       children: const [
+                                        Padding(
+                                          padding: EdgeInsets.only(right: 3),
+                                          child: Icon(
+                                            Icons.add,
+                                            color: Colors.black,
+                                            size: 15,
+                                          ),
+                                        ),
                                         Text(
-                                          'Item Total',
+                                          'Add More',
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 8,
+                                            fontSize: 11,
                                             fontFamily: 'SFUIText',
                                             fontWeight: FontWeight.w500,
                                           ),
                                         ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                onTap: () {
+                                  Navigator.pushNamed(context, FoodScreen.id);
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 12),
+                              child: Text(
+                                'Bill Details',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 10,
+                                  fontFamily: 'SFUIText',
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: MediaQuery.of(context).size.height * .135,
+                              width: MediaQuery.of(context).size.width * .91,
+                              decoration: BoxDecoration(
+                                color: Color(0xd1e1e1e1),
+                                borderRadius: BorderRadius.circular(14),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 18, vertical: 12),
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(bottom: 9),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: const [
+                                          Text(
+                                            'Item Total',
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 8,
+                                              fontFamily: 'SFUIText',
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          Text(
+                                            '₹ 739',
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 10,
+                                              fontFamily: 'SFUIText',
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    const Padding(
+                                      padding: EdgeInsets.only(bottom: 9),
+                                      child: MySeparator(color: Colors.grey),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(bottom: 9),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: const [
+                                          Text(
+                                            'Extra Charges',
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 8,
+                                              fontFamily: 'SFUIText',
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          Text(
+                                            '₹ 0.0',
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 8,
+                                              fontFamily: 'SFUIText',
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: const [
                                         Text(
-                                          '₹ 739',
+                                          'To Pay',
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 10,
@@ -318,71 +372,52 @@ class _OrderScreenState extends State<OrderScreen> {
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),
-                                      ],
-                                    ),
-                                  ),
-                                  const Padding(
-                                    padding: EdgeInsets.only(bottom: 9),
-                                    child: MySeparator(color: Colors.grey),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(bottom: 9),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
                                         Text(
-                                          'Extra Charges',
+                                          '₹ 818',
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 8,
+                                            fontSize: 12,
                                             fontFamily: 'SFUIText',
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                        Text(
-                                          '₹ 53.2',
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 8,
-                                            fontFamily: 'SFUIText',
-                                            fontWeight: FontWeight.w500,
+                                            fontWeight: FontWeight.w600,
                                           ),
                                         ),
                                       ],
-                                    ),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: const [
-                                      Text(
-                                        'To Pay',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 10,
-                                          fontFamily: 'SFUIText',
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      Text(
-                                        '₹ 818',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 12,
-                                          fontFamily: 'SFUIText',
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 12),
+                              child: Text(
+                                'Comments (optional)',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 10,
+                                  fontFamily: 'SFUIText',
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 9, right: 18),
+                          child: Container(
+                            height: 39,
+                            decoration: BoxDecoration(
+                              color: Color(0xd1e1e1e1),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
                           ),
-                        ],
-                      ),
-                    ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
