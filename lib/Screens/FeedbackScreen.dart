@@ -27,6 +27,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                   color: Colors.black,
                   fontFamily: 'SFUIText',
                   fontWeight: FontWeight.w600,
+                  fontSize: 14,
                 ),
               ),
             ),
@@ -52,9 +53,12 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               TextField(
+                cursorWidth: 1,
                 keyboardType: TextInputType.multiline,
                 maxLines: 9,
+                textAlign: TextAlign.start,
                 decoration: InputDecoration(
+                  alignLabelWithHint: true,
                   border: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black, width: 2.0),
                     borderRadius: BorderRadius.circular(21.0),
@@ -62,10 +66,10 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                   label: const Text(
                     'Tell us what you love about the app, or what we could be doing better',
                     style: TextStyle(
-                      color: Color(0x59000000),
-                      fontSize: 10,
-                      fontFamily: 'SFUIText',
-                    ),
+                        color: Color(0x59000000),
+                        fontSize: 11,
+                        fontFamily: 'SFUIText',
+                        height: 1.5),
                   ),
                 ),
               ),
