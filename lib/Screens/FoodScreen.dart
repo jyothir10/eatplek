@@ -316,14 +316,15 @@ class _FoodScreenState extends State<FoodScreen> {
                     price: "₹ 179",
                     subname: "French Fires",
                     description:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
+                        "Well-seasoned, crispy fried chicken fillet slathered with a special burger sauce, topped with a slice of Cheddar cheese, finished off with Romaine lettuce and put inside a soft Broiche bun",
                   ),
                   const FoodScreenCard(
                     pic: "images/food/fd2.webp",
                     name: "Zinger Burger",
                     price: "₹ 179",
                     subname: "French Fires",
-                    description: "Lm gula eu mauris.  ",
+                    description:
+                        "Well-seasoned, crispy fried chicken fillet slathered with a special burger sauce, topped with a slice of Cheddar cheese, finished off with Romaine lettuce and put inside a soft Broiche bun",
                   ),
                   const FoodScreenCard(
                     pic: "images/food/fd3.jpg",
@@ -331,7 +332,7 @@ class _FoodScreenState extends State<FoodScreen> {
                     price: "₹ 179",
                     subname: "French Fires",
                     description:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
+                        "Well-seasoned, crispy fried chicken fillet slathered with a special burger sauce, topped with a slice of Cheddar cheese, finished off with Romaine lettuce and put inside a soft Broiche bun",
                   ),
                   const FoodScreenCard(
                     pic: "images/food/fd4.jpg",
@@ -339,7 +340,7 @@ class _FoodScreenState extends State<FoodScreen> {
                     price: "₹ 179",
                     subname: "French Fires",
                     description:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
+                        "Well-seasoned, crispy fried chicken fillet slathered with a special burger sauce, topped with a slice of Cheddar cheese, finished off with Romaine lettuce and put inside a soft Broiche bun",
                   ),
                   const FoodScreenCard(
                     pic: "images/fd.png",
@@ -347,7 +348,7 @@ class _FoodScreenState extends State<FoodScreen> {
                     price: "₹ 179",
                     subname: "French Fires",
                     description:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
+                        "Well-seasoned, crispy fried chicken fillet slathered with a special burger sauce, topped with a slice of Cheddar cheese, finished off with Romaine lettuce and put inside a soft Broiche bun",
                   ),
                 ],
               ),
@@ -479,10 +480,13 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
                                 Navigator.pop(context);
                               });
                             },
-                            child: const Icon(
-                              Icons.close_rounded,
-                              size: 15,
-                              color: Color(0xffde292d32),
+                            child: const Padding(
+                              padding: EdgeInsets.all(3.0),
+                              child: Icon(
+                                Icons.close_rounded,
+                                size: 15,
+                                color: Color(0xffde292d32),
+                              ),
                             ),
                           )
                         ],
@@ -508,12 +512,15 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
                           ),
                         ),
                       ),
-                      Text(
-                        widget.description,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 10,
-                          fontFamily: 'SFUIText',
+                      Padding(
+                        padding: const EdgeInsets.only(top: 3),
+                        child: Text(
+                          widget.description,
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 11,
+                              fontFamily: 'SFUIText',
+                              height: 1.5),
                         ),
                       ),
                     ],
