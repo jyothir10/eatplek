@@ -1,4 +1,5 @@
 import 'package:eatplek/Components/optionScreenTextField.dart';
+import 'package:eatplek/Constants.dart';
 import 'package:flutter/material.dart';
 
 import 'DashBoardScreen.dart';
@@ -128,7 +129,7 @@ class _OptionScreenState extends State<OptionScreen> {
                                             padding: EdgeInsets.only(top: 2),
                                             child: Text("Dine In",
                                                 style: TextStyle(
-                                                    color: Color(0xff042e60),
+                                                    color: primaryclr,
                                                     fontWeight: FontWeight.w700,
                                                     fontFamily: "SFUIText",
                                                     fontStyle: FontStyle.normal,

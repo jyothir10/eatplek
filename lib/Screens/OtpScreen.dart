@@ -37,7 +37,7 @@ class _OtpScreenState extends State<OtpScreen> {
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          color: Color(0xff042e60),
+          color: primaryclr,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
