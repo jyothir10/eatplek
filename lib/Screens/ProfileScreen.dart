@@ -3,6 +3,7 @@ import 'package:eatplek/Components/ProfileButton.dart';
 import 'package:eatplek/Components/ProfileOption.dart';
 import 'package:eatplek/Screens/EditProfileScreen.dart';
 import 'package:eatplek/Screens/FeedbackScreen.dart';
+import 'package:eatplek/Screens/LoginScreen.dart';
 import 'package:eatplek/Screens/NotificationScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -156,6 +157,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     text: '       Log Out       ',
                     onTap: () {
                       //todo:Logout
+                      Navigator.pushReplacementNamed(context, LoginScreen.id);
                     },
                   ),
                 ],

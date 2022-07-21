@@ -32,13 +32,13 @@ class _OptionScreenState extends State<OptionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: WillPopScope(
-        onWillPop: onWillPop,
-        child: Scaffold(
-          key: _scaffoldKey,
-          body: Container(
-            color: Color(0xff042e60),
+    return WillPopScope(
+      onWillPop: onWillPop,
+      child: Scaffold(
+        key: _scaffoldKey,
+        body: Container(
+          color: Color(0xff042e60),
+          child: SafeArea(
             child: Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: MediaQuery.of(context).size.width * .08,
