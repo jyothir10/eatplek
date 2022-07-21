@@ -59,6 +59,7 @@ class DashBoardCard extends StatelessWidget {
                                 Icon(
                                   Icons.star,
                                   color: Color(0xffffb800),
+                                  size: 13.5,
                                 ),
                                 Text(
                                   '$rating($feeds Feeds)',

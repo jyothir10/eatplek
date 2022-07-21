@@ -311,7 +311,7 @@ class _FoodScreenState extends State<FoodScreen> {
                     ],
                   ),
                   const FoodScreenCard(
-                    pic: "images/fd.png",
+                    pic: "images/food/fd1.webp",
                     name: "Zinger Burger",
                     price: "₹ 179",
                     subname: "French Fires",
@@ -319,19 +319,27 @@ class _FoodScreenState extends State<FoodScreen> {
                         "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
                   ),
                   const FoodScreenCard(
-                    pic: "images/fd.png",
-                    name: "Zinger Burger",
-                    price: "₹ 179",
-                    subname: "French Fires",
-                    description:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
-                  ),
-                  const FoodScreenCard(
-                    pic: "images/fd.png",
+                    pic: "images/food/fd2.webp",
                     name: "Zinger Burger",
                     price: "₹ 179",
                     subname: "French Fires",
                     description: "Lm gula eu mauris.  ",
+                  ),
+                  const FoodScreenCard(
+                    pic: "images/food/fd3.jpg",
+                    name: "Zinger Burger",
+                    price: "₹ 179",
+                    subname: "French Fires",
+                    description:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
+                  ),
+                  const FoodScreenCard(
+                    pic: "images/food/fd4.jpg",
+                    name: "Zinger Burger",
+                    price: "₹ 179",
+                    subname: "French Fires",
+                    description:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
                   ),
                   const FoodScreenCard(
                     pic: "images/fd.png",
@@ -479,10 +487,14 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
                           )
                         ],
                       ),
-                      Image(
-                        image: AssetImage(widget.pic),
-                        height: MediaQuery.of(context).size.height * .132,
-                        width: MediaQuery.of(context).size.width * .31,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image(
+                          image: AssetImage(widget.pic),
+                          fit: BoxFit.fitHeight,
+                          height: MediaQuery.of(context).size.height * .132,
+                          width: MediaQuery.of(context).size.width * .31,
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 7),
@@ -515,107 +527,114 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          GestureDetector(
-            onTap: () {
-              _showDetailsCard();
-            },
-            child: Row(
-              children: [
-                Image(
-                  image: AssetImage(widget.pic),
-                  height: MediaQuery.of(context).size.height * .132,
-                  width: MediaQuery.of(context).size.width * .31,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width * .05),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Zinger Burger
-                      Text(widget.name,
-                          style: const TextStyle(
-                              color: Color(0xff000000),
-                              fontWeight: FontWeight.w600,
-                              fontFamily: "SFUIText",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 17.5),
-                          textAlign: TextAlign.left),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Text(widget.price,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: Card(
+        elevation: 0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            GestureDetector(
+              onTap: () {
+                _showDetailsCard();
+              },
+              child: Row(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image(
+                      image: AssetImage(widget.pic),
+                      fit: BoxFit.cover,
+                      height: MediaQuery.of(context).size.height * .132,
+                      width: MediaQuery.of(context).size.width * .31,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.width * .05),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Zinger Burger
+                        Text(widget.name,
                             style: const TextStyle(
                                 color: Color(0xff000000),
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w600,
                                 fontFamily: "SFUIText",
                                 fontStyle: FontStyle.normal,
-                                fontSize: 12.0),
+                                fontSize: 17.5),
                             textAlign: TextAlign.left),
-                      ),
-                      // French Fires
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Text(widget.price,
+                              style: const TextStyle(
+                                  color: Color(0xff000000),
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: "SFUIText",
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 12.0),
+                              textAlign: TextAlign.left),
+                        ),
+                        // French Fires
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          countEnable
-              ? Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          if (count > 0) {
-                            count--;
-                          }
-                        });
-                      },
-                      child: const Icon(
-                        Icons.remove_circle,
-                        color: Color(0xffc7c7c7),
-                        size: 20,
+            countEnable
+                ? Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            if (count > 0) {
+                              count--;
+                            }
+                          });
+                        },
+                        child: const Icon(
+                          Icons.remove_circle,
+                          color: Color(0xffc7c7c7),
+                          size: 20,
+                        ),
                       ),
-                    ),
-                    Text(
-                      "  $count  ",
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 11.076922416687012,
-                        fontFamily: 'SFUIText',
-                        fontWeight: FontWeight.w500,
+                      Text(
+                        "  $count  ",
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 11.076922416687012,
+                          fontFamily: 'SFUIText',
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          count++;
-                        });
-                      },
-                      child: const Icon(
-                        Icons.add_circle,
-                        color: Color(0xffffb800),
-                        size: 20,
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            count++;
+                          });
+                        },
+                        child: const Icon(
+                          Icons.add_circle,
+                          color: Color(0xffffb800),
+                          size: 20,
+                        ),
                       ),
+                    ],
+                  )
+                : InkWell(
+                    onTap: () {
+                      setState(() {
+                        countEnable = true;
+                      });
+                    },
+                    child: const Icon(
+                      Icons.add_circle,
+                      color: Color(0xffffb800),
                     ),
-                  ],
-                )
-              : InkWell(
-                  onTap: () {
-                    setState(() {
-                      countEnable = true;
-                    });
-                  },
-                  child: const Icon(
-                    Icons.add_circle,
-                    color: Color(0xffffb800),
                   ),
-                ),
-        ],
+          ],
+        ),
       ),
     );
   }
