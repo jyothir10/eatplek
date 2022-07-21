@@ -41,19 +41,23 @@ class _FoodScreenState extends State<FoodScreen> {
                       children: [
                         InkWell(
                           onTap: () {},
-                          child: const Icon(
-                            Icons.search_rounded,
+                          child: Image.asset(
+                            "images/search.png",
+                            height: 17,
+                            width: 17,
+                            color: Colors.white,
                           ),
                         ),
-                        const Text("Search",
+                        const Text(" Search",
                             style: TextStyle(
                                 color: Color(0xffffffff),
                                 fontWeight: FontWeight.w400,
                                 fontFamily: "SFUIText",
                                 fontStyle: FontStyle.normal,
-                                fontSize: 12.3),
+                                fontSize: 13),
                             textAlign: TextAlign.left),
                       ],
+
                     ),
                   ),
                 ],
@@ -72,7 +76,7 @@ class _FoodScreenState extends State<FoodScreen> {
                   height: 121,
                   width: MediaQuery.of(context).size.width * .906,
                   child: Card(
-                    elevation: 20,
+                    elevation: 5,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -94,13 +98,13 @@ class _FoodScreenState extends State<FoodScreen> {
                                 padding: const EdgeInsets.only(left: 10),
                                 child: Column(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
+                                  MainAxisAlignment.spaceEvenly,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     // The Smocky Shack
                                     Column(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      CrossAxisAlignment.start,
                                       children: const [
                                         Text("The Smocky Shack",
                                             style: TextStyle(
@@ -108,7 +112,7 @@ class _FoodScreenState extends State<FoodScreen> {
                                                 fontWeight: FontWeight.w700,
                                                 fontFamily: "SFUIText",
                                                 fontStyle: FontStyle.normal,
-                                                fontSize: 18.2),
+                                                fontSize: 19),
                                             textAlign: TextAlign.left),
                                         Text(
                                             "Arabian, Bevrages, Juices  Chengannur",
@@ -197,7 +201,7 @@ class _FoodScreenState extends State<FoodScreen> {
                                 Icon(Icons.circle_rounded,
                                     color: Color(0xffffb800), size: 10),
                                 Text(
-                                  'AC',
+                                  ' AC',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 8,
@@ -218,111 +222,129 @@ class _FoodScreenState extends State<FoodScreen> {
         ),
         body: Container(
           color: Colors.white,
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width * .05),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Switch(
-                      value: v,
-                      activeColor: const Color(0xff042e60),
-                      onChanged: (value) {
-                        setState(() {
-                          v = value;
-                        });
-                      },
-                    ),
-                    // Veg
-                    const Text(
-                      'Veg',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10,
-                        fontFamily: 'SFUIText',
-                        fontWeight: FontWeight.w500,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width * .05),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Switch(
+                        value: v,
+                        activeColor: const Color(0xff042e60),
+                        onChanged: (value) {
+                          setState(() {
+                            v = value;
+                          });
+                        },
                       ),
-                    ),
-                    Switch(
-                      value: n,
-                      activeColor: const Color(0xff042e60),
-                      onChanged: (value) {
-                        setState(() {
-                          n = value;
-                        });
-                      },
-                    ),
-                    // Veg
-                    const Text(
-                      'Non- Veg',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10,
-                        fontFamily: 'SFUIText',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // Recommended (14)
-                    const Text("Recommended (14)",
+                      // Veg
+                      const Text(
+                        'Veg',
                         style: TextStyle(
-                            color: Color(0xff000000),
-                            fontWeight: FontWeight.w600,
-                            fontFamily: "SFUIText",
-                            fontStyle: FontStyle.normal,
-                            fontSize: 12.0),
-                        textAlign: TextAlign.left),
-                    Card(
-                      color: const Color(0xff042e60),
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Row(
-                          children: [
-                            // Menu
-                            const Text("Menu ",
-                                style: TextStyle(
-                                    color: Color(0xffffffff),
-                                    fontWeight: FontWeight.w400,
-                                    fontFamily: "SFUIText",
-                                    fontStyle: FontStyle.normal,
-                                    fontSize: 9.2),
-                                textAlign: TextAlign.left),
-                            InkWell(
-                              onTap: () {},
-                              child: const Icon(
-                                Icons.file_open_outlined,
-                                size: 15,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
+                          color: Colors.black,
+                          fontSize: 10,
+                          fontFamily: 'SFUIText',
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                    )
-                  ],
-                ),
-                const FoodScreenCard(
-                  pic: "images/fd.png",
-                  name: "Zinger Burger",
-                  price: "₹ 179",
-                  subname: "French Fires",
-                  description:
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
-                ),
-                const FoodScreenCard(
-                  pic: "images/fd.png",
-                  name: "Zinger Burger",
-                  price: "₹ 179",
-                  subname: "French Fires",
-                  description:
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
-                ),
-              ],
+                      Switch(
+                        value: n,
+                        activeColor: const Color(0xff042e60),
+                        onChanged: (value) {
+                          setState(() {
+                            n = value;
+                          });
+                        },
+                      ),
+                      // Veg
+                      const Text(
+                        'Non-Veg',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 10,
+                          fontFamily: 'SFUIText',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Recommended (14)
+                      const Text("Recommended (14)",
+                          style: TextStyle(
+                              color: Color(0xff000000),
+                              fontWeight: FontWeight.w600,
+                              fontFamily: "SFUIText",
+                              fontStyle: FontStyle.normal,
+                              fontSize: 12.0),
+                          textAlign: TextAlign.left),
+                      Card(
+                        color: const Color(0xff042e60),
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Row(
+                            children: [
+                              // Menu
+                              const Text("Menu ",
+                                  style: TextStyle(
+                                      color: Color(0xffffffff),
+                                      fontWeight: FontWeight.w400,
+                                      fontFamily: "SFUIText",
+                                      fontStyle: FontStyle.normal,
+                                      fontSize: 9.2),
+                                  textAlign: TextAlign.left),
+                              InkWell(
+                                onTap: () {},
+                                child: const Icon(
+                                  Icons.file_open_outlined,
+                                  size: 15,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  const FoodScreenCard(
+                    pic: "images/fd.png",
+                    name: "Zinger Burger",
+                    price: "₹ 179",
+                    subname: "French Fires",
+                    description:
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
+                  ),
+                  const FoodScreenCard(
+                    pic: "images/fd.png",
+                    name: "Zinger Burger",
+                    price: "₹ 179",
+                    subname: "French Fires",
+                    description:
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
+                  ),
+                  const FoodScreenCard(
+                    pic: "images/fd.png",
+                    name: "Zinger Burger",
+                    price: "₹ 179",
+                    subname: "French Fires",
+                    description:
+                    "Lm gula eu mauris.  ",
+                  ),
+                  const FoodScreenCard(
+                    pic: "images/fd.png",
+                    name: "Zinger Burger",
+                    price: "₹ 179",
+                    subname: "French Fires",
+                    description:
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -355,41 +377,25 @@ class _FoodScreenState extends State<FoodScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
+                      children: const [
                         // 1 Item
-                        const Text("1 Item",
+                        Text("1 Item",
                             style: TextStyle(
                                 color: Color(0xffffffff),
                                 fontWeight: FontWeight.w400,
                                 fontFamily: "SFUIText",
                                 fontStyle: FontStyle.normal,
-                                fontSize: 9.8),
+                                fontSize: 10),
                             textAlign: TextAlign.left),
                         // ₹ 179
-                        Row(
-                          children: const [
-                            Text("₹ 179 ",
-                                style: TextStyle(
-                                    color: Color(0xffffffff),
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: "SFUIText",
-                                    fontStyle: FontStyle.normal,
-                                    fontSize: 14.6),
-                                textAlign: TextAlign.left),
-                            // plus taxes
-                            Padding(
-                              padding: EdgeInsets.only(top: 4),
-                              child: Text("plus taxes",
-                                  style: TextStyle(
-                                      color: Color(0xffffffff),
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: "SFUIText",
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 7.3),
-                                  textAlign: TextAlign.left),
-                            )
-                          ],
-                        )
+                        Text("₹ 179 ",
+                            style: TextStyle(
+                                color: Color(0xffffffff),
+                                fontWeight: FontWeight.w600,
+                                fontFamily: "SFUIText",
+                                fontStyle: FontStyle.normal,
+                                fontSize: 14.6),
+                            textAlign: TextAlign.left)
                       ],
                     ),
                     // View Cart
@@ -403,7 +409,7 @@ class _FoodScreenState extends State<FoodScreen> {
                               fontWeight: FontWeight.w600,
                               fontFamily: "SFUIText",
                               fontStyle: FontStyle.normal,
-                              fontSize: 12.2),
+                              fontSize: 13),
                           textAlign: TextAlign.left),
                     )
                   ],
@@ -481,7 +487,7 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
                         width: MediaQuery.of(context).size.width * .31,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        padding: const EdgeInsets.symmetric(vertical: 7),
                         child: Text(
                           widget.name,
                           style: const TextStyle(
@@ -542,10 +548,8 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
                               fontStyle: FontStyle.normal,
                               fontSize: 17.5),
                           textAlign: TextAlign.left),
-                      // ₹ 179
                       Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical: MediaQuery.of(context).size.height * .02),
+                        padding: const EdgeInsets.only(top: 10),
                         child: Text(widget.price,
                             style: const TextStyle(
                                 color: Color(0xff000000),
@@ -556,14 +560,6 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
                             textAlign: TextAlign.left),
                       ),
                       // French Fires
-                      Text(widget.subname,
-                          style: const TextStyle(
-                              color: Color(0xff000000),
-                              fontWeight: FontWeight.w500,
-                              fontFamily: "SFUIText",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 10.0),
-                          textAlign: TextAlign.left)
                     ],
                   ),
                 ),
@@ -572,55 +568,55 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
           ),
           countEnable
               ? Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          if (count > 0) {
-                            count--;
-                          }
-                        });
-                      },
-                      child: const Icon(
-                        Icons.remove_circle,
-                        color: Color(0xffc7c7c7),
-                        size: 17,
-                      ),
-                    ),
-                    Text(
-                      " $count ",
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 11.076922416687012,
-                        fontFamily: 'SFUIText',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          count++;
-                        });
-                      },
-                      child: const Icon(
-                        Icons.add_circle,
-                        color: Color(0xffffb800),
-                        size: 17,
-                      ),
-                    ),
-                  ],
-                )
-              : InkWell(
-                  onTap: () {
-                    setState(() {
-                      countEnable = true;
-                    });
-                  },
-                  child: const Icon(
-                    Icons.add_circle,
-                    color: Color(0xffffb800),
-                  ),
+            children: [
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    if (count > 0) {
+                      count--;
+                    }
+                  });
+                },
+                child: const Icon(
+                  Icons.remove_circle,
+                  color: Color(0xffc7c7c7),
+                  size: 20,
                 ),
+              ),
+              Text(
+                "  $count  ",
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 11.076922416687012,
+                  fontFamily: 'SFUIText',
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    count++;
+                  });
+                },
+                child: const Icon(
+                  Icons.add_circle,
+                  color: Color(0xffffb800),
+                  size: 20,
+                ),
+              ),
+            ],
+          )
+              : InkWell(
+            onTap: () {
+              setState(() {
+                countEnable = true;
+              });
+            },
+            child: const Icon(
+              Icons.add_circle,
+              color: Color(0xffffb800),
+            ),
+          ),
         ],
       ),
     );
