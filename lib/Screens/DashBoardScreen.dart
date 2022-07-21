@@ -834,28 +834,32 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           img: "images/icecream.jpg",
                         ),
                         DashBoardTopItem(
-                          text: "Icecream",
-                          img: "images/icecream.jpg",
+                          text: "Cakes",
+                          img: "images/dashboard/i1.jpg",
+                        ),
+                        DashBoardTopItem(
+                          text: "Mocktails",
+                          img: "images/dashboard/i2.jpeg",
+                        ),
+                        DashBoardTopItem(
+                          text: "Snacks",
+                          img: "images/dashboard/i3.webp",
                         ),
                         DashBoardTopItem(
                           text: "Icecream",
                           img: "images/icecream.jpg",
                         ),
                         DashBoardTopItem(
-                          text: "Icecream",
-                          img: "images/icecream.jpg",
+                          text: "Cakes",
+                          img: "images/dashboard/i1.jpg",
                         ),
                         DashBoardTopItem(
-                          text: "icecream",
-                          img: "images/icecream.jpg",
+                          text: "Mocktails",
+                          img: "images/dashboard/i2.jpeg",
                         ),
                         DashBoardTopItem(
-                          text: "icecream",
-                          img: "images/icecream.jpg",
-                        ),
-                        DashBoardTopItem(
-                          text: "icecream",
-                          img: "images/icecream.jpg",
+                          text: "Snacks",
+                          img: "images/dashboard/i3.webp",
                         ),
                       ],
                     ),
@@ -884,7 +888,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           location: 'Arabian, Bevrages, Juice\nChengannur',
                         ),
                         DashBoardCard(
-                          img: "images/dashboard/d2.png",
+                          img: "images/dashboard/d3.png",
                           text: "Nila Restourants",
                           rating: "4.85",
                           feeds: "555",
@@ -894,7 +898,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           location: 'Arabian, Bevrages, Juice\nChengannur',
                         ),
                         DashBoardCard(
-                          img: "images/dashboard/d3.png",
+                          img: "images/dashboard/d2.png",
                           text: "Black Fort",
                           rating: "4.85",
                           feeds: "555",
@@ -924,8 +928,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           location: 'Arabian, Bevrages, Juice\nChengannur',
                         ),
                         DashBoardCard(
-                          img: "images/fd.png",
-                          text: "The Smoky Shack",
+                          img: "images/dashboard/d3.png",
+                          text: "Nila Restourants",
                           rating: "4.85",
                           feeds: "555",
                           ontap: () {

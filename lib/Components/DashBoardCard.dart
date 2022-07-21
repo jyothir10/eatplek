@@ -26,11 +26,14 @@ class DashBoardCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Image(
-                    width: MediaQuery.of(context).size.width * .36,
-                    height: MediaQuery.of(context).size.height * .14,
-                    image: AssetImage(
-                      img,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image(
+                      width: MediaQuery.of(context).size.width * .36,
+                      height: MediaQuery.of(context).size.height * .14,
+                      image: AssetImage(
+                        img,
+                      ),
                     ),
                   ),
                   Padding(
