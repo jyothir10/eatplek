@@ -874,7 +874,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       physics: const AlwaysScrollableScrollPhysics(),
                       children: [
                         DashBoardCard(
-                          img: "images/fd.png",
+                          img: "images/dashboard/d1.png",
                           text: "The Smoky Shack",
                           rating: "4.85",
                           feeds: "555",
@@ -884,8 +884,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           location: 'Arabian, Bevrages, Juice\nChengannur',
                         ),
                         DashBoardCard(
-                          img: "images/fd.png",
-                          text: "The Smoky Shack",
+                          img: "images/dashboard/d2.png",
+                          text: "Nila Restourants",
                           rating: "4.85",
                           feeds: "555",
                           ontap: () {
@@ -894,8 +894,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           location: 'Arabian, Bevrages, Juice\nChengannur',
                         ),
                         DashBoardCard(
-                          img: "images/fd.png",
-                          text: "The Smoky Shack",
+                          img: "images/dashboard/d3.png",
+                          text: "Black Fort",
                           rating: "4.85",
                           feeds: "555",
                           ontap: () {
@@ -904,8 +904,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           location: 'Arabian, Bevrages, Juice\nChengannur',
                         ),
                         DashBoardCard(
-                          img: "images/fd.png",
-                          text: "The Smoky Shack",
+                          img: "images/dashboard/d4.png",
+                          text: "Zwarma Hut",
                           rating: "4.85",
                           feeds: "555",
                           ontap: () {
@@ -914,7 +914,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           location: 'Arabian, Bevrages, Juice\nChengannur',
                         ),
                         DashBoardCard(
-                          img: "images/fd.png",
+                          img: "images/dashboard/d1.png",
                           text: "The Smoky Shack",
                           rating: "4.85",
                           feeds: "555",
