@@ -24,7 +24,7 @@ class DashBoardTopItem extends StatelessWidget {
               text,
               style: const TextStyle(
                 color: Colors.black,
-                fontSize: 9,
+                fontSize: 9.5,
                 fontFamily: 'SFUIText',
               ),
             ),

@@ -57,7 +57,6 @@ class _FoodScreenState extends State<FoodScreen> {
                                 fontSize: 13),
                             textAlign: TextAlign.left),
                       ],
-
                     ),
                   ),
                 ],
@@ -98,13 +97,13 @@ class _FoodScreenState extends State<FoodScreen> {
                                 padding: const EdgeInsets.only(left: 10),
                                 child: Column(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceEvenly,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     // The Smocky Shack
                                     Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: const [
                                         Text("The Smocky Shack",
                                             style: TextStyle(
@@ -112,7 +111,7 @@ class _FoodScreenState extends State<FoodScreen> {
                                                 fontWeight: FontWeight.w700,
                                                 fontFamily: "SFUIText",
                                                 fontStyle: FontStyle.normal,
-                                                fontSize: 19),
+                                                fontSize: 18.5),
                                             textAlign: TextAlign.left),
                                         Text(
                                             "Arabian, Bevrages, Juices  Chengannur",
@@ -317,7 +316,7 @@ class _FoodScreenState extends State<FoodScreen> {
                     price: "₹ 179",
                     subname: "French Fires",
                     description:
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
                   ),
                   const FoodScreenCard(
                     pic: "images/fd.png",
@@ -325,7 +324,14 @@ class _FoodScreenState extends State<FoodScreen> {
                     price: "₹ 179",
                     subname: "French Fires",
                     description:
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
+                  ),
+                  const FoodScreenCard(
+                    pic: "images/fd.png",
+                    name: "Zinger Burger",
+                    price: "₹ 179",
+                    subname: "French Fires",
+                    description: "Lm gula eu mauris.  ",
                   ),
                   const FoodScreenCard(
                     pic: "images/fd.png",
@@ -333,15 +339,7 @@ class _FoodScreenState extends State<FoodScreen> {
                     price: "₹ 179",
                     subname: "French Fires",
                     description:
-                    "Lm gula eu mauris.  ",
-                  ),
-                  const FoodScreenCard(
-                    pic: "images/fd.png",
-                    name: "Zinger Burger",
-                    price: "₹ 179",
-                    subname: "French Fires",
-                    description:
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit. Nulla facilisis viverra magna, eu sodales mauris\nsodales non. Aliquam et pellentesque enim.Donec at\ncommodo mauris. Aliquam dapibus, elit fermentum\nfaucibus dictum, felis turpis ornare felis, eu dapibus\nleo ligula eu mauris.  ",
                   ),
                 ],
               ),
@@ -568,55 +566,55 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
           ),
           countEnable
               ? Row(
-            children: [
-              InkWell(
-                onTap: () {
-                  setState(() {
-                    if (count > 0) {
-                      count--;
-                    }
-                  });
-                },
-                child: const Icon(
-                  Icons.remove_circle,
-                  color: Color(0xffc7c7c7),
-                  size: 20,
-                ),
-              ),
-              Text(
-                "  $count  ",
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 11.076922416687012,
-                  fontFamily: 'SFUIText',
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  setState(() {
-                    count++;
-                  });
-                },
-                child: const Icon(
-                  Icons.add_circle,
-                  color: Color(0xffffb800),
-                  size: 20,
-                ),
-              ),
-            ],
-          )
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          if (count > 0) {
+                            count--;
+                          }
+                        });
+                      },
+                      child: const Icon(
+                        Icons.remove_circle,
+                        color: Color(0xffc7c7c7),
+                        size: 20,
+                      ),
+                    ),
+                    Text(
+                      "  $count  ",
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 11.076922416687012,
+                        fontFamily: 'SFUIText',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          count++;
+                        });
+                      },
+                      child: const Icon(
+                        Icons.add_circle,
+                        color: Color(0xffffb800),
+                        size: 20,
+                      ),
+                    ),
+                  ],
+                )
               : InkWell(
-            onTap: () {
-              setState(() {
-                countEnable = true;
-              });
-            },
-            child: const Icon(
-              Icons.add_circle,
-              color: Color(0xffffb800),
-            ),
-          ),
+                  onTap: () {
+                    setState(() {
+                      countEnable = true;
+                    });
+                  },
+                  child: const Icon(
+                    Icons.add_circle,
+                    color: Color(0xffffb800),
+                  ),
+                ),
         ],
       ),
     );
