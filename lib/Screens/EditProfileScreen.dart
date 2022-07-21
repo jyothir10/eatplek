@@ -28,75 +28,69 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.white,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Padding(
-                padding: EdgeInsets.only(right: 39),
-                child: Text(
-                  'Edit Profile',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'SFUIText',
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          leading: InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: const Icon(
-              Icons.arrow_back,
-              color: Color(0xff1A191A),
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        title: const Text(
+          'Edit Profile',
+          style: TextStyle(
+            color: Colors.black,
+            fontFamily: 'SFUIText',
+            fontWeight: FontWeight.w600,
+            fontSize: 14,
           ),
         ),
-        body: Container(
-          width: MediaQuery.of(context).size.width,
-          color: Colors.white,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              MediaQuery.of(context).viewInsets.bottom == 0
-                  ? Stack(
-                      children: [
-                        const CircleAvatar(
-                          backgroundColor: Color(0xffefeeee),
-                          radius: 51.2,
-                          child: Text(
-                            "S",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 35.826087951660156,
-                              fontFamily: 'SFUIText',
-                              fontWeight: FontWeight.w500,
-                            ),
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back,
+            color: Color(0xff1A191A),
+          ),
+        ),
+      ),
+      body: Container(
+        color: Colors.white,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            MediaQuery.of(context).viewInsets.bottom == 0
+                ? Stack(
+                    children: [
+                      const CircleAvatar(
+                        backgroundColor: Color(0xffefeeee),
+                        radius: 51.2,
+                        child: Text(
+                          "S",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 35.826087951660156,
+                            fontFamily: 'SFUIText',
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
-                        Positioned(
-                          top: 65,
-                          left: 65,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Image.asset(
-                              "images/edit_profile.png",
-                              height: 45,
-                            ),
+                      ),
+                      Positioned(
+                        top: 65,
+                        left: 65,
+                        child: InkWell(
+                          onTap: () {},
+                          child: Image.asset(
+                            "images/edit_profile.png",
+                            height: 45,
                           ),
-                        )
-                      ],
-                    )
-                  : Container(),
-              Column(
+                        ),
+                      )
+                    ],
+                  )
+                : Container(),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .4,
+              child: Column(
                 children: [
                   EditProfileTextField(
                     myController: myController1,
@@ -115,15 +109,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                 ],
               ),
-
-              ProfileButton(
-                  text: "       Save       ",
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 30),
+              child: ProfileButton(
+                  text: "        Save        ",
                   onTap: () {
                     Navigator.pushNamedAndRemoveUntil(
                         context, ProfileScreen.id, (route) => false);
                   }),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
