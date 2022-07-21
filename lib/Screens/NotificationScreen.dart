@@ -11,35 +11,35 @@ class NotificationScreen extends StatefulWidget {
 class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Color(0xffececec),
-          centerTitle: true,
-          leading: InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: const Icon(
-              Icons.arrow_back_outlined,
-              color: Color(0xff000000),
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Color(0xffececec),
+        centerTitle: true,
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back_outlined,
+            color: Color(0xff000000),
           ),
-          title: const Text("Notifications",
-              style: TextStyle(
-                  color: Color(0xff000000),
-                  fontWeight: FontWeight.w600,
-                  fontFamily: "SFUIText",
-                  fontStyle: FontStyle.normal,
-                  fontSize: 14.0),
-              textAlign: TextAlign.left),
         ),
-        body: Center(
-          child: Container(
-            color: Color(0xffececec),
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
+        title: const Text("Notifications",
+            style: TextStyle(
+                color: Color(0xff000000),
+                fontWeight: FontWeight.w600,
+                fontFamily: "SFUIText",
+                fontStyle: FontStyle.normal,
+                fontSize: 14.0),
+            textAlign: TextAlign.left),
+      ),
+      body: Center(
+        child: Container(
+          color: Color(0xffececec),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: SafeArea(
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.only(top: 12),
