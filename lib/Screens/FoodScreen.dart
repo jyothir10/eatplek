@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:eatplek/Constants.dart';
 import 'package:eatplek/Screens/OrderScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -231,7 +232,7 @@ class _FoodScreenState extends State<FoodScreen> {
                     children: [
                       Switch(
                         value: v,
-                        activeColor: const Color(0xff042e60),
+                        activeColor: primaryclr,
                         onChanged: (value) {
                           setState(() {
                             v = value;
@@ -250,7 +251,7 @@ class _FoodScreenState extends State<FoodScreen> {
                       ),
                       Switch(
                         value: n,
-                        activeColor: const Color(0xff042e60),
+                        activeColor: primaryclr,
                         onChanged: (value) {
                           setState(() {
                             n = value;
@@ -282,7 +283,7 @@ class _FoodScreenState extends State<FoodScreen> {
                               fontSize: 12.0),
                           textAlign: TextAlign.left),
                       Card(
-                        color: const Color(0xff042e60),
+                        color: primaryclr,
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: Row(
@@ -371,7 +372,7 @@ class _FoodScreenState extends State<FoodScreen> {
             padding: const EdgeInsets.all(8.0),
             child: Container(
               decoration: BoxDecoration(
-                color: const Color(0xff042e60),
+                color: primaryclr,
                 borderRadius: BorderRadius.circular(10),
               ),
               width: MediaQuery.of(context).size.width * .9,

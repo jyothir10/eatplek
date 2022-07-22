@@ -37,7 +37,7 @@ class _OptionScreenState extends State<OptionScreen> {
       child: Scaffold(
         key: _scaffoldKey,
         body: Container(
-          color: Color(0xff042e60),
+          color: primaryclr,
           child: SafeArea(
             child: Padding(
               padding: EdgeInsets.symmetric(
@@ -156,7 +156,7 @@ class _OptionScreenState extends State<OptionScreen> {
                                     child: const Icon(
                                       Icons.check,
                                       size: 25,
-                                      color: Color(0xff042e60),
+                                      color: primaryclr,
                                     ),
                                   ),
                                 ),
@@ -201,7 +201,7 @@ class _OptionScreenState extends State<OptionScreen> {
                                           opacity: 0.5,
                                           child: Text("Take Away",
                                               style: TextStyle(
-                                                  color: Color(0xff042e60),
+                                                  color: primaryclr,
                                                   fontWeight: FontWeight.w700,
                                                   fontFamily: "SFUIText",
                                                   fontStyle: FontStyle.normal,
@@ -227,7 +227,7 @@ class _OptionScreenState extends State<OptionScreen> {
                                     child: const Icon(
                                       Icons.check,
                                       size: 25,
-                                      color: Color(0xff042e60),
+                                      color: primaryclr,
                                     ),
                                   ),
                                 ),
@@ -265,7 +265,7 @@ class _OptionScreenState extends State<OptionScreen> {
                                 child: const Text(
                                   'Next',
                                   style: TextStyle(
-                                    color: Color(0xff042e60),
+                                    color: primaryclr,
                                     fontSize: 18,
                                     fontFamily: 'SFUIText',
                                     fontWeight: FontWeight.w600,

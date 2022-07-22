@@ -1,5 +1,6 @@
 import 'package:eatplek/Components/BottomBar.dart';
 import 'package:eatplek/Components/OrderHistoryListCard.dart';
+import 'package:eatplek/Constants.dart';
 import 'package:eatplek/Screens/InvoiceScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -21,31 +22,31 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
         Navigator.pushReplacementNamed(context, DashBoardScreen.id);
         return false;
       },
-      child: SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: // Your Order
-                const Text("Your Order",
-                    style: TextStyle(
-                        color: Color(0xff000000),
-                        fontWeight: FontWeight.w600,
-                        fontFamily: "SFUIText",
-                        fontStyle: FontStyle.normal,
-                        fontSize: 14.0),
-                    textAlign: TextAlign.left),
-            backgroundColor: Colors.white,
-            elevation: 0,
-            leading: InkWell(
-              onTap: () {},
-              child: const Icon(
-                Icons.arrow_back_outlined,
-                color: Color(0xff000000),
-              ),
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: // Your Order
+              const Text("Your Order",
+                  style: TextStyle(
+                      color: Color(0xff000000),
+                      fontWeight: FontWeight.w600,
+                      fontFamily: "SFUIText",
+                      fontStyle: FontStyle.normal,
+                      fontSize: 14.0),
+                  textAlign: TextAlign.left),
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: InkWell(
+            onTap: () {},
+            child: const Icon(
+              Icons.arrow_back_outlined,
+              color: Color(0xff000000),
             ),
           ),
-          body: Container(
-            color: Colors.white,
+        ),
+        body: Container(
+          color: Colors.white,
+          child: SafeArea(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -177,7 +178,7 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
                                       textAlign: TextAlign.left),
                                 ), // View Bill
                                 Card(
-                                  color: Color(0xff042e60),
+                                  color: primaryclr,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   ),
@@ -205,9 +206,9 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
               ],
             ),
           ),
-          bottomNavigationBar: const BottomBar(
-            index: 2,
-          ),
+        ),
+        bottomNavigationBar: const BottomBar(
+          index: 2,
         ),
       ),
     );

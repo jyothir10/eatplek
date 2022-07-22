@@ -1,4 +1,5 @@
 import 'package:eatplek/Components/LoginButton.dart';
+import 'package:eatplek/Constants.dart';
 import 'package:eatplek/Screens/OtpScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           decoration: const BoxDecoration(
-            color: Color(0xff042e60),
+            color: primaryclr,
           ),
           child: SafeArea(
             child: Column(
