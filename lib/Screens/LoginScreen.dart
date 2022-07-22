@@ -29,6 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   String number = "";
+  Color buttonColour = Color(0xffc6c6cc);
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -112,6 +113,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           keyboardType: TextInputType.number,
                           onChanged: (text) {
                             number = text;
+                            if (text.length == 10) {
+                              setState(() {
+                                buttonColour = Colors.white;
+                              });
+                            } else {
+                              setState(() {
+                                buttonColour = Color(0xffc6c6cc);
+                              });
+                            }
                           },
                           style: const TextStyle(
                             color: Colors.white,
@@ -158,6 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 }
                               },
                               text: 'Get OTP',
+                              clr: buttonColour,
                             ),
                           ],
                         ),

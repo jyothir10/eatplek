@@ -30,6 +30,8 @@ class _OptionScreenState extends State<OptionScreen> {
     return Future.value(true);
   }
 
+  Color buttonColour = Color(0xffc6c6cc);
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -108,6 +110,10 @@ class _OptionScreenState extends State<OptionScreen> {
                                       setState(() {
                                         d = 1;
                                         t = 0;
+                                        if ((d != 0 || t != 0) &
+                                            (name.isNotEmpty)) {
+                                          buttonColour = Colors.white;
+                                        }
                                       });
                                     },
                                     child: Column(
@@ -182,6 +188,10 @@ class _OptionScreenState extends State<OptionScreen> {
                                       setState(() {
                                         t = 1;
                                         d = 0;
+                                        if ((d != 0 || t != 0) &
+                                            (name.isNotEmpty)) {
+                                          buttonColour = Colors.white;
+                                        }
                                       });
                                     },
                                     child: Column(
@@ -260,7 +270,7 @@ class _OptionScreenState extends State<OptionScreen> {
                                 style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
-                                          Colors.white),
+                                          buttonColour),
                                 ),
                                 child: const Text(
                                   'Next',
