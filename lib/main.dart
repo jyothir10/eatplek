@@ -27,7 +27,7 @@ void main() {
     ]);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: FoodScreen.id,
+        initialRoute: DashBoardScreen.id,
         routes: {
           OnboardingScreen.id: (context) => OnboardingScreen(),
           LoginScreen.id: (context) => LoginScreen(),
