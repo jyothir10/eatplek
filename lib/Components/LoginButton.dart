@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:eatplek_admin/Constants.dart';
 
 class LoginButton extends StatelessWidget {
   final void Function()? onPressed;
@@ -26,7 +27,7 @@ class LoginButton extends StatelessWidget {
         child: Text(
           text,
           style: const TextStyle(
-            color: Color(0xff042e60),
+            color: primaryClr,
             fontSize: 18,
             fontFamily: 'SFUIText',
             fontWeight: FontWeight.w600,
