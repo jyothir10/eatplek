@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'Screens/optionScreen.dart';
+import 'Screens/test.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,7 +28,7 @@ void main() {
     ]);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: DashBoardScreen.id,
+        initialRoute: OrderScreen.id,
         routes: {
           OnboardingScreen.id: (context) => OnboardingScreen(),
           LoginScreen.id: (context) => LoginScreen(),
