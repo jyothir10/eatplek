@@ -1,4 +1,5 @@
 import 'package:eatplek/Components/optionScreenTextField.dart';
+import 'package:eatplek/Constants.dart';
 import 'package:flutter/material.dart';
 
 import 'DashBoardScreen.dart';
@@ -29,15 +30,17 @@ class _OptionScreenState extends State<OptionScreen> {
     return Future.value(true);
   }
 
+  Color buttonColour = Color(0xffc6c6cc);
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: WillPopScope(
-        onWillPop: onWillPop,
-        child: Scaffold(
-          key: _scaffoldKey,
-          body: Container(
-            color: Color(0xff042e60),
+    return WillPopScope(
+      onWillPop: onWillPop,
+      child: Scaffold(
+        key: _scaffoldKey,
+        body: Container(
+          color: primaryclr,
+          child: SafeArea(
             child: Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: MediaQuery.of(context).size.width * .08,
@@ -107,6 +110,10 @@ class _OptionScreenState extends State<OptionScreen> {
                                       setState(() {
                                         d = 1;
                                         t = 0;
+                                        if ((d != 0 || t != 0) &
+                                            (name.isNotEmpty)) {
+                                          buttonColour = Colors.white;
+                                        }
                                       });
                                     },
                                     child: Column(
@@ -128,7 +135,7 @@ class _OptionScreenState extends State<OptionScreen> {
                                             padding: EdgeInsets.only(top: 2),
                                             child: Text("Dine In",
                                                 style: TextStyle(
-                                                    color: Color(0xff042e60),
+                                                    color: primaryclr,
                                                     fontWeight: FontWeight.w700,
                                                     fontFamily: "SFUIText",
                                                     fontStyle: FontStyle.normal,
@@ -155,7 +162,7 @@ class _OptionScreenState extends State<OptionScreen> {
                                     child: const Icon(
                                       Icons.check,
                                       size: 25,
-                                      color: Color(0xff042e60),
+                                      color: primaryclr,
                                     ),
                                   ),
                                 ),
@@ -181,6 +188,10 @@ class _OptionScreenState extends State<OptionScreen> {
                                       setState(() {
                                         t = 1;
                                         d = 0;
+                                        if ((d != 0 || t != 0) &
+                                            (name.isNotEmpty)) {
+                                          buttonColour = Colors.white;
+                                        }
                                       });
                                     },
                                     child: Column(
@@ -200,7 +211,7 @@ class _OptionScreenState extends State<OptionScreen> {
                                           opacity: 0.5,
                                           child: Text("Take Away",
                                               style: TextStyle(
-                                                  color: Color(0xff042e60),
+                                                  color: primaryclr,
                                                   fontWeight: FontWeight.w700,
                                                   fontFamily: "SFUIText",
                                                   fontStyle: FontStyle.normal,
@@ -226,7 +237,7 @@ class _OptionScreenState extends State<OptionScreen> {
                                     child: const Icon(
                                       Icons.check,
                                       size: 25,
-                                      color: Color(0xff042e60),
+                                      color: primaryclr,
                                     ),
                                   ),
                                 ),
@@ -259,12 +270,12 @@ class _OptionScreenState extends State<OptionScreen> {
                                 style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
-                                          Colors.white),
+                                          buttonColour),
                                 ),
                                 child: const Text(
                                   'Next',
                                   style: TextStyle(
-                                    color: Color(0xff042e60),
+                                    color: primaryclr,
                                     fontSize: 18,
                                     fontFamily: 'SFUIText',
                                     fontWeight: FontWeight.w600,

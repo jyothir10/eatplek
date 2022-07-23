@@ -29,6 +29,8 @@ class _OtpScreenState extends State<OtpScreen> {
     return Future.value(true);
   }
 
+  Color buttonColour = Colors.white54;
+
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: onWillPop,
@@ -37,7 +39,7 @@ class _OtpScreenState extends State<OtpScreen> {
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          color: Color(0xff042e60),
+          color: primaryclr,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -90,6 +92,15 @@ class _OtpScreenState extends State<OtpScreen> {
                   length: 6,
                   onChanged: (value) {
                     otp = value;
+                    if (otp.length == 6) {
+                      setState(() {
+                        buttonColour = Colors.white;
+                      });
+                    } else {
+                      setState(() {
+                        buttonColour = Color(0xffc6c6cc);
+                      });
+                    }
                   },
                   enableActiveFill: true,
                   enablePinAutofill: true,
@@ -126,6 +137,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 9),
                       child: LoginButton(
+                          clr: buttonColour,
                           onPressed: () {
                             if (otp.length == 6) {
                               Navigator.pushReplacementNamed(

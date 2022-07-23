@@ -1,4 +1,5 @@
 import 'package:easy_splash_screen/easy_splash_screen.dart';
+import 'package:eatplek/Constants.dart';
 import 'package:flutter/material.dart';
 
 import 'LoginScreen.dart';
@@ -36,7 +37,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           key: _scaffoldKey,
           body: EasySplashScreen(
             showLoader: false,
-            backgroundColor: const Color(0xff042e60),
+            backgroundColor: primaryclr,
             logo: Image.asset(
               "images/logo.png",
             ),
@@ -47,11 +48,3 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         ));
   }
 }
-// SplashScreen(
-// navigateAfterSeconds: ,
-// seconds: 5,
-// backgroundColor:
-// image:
-// useLoader: false,
-// photoSize: MediaQuery.of(context).size.height * .25,
-// )

@@ -5,6 +5,7 @@ import 'package:eatplek/Components/ClearFilterButton.dart';
 import 'package:eatplek/Components/DashBoardCard.dart';
 import 'package:eatplek/Components/DashBoardTopItem.dart';
 import 'package:eatplek/Components/ProfileButton.dart';
+import 'package:eatplek/Constants.dart';
 import 'package:eatplek/Screens/FoodScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -402,9 +403,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           },
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
-                                d == 1
-                                    ? const Color(0xff042e60)
-                                    : const Color(0xfff0ecec)),
+                                d == 1 ? primaryclr : const Color(0xfff0ecec)),
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(6.1))),
@@ -432,9 +431,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                         },
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
-                              t == 1
-                                  ? const Color(0xff042e60)
-                                  : const Color(0xfff0ecec)),
+                              t == 1 ? primaryclr : const Color(0xfff0ecec)),
                           shape: MaterialStateProperty.all(
                               RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(6.1))),
@@ -473,7 +470,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                               height: 20,
                               width: 20,
                               decoration: BoxDecoration(
-                                color: const Color(0xff042e60),
+                                color: primaryclr,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(4)),
                               ),
@@ -834,28 +831,32 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           img: "images/icecream.jpg",
                         ),
                         DashBoardTopItem(
-                          text: "Icecream",
-                          img: "images/icecream.jpg",
+                          text: "Cakes",
+                          img: "images/dashboard/i1.jpg",
+                        ),
+                        DashBoardTopItem(
+                          text: "Mocktails",
+                          img: "images/dashboard/i2.jpeg",
+                        ),
+                        DashBoardTopItem(
+                          text: "Snacks",
+                          img: "images/dashboard/i3.webp",
                         ),
                         DashBoardTopItem(
                           text: "Icecream",
                           img: "images/icecream.jpg",
                         ),
                         DashBoardTopItem(
-                          text: "Icecream",
-                          img: "images/icecream.jpg",
+                          text: "Cakes",
+                          img: "images/dashboard/i1.jpg",
                         ),
                         DashBoardTopItem(
-                          text: "icecream",
-                          img: "images/icecream.jpg",
+                          text: "Mocktails",
+                          img: "images/dashboard/i2.jpeg",
                         ),
                         DashBoardTopItem(
-                          text: "icecream",
-                          img: "images/icecream.jpg",
-                        ),
-                        DashBoardTopItem(
-                          text: "icecream",
-                          img: "images/icecream.jpg",
+                          text: "Snacks",
+                          img: "images/dashboard/i3.webp",
                         ),
                       ],
                     ),
@@ -884,7 +885,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           location: 'Arabian, Bevrages, Juice\nChengannur',
                         ),
                         DashBoardCard(
-                          img: "images/dashboard/d2.png",
+                          img: "images/dashboard/d3.png",
                           text: "Nila Restourants",
                           rating: "4.85",
                           feeds: "555",
@@ -894,7 +895,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           location: 'Arabian, Bevrages, Juice\nChengannur',
                         ),
                         DashBoardCard(
-                          img: "images/dashboard/d3.png",
+                          img: "images/dashboard/d2.png",
                           text: "Black Fort",
                           rating: "4.85",
                           feeds: "555",
@@ -924,8 +925,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           location: 'Arabian, Bevrages, Juice\nChengannur',
                         ),
                         DashBoardCard(
-                          img: "images/fd.png",
-                          text: "The Smoky Shack",
+                          img: "images/dashboard/d3.png",
+                          text: "Nila Restourants",
                           rating: "4.85",
                           feeds: "555",
                           ontap: () {
@@ -982,7 +983,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       Padding(
                         padding: const EdgeInsets.only(right: 5),
                         child: Image.asset("images/location.png",
-                            height: 18, color: Color(0xff042e60)),
+                            height: 18, color: primaryclr),
                       ),
                       DropdownButtonHideUnderline(
                         child: DropdownButton(
@@ -1028,7 +1029,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: Image.asset(
                     "images/search.png",
-                    color: Color(0xff042e60),
+                    color: primaryclr,
                   ),
                 ),
               ),

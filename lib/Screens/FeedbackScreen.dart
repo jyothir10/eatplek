@@ -1,4 +1,5 @@
 import 'package:eatplek/Components/ProfileButton.dart';
+import 'package:eatplek/Constants.dart';
 import 'package:flutter/material.dart';
 
 class FeedbackScreen extends StatefulWidget {
@@ -27,6 +28,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                   color: Colors.black,
                   fontFamily: 'SFUIText',
                   fontWeight: FontWeight.w600,
+                  fontSize: 14,
                 ),
               ),
             ),
@@ -52,20 +54,29 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               TextField(
+                cursorWidth: 1,
+                cursorColor: primaryclr,
                 keyboardType: TextInputType.multiline,
                 maxLines: 9,
+                textAlign: TextAlign.start,
                 decoration: InputDecoration(
+                  alignLabelWithHint: true,
+                  focusColor: primaryclr,
                   border: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black, width: 2.0),
+                    borderRadius: BorderRadius.circular(21.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryclr, width: 1.0),
                     borderRadius: BorderRadius.circular(21.0),
                   ),
                   label: const Text(
                     'Tell us what you love about the app, or what we could be doing better',
                     style: TextStyle(
-                      color: Color(0x59000000),
-                      fontSize: 10,
-                      fontFamily: 'SFUIText',
-                    ),
+                        color: Color(0x59000000),
+                        fontSize: 11,
+                        fontFamily: 'SFUIText',
+                        height: 1.5),
                   ),
                 ),
               ),
