@@ -1,4 +1,5 @@
 import 'package:eatplek/Components/LoginButton.dart';
+import 'package:eatplek/Constants.dart';
 import 'package:eatplek/Screens/OtpScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -28,19 +29,20 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   String number = "";
+  Color buttonColour = Color(0xffc6c6cc);
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: onWillPop,
-      child: SafeArea(
-        child: Scaffold(
-          key: _scaffoldKey,
-          body: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            decoration: const BoxDecoration(
-              color: Color(0xff042e60),
-            ),
+      child: Scaffold(
+        key: _scaffoldKey,
+        body: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          decoration: const BoxDecoration(
+            color: primaryclr,
+          ),
+          child: SafeArea(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -111,6 +113,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           keyboardType: TextInputType.number,
                           onChanged: (text) {
                             number = text;
+                            if (text.length == 10) {
+                              setState(() {
+                                buttonColour = Colors.white;
+                              });
+                            } else {
+                              setState(() {
+                                buttonColour = Color(0xffc6c6cc);
+                              });
+                            }
                           },
                           style: const TextStyle(
                             color: Colors.white,
@@ -157,6 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 }
                               },
                               text: 'Get OTP',
+                              clr: buttonColour,
                             ),
                           ],
                         ),

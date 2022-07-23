@@ -14,11 +14,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'Screens/optionScreen.dart';
-import 'Screens/test.dart';
 
 void main() {
   runApp(MyApp());
-}class MyApp extends StatelessWidget {
+}
+
+class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ void main() {
     ]);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: OrderScreen.id,
+        initialRoute: OnboardingScreen.id,
         routes: {
           OnboardingScreen.id: (context) => OnboardingScreen(),
           LoginScreen.id: (context) => LoginScreen(),

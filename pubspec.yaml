@@ -40,7 +40,6 @@ dependencies:
   flutter_time_picker_spinner: ^2.0.0
   numberpicker: ^2.1.1
   flutter_svg: ^1.1.1+1
-  flutter_svg_provider: ^1.0.3
 
 
 
@@ -71,6 +70,7 @@ flutter:
     - images/
     - images/bottomnavigationbar/
     - images/dashboard/
+    - images/food/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

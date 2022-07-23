@@ -21,7 +21,7 @@ class ProfileOption extends StatelessWidget {
           Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(right: 9),
+                padding: const EdgeInsets.only(right: 11.5),
                 child: Image.asset(
                   'images/$img.png',
                   height: 17,
@@ -39,7 +39,8 @@ class ProfileOption extends StatelessWidget {
           ),
           const Icon(
             Icons.arrow_forward_ios,
-            size: 18,
+            size: 17,
+            color: Color(0x89292d32),
           ),
         ],
       ),

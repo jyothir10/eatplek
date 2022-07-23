@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:eatplek_admin/Constants.dart';
 
 class LoginButton extends StatelessWidget {
   final void Function()? onPressed;
   final String text;
+  final Color clr;
 
-  LoginButton({Key? key, required this.onPressed, required this.text})
+  LoginButton(
+      {Key? key,
+      required this.onPressed,
+      required this.text,
+      required this.clr})
       : super(key: key);
 
   @override
@@ -15,13 +21,13 @@ class LoginButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+            backgroundColor: MaterialStateProperty.all<Color>(clr),
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8)))),
         child: Text(
           text,
           style: const TextStyle(
-            color: Color(0xff042e60),
+            color: primaryClr,
             fontSize: 18,
             fontFamily: 'SFUIText',
             fontWeight: FontWeight.w600,

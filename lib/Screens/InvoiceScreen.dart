@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
+import 'package:eatplek/Constants.dart';
+import 'package:flutter/material.dart';
 
 class InvoiceScreen extends StatefulWidget {
   static const String id = '/invoice';
@@ -16,14 +17,14 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: // Your Order
-          const Text("Invoice",
-              style: TextStyle(
-                  color: Color(0xff000000),
-                  fontWeight: FontWeight.w600,
-                  fontFamily: "SFUIText",
-                  fontStyle: FontStyle.normal,
-                  fontSize: 15.0),
-              textAlign: TextAlign.left),
+              const Text("Invoice",
+                  style: TextStyle(
+                      color: Color(0xff000000),
+                      fontWeight: FontWeight.w600,
+                      fontFamily: "SFUIText",
+                      fontStyle: FontStyle.normal,
+                      fontSize: 15.0),
+                  textAlign: TextAlign.left),
           backgroundColor: Colors.white,
           elevation: 0,
           centerTitle: true,
@@ -109,7 +110,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                         ),
                         Container(
                           decoration: const BoxDecoration(
-                            color: Color(0xff042e60),
+                            color: primaryclr,
                             borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(10),
                             ),
@@ -133,13 +134,12 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                       children: [
                         const Text("Ceylon Bake House Marian Drive",
                             style: TextStyle(
-                                color: Color(0xff042e60),
+                                color: primaryclr,
                                 fontWeight: FontWeight.w700,
                                 fontFamily: "SFUIText",
                                 fontStyle: FontStyle.normal,
                                 fontSize: 14.0),
-                            textAlign:
-                                TextAlign.left),
+                            textAlign: TextAlign.left),
                         Padding(
                           padding: const EdgeInsets.only(top: 5),
                           child: Row(
@@ -180,7 +180,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                             children: const [
                               Text("Item",
                                   style: TextStyle(
-                                      color: Color(0xff042e60),
+                                      color: primaryclr,
                                       fontWeight: FontWeight.w600,
                                       fontFamily: "SFUIText",
                                       fontStyle: FontStyle.normal,
@@ -188,7 +188,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                                   textAlign: TextAlign.left), // Item
                               Text("Unit Price",
                                   style: TextStyle(
-                                      color: Color(0xff042e60),
+                                      color: primaryclr,
                                       fontWeight: FontWeight.w600,
                                       fontFamily: "SFUIText",
                                       fontStyle: FontStyle.normal,
@@ -196,7 +196,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                                   textAlign: TextAlign.left), // Unit Price
                               Text("Quantity",
                                   style: const TextStyle(
-                                      color: const Color(0xff042e60),
+                                      color: primaryclr,
                                       fontWeight: FontWeight.w600,
                                       fontFamily: "SFUIText",
                                       fontStyle: FontStyle.normal,
@@ -204,7 +204,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                                   textAlign: TextAlign.left), // Quantity
                               Text("Total",
                                   style: const TextStyle(
-                                      color: const Color(0xff042e60),
+                                      color: primaryclr,
                                       fontWeight: FontWeight.w600,
                                       fontFamily: "SFUIText",
                                       fontStyle: FontStyle.normal,
@@ -328,7 +328,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                         children: const [
                           Text("Total Price: Rs ",
                               style: TextStyle(
-                                  color: Color(0xff042e60),
+                                  color: primaryclr,
                                   fontWeight: FontWeight.w700,
                                   fontFamily: "SFUIText",
                                   fontStyle: FontStyle.normal,
@@ -336,82 +336,70 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                               textAlign: TextAlign.left),
                           Text("818/-",
                               style: TextStyle(
-                                  color: Color(0xff042e60),
+                                  color: primaryclr,
                                   fontWeight: FontWeight.w700,
                                   fontFamily: "SFUIText",
                                   fontStyle: FontStyle.normal,
                                   fontSize: 10.0),
                               textAlign:
-                              TextAlign.left), // Total Price: Rs 818/-
+                                  TextAlign.left), // Total Price: Rs 818/-
                         ],
                       ),
                     ),
                     const Text("THANK YOU",
                         style: TextStyle(
-                          letterSpacing: 5,
-                            color: Color(0xff042e60),
+                            letterSpacing: 5,
+                            color: primaryclr,
                             fontWeight: FontWeight.w900,
                             fontFamily: "SFUIText",
                             fontStyle: FontStyle.normal,
                             fontSize: 10.0),
                         textAlign: TextAlign.left), // THANK YOU
                     Container(
-                      color: const Color(0xff042e60),
+                      color: primaryclr,
                       height: MediaQuery.of(context).size.height * .038,
                       width: MediaQuery.of(context).size.width * .925,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children:  [
+                        children: [
                           Row(
                             children: const [
-                              Text(
-                                  "Billing Date: ",
+                              Text("Billing Date: ",
                                   style: TextStyle(
-                                      color:  Color(0xffffffff),
+                                      color: Color(0xffffffff),
                                       fontWeight: FontWeight.w400,
                                       fontFamily: "SFUIText",
-                                      fontStyle:  FontStyle.normal,
-                                      fontSize: 10.0
-                                  ),
-                                  textAlign: TextAlign.left
-                              ),
-                              Text(
-                                  "10/02/2022",
+                                      fontStyle: FontStyle.normal,
+                                      fontSize: 10.0),
+                                  textAlign: TextAlign.left),
+                              Text("10/02/2022",
                                   style: TextStyle(
-                                      color:  Color(0xffffffff),
+                                      color: Color(0xffffffff),
                                       fontWeight: FontWeight.w600,
                                       fontFamily: "SFUIText",
-                                      fontStyle:  FontStyle.normal,
-                                      fontSize: 10.0
-                                  ),
-                                  textAlign: TextAlign.left
-                              ),// 10/02/2022
+                                      fontStyle: FontStyle.normal,
+                                      fontSize: 10.0),
+                                  textAlign: TextAlign.left), // 10/02/2022
                             ],
-                          ),// Billing Date:
+                          ), // Billing Date:
                           Row(
                             children: const [
-                              Text(
-                                  "Billing Time: ",
+                              Text("Billing Time: ",
                                   style: TextStyle(
-                                      color:  Color(0xffffffff),
+                                      color: Color(0xffffffff),
                                       fontWeight: FontWeight.w400,
                                       fontFamily: "SFUIText",
-                                      fontStyle:  FontStyle.normal,
-                                      fontSize: 10.0
-                                  ),
-                                  textAlign: TextAlign.left
-                              ),
-                              Text(
-                                  "10:00 AM",
+                                      fontStyle: FontStyle.normal,
+                                      fontSize: 10.0),
+                                  textAlign: TextAlign.left),
+                              Text("10:00 AM",
                                   style: TextStyle(
-                                      color:  Color(0xffffffff),
+                                      color: Color(0xffffffff),
                                       fontWeight: FontWeight.w600,
                                       fontFamily: "SFUIText",
-                                      fontStyle:  FontStyle.normal,
-                                      fontSize: 10.0
-                                  ),
-                                  textAlign: TextAlign.left
-                              ),// 10:00 AM
+                                      fontStyle: FontStyle.normal,
+                                      fontSize: 10.0),
+                                  textAlign: TextAlign.left), // 10:00 AM
                             ],
                           ), // Billing Time:
                         ],
