@@ -580,6 +580,11 @@ class _FoodScreenState extends State<FoodScreen> {
                                     } else {
                                       foodlist = foods;
                                     }
+                                    double height = 230;
+
+                                    if (foodlist.length == 1) {
+                                      height = 115;
+                                    }
 
                                     return Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -591,7 +596,7 @@ class _FoodScreenState extends State<FoodScreen> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               // Recommended (14)
-                                              Text("${categories[index]} ()",
+                                              Text("${categories[index]} ",
                                                   style: const TextStyle(
                                                       color: Color(0xff000000),
                                                       fontWeight:
@@ -599,7 +604,7 @@ class _FoodScreenState extends State<FoodScreen> {
                                                       fontFamily: "SFUIText",
                                                       fontStyle:
                                                           FontStyle.normal,
-                                                      fontSize: 12.0),
+                                                      fontSize: 12.5),
                                                   textAlign: TextAlign.left),
                                             ],
                                           ),
@@ -609,7 +614,7 @@ class _FoodScreenState extends State<FoodScreen> {
                                                         .size
                                                         .height -
                                                     340
-                                                : 230,
+                                                : height,
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width -
