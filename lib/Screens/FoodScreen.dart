@@ -482,7 +482,7 @@ class _FoodScreenState extends State<FoodScreen> {
 
                   showList == true
                       ? Container(
-                          height: MediaQuery.of(context).size.height - 150,
+                          height: MediaQuery.of(context).size.height - 343,
                           child: isEmpty == false
                               ? ListView.builder(
                                   shrinkWrap: true,
@@ -545,9 +545,11 @@ class _FoodScreenState extends State<FoodScreen> {
                                           ],
                                         ),
                                         Container(
-                                          height: MediaQuery.of(context)
-                                              .size
-                                              .height,
+                                          height: 230,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                              35,
                                           child: ListView.builder(
                                               physics: ClampingScrollPhysics(),
                                               shrinkWrap: true,
