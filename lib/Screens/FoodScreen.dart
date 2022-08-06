@@ -66,11 +66,12 @@ class _FoodScreenState extends State<FoodScreen> {
     http.Response response = await http.get(urlfinal, headers: headers);
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
       final jsonData = jsonDecode(response.body);
-      foods = await jsonData['foods'];
-      if (foods.isEmpty) {
+      print(jsonData);
+      if (jsonData['foods'] == null) {
         isEmpty1 = true;
         showList1 = true;
       } else {
+        foods = await jsonData['foods'];
         showList1 = true;
         categories.clear();
         categoryids.clear();
@@ -81,6 +82,7 @@ class _FoodScreenState extends State<FoodScreen> {
           categoryids.add(foods[i]['category_id']);
         }
       }
+
       setState(() {
         isCategory = false;
       });
@@ -107,18 +109,16 @@ class _FoodScreenState extends State<FoodScreen> {
 
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
       final jsonData = jsonDecode(response.body);
-      foods = await jsonData['foods'];
 
-      if (foods.isEmpty) {
+      if (jsonData['foods'] == null) {
         isEmpty1 = true;
         showList1 = true;
       } else {
+        foods = await jsonData['foods'];
         showList1 = true;
         categories.clear();
-
         categories.add(foods[0]['category_name']);
       }
-      print(categories);
       setState(() {
         isCategory = true;
       });
@@ -583,7 +583,7 @@ class _FoodScreenState extends State<FoodScreen> {
                                     double height = 230;
 
                                     if (foodlist.length == 1) {
-                                      height = 115;
+                                      height = 118;
                                     }
 
                                     return Padding(
