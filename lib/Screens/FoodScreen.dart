@@ -30,6 +30,9 @@ class _FoodScreenState extends State<FoodScreen> {
   static const except = {'exc': 'An error occured'};
   bool isEmpty = false;
   bool showList = false;
+  bool isEmpty1 = false;
+  bool showList1 = false;
+  bool isCategory = false;
   String price = "non_ac_price";
 
   getRestaurant() async {
@@ -65,43 +68,60 @@ class _FoodScreenState extends State<FoodScreen> {
       final jsonData = jsonDecode(response.body);
       foods = await jsonData['foods'];
       if (foods.isEmpty) {
-        isEmpty = true;
-        showList = true;
+        isEmpty1 = true;
+        showList1 = true;
       } else {
-        showList = true;
+        showList1 = true;
+        categories.clear();
+        categoryids.clear();
+        categorylist.clear();
         for (int i = 0; i < foods.length; i++) {
           categories.add(foods[i]['category_name']);
           categorylist.add(foods[i]['category_name']);
           categoryids.add(foods[i]['category_id']);
         }
-        print(categories);
       }
-      setState(() {});
+      setState(() {
+        isCategory = false;
+      });
     } else
       APIException(response.statusCode, except);
   }
 
   getCategoryFood(String categoryId) async {
+    setState(() {
+      isEmpty1 = false;
+      showList1 = false;
+    });
+
     Map<String, String> headers = {
       "Content-Type": "application/json",
     };
+    final Map<String, String> _queryParameters = <String, String>{
+      'category': categoryId,
+    };
     var urlfinal = Uri.https(URL_Latest,
-        '/food/filter/restaurant/${widget.resId}?category=${categoryId}');
+        '/food/filter/restaurant/${widget.resId}', _queryParameters);
 
     http.Response response = await http.get(urlfinal, headers: headers);
+
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
       final jsonData = jsonDecode(response.body);
       foods = await jsonData['foods'];
+
       if (foods.isEmpty) {
-        isEmpty = true;
-        showList = true;
+        isEmpty1 = true;
+        showList1 = true;
       } else {
-        showList = true;
-        for (int i = 0; i < foods.length; i++) {
-          categories.add(foods[i]['category_name']);
-        }
+        showList1 = true;
+        categories.clear();
+
+        categories.add(foods[0]['category_name']);
       }
-      setState(() {});
+      print(categories);
+      setState(() {
+        isCategory = true;
+      });
     } else
       APIException(response.statusCode, except);
   }
@@ -117,6 +137,7 @@ class _FoodScreenState extends State<FoodScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       key: _scaffoldKey,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(186),
@@ -545,15 +566,20 @@ class _FoodScreenState extends State<FoodScreen> {
                   //   ],
                   // ),
 
-                  showList == true
+                  showList1 == true
                       ? Container(
                           height: MediaQuery.of(context).size.height - 343,
-                          child: isEmpty == false
+                          child: isEmpty1 == false
                               ? ListView.builder(
                                   shrinkWrap: true,
                                   itemCount: categories.length,
                                   itemBuilder: (context, index) {
-                                    List foodlist = foods[index]['foods'];
+                                    List foodlist = [];
+                                    if (isCategory == false) {
+                                      foodlist = foods[index]['foods'];
+                                    } else {
+                                      foodlist = foods;
+                                    }
 
                                     return Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -578,7 +604,12 @@ class _FoodScreenState extends State<FoodScreen> {
                                             ],
                                           ),
                                           Container(
-                                            height: 230,
+                                            height: isCategory == true
+                                                ? MediaQuery.of(context)
+                                                        .size
+                                                        .height -
+                                                    340
+                                                : 230,
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width -
@@ -615,9 +646,12 @@ class _FoodScreenState extends State<FoodScreen> {
                                   ),
                                 ),
                         )
-                      : const Center(
-                          child: CircularProgressIndicator(
-                            color: primaryclr,
+                      : Container(
+                          height: MediaQuery.of(context).size.height - 343,
+                          child: const Center(
+                            child: CircularProgressIndicator(
+                              color: primaryclr,
+                            ),
                           ),
                         ),
                 ],
