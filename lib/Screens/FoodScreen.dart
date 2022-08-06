@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 
 class FoodScreen extends StatefulWidget {
   static const String id = '/food';
-  const FoodScreen({Key? key}) : super(key: key);
+  String? resId;
+  FoodScreen({this.resId, Key? key}) : super(key: key);
 
   @override
   State<FoodScreen> createState() => _FoodScreenState();
@@ -18,6 +19,7 @@ class _FoodScreenState extends State<FoodScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.resId);
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(

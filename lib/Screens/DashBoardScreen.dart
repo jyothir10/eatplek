@@ -54,16 +54,12 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
           }
         }
       }
-      print("Dine in are");
-      print(dres);
-      print("------------------------------------- take away  are");
-      print(tres);
       setState(() {});
     } else
       APIException(response.statusCode, except);
   }
 
-  _showDetailsCard() {
+  _showDetailsCard(String resId) {
     int currentValue = 2;
     int currentValue1 = 5;
     int persons = 2;
@@ -370,7 +366,13 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                             child: ProfileButton(
                                 text: "Proceed",
                                 onTap: () {
-                                  Navigator.pushNamed(context, FoodScreen.id);
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => FoodScreen(
+                                              resId: resId,
+                                            )),
+                                  );
                                 }),
                           )
                         ],
@@ -936,7 +938,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                   types: dres[index]['type'],
                                                   img: dres[index]['image'],
                                                   ontap: () {
-                                                    _showDetailsCard();
+                                                    _showDetailsCard(
+                                                        dres[index]['id']);
                                                   });
                                             })
                                         : ListView.builder(
@@ -951,7 +954,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                   types: tres[index]['type'],
                                                   img: tres[index]['image'],
                                                   ontap: () {
-                                                    _showDetailsCard();
+                                                    _showDetailsCard(
+                                                        dres[index]['id']);
                                                   });
                                             }),
                                   )
