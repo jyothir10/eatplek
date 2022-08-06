@@ -922,21 +922,39 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     child: showList == true
                         ? Container(
                             child: isEmpty == false
-                                ? ListView.builder(
-                                    itemCount: restaurants.length,
-                                    itemBuilder: (context, index) {
-                                      return DashBoardCard(
-                                          text: restaurants[index]['name'],
-                                          rating: "4.58",
-                                          feeds: "500",
-                                          location: restaurants[index]
-                                              ['location'],
-                                          types: restaurants[index]['type'],
-                                          img: restaurants[index]['image'],
-                                          ontap: () {
-                                            _showDetailsCard();
-                                          });
-                                    })
+                                ? Container(
+                                    child: d == 1
+                                        ? ListView.builder(
+                                            itemCount: dres.length,
+                                            itemBuilder: (context, index) {
+                                              return DashBoardCard(
+                                                  text: dres[index]['name'],
+                                                  rating: "4.58",
+                                                  feeds: "500",
+                                                  location: dres[index]
+                                                      ['location'],
+                                                  types: dres[index]['type'],
+                                                  img: dres[index]['image'],
+                                                  ontap: () {
+                                                    _showDetailsCard();
+                                                  });
+                                            })
+                                        : ListView.builder(
+                                            itemCount: tres.length,
+                                            itemBuilder: (context, index) {
+                                              return DashBoardCard(
+                                                  text: tres[index]['name'],
+                                                  rating: "4.58",
+                                                  feeds: "500",
+                                                  location: tres[index]
+                                                      ['location'],
+                                                  types: tres[index]['type'],
+                                                  img: tres[index]['image'],
+                                                  ontap: () {
+                                                    _showDetailsCard();
+                                                  });
+                                            }),
+                                  )
                                 : const Center(
                                     child: Text(
                                       "Nothing to show",
