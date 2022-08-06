@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:eatplek/Constants.dart';
 import 'package:flutter/material.dart';
 
 class DashBoardCard extends StatelessWidget {
   final String text, rating, feeds, location, types;
-  String? img;
+  String img;
   final void Function() ontap;
   DashBoardCard(
       {Key? key,
@@ -11,7 +13,7 @@ class DashBoardCard extends StatelessWidget {
       required this.feeds,
       required this.location,
       required this.types,
-      this.img,
+      required this.img,
       required this.ontap})
       : super(key: key);
 
@@ -30,13 +32,17 @@ class DashBoardCard extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
-                    child: Image(
-                      fit: BoxFit.cover,
+                    child: CachedNetworkImage(
                       width: MediaQuery.of(context).size.width * .36,
                       height: MediaQuery.of(context).size.height * .12,
-                      image: NetworkImage(
-                        img.toString(),
-                      ),
+                      fit: BoxFit.cover,
+                      imageUrl: img,
+                      placeholder: (context, url) => const Center(
+                          child: CircularProgressIndicator(
+                        color: primaryclr,
+                      )),
+                      errorWidget: (context, url, error) =>
+                          new Icon(Icons.error),
                     ),
                   ),
                   Padding(
@@ -81,7 +87,7 @@ class DashBoardCard extends StatelessWidget {
                           // French Fires
                           Text(
                             types,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Color(0xff1d1d1d),
                               fontSize: 10.140000343322754,
                               fontFamily: 'SFUIText',
