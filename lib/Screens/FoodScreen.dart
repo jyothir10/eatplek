@@ -19,11 +19,14 @@ class FoodScreen extends StatefulWidget {
 }
 
 class _FoodScreenState extends State<FoodScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   int count = 01;
   bool ac = false, non = true, countEnable = false, tap = false;
   var restaurant;
   List foods = [];
   List categories = [];
+  List categorylist = [];
+  List categoryids = [];
   static const except = {'exc': 'An error occured'};
   bool isEmpty = false;
   bool showList = false;
@@ -68,8 +71,35 @@ class _FoodScreenState extends State<FoodScreen> {
         showList = true;
         for (int i = 0; i < foods.length; i++) {
           categories.add(foods[i]['category_name']);
+          categorylist.add(foods[i]['category_name']);
+          categoryids.add(foods[i]['category_id']);
         }
         print(categories);
+      }
+      setState(() {});
+    } else
+      APIException(response.statusCode, except);
+  }
+
+  getCategoryFood(String categoryId) async {
+    Map<String, String> headers = {
+      "Content-Type": "application/json",
+    };
+    var urlfinal = Uri.https(URL_Latest,
+        '/food/filter/restaurant/${widget.resId}?category=${categoryId}');
+
+    http.Response response = await http.get(urlfinal, headers: headers);
+    if ((response.statusCode >= 200) && (response.statusCode < 300)) {
+      final jsonData = jsonDecode(response.body);
+      foods = await jsonData['foods'];
+      if (foods.isEmpty) {
+        isEmpty = true;
+        showList = true;
+      } else {
+        showList = true;
+        for (int i = 0; i < foods.length; i++) {
+          categories.add(foods[i]['category_name']);
+        }
       }
       setState(() {});
     } else
@@ -87,6 +117,7 @@ class _FoodScreenState extends State<FoodScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(186),
         child: Stack(
@@ -393,49 +424,83 @@ class _FoodScreenState extends State<FoodScreen> {
               child: Column(
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Switch(
-                        value: ac,
-                        activeColor: primaryclr,
-                        onChanged: (value) {
-                          setState(() {
-                            ac = value;
-                            non = !ac;
-                            price = "ac_price";
-                          });
+                      Row(
+                        children: [
+                          Switch(
+                            value: ac,
+                            activeColor: primaryclr,
+                            onChanged: (value) {
+                              setState(() {
+                                ac = value;
+                                non = !ac;
+                                price = "ac_price";
+                              });
+                            },
+                          ),
+                          // Veg
+                          const Text(
+                            'AC',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 10,
+                              fontFamily: 'SFUIText',
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          Switch(
+                            value: non,
+                            activeColor: primaryclr,
+                            onChanged: (value) {
+                              setState(() {
+                                non = value;
+                                ac = !non;
+                                price = "non_ac_price";
+                              });
+                            },
+                          ),
+                          // Veg
+                          const Text(
+                            'Non-AC',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 10,
+                              fontFamily: 'SFUIText',
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                      InkWell(
+                        onTap: () {
+                          _scaffoldKey.currentState!.openDrawer();
                         },
-                      ),
-                      // Veg
-                      const Text(
-                        'AC',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 10,
-                          fontFamily: 'SFUIText',
-                          fontWeight: FontWeight.w500,
+                        child: Card(
+                          color: primaryclr,
+                          child: Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Row(
+                              children: [
+                                // Menu
+                                const Text("Menu ",
+                                    style: TextStyle(
+                                        color: Color(0xffffffff),
+                                        fontWeight: FontWeight.w400,
+                                        fontFamily: "SFUIText",
+                                        fontStyle: FontStyle.normal,
+                                        fontSize: 9.2),
+                                    textAlign: TextAlign.left),
+                                const Icon(
+                                  Icons.file_open_outlined,
+                                  size: 15,
+                                  color: Colors.white,
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
-                      ),
-                      Switch(
-                        value: non,
-                        activeColor: primaryclr,
-                        onChanged: (value) {
-                          setState(() {
-                            non = value;
-                            ac = !non;
-                            price = "non_ac_price";
-                          });
-                        },
-                      ),
-                      // Veg
-                      const Text(
-                        'Non-AC',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 10,
-                          fontFamily: 'SFUIText',
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
+                      )
                     ],
                   ),
                   // Row(
@@ -488,86 +553,54 @@ class _FoodScreenState extends State<FoodScreen> {
                                   shrinkWrap: true,
                                   itemCount: categories.length,
                                   itemBuilder: (context, index) {
-                                    print("index = ${index}");
-
                                     List foodlist = foods[index]['foods'];
 
-                                    return Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            // Recommended (14)
-                                            Text("${categories[index]} ()",
-                                                style: const TextStyle(
-                                                    color: Color(0xff000000),
-                                                    fontWeight: FontWeight.w600,
-                                                    fontFamily: "SFUIText",
-                                                    fontStyle: FontStyle.normal,
-                                                    fontSize: 12.0),
-                                                textAlign: TextAlign.left),
-
-                                            Card(
-                                              color: primaryclr,
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(5.0),
-                                                child: Row(
-                                                  children: [
-                                                    // Menu
-                                                    const Text("Menu ",
-                                                        style: TextStyle(
-                                                            color: Color(
-                                                                0xffffffff),
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontFamily:
-                                                                "SFUIText",
-                                                            fontStyle: FontStyle
-                                                                .normal,
-                                                            fontSize: 9.2),
-                                                        textAlign:
-                                                            TextAlign.left),
-                                                    InkWell(
-                                                      onTap: () {},
-                                                      child: const Icon(
-                                                        Icons
-                                                            .file_open_outlined,
-                                                        size: 15,
-                                                        color: Colors.white,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Container(
-                                          height: 230,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width -
-                                              35,
-                                          child: ListView.builder(
-                                              physics: ClampingScrollPhysics(),
-                                              shrinkWrap: true,
-                                              itemCount: foodlist.length,
-                                              itemBuilder: (context, i) {
-                                                print("i=${i}");
-
-                                                return FoodScreenCard(
-                                                  pic: foodlist[i]['image'],
-                                                  name: foodlist[i]['name'],
-                                                  price: foodlist[i][price]
-                                                      .toString(),
-                                                  description: foodlist[i]
-                                                      ['description'],
-                                                );
-                                              }),
-                                        ),
-                                      ],
+                                    return Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 9),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              // Recommended (14)
+                                              Text("${categories[index]} ()",
+                                                  style: const TextStyle(
+                                                      color: Color(0xff000000),
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontFamily: "SFUIText",
+                                                      fontStyle:
+                                                          FontStyle.normal,
+                                                      fontSize: 12.0),
+                                                  textAlign: TextAlign.left),
+                                            ],
+                                          ),
+                                          Container(
+                                            height: 230,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width -
+                                                35,
+                                            child: ListView.builder(
+                                                physics:
+                                                    ClampingScrollPhysics(),
+                                                shrinkWrap: true,
+                                                itemCount: foodlist.length,
+                                                itemBuilder: (context, i) {
+                                                  return FoodScreenCard(
+                                                    pic: foodlist[i]['image'],
+                                                    name: foodlist[i]['name'],
+                                                    price: foodlist[i][price]
+                                                        .toString(),
+                                                    description: foodlist[i]
+                                                        ['description'],
+                                                  );
+                                                }),
+                                          ),
+                                        ],
+                                      ),
                                     );
                                   })
                               : const Center(
@@ -661,6 +694,88 @@ class _FoodScreenState extends State<FoodScreen> {
               ),
             ),
           ),
+        ),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: primaryclr,
+              ),
+              child: Center(
+                child: Text(
+                  'Menu',
+                  style: TextStyle(
+                    color: Color(0xffffffff),
+                    fontWeight: FontWeight.w600,
+                    fontFamily: "SFUIText",
+                    fontStyle: FontStyle.normal,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              height: 70,
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    getFood();
+                  });
+                  Navigator.pop(context);
+                },
+                child: Card(
+                  child: Center(
+                    child: Text(
+                      "All",
+                      style: TextStyle(
+                        color: primaryclr,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: "SFUIText",
+                        fontStyle: FontStyle.normal,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              height: 500,
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: categorylist.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      height: 70,
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            getCategoryFood(categoryids[index]);
+                          });
+                          Navigator.pop(context);
+                        },
+                        child: Card(
+                          child: Center(
+                            child: Text(
+                              categorylist[index],
+                              style: TextStyle(
+                                color: primaryclr,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "SFUIText",
+                                fontStyle: FontStyle.normal,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+            ),
+          ],
         ),
       ),
     );
