@@ -9,3 +9,5 @@ const TextStyle editprofilestyle = TextStyle(
   fontWeight: FontWeight.w500,
 );
 const Color primaryclr = Color(0xff042e60);
+
+const URL_Latest = 'eatplek.herokuapp.com';

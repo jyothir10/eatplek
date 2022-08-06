@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:eatplek/Components/BottomBar.dart';
@@ -9,7 +10,10 @@ import 'package:eatplek/Constants.dart';
 import 'package:eatplek/Screens/FoodScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:numberpicker/numberpicker.dart';
+
+import '../Exceptions/api_exception.dart';
 
 class DashBoardScreen extends StatefulWidget {
   static const String id = '/dashboard';
@@ -21,6 +25,44 @@ class DashBoardScreen extends StatefulWidget {
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
   int d = 1, t = 0, veg = 1, ac = 0, type = 0;
+  static const except = {'exc': 'An error occured'};
+  List restaurants = [], dres = [], tres = [];
+  bool isEmpty = false;
+  bool showList = false;
+
+  getRestaurants() async {
+    Map<String, String> headers = {
+      "Content-Type": "application/json",
+    };
+    var urlfinal = Uri.https(URL_Latest, '/restaurant');
+
+    http.Response response = await http.get(urlfinal, headers: headers);
+    if ((response.statusCode >= 200) && (response.statusCode < 300)) {
+      final jsonData = jsonDecode(response.body);
+      restaurants = await jsonData['restaurants'];
+      if (restaurants.length == 0) {
+        isEmpty = true;
+        showList = true;
+      } else {
+        showList = true;
+        for (int i = 0; i < restaurants.length; i++) {
+          if (restaurants[i]['dine_in'] == true) {
+            dres.add(restaurants[i]);
+          }
+          if (restaurants[i]['take_away'] == true) {
+            tres.add(restaurants[i]);
+          }
+        }
+      }
+      print("Dine in are");
+      print(dres);
+      print("------------------------------------- take away  are");
+      print(tres);
+      setState(() {});
+    } else
+      APIException(response.statusCode, except);
+  }
+
   _showDetailsCard() {
     int currentValue = 2;
     int currentValue1 = 5;
@@ -365,6 +407,13 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
       return Future.value(false);
     }
     return Future.value(true);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getRestaurants();
+    super.initState();
   }
 
   @override
@@ -870,72 +919,107 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                         312 -
                         MediaQuery.of(context).padding.top -
                         MediaQuery.of(context).padding.bottom,
-                    child: ListView(
-                      scrollDirection: Axis.vertical,
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      children: [
-                        DashBoardCard(
-                          img: "images/dashboard/d1.png",
-                          text: "The Smoky Shack",
-                          rating: "4.85",
-                          feeds: "555",
-                          ontap: () {
-                            _showDetailsCard();
-                          },
-                          location: 'Arabian, Bevrages, Juice\nChengannur',
-                        ),
-                        DashBoardCard(
-                          img: "images/dashboard/d3.png",
-                          text: "Nila Restourants",
-                          rating: "4.85",
-                          feeds: "555",
-                          ontap: () {
-                            _showDetailsCard();
-                          },
-                          location: 'Arabian, Bevrages, Juice\nChengannur',
-                        ),
-                        DashBoardCard(
-                          img: "images/dashboard/d2.png",
-                          text: "Black Fort",
-                          rating: "4.85",
-                          feeds: "555",
-                          ontap: () {
-                            _showDetailsCard();
-                          },
-                          location: 'Arabian, Bevrages, Juice\nChengannur',
-                        ),
-                        DashBoardCard(
-                          img: "images/dashboard/d4.png",
-                          text: "Zwarma Hut",
-                          rating: "4.85",
-                          feeds: "555",
-                          ontap: () {
-                            _showDetailsCard();
-                          },
-                          location: 'Arabian, Bevrages, Juice\nChengannur',
-                        ),
-                        DashBoardCard(
-                          img: "images/dashboard/d1.png",
-                          text: "The Smoky Shack",
-                          rating: "4.85",
-                          feeds: "555",
-                          ontap: () {
-                            _showDetailsCard();
-                          },
-                          location: 'Arabian, Bevrages, Juice\nChengannur',
-                        ),
-                        DashBoardCard(
-                          img: "images/dashboard/d3.png",
-                          text: "Nila Restourants",
-                          rating: "4.85",
-                          feeds: "555",
-                          ontap: () {
-                            _showDetailsCard();
-                          },
-                          location: 'Arabian, Bevrages, Juice\nChengannur',
-                        ),
-                      ],
-                    ),
+                    child: showList == true
+                        ? Container(
+                            child: isEmpty == false
+                                ? ListView.builder(
+                                    itemCount: restaurants.length,
+                                    itemBuilder: (context, index) {
+                                      return DashBoardCard(
+                                          text: restaurants[index]['name'],
+                                          rating: "4.58",
+                                          feeds: "500",
+                                          location: restaurants[index]
+                                              ['location'],
+                                          types: restaurants[index]['type'],
+                                          img: restaurants[index]['image'],
+                                          ontap: () {
+                                            _showDetailsCard();
+                                          });
+                                    })
+                                : const Center(
+                                    child: Text(
+                                      "Nothing to show",
+                                      style: TextStyle(
+                                          color: Color(0xff000000),
+                                          fontWeight: FontWeight.w600,
+                                          fontFamily: "SFUIText",
+                                          fontStyle: FontStyle.normal,
+                                          fontSize: 17.5),
+                                    ),
+                                  ),
+                          )
+                        : const Center(
+                            child: CircularProgressIndicator(
+                              color: primaryclr,
+                            ),
+                          ),
+                    // child: ListView(
+                    //   scrollDirection: Axis.vertical,
+                    //   physics: const AlwaysScrollableScrollPhysics(),
+                    //   children: [
+                    //     DashBoardCard(
+                    //       img: "images/dashboard/d1.png",
+                    //       text: "The Smoky Shack",
+                    //       rating: "4.85",
+                    //       feeds: "555",
+                    //       ontap: () {
+                    //         _showDetailsCard();
+                    //       },
+                    //       location: 'Arabian, Bevrages, Juice\nChengannur',
+                    //     ),
+                    //     DashBoardCard(
+                    //       img: "images/dashboard/d3.png",
+                    //       text: "Nila Restourants",
+                    //       rating: "4.85",
+                    //       feeds: "555",
+                    //       ontap: () {
+                    //         _showDetailsCard();
+                    //       },
+                    //       location: 'Arabian, Bevrages, Juice\nChengannur',
+                    //     ),
+                    //     DashBoardCard(
+                    //       img: "images/dashboard/d2.png",
+                    //       text: "Black Fort",
+                    //       rating: "4.85",
+                    //       feeds: "555",
+                    //       ontap: () {
+                    //         _showDetailsCard();
+                    //       },
+                    //       location: 'Arabian, Bevrages, Juice\nChengannur',
+                    //     ),
+                    //     DashBoardCard(
+                    //       img: "images/dashboard/d4.png",
+                    //       text: "Zwarma Hut",
+                    //       rating: "4.85",
+                    //       feeds: "555",
+                    //       ontap: () {
+                    //         _showDetailsCard();
+                    //       },
+                    //       location: 'Arabian, Bevrages, Juice\nChengannur',
+                    //     ),
+                    //     DashBoardCard(
+                    //       img: "images/dashboard/d1.png",
+                    //       text: "The Smoky Shack",
+                    //       rating: "4.85",
+                    //       feeds: "555",
+                    //       ontap: () {
+                    //         _showDetailsCard();
+                    //       },
+                    //       location: 'Arabian, Bevrages, Juice\nChengannur',
+                    //     ),
+                    //     DashBoardCard(
+                    //       img: "images/dashboard/d3.png",
+                    //       text: "Nila Restourants",
+                    //       rating: "4.85",
+                    //       feeds: "555",
+                    //       ontap: () {
+                    //         _showDetailsCard();
+                    //       },
+                    //       location: 'Arabian, Bevrages, Juice\nChengannur',
+                    //     ),
+                    //   ],
+                    // ),
                   ),
                 )
               ],
