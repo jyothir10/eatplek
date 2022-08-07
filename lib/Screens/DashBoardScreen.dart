@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:ui';
-
 import 'package:eatplek/Components/BottomBar.dart';
 import 'package:eatplek/Components/ClearFilterButton.dart';
 import 'package:eatplek/Components/DashBoardCard.dart';
@@ -12,8 +11,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:numberpicker/numberpicker.dart';
-
 import '../Exceptions/api_exception.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
 
 class DashBoardScreen extends StatefulWidget {
   static const String id = '/dashboard';
@@ -24,6 +24,9 @@ class DashBoardScreen extends StatefulWidget {
 }
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
+
+  Placemark address = Placemark();
+  //String addres = 'Mc Hostel, Aramana Road, Chengannur, Keral...';
   int d = 1, t = 0, veg = 1, ac = 0, type = 0;
   static const except = {'exc': 'An error occured'};
   List restaurants = [], dres = [], tres = [];
@@ -57,6 +60,20 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
       setState(() {});
     } else
       APIException(response.statusCode, except);
+  }
+
+  Future<Position?> getCordinates() async {
+    LocationPermission permission;
+    permission = await Geolocator.checkPermission();
+    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
+    print(position);
+
+    List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
+    address = placemarks[0];
+    print(placemarks[0]);
+    setState((){
+
+    });
   }
 
   _showDetailsCard(String resId) {
@@ -415,12 +432,13 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   void initState() {
     // TODO: implement initState
     getRestaurants();
+    getCordinates();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    String address = 'Mc Hostel, Aramana Road, Chengannur, Keral...';
+
     return WillPopScope(
       onWillPop: onWillPop,
       child: Scaffold(
@@ -1052,7 +1070,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     );
   }
 
-  PreferredSize buildAppBar(BuildContext context, String address) {
+  PreferredSize buildAppBar(BuildContext context, Placemark address) {
     return PreferredSize(
       preferredSize: Size.fromHeight(74
           //MediaQuery.of(context).size.height * .09
@@ -1076,70 +1094,45 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               ),
             ],
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 5),
-                        child: Image.asset("images/location.png",
-                            height: 18, color: primaryclr),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 2),
+                      child: Image.asset("images/location.png",
+                          height: 18, color: primaryclr),
+                    ),
+                    Text(
+                      address.locality.toString(),
+                      style: const TextStyle(
+                        color: Color(0xff1d1d1d),
+                        fontSize: 10,
+                        fontFamily: 'SFUIText',
                       ),
-                      DropdownButtonHideUnderline(
-                        child: DropdownButton(
-                            value: dropdownvalue,
-                            style: const TextStyle(
-                              color: Color(0xff1d1d1d),
-                              fontSize: 14.133333206176758,
-                              fontFamily: 'SFUIText',
-                              fontWeight: FontWeight.w700,
-                            ),
-                            items: items.map((String items) {
-                              return DropdownMenuItem(
-                                value: items,
-                                child: Text(items),
-                              );
-                            }).toList(),
-                            onChanged: (String? value) {
-                              setState(() {
-                                dropdownvalue = value!;
-                              });
-                            }),
-                      )
-                    ],
+                    ),
+                  ],
+                ),
+                Container(
+                  height: 37,
+                  width: 31,
+                  decoration: BoxDecoration(
+                    color: Color(0xfff0ecec),
+                    borderRadius: BorderRadius.circular(7),
                   ),
-                  Text(
-                    address,
-                    style: const TextStyle(
-                      color: Color(0xff1d1d1d),
-                      fontSize: 10,
-                      fontFamily: 'SFUIText',
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset(
+                      "images/search.png",
+                      color: primaryclr,
                     ),
                   ),
-                ],
-              ),
-              Container(
-                height: 37,
-                width: 31,
-                decoration: BoxDecoration(
-                  color: Color(0xfff0ecec),
-                  borderRadius: BorderRadius.circular(7),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
-                    "images/search.png",
-                    color: primaryclr,
-                  ),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -1283,3 +1276,30 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     }
   }
 }
+
+//Padding(
+//   padding: const EdgeInsets.only(right: 5),
+//   child: Image.asset("images/location.png",
+//       height: 18, color: primaryclr),
+// ),
+// DropdownButtonHideUnderline(
+//   child: DropdownButton(
+//       value: dropdownvalue,
+//       style: const TextStyle(
+//         color: Color(0xff1d1d1d),
+//         fontSize: 14.133333206176758,
+//         fontFamily: 'SFUIText',
+//         fontWeight: FontWeight.w700,
+//       ),
+//       items: items.map((String items) {
+//         return DropdownMenuItem(
+//           value: items,
+//           child: Text(items),
+//         );
+//       }).toList(),
+//       onChanged: (String? value) {
+//         setState(() {
+//           dropdownvalue = value!;
+//         });
+//       }),
+// ),

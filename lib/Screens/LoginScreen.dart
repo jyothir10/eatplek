@@ -1,5 +1,6 @@
 import 'package:eatplek/Components/LoginButton.dart';
 import 'package:eatplek/Constants.dart';
+import 'package:eatplek/Screens/DashBoardScreen.dart';
 import 'package:eatplek/Screens/OtpScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -54,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: EdgeInsets.only(top: 8, right: 15, bottom: 10),
                       child: InkWell(
                         onTap: () {
-                          //todo:Add navigation
+                          Navigator.pushReplacementNamed(context, DashBoardScreen.id);
                         },
                         child: const Text(
                           'Skip',
