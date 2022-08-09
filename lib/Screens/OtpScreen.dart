@@ -49,7 +49,7 @@ class _OtpScreenState extends State<OtpScreen> {
     setState(() {
       showSpinner = true;
     });
-    String url = "${URL_Latest}/user/login";
+
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map<String, String> headers = {
       "Content-Type": "application/json",
@@ -73,9 +73,12 @@ class _OtpScreenState extends State<OtpScreen> {
       msg = await responseBody['message'];
 
       if (msg == "User logged in successfully") {
+        sharedPreferences.setString("id", await responseBody['user']['id']);
+        sharedPreferences.setString(
+            "token", await responseBody['user']['token']);
+
         Navigator.pushReplacementNamed(context, OptionScreen.id);
       } else {
-        print("i");
         if (status == false) {
           _scaffoldKey.currentState?.showSnackBar(
             SnackBar(
@@ -89,7 +92,6 @@ class _OtpScreenState extends State<OtpScreen> {
           setState(() {
             showSpinner = false;
           });
-          print(status);
         }
         throw APIException(res.statusCode, jsonDecode(res.body));
       }
