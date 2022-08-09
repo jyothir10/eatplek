@@ -10,6 +10,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Exceptions/api_exception.dart';
+import 'DashBoardScreen.dart';
 
 class OtpScreen extends StatefulWidget {
   static const String id = '/otp';
@@ -22,10 +23,9 @@ class OtpScreen extends StatefulWidget {
 class _OtpScreenState extends State<OtpScreen> {
   DateTime? currentBackPressTime;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  String otp = "";
   bool showSpinner = false;
   bool status = false;
-  String msg = "";
+  String msg = "", name = "", otp = "";
 
   Future<bool> onWillPop() {
     DateTime now = DateTime.now();
@@ -76,8 +76,13 @@ class _OtpScreenState extends State<OtpScreen> {
         sharedPreferences.setString("id", await responseBody['user']['id']);
         sharedPreferences.setString(
             "token", await responseBody['user']['token']);
-
-        Navigator.pushReplacementNamed(context, OptionScreen.id);
+        name = await responseBody['user']['name'];
+        if (name.isEmpty) {
+          Navigator.pushReplacementNamed(context, OptionScreen.id);
+        } else {
+          Navigator.pushNamedAndRemoveUntil(
+              context, DashBoardScreen.id, (route) => false);
+        }
       } else {
         if (status == false) {
           _scaffoldKey.currentState?.showSnackBar(

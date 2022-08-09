@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
+
 import 'package:eatplek/Components/BottomBar.dart';
 import 'package:eatplek/Components/ClearFilterButton.dart';
 import 'package:eatplek/Components/DashBoardCard.dart';
@@ -9,11 +10,12 @@ import 'package:eatplek/Constants.dart';
 import 'package:eatplek/Screens/FoodScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:numberpicker/numberpicker.dart';
+
 import '../Exceptions/api_exception.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:geocoding/geocoding.dart';
 
 class DashBoardScreen extends StatefulWidget {
   static const String id = '/dashboard';
@@ -24,7 +26,6 @@ class DashBoardScreen extends StatefulWidget {
 }
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
-
   Placemark address = Placemark();
   //String addres = 'Mc Hostel, Aramana Road, Chengannur, Keral...';
   int d = 1, t = 0, veg = 1, ac = 0, type = 0;
@@ -65,15 +66,15 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   Future<Position?> getCordinates() async {
     LocationPermission permission;
     permission = await Geolocator.checkPermission();
-    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.best);
     print(position);
 
-    List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
+    List<Placemark> placemarks =
+        await placemarkFromCoordinates(position.latitude, position.longitude);
     address = placemarks[0];
     print(placemarks[0]);
-    setState((){
-
-    });
+    setState(() {});
   }
 
   _showDetailsCard(String resId) {
@@ -438,7 +439,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return WillPopScope(
       onWillPop: onWillPop,
       child: Scaffold(
@@ -994,72 +994,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                               color: primaryclr,
                             ),
                           ),
-                    // child: ListView(
-                    //   scrollDirection: Axis.vertical,
-                    //   physics: const AlwaysScrollableScrollPhysics(),
-                    //   children: [
-                    //     DashBoardCard(
-                    //       img: "images/dashboard/d1.png",
-                    //       text: "The Smoky Shack",
-                    //       rating: "4.85",
-                    //       feeds: "555",
-                    //       ontap: () {
-                    //         _showDetailsCard();
-                    //       },
-                    //       location: 'Arabian, Bevrages, Juice\nChengannur',
-                    //     ),
-                    //     DashBoardCard(
-                    //       img: "images/dashboard/d3.png",
-                    //       text: "Nila Restourants",
-                    //       rating: "4.85",
-                    //       feeds: "555",
-                    //       ontap: () {
-                    //         _showDetailsCard();
-                    //       },
-                    //       location: 'Arabian, Bevrages, Juice\nChengannur',
-                    //     ),
-                    //     DashBoardCard(
-                    //       img: "images/dashboard/d2.png",
-                    //       text: "Black Fort",
-                    //       rating: "4.85",
-                    //       feeds: "555",
-                    //       ontap: () {
-                    //         _showDetailsCard();
-                    //       },
-                    //       location: 'Arabian, Bevrages, Juice\nChengannur',
-                    //     ),
-                    //     DashBoardCard(
-                    //       img: "images/dashboard/d4.png",
-                    //       text: "Zwarma Hut",
-                    //       rating: "4.85",
-                    //       feeds: "555",
-                    //       ontap: () {
-                    //         _showDetailsCard();
-                    //       },
-                    //       location: 'Arabian, Bevrages, Juice\nChengannur',
-                    //     ),
-                    //     DashBoardCard(
-                    //       img: "images/dashboard/d1.png",
-                    //       text: "The Smoky Shack",
-                    //       rating: "4.85",
-                    //       feeds: "555",
-                    //       ontap: () {
-                    //         _showDetailsCard();
-                    //       },
-                    //       location: 'Arabian, Bevrages, Juice\nChengannur',
-                    //     ),
-                    //     DashBoardCard(
-                    //       img: "images/dashboard/d3.png",
-                    //       text: "Nila Restourants",
-                    //       rating: "4.85",
-                    //       feeds: "555",
-                    //       ontap: () {
-                    //         _showDetailsCard();
-                    //       },
-                    //       location: 'Arabian, Bevrages, Juice\nChengannur',
-                    //     ),
-                    //   ],
-                    // ),
                   ),
                 )
               ],
@@ -1095,7 +1029,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
             ],
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
