@@ -27,7 +27,6 @@ class DashBoardScreen extends StatefulWidget {
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
   Placemark address = Placemark();
-  //String addres = 'Mc Hostel, Aramana Road, Chengannur, Keral...';
   int d = 1, t = 0, veg = 1, ac = 0, type = 0;
   static const except = {'exc': 'An error occured'};
   List restaurants = [], dres = [], tres = [];
@@ -64,16 +63,33 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   }
 
   Future<Position?> getCordinates() async {
+    bool serviceEnabled;
     LocationPermission permission;
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
+    }
+
     permission = await Geolocator.checkPermission();
+
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.best);
-    print(position);
 
     List<Placemark> placemarks =
         await placemarkFromCoordinates(position.latitude, position.longitude);
     address = placemarks[0];
-    print(placemarks[0]);
     setState(() {});
   }
 
@@ -1040,14 +1056,23 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       child: Image.asset("images/location.png",
                           height: 18, color: primaryclr),
                     ),
-                    Text(
-                      address.locality.toString(),
-                      style: const TextStyle(
-                        color: Color(0xff1d1d1d),
-                        fontSize: 10,
-                        fontFamily: 'SFUIText',
-                      ),
-                    ),
+                    address.locality == null
+                        ? const Text(
+                            "Location",
+                            style: TextStyle(
+                              color: Color(0xff1d1d1d),
+                              fontSize: 10,
+                              fontFamily: 'SFUIText',
+                            ),
+                          )
+                        : Text(
+                            address.locality.toString(),
+                            style: const TextStyle(
+                              color: Color(0xff1d1d1d),
+                              fontSize: 10,
+                              fontFamily: 'SFUIText',
+                            ),
+                          ),
                   ],
                 ),
                 Container(
