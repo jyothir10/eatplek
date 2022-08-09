@@ -1,11 +1,16 @@
+import 'dart:convert';
+
 import 'package:eatplek/Components/LoginButton.dart';
 import 'package:eatplek/Constants.dart';
 import 'package:eatplek/Screens/optionScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
-import 'dart:convert';import 'package:http/http.dart' as http;
+import 'package:http/http.dart' as http;
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:shared_preferences/shared_preferences.dart';import '../Exceptions/api_exception.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../Exceptions/api_exception.dart';
+import 'DashBoardScreen.dart';
 
 class OtpScreen extends StatefulWidget {
   static const String id = '/otp';
@@ -18,11 +23,9 @@ class OtpScreen extends StatefulWidget {
 class _OtpScreenState extends State<OtpScreen> {
   DateTime? currentBackPressTime;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  String otp = "";
   bool showSpinner = false;
   bool status = false;
-  String msg ="";
-  TextEditingController otpcontroller = TextEditingController();
+  String msg = "", name = "", otp = "";
 
   Future<bool> onWillPop() {
     DateTime now = DateTime.now();
@@ -46,7 +49,7 @@ class _OtpScreenState extends State<OtpScreen> {
     setState(() {
       showSpinner = true;
     });
-    String url = "${URL_Latest}/user/login";
+
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map<String, String> headers = {
       "Content-Type": "application/json",
@@ -70,11 +73,18 @@ class _OtpScreenState extends State<OtpScreen> {
       msg = await responseBody['message'];
 
       if (msg == "User logged in successfully") {
-        Navigator.pushReplacementNamed(context, OptionScreen.id);
+        sharedPreferences.setString("id", await responseBody['user']['id']);
+        sharedPreferences.setString(
+            "token", await responseBody['user']['token']);
+        name = await responseBody['user']['name'];
+        if (name.isEmpty) {
+          Navigator.pushReplacementNamed(context, OptionScreen.id);
+        } else {
+          Navigator.pushNamedAndRemoveUntil(
+              context, DashBoardScreen.id, (route) => false);
+        }
       } else {
-        print("i");
         if (status == false) {
-          otpcontroller.clear();
           _scaffoldKey.currentState?.showSnackBar(
             SnackBar(
               behavior: SnackBarBehavior.floating,
@@ -87,13 +97,10 @@ class _OtpScreenState extends State<OtpScreen> {
           setState(() {
             showSpinner = false;
           });
-          print(status);
         }
         throw APIException(res.statusCode, jsonDecode(res.body));
       }
     } else {
-      print(responseBody["error"]);
-      print("hi");
       _scaffoldKey.currentState?.showSnackBar(
         SnackBar(
           behavior: SnackBarBehavior.floating,
@@ -112,6 +119,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
   Color buttonColour = Colors.white54;
 
+  @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: onWillPop,
@@ -173,7 +181,6 @@ class _OtpScreenState extends State<OtpScreen> {
                     keyboardType: TextInputType.number,
                     appContext: context,
                     length: 6,
-                    controller: otpcontroller,
                     onChanged: (value) {
                       otp = value;
                       if (otp.length == 6) {
@@ -223,10 +230,8 @@ class _OtpScreenState extends State<OtpScreen> {
                         child: LoginButton(
                             clr: buttonColour,
                             onPressed: () {
-                              if (otp.length == 6) {
+                              if (otp.length == 6 && otp.isNotEmpty) {
                                 logIn();
-                                print(otp);
-                                print(widget.phone);
                               } else {
                                 _scaffoldKey.currentState?.showSnackBar(
                                     const SnackBar(

@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class optionScreenTextField extends StatelessWidget {
   final String text;
   final void Function(String)? onchanged;
+  final TextEditingController controller;
 
   const optionScreenTextField({
     Key? key,
     required this.text,
     required this.onchanged,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -26,7 +28,8 @@ class optionScreenTextField extends StatelessWidget {
                   fontSize: 16.0),
               textAlign: TextAlign.left),
         ),
-         TextField(
+        TextField(
+          controller: controller,
           onChanged: onchanged,
           style: const TextStyle(color: Colors.white),
           keyboardType: TextInputType.name,

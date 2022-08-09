@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
+
 import 'package:eatplek/Components/BottomBar.dart';
 import 'package:eatplek/Components/ClearFilterButton.dart';
 import 'package:eatplek/Components/DashBoardCard.dart';
@@ -9,11 +10,12 @@ import 'package:eatplek/Constants.dart';
 import 'package:eatplek/Screens/FoodScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:numberpicker/numberpicker.dart';
+
 import '../Exceptions/api_exception.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:geocoding/geocoding.dart';
 
 class DashBoardScreen extends StatefulWidget {
   static const String id = '/dashboard';
@@ -24,9 +26,7 @@ class DashBoardScreen extends StatefulWidget {
 }
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
-
   Placemark address = Placemark();
-  //String addres = 'Mc Hostel, Aramana Road, Chengannur, Keral...';
   int d = 1, t = 0, veg = 1, ac = 0, type = 0;
   static const except = {'exc': 'An error occured'};
   List restaurants = [], dres = [], tres = [];
@@ -63,17 +63,34 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   }
 
   Future<Position?> getCordinates() async {
+    bool serviceEnabled;
     LocationPermission permission;
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
+    }
+
     permission = await Geolocator.checkPermission();
-    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
-    print(position);
 
-    List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.best);
+
+    List<Placemark> placemarks =
+        await placemarkFromCoordinates(position.latitude, position.longitude);
     address = placemarks[0];
-    print(placemarks[0]);
-    setState((){
-
-    });
+    setState(() {});
   }
 
   _showDetailsCard(String resId) {
@@ -438,7 +455,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return WillPopScope(
       onWillPop: onWillPop,
       child: Scaffold(
@@ -994,72 +1010,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                               color: primaryclr,
                             ),
                           ),
-                    // child: ListView(
-                    //   scrollDirection: Axis.vertical,
-                    //   physics: const AlwaysScrollableScrollPhysics(),
-                    //   children: [
-                    //     DashBoardCard(
-                    //       img: "images/dashboard/d1.png",
-                    //       text: "The Smoky Shack",
-                    //       rating: "4.85",
-                    //       feeds: "555",
-                    //       ontap: () {
-                    //         _showDetailsCard();
-                    //       },
-                    //       location: 'Arabian, Bevrages, Juice\nChengannur',
-                    //     ),
-                    //     DashBoardCard(
-                    //       img: "images/dashboard/d3.png",
-                    //       text: "Nila Restourants",
-                    //       rating: "4.85",
-                    //       feeds: "555",
-                    //       ontap: () {
-                    //         _showDetailsCard();
-                    //       },
-                    //       location: 'Arabian, Bevrages, Juice\nChengannur',
-                    //     ),
-                    //     DashBoardCard(
-                    //       img: "images/dashboard/d2.png",
-                    //       text: "Black Fort",
-                    //       rating: "4.85",
-                    //       feeds: "555",
-                    //       ontap: () {
-                    //         _showDetailsCard();
-                    //       },
-                    //       location: 'Arabian, Bevrages, Juice\nChengannur',
-                    //     ),
-                    //     DashBoardCard(
-                    //       img: "images/dashboard/d4.png",
-                    //       text: "Zwarma Hut",
-                    //       rating: "4.85",
-                    //       feeds: "555",
-                    //       ontap: () {
-                    //         _showDetailsCard();
-                    //       },
-                    //       location: 'Arabian, Bevrages, Juice\nChengannur',
-                    //     ),
-                    //     DashBoardCard(
-                    //       img: "images/dashboard/d1.png",
-                    //       text: "The Smoky Shack",
-                    //       rating: "4.85",
-                    //       feeds: "555",
-                    //       ontap: () {
-                    //         _showDetailsCard();
-                    //       },
-                    //       location: 'Arabian, Bevrages, Juice\nChengannur',
-                    //     ),
-                    //     DashBoardCard(
-                    //       img: "images/dashboard/d3.png",
-                    //       text: "Nila Restourants",
-                    //       rating: "4.85",
-                    //       feeds: "555",
-                    //       ontap: () {
-                    //         _showDetailsCard();
-                    //       },
-                    //       location: 'Arabian, Bevrages, Juice\nChengannur',
-                    //     ),
-                    //   ],
-                    // ),
                   ),
                 )
               ],
@@ -1095,7 +1045,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
             ],
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -1106,14 +1056,23 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       child: Image.asset("images/location.png",
                           height: 18, color: primaryclr),
                     ),
-                    Text(
-                      address.locality.toString(),
-                      style: const TextStyle(
-                        color: Color(0xff1d1d1d),
-                        fontSize: 10,
-                        fontFamily: 'SFUIText',
-                      ),
-                    ),
+                    address.locality == null
+                        ? const Text(
+                            "Location",
+                            style: TextStyle(
+                              color: Color(0xff1d1d1d),
+                              fontSize: 10,
+                              fontFamily: 'SFUIText',
+                            ),
+                          )
+                        : Text(
+                            address.locality.toString(),
+                            style: const TextStyle(
+                              color: Color(0xff1d1d1d),
+                              fontSize: 10,
+                              fontFamily: 'SFUIText',
+                            ),
+                          ),
                   ],
                 ),
                 Container(
