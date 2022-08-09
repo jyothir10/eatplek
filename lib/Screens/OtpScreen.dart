@@ -1,11 +1,15 @@
+import 'dart:convert';
+
 import 'package:eatplek/Components/LoginButton.dart';
 import 'package:eatplek/Constants.dart';
 import 'package:eatplek/Screens/optionScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
-import 'dart:convert';import 'package:http/http.dart' as http;
+import 'package:http/http.dart' as http;
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:shared_preferences/shared_preferences.dart';import '../Exceptions/api_exception.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../Exceptions/api_exception.dart';
 
 class OtpScreen extends StatefulWidget {
   static const String id = '/otp';
@@ -21,8 +25,7 @@ class _OtpScreenState extends State<OtpScreen> {
   String otp = "";
   bool showSpinner = false;
   bool status = false;
-  String msg ="";
-  TextEditingController otpcontroller = TextEditingController();
+  String msg = "";
 
   Future<bool> onWillPop() {
     DateTime now = DateTime.now();
@@ -74,7 +77,6 @@ class _OtpScreenState extends State<OtpScreen> {
       } else {
         print("i");
         if (status == false) {
-          otpcontroller.clear();
           _scaffoldKey.currentState?.showSnackBar(
             SnackBar(
               behavior: SnackBarBehavior.floating,
@@ -92,8 +94,6 @@ class _OtpScreenState extends State<OtpScreen> {
         throw APIException(res.statusCode, jsonDecode(res.body));
       }
     } else {
-      print(responseBody["error"]);
-      print("hi");
       _scaffoldKey.currentState?.showSnackBar(
         SnackBar(
           behavior: SnackBarBehavior.floating,
@@ -112,6 +112,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
   Color buttonColour = Colors.white54;
 
+  @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: onWillPop,
@@ -173,7 +174,6 @@ class _OtpScreenState extends State<OtpScreen> {
                     keyboardType: TextInputType.number,
                     appContext: context,
                     length: 6,
-                    controller: otpcontroller,
                     onChanged: (value) {
                       otp = value;
                       if (otp.length == 6) {
@@ -223,10 +223,8 @@ class _OtpScreenState extends State<OtpScreen> {
                         child: LoginButton(
                             clr: buttonColour,
                             onPressed: () {
-                              if (otp.length == 6) {
+                              if (otp.length == 6 && otp.isNotEmpty) {
                                 logIn();
-                                print(otp);
-                                print(widget.phone);
                               } else {
                                 _scaffoldKey.currentState?.showSnackBar(
                                     const SnackBar(
