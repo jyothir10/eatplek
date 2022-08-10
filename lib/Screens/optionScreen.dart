@@ -37,24 +37,17 @@ class _OptionScreenState extends State<OptionScreen> {
     });
 
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    print(sharedPreferences.getString("token").toString());
-    print(sharedPreferences.getString("id").toString());
 
     Map<String, String> headers = {
       "Content-Type": "application/json",
       "Token": sharedPreferences.getString("token").toString(),
     };
 
-    print(headers);
-
     Map body1 = {
       "name": namecontroller.text.trim(),
       "id": sharedPreferences.getString("id").toString(),
     };
-    print(body1);
-
     final body = jsonEncode(body1);
-    print(body);
 
     var urlfinal = Uri.https(URL_Latest, '/user');
 

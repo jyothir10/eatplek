@@ -6,8 +6,11 @@ import 'package:eatplek/Constants.dart';
 import 'package:eatplek/Screens/OrderScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Exceptions/api_exception.dart';
+
+final key = GlobalKey();
 
 class FoodScreen extends StatefulWidget {
   static const String id = '/food';
@@ -21,6 +24,8 @@ class FoodScreen extends StatefulWidget {
 class _FoodScreenState extends State<FoodScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   int count = 01;
+  static double total = 0;
+
   bool ac = false, non = true, countEnable = false, tap = false;
   var restaurant;
   List foods = [];
@@ -34,6 +39,10 @@ class _FoodScreenState extends State<FoodScreen> {
   bool showList1 = false;
   bool isCategory = false;
   String price = "non_ac_price";
+
+  mysetstate() {
+    setState(() {});
+  }
 
   getRestaurant() async {
     Map<String, String> headers = {
@@ -66,7 +75,7 @@ class _FoodScreenState extends State<FoodScreen> {
     http.Response response = await http.get(urlfinal, headers: headers);
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
       final jsonData = jsonDecode(response.body);
-      print(jsonData);
+
       if (jsonData['foods'] == null) {
         isEmpty1 = true;
         showList1 = true;
@@ -524,48 +533,6 @@ class _FoodScreenState extends State<FoodScreen> {
                       )
                     ],
                   ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     // Recommended (14)
-                  //     const Text("Recommended (14)",
-                  //         style: TextStyle(
-                  //             color: Color(0xff000000),
-                  //             fontWeight: FontWeight.w600,
-                  //             fontFamily: "SFUIText",
-                  //             fontStyle: FontStyle.normal,
-                  //             fontSize: 12.0),
-                  //         textAlign: TextAlign.left),
-                  //     Card(
-                  //       color: primaryclr,
-                  //       child: Padding(
-                  //         padding: const EdgeInsets.all(5.0),
-                  //         child: Row(
-                  //           children: [
-                  //             // Menu
-                  //             const Text("Menu ",
-                  //                 style: TextStyle(
-                  //                     color: Color(0xffffffff),
-                  //                     fontWeight: FontWeight.w400,
-                  //                     fontFamily: "SFUIText",
-                  //                     fontStyle: FontStyle.normal,
-                  //                     fontSize: 9.2),
-                  //                 textAlign: TextAlign.left),
-                  //             InkWell(
-                  //               onTap: () {},
-                  //               child: const Icon(
-                  //                 Icons.file_open_outlined,
-                  //                 size: 15,
-                  //                 color: Colors.white,
-                  //               ),
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     )
-                  //   ],
-                  // ),
-
                   showList1 == true
                       ? Container(
                           height: MediaQuery.of(context).size.height - 343,
@@ -626,12 +593,15 @@ class _FoodScreenState extends State<FoodScreen> {
                                                 itemCount: foodlist.length,
                                                 itemBuilder: (context, i) {
                                                   return FoodScreenCard(
+                                                    id: foodlist[i]['id'],
                                                     pic: foodlist[i]['image'],
                                                     name: foodlist[i]['name'],
                                                     price: foodlist[i][price]
                                                         .toString(),
                                                     description: foodlist[i]
                                                         ['description'],
+                                                    resId: widget.resId,
+                                                    resName: restaurant['name'],
                                                   );
                                                 }),
                                           ),
@@ -694,25 +664,20 @@ class _FoodScreenState extends State<FoodScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const [
+                    children: [
                       // 1 Item
-                      Text("1 Item",
-                          style: TextStyle(
-                              color: Color(0xffffffff),
-                              fontWeight: FontWeight.w400,
-                              fontFamily: "SFUIText",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 10),
-                          textAlign: TextAlign.left),
+
                       // ₹ 179
-                      Text("₹ 179 ",
-                          style: TextStyle(
-                              color: Color(0xffffffff),
-                              fontWeight: FontWeight.w600,
-                              fontFamily: "SFUIText",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 14.6),
-                          textAlign: TextAlign.left)
+                      Container(
+                        child: Text(total.toString(),
+                            style: const TextStyle(
+                                color: Color(0xffffffff),
+                                fontWeight: FontWeight.w600,
+                                fontFamily: "SFUIText",
+                                fontStyle: FontStyle.normal,
+                                fontSize: 14.6),
+                            textAlign: TextAlign.left),
+                      )
                     ],
                   ),
                   // View Cart
@@ -826,13 +791,19 @@ class FoodScreenCard extends StatefulWidget {
   final String name;
   final String price;
   final String description;
+  final String id;
+  final String? resId;
+  final String resName;
 
   const FoodScreenCard({
     Key? key,
+    required this.id,
     required this.pic,
     required this.name,
     required this.price,
     required this.description,
+    required this.resId,
+    required this.resName,
   }) : super(key: key);
 
   @override
@@ -842,6 +813,45 @@ class FoodScreenCard extends StatefulWidget {
 class _FoodScreenCardState extends State<FoodScreenCard> {
   int count = 01;
   bool countEnable = false;
+  static const except = {'exc': 'An error occured'};
+
+  addtoCart() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    Map<String, String> headers = {
+      "Content-Type": "application/json",
+      "Token": sharedPreferences.getString("token").toString(),
+    };
+    var urlfinal = Uri.https(URL_Latest, '/cart');
+
+    Map body1 = {
+      "user_id": sharedPreferences.getString("id"),
+      "restaurant_id": widget.resId,
+      "restaurant_name": widget.resName,
+      "item": {
+        "food_id": widget.id,
+        "name": widget.name,
+        "image": widget.pic,
+        "price": int.parse(widget.price),
+        "quantity": 1
+      }
+    };
+    final body = jsonEncode(body1);
+
+    http.Response response =
+        await http.post(urlfinal, headers: headers, body: body);
+
+    if ((response.statusCode >= 200) && (response.statusCode < 300)) {
+      final jsonData = await jsonDecode(response.body);
+      print(jsonData);
+
+      if (jsonData['message'] == "item added to cart") {
+        _FoodScreenState.total += await jsonData['item']['total'];
+      }
+
+      setState(() {});
+    } else
+      APIException(response.statusCode, except);
+  }
 
   _showDetailsCard() {
     showDialog(
@@ -998,6 +1008,7 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
                           setState(() {
                             if (count > 0) {
                               count--;
+                              addtoCart();
                             }
                           });
                         },
@@ -1020,6 +1031,7 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
                         onTap: () {
                           setState(() {
                             count++;
+                            addtoCart();
                           });
                         },
                         child: const Icon(
@@ -1034,6 +1046,7 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
                     onTap: () {
                       setState(() {
                         countEnable = true;
+                        addtoCart();
                       });
                     },
                     child: const Icon(
