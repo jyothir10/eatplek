@@ -976,6 +976,7 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
                         // Zinger Burger
 
                         Container(
+                          constraints: const BoxConstraints(maxWidth: 120),
                           child: Text(widget.name,
                               style: const TextStyle(
                                   color: Color(0xff000000),
@@ -984,7 +985,6 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
                                   fontStyle: FontStyle.normal,
                                   fontSize: 17.5),
                               textAlign: TextAlign.left),
-                          constraints: BoxConstraints(maxWidth: 128),
                         ),
 
                         Padding(
