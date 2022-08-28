@@ -974,14 +974,19 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // Zinger Burger
-                        Text(widget.name,
-                            style: const TextStyle(
-                                color: Color(0xff000000),
-                                fontWeight: FontWeight.w600,
-                                fontFamily: "SFUIText",
-                                fontStyle: FontStyle.normal,
-                                fontSize: 17.5),
-                            textAlign: TextAlign.left),
+
+                        Container(
+                          child: Text(widget.name,
+                              style: const TextStyle(
+                                  color: Color(0xff000000),
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: "SFUIText",
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 17.5),
+                              textAlign: TextAlign.left),
+                          constraints: BoxConstraints(maxWidth: 128),
+                        ),
+
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: Text(widget.price,
