@@ -1,6 +1,8 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:eatplek/Constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:eatplek/Components/NotificationApi.dart';
 
 class InvoiceScreen extends StatefulWidget {
   static const String id = '/invoice';
@@ -11,6 +13,12 @@ class InvoiceScreen extends StatefulWidget {
 }
 
 class _InvoiceScreenState extends State<InvoiceScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -382,25 +390,34 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                                   textAlign: TextAlign.left), // 10/02/2022
                             ],
                           ), // Billing Date:
-                          Row(
-                            children: const [
-                              Text("Billing Time: ",
-                                  style: TextStyle(
-                                      color: Color(0xffffffff),
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: "SFUIText",
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 10.0),
-                                  textAlign: TextAlign.left),
-                              Text("10:00 AM",
-                                  style: TextStyle(
-                                      color: Color(0xffffffff),
-                                      fontWeight: FontWeight.w600,
-                                      fontFamily: "SFUIText",
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 10.0),
-                                  textAlign: TextAlign.left), // 10:00 AM
-                            ],
+                          InkWell(
+                            onTap: (){
+                              print("hj");
+                              NotificationApi.showNotifications(
+                                title: "hiii",
+                                body: "dysfdsvbnzcvxzbnctyu",
+                              );
+                            },
+                            child: Row(
+                              children: const [
+                                Text("Billing Time: ",
+                                    style: TextStyle(
+                                        color: Color(0xffffffff),
+                                        fontWeight: FontWeight.w400,
+                                        fontFamily: "SFUIText",
+                                        fontStyle: FontStyle.normal,
+                                        fontSize: 10.0),
+                                    textAlign: TextAlign.left),
+                                Text("10:00 AM",
+                                    style: TextStyle(
+                                        color: Color(0xffffffff),
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: "SFUIText",
+                                        fontStyle: FontStyle.normal,
+                                        fontSize: 10.0),
+                                    textAlign: TextAlign.left), // 10:00 AM
+                              ],
+                            ),
                           ), // Billing Time:
                         ],
                       ),
