@@ -1,8 +1,8 @@
 import 'package:dotted_line/dotted_line.dart';
-import 'package:eatplek/Constants.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:eatplek/Components/NotificationApi.dart';
+import 'package:eatplek/Constants.dart';
+import 'package:eatplek/Screens/OrderHistoryScreen.dart';
+import 'package:flutter/material.dart';
 
 class InvoiceScreen extends StatefulWidget {
   static const String id = '/invoice';
@@ -13,40 +13,47 @@ class InvoiceScreen extends StatefulWidget {
 }
 
 class _InvoiceScreenState extends State<InvoiceScreen> {
-
   @override
   void initState() {
     super.initState();
+    NotificationApi.init();
+    listenNotifications();
   }
+
+  void listenNotifications() =>
+      NotificationApi.onNotifications.stream.listen(onClickedNotification);
+
+  void onClickedNotification(String? payload) =>
+      Navigator.pushReplacementNamed(context, OrderHistoryScreen.id);
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: // Your Order
-              const Text("Invoice",
-                  style: TextStyle(
-                      color: Color(0xff000000),
-                      fontWeight: FontWeight.w600,
-                      fontFamily: "SFUIText",
-                      fontStyle: FontStyle.normal,
-                      fontSize: 15.0),
-                  textAlign: TextAlign.left),
-          backgroundColor: Colors.white,
-          elevation: 0,
-          centerTitle: true,
-          leading: InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: const Icon(
-              Icons.arrow_back_outlined,
-              color: Color(0xff000000),
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        title: // Your Order
+            const Text("Invoice",
+                style: TextStyle(
+                    color: Color(0xff000000),
+                    fontWeight: FontWeight.w600,
+                    fontFamily: "SFUIText",
+                    fontStyle: FontStyle.normal,
+                    fontSize: 15.0),
+                textAlign: TextAlign.left),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back_outlined,
+            color: Color(0xff000000),
           ),
         ),
-        body: Container(
+      ),
+      body: SafeArea(
+        child: Container(
           color: Colors.white,
           child: Center(
             child: Container(
@@ -391,11 +398,14 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                             ],
                           ), // Billing Date:
                           InkWell(
-                            onTap: (){
-                              print("hj");
-                              NotificationApi.showNotifications(
-                                title: "hiii",
-                                body: "dysfdsvbnzcvxzbnctyu",
+                            onTap: () {
+                              NotificationApi.showtimedNotifications(
+                                title: "Hello",
+                                body: "This is notification",
+                                payload: "This is notification",
+                                time: DateTime.now().add(
+                                  Duration(seconds: 5),
+                                ),
                               );
                             },
                             child: Row(

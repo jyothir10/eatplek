@@ -1,10 +1,16 @@
+import 'dart:convert';
+
 import 'package:eatplek/Components/LoginButton.dart';
 import 'package:eatplek/Constants.dart';
 import 'package:eatplek/Screens/DashBoardScreen.dart';
 import 'package:eatplek/Screens/OtpScreen.dart';
-import 'package:flutter/material.dart';import 'dart:convert';import 'package:http/http.dart' as http;
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:http/http.dart' as http;
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:shared_preferences/shared_preferences.dart';import '../Exceptions/api_exception.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../Exceptions/api_exception.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = '/login';
@@ -75,7 +81,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
       if (msg != null) {
         print(number);
-        Navigator.push(context, MaterialPageRoute(builder: (context) => OtpScreen(phone: number),),);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => OtpScreen(phone: number),
+          ),
+        );
       } else {
         if (status == false) {
           numbercontroller.clear();
@@ -138,7 +149,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: EdgeInsets.only(top: 8, right: 15, bottom: 10),
                         child: InkWell(
                           onTap: () {
-                            Navigator.pushReplacementNamed(context, DashBoardScreen.id);
+                            Navigator.pushReplacementNamed(
+                                context, DashBoardScreen.id);
                           },
                           child: const Text(
                             'Skip',
@@ -158,8 +170,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height * .65,
                           //child: SvgPicture.asset("images/logo.svg"),
-                          child: Image.asset(
-                            "images/login1.png",
+                          child: SvgPicture.asset(
+                            "images/eatplek.svg",
                             fit: BoxFit.fill,
                           ),
                         )
