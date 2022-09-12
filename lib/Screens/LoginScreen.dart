@@ -5,7 +5,6 @@ import 'package:eatplek/Constants.dart';
 import 'package:eatplek/Screens/DashBoardScreen.dart';
 import 'package:eatplek/Screens/OtpScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -170,8 +169,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height * .65,
                           //child: SvgPicture.asset("images/logo.svg"),
-                          child: SvgPicture.asset(
-                            "images/eatplek.svg",
+                          child: Image.asset(
+                            "images/login1.png",
                             fit: BoxFit.fill,
                           ),
                         )
