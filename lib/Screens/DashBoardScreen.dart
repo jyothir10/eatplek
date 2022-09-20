@@ -7,15 +7,16 @@ import 'package:eatplek/Components/DashBoardCard.dart';
 import 'package:eatplek/Components/DashBoardTopItem.dart';
 import 'package:eatplek/Components/ProfileButton.dart';
 import 'package:eatplek/Constants.dart';
-import 'package:eatplek/Screens/FoodScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:numberpicker/numberpicker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Exceptions/api_exception.dart';
+import 'FoodScreen.dart';
 
 class DashBoardScreen extends StatefulWidget {
   static const String id = '/dashboard';
@@ -62,6 +63,49 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
       APIException(response.statusCode, except);
   }
 
+  cartInitialise(String resId, String resName, int noGuest, String time) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String? user_id = sharedPreferences.getString("id");
+    Map<String, String> headers = {
+      "Content-Type": "application/json",
+      "Token": sharedPreferences.getString("token").toString(),
+    };
+    var urlfinal = Uri.https(URL_Latest, '/cart');
+
+    print(time);
+    print(noGuest);
+
+    Map body1 = {
+      "user_id": user_id,
+      "restaurant_id": resId,
+      "restaurant_name": resName,
+      "number_of_guests": noGuest,
+      "time": "2022-09-17T18:45:07.992Z"
+    };
+    final body = jsonEncode(body1);
+
+    http.Response response =
+        await http.post(urlfinal, headers: headers, body: body);
+
+    if ((response.statusCode >= 200) && (response.statusCode < 300)) {
+      final jsonData = await jsonDecode(response.body);
+      print(jsonData);
+
+      if (jsonData['message'] == "cart initialized") {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => FoodScreen(
+                    resId: resId,
+                  )),
+        );
+      }
+
+      setState(() {});
+    } else
+      APIException(response.statusCode, except);
+  }
+
   Future<Position?> getCordinates() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -93,12 +137,13 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     setState(() {});
   }
 
-  _showDetailsCard(String resId) {
+  _showDetailsCard(String resId, String resName) {
     int currentValue = 2;
     int currentValue1 = 5;
-    int persons = 2;
+    int persons = 2, guests = 1;
     final list = ['AM', 'PM'];
     String dropdownval = "AM";
+    String hours = "01", min = "00", meridian = "AM", time = "";
 
     showDialog(
         context: context,
@@ -213,7 +258,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                       onChanged: (value) {
                                                         setState(() {
                                                           currentValue = value;
-                                                          print(currentValue);
+
+                                                          hours = (value - 1)
+                                                              .toString();
                                                         });
                                                       }),
                                                 ),
@@ -275,7 +322,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                       onChanged: (value) {
                                                         setState(() {
                                                           currentValue1 = value;
-                                                          print(currentValue);
+
+                                                          min = (value - 5)
+                                                              .toString();
                                                         });
                                                       }),
                                                 ),
@@ -330,6 +379,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                           setState(() {
                                                             dropdownval =
                                                                 newValue!;
+                                                            meridian = newValue;
                                                           });
                                                         },
                                                       ),
@@ -381,7 +431,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                         onChanged: (value) {
                                                           setState(() {
                                                             persons = value;
-                                                            print(currentValue);
+
+                                                            guests = value - 1;
                                                           });
                                                         }),
                                                   ),
@@ -400,13 +451,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                             child: ProfileButton(
                                 text: "Proceed",
                                 onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => FoodScreen(
-                                              resId: resId,
-                                            )),
-                                  );
+                                  time = hours + ":" + min + " " + meridian;
+
+                                  cartInitialise(resId, resName, guests, time);
                                 }),
                           )
                         ],
@@ -973,7 +1020,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                   img: dres[index]['image'],
                                                   ontap: () {
                                                     _showDetailsCard(
-                                                        dres[index]['id']);
+                                                        dres[index]['id'],
+                                                        dres[index]['name']);
                                                   });
                                             })
                                         : ListView.builder(
@@ -989,7 +1037,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                   img: tres[index]['image'],
                                                   ontap: () {
                                                     _showDetailsCard(
-                                                        dres[index]['id']);
+                                                        dres[index]['id'],
+                                                        dres[index]['name']);
                                                   });
                                             }),
                                   )
