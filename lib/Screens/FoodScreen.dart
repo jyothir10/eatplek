@@ -808,7 +808,7 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
   bool countEnable = false;
   static const except = {'exc': 'An error occured'};
 
-  addtoCart() async {
+  addtoCart(qty) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map<String, String> headers = {
       "Content-Type": "application/json",
@@ -823,7 +823,7 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
         "name": widget.name,
         "image": widget.pic,
         "price": int.parse(widget.price),
-        "quantity": count
+        "quantity": qty
       }
     };
     final body = jsonEncode(body1);
@@ -1004,7 +1004,7 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
                           setState(() {
                             if (count > 0) {
                               count--;
-                              addtoCart();
+                              addtoCart(-1);
                             }
                           });
                         },
@@ -1027,7 +1027,7 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
                         onTap: () {
                           setState(() {
                             count++;
-                            addtoCart();
+                            addtoCart(1);
                           });
                         },
                         child: const Icon(
@@ -1042,7 +1042,7 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
                     onTap: () {
                       setState(() {
                         countEnable = true;
-                        addtoCart();
+                        addtoCart(1);
                       });
                     },
                     child: const Icon(

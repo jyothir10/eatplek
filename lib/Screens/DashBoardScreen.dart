@@ -258,9 +258,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                       onChanged: (value) {
                                                         setState(() {
                                                           currentValue = value;
-                                                          print(currentValue);
-                                                          hours =
-                                                              value.toString();
+
+                                                          hours = (value - 1)
+                                                              .toString();
                                                         });
                                                       }),
                                                 ),
@@ -322,9 +322,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                       onChanged: (value) {
                                                         setState(() {
                                                           currentValue1 = value;
-                                                          print(currentValue);
-                                                          min =
-                                                              value.toString();
+
+                                                          min = (value - 5)
+                                                              .toString();
                                                         });
                                                       }),
                                                 ),
@@ -431,8 +431,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                         onChanged: (value) {
                                                           setState(() {
                                                             persons = value;
-                                                            print(currentValue);
-                                                            guests = value;
+
+                                                            guests = value - 1;
                                                           });
                                                         }),
                                                   ),
