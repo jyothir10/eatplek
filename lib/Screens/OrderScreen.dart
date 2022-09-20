@@ -80,7 +80,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                 'From',
                                 style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 10,
+                                  fontSize: 11,
                                   fontFamily: 'SFUIText',
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -112,7 +112,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                     'The Smocky Shack, Chengannur',
                                     style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 10,
+                                      fontSize: 11,
                                       fontFamily: 'SFUIText',
                                     ),
                                   ),
@@ -129,7 +129,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                 'Choosen Option',
                                 style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 10,
+                                  fontSize: 11,
                                   fontFamily: 'SFUIText',
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -159,7 +159,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                           'Dine In',
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 10,
+                                            fontSize: 11,
                                             fontFamily: 'SFUIText',
                                           ),
                                         ),
@@ -181,7 +181,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                       'Items',
                                       style: TextStyle(
                                         color: Colors.black,
-                                        fontSize: 10,
+                                        fontSize: 11,
                                         fontFamily: 'SFUIText',
                                         fontWeight: FontWeight.w600,
                                       ),
@@ -298,7 +298,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                 'Bill Details',
                                 style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 10,
+                                  fontSize: 11,
                                   fontFamily: 'SFUIText',
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -331,7 +331,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                             'Item Total',
                                             style: TextStyle(
                                               color: Colors.black,
-                                              fontSize: 9,
+                                              fontSize: 11,
                                               fontFamily: 'SFUIText',
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -340,7 +340,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                             '₹ 739',
                                             style: TextStyle(
                                               color: Colors.black,
-                                              fontSize: 10,
+                                              fontSize: 11,
                                               fontFamily: 'SFUIText',
                                               fontWeight: FontWeight.w600,
                                             ),
@@ -362,7 +362,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                             'Extra Charges',
                                             style: TextStyle(
                                               color: Colors.black,
-                                              fontSize: 9,
+                                              fontSize: 11,
                                               fontFamily: 'SFUIText',
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -371,7 +371,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                             '₹ 0.0',
                                             style: TextStyle(
                                               color: Colors.black,
-                                              fontSize: 9,
+                                              fontSize: 11,
                                               fontFamily: 'SFUIText',
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -387,7 +387,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                           'To Pay',
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 10,
+                                            fontSize: 11,
                                             fontFamily: 'SFUIText',
                                             fontWeight: FontWeight.w600,
                                           ),
@@ -418,7 +418,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                 'Comments (optional)',
                                 style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 10,
+                                  fontSize: 11,
                                   fontFamily: 'SFUIText',
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -568,7 +568,7 @@ class _OrderSummaryState extends State<OrderSummary> {
               widget.name,
               style: const TextStyle(
                 color: Colors.black,
-                fontSize: 11,
+                fontSize: 12,
                 fontFamily: 'SFUIText',
                 fontWeight: FontWeight.w500,
               ),
@@ -581,20 +581,20 @@ class _OrderSummaryState extends State<OrderSummary> {
               padding: const EdgeInsets.only(right: 21),
               child: Row(
                 children: [
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        if (widget.count > 0) {
-                          widget.count--;
-                        }
-                      });
-                    },
-                    child: const Icon(
-                      Icons.remove_circle,
-                      color: Color(0xffc7c7c7),
-                      size: 17,
-                    ),
-                  ),
+                  // InkWell(
+                  //   onTap: () {
+                  //     setState(() {
+                  //       if (widget.count > 0) {
+                  //         widget.count--;
+                  //       }
+                  //     });
+                  //   },
+                  //   child: const Icon(
+                  //     Icons.remove_circle,
+                  //     color: Color(0xffc7c7c7),
+                  //     size: 17,
+                  //   ),
+                  // ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5),
                     child: Text(
@@ -607,18 +607,18 @@ class _OrderSummaryState extends State<OrderSummary> {
                       ),
                     ),
                   ),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        widget.count++;
-                      });
-                    },
-                    child: const Icon(
-                      Icons.add_circle,
-                      color: Color(0xffffb800),
-                      size: 17,
-                    ),
-                  ),
+                  // InkWell(
+                  //   onTap: () {
+                  //     setState(() {
+                  //       widget.count++;
+                  //     });
+                  //   },
+                  //   child: const Icon(
+                  //     Icons.add_circle,
+                  //     color: Color(0xffffb800),
+                  //     size: 17,
+                  //   ),
+                  // ),
                 ],
               ),
             ),

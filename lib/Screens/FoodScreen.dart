@@ -600,8 +600,6 @@ class _FoodScreenState extends State<FoodScreen> {
                                                         .toString(),
                                                     description: foodlist[i]
                                                         ['description'],
-                                                    resId: widget.resId,
-                                                    resName: restaurant['name'],
                                                   );
                                                 }),
                                           ),
@@ -791,8 +789,6 @@ class FoodScreenCard extends StatefulWidget {
   final String price;
   final String description;
   final String id;
-  final String? resId;
-  final String resName;
 
   const FoodScreenCard({
     Key? key,
@@ -801,8 +797,6 @@ class FoodScreenCard extends StatefulWidget {
     required this.name,
     required this.price,
     required this.description,
-    required this.resId,
-    required this.resName,
   }) : super(key: key);
 
   @override
@@ -810,7 +804,7 @@ class FoodScreenCard extends StatefulWidget {
 }
 
 class _FoodScreenCardState extends State<FoodScreenCard> {
-  int count = 01;
+  int count = 1;
   bool countEnable = false;
   static const except = {'exc': 'An error occured'};
 
@@ -824,20 +818,18 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
 
     Map body1 = {
       "user_id": sharedPreferences.getString("id"),
-      "restaurant_id": widget.resId,
-      "restaurant_name": widget.resName,
       "item": {
         "food_id": widget.id,
         "name": widget.name,
         "image": widget.pic,
         "price": int.parse(widget.price),
-        "quantity": 1
+        "quantity": count
       }
     };
     final body = jsonEncode(body1);
 
     http.Response response =
-        await http.post(urlfinal, headers: headers, body: body);
+        await http.put(urlfinal, headers: headers, body: body);
 
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
       final jsonData = await jsonDecode(response.body);
