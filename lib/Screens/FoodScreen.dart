@@ -162,33 +162,33 @@ class _FoodScreenState extends State<FoodScreen> {
                   Icons.arrow_back_outlined,
                 ),
               ),
-              actions: [
-                Padding(
-                  padding: EdgeInsets.only(
-                      right: MediaQuery.of(context).size.width * .05),
-                  child: Row(
-                    children: [
-                      InkWell(
-                        onTap: () {},
-                        child: Image.asset(
-                          "images/search.png",
-                          height: 17,
-                          width: 17,
-                          color: Colors.white,
-                        ),
-                      ),
-                      const Text(" Search",
-                          style: TextStyle(
-                              color: Color(0xffffffff),
-                              fontWeight: FontWeight.w400,
-                              fontFamily: "SFUIText",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 13),
-                          textAlign: TextAlign.left),
-                    ],
-                  ),
-                ),
-              ],
+              // actions: [
+              //   Padding(
+              //     padding: EdgeInsets.only(
+              //         right: MediaQuery.of(context).size.width * .05),
+              //     child: Row(
+              //       children: [
+              //         InkWell(
+              //           onTap: () {},
+              //           child: Image.asset(
+              //             "images/search.png",
+              //             height: 17,
+              //             width: 17,
+              //             color: Colors.white,
+              //           ),
+              //         ),
+              //         const Text(" Search",
+              //             style: TextStyle(
+              //                 color: Color(0xffffffff),
+              //                 fontWeight: FontWeight.w400,
+              //                 fontFamily: "SFUIText",
+              //                 fontStyle: FontStyle.normal,
+              //                 fontSize: 13),
+              //             textAlign: TextAlign.left),
+              //       ],
+              //     ),
+              //   ),
+              // ],
               flexibleSpace: Image(
                 width: MediaQuery.of(context).size.width,
                 height: 154,
@@ -659,25 +659,24 @@ class _FoodScreenState extends State<FoodScreen> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       // 1 Item
-
                       // ₹ 179
-                      Container(
-                        child: Text(total.toString(),
-                            style: const TextStyle(
-                                color: Color(0xffffffff),
-                                fontWeight: FontWeight.w600,
-                                fontFamily: "SFUIText",
-                                fontStyle: FontStyle.normal,
-                                fontSize: 14.6),
-                            textAlign: TextAlign.left),
-                      )
+                      // Container(
+                      //   child: Text(total.toString(),
+                      //       style: const TextStyle(
+                      //           color: Color(0xffffffff),
+                      //           fontWeight: FontWeight.w600,
+                      //           fontFamily: "SFUIText",
+                      //           fontStyle: FontStyle.normal,
+                      //           fontSize: 14.6),
+                      //       textAlign: TextAlign.left),
+                      // )
                     ],
                   ),
                   // View Cart
