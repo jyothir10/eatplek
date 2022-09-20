@@ -1,8 +1,14 @@
+import 'dart:convert';
+import 'dart:ui';
+
 import 'package:eatplek/Components/BottomBar.dart';
 import 'package:eatplek/Components/ProfileButton.dart';
+import 'package:eatplek/Constants.dart';
 import 'package:eatplek/Screens/FoodScreen.dart';
 import 'package:eatplek/Screens/OrderHistoryScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'DashBoardScreen.dart';
 
@@ -16,8 +22,36 @@ class OrderScreen extends StatefulWidget {
 
 class _OrderScreenState extends State<OrderScreen> {
   int n = 3;
+  var cart;
 
   //todo:update n as no:of orders
+
+  getOrder() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String? userid = sharedPreferences.getString("id");
+    String? token = sharedPreferences.getString("token");
+
+    Map<String, String> headers = {
+      "Content-Type": "application/json",
+      "Token": token.toString(),
+    };
+    var urlfinal = Uri.https(URL_Latest, '/cart/$userid');
+
+    http.Response response = await http.get(urlfinal, headers: headers);
+    if ((response.statusCode >= 200) && (response.statusCode < 300)) {
+      final jsonData = jsonDecode(response.body);
+      cart = await jsonData['cart'];
+      print(cart);
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getOrder();
+  }
+
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height -
