@@ -71,7 +71,7 @@ class _OrderScreenState extends State<OrderScreen> {
     final body = jsonEncode(body1);
 
     http.Response response =
-        await http.put(urlfinal, headers: headers, body: body);
+        await http.post(urlfinal, headers: headers, body: body);
 
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
       final jsonData = await jsonDecode(response.body);
@@ -626,7 +626,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                 width: MediaQuery.of(context).size.width * .38,
                                 child: ProfileButton(
                                     text: "Proceed",
-                                    onTap: () {
+                                    onTap: () async {
                                       if (status == 0) {
                                         var options = {
                                           'key': 'rzp_test_7oSEtWonPIbah3',
