@@ -8,6 +8,7 @@ import 'package:eatplek/Screens/FoodScreen.dart';
 import 'package:eatplek/Screens/OrderHistoryScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'DashBoardScreen.dart';
@@ -21,10 +22,46 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> {
+
   int n = 3;
   var cart;
 
   //todo:update n as no:of orders
+  final _razorpay = Razorpay();
+  var dt =  DateTime.now();
+
+  @override
+  void initState() {
+    super.initState();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+    getOrder();
+  }
+
+  var options = {
+    'key': 'rzp_test_7oSEtWonPIbah3',
+    'amount': 500, //in the smallest currency sub-unit.
+    'name': 'Eatplek',
+    'order_id': 'order_EMBFqjDHEEn80l', // Generate order_id using Orders API
+    'description': 'Pay',
+    'timeout': 300, // in seconds
+    'prefill': {'contact': '', 'email': ''}
+  };
+
+  void _handlePaymentSuccess(PaymentSuccessResponse response) {
+    print("Done");
+    // Do something when payment succeeds
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    // Do something when payment fails
+    print("Fail");
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    // Do something when an external wallet is selected
+  }
 
   getOrder() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
@@ -43,13 +80,6 @@ class _OrderScreenState extends State<OrderScreen> {
       cart = await jsonData['cart'];
       print(cart);
     }
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getOrder();
   }
 
   @override
@@ -551,8 +581,17 @@ class _OrderScreenState extends State<OrderScreen> {
                               child: ProfileButton(
                                   text: "Proceed",
                                   onTap: () {
-                                    Navigator.pushReplacementNamed(
-                                        context, OrderHistoryScreen.id);
+                                    var options = {
+                                      'key': 'rzp_test_7oSEtWonPIbah3',
+                                      'amount': 500, //in the smallest currency sub-unit.
+                                      'name': 'Eatplek',
+                                      // Generate order_id using Orders API
+                                      'description': 'Pay',
+                                      'timeout': 300, // in seconds
+                                      'prefill': {'contact': '', 'email': ''}
+                                    };
+                                    _razorpay.open(options);
+                                    Navigator.pushReplacementNamed(context, OrderHistoryScreen.id);
                                   }),
                             ),
                           ],
