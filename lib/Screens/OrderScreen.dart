@@ -12,6 +12,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../Exceptions/api_exception.dart';
 import 'DashBoardScreen.dart';
 
 class OrderScreen extends StatefulWidget {
@@ -52,9 +53,37 @@ class _OrderScreenState extends State<OrderScreen> {
     'timeout': 300, // in seconds
     'prefill': {'contact': '', 'email': ''}
   };
+  static const except = {'exc': 'An error occured'};
 
-  void _handlePaymentSuccess(PaymentSuccessResponse response) {
+  void _handlePaymentSuccess(PaymentSuccessResponse response) async {
     print("Done");
+
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    Map<String, String> headers = {
+      "Content-Type": "application/json",
+      "Token": sharedPreferences.getString("token").toString(),
+    };
+    var urlfinal = Uri.https(URL_Latest, '/order');
+
+    Map body1 = {
+      "user_id": sharedPreferences.getString("id"),
+    };
+    final body = jsonEncode(body1);
+
+    http.Response response =
+        await http.put(urlfinal, headers: headers, body: body);
+
+    if ((response.statusCode >= 200) && (response.statusCode < 300)) {
+      final jsonData = await jsonDecode(response.body);
+
+      if (jsonData['message'] == "Order created successfully") {
+        Navigator.pushReplacementNamed(context, OrderHistoryScreen.id);
+      }
+
+      setState(() {});
+    } else
+      APIException(response.statusCode, except);
+
     // Do something when payment succeeds
   }
 
@@ -613,8 +642,6 @@ class _OrderScreenState extends State<OrderScreen> {
                                           }
                                         };
                                         _razorpay.open(options);
-                                        Navigator.pushReplacementNamed(
-                                            context, OrderHistoryScreen.id);
                                       } else if (status == -1) {
                                         _scaffoldKey.currentState?.showSnackBar(
                                           const SnackBar(
