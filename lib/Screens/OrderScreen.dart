@@ -23,7 +23,8 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> {
-  int n = 3, totalAmount = 0;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  int n = 3, totalAmount = 0, status = -1;
   var cart;
   bool showSpinner = true;
   String resname = "";
@@ -85,6 +86,7 @@ class _OrderScreenState extends State<OrderScreen> {
       resname = cart['restaurant_name'];
       items = cart['items'];
       totalAmount = cart['total_amount'];
+      status = cart['status'];
       setState(() {
         showSpinner = false;
       });
@@ -107,6 +109,7 @@ class _OrderScreenState extends State<OrderScreen> {
         return false;
       },
       child: Scaffold(
+        key: _scaffoldKey,
         bottomNavigationBar: const BottomBar(
           index: 1,
         ),
@@ -595,19 +598,42 @@ class _OrderScreenState extends State<OrderScreen> {
                                 child: ProfileButton(
                                     text: "Proceed",
                                     onTap: () {
-                                      var options = {
-                                        'key': 'rzp_test_7oSEtWonPIbah3',
-                                        'amount':
-                                            500, //in the smallest currency sub-unit.
-                                        'name': 'Eatplek',
-                                        // Generate order_id using Orders API
-                                        'description': 'Pay',
-                                        'timeout': 300, // in seconds
-                                        'prefill': {'contact': '', 'email': ''}
-                                      };
-                                      _razorpay.open(options);
-                                      Navigator.pushReplacementNamed(
-                                          context, OrderHistoryScreen.id);
+                                      if (status == 0) {
+                                        var options = {
+                                          'key': 'rzp_test_7oSEtWonPIbah3',
+                                          'amount':
+                                              500, //in the smallest currency sub-unit.
+                                          'name': 'Eatplek',
+                                          // Generate order_id using Orders API
+                                          'description': 'Pay',
+                                          'timeout': 300, // in seconds
+                                          'prefill': {
+                                            'contact': '',
+                                            'email': ''
+                                          }
+                                        };
+                                        _razorpay.open(options);
+                                        Navigator.pushReplacementNamed(
+                                            context, OrderHistoryScreen.id);
+                                      } else if (status == -1) {
+                                        _scaffoldKey.currentState?.showSnackBar(
+                                          const SnackBar(
+                                            behavior: SnackBarBehavior.floating,
+                                            duration: Duration(seconds: 3),
+                                            content: Text(
+                                                "Sorry, Your order has not yet been approved by the restaurant!\nPlease wait a little bit"),
+                                          ),
+                                        );
+                                      } else if (status == 1) {
+                                        _scaffoldKey.currentState?.showSnackBar(
+                                          const SnackBar(
+                                            behavior: SnackBarBehavior.floating,
+                                            duration: Duration(seconds: 2),
+                                            content: Text(
+                                                "Sorry, Your order has been rejected by the restaurant!"),
+                                          ),
+                                        );
+                                      }
                                     }),
                               ),
                             ],
