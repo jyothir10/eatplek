@@ -833,7 +833,6 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
 
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
       final jsonData = await jsonDecode(response.body);
-      print(jsonData);
 
       if (jsonData['message'] == "item added to cart") {
         _FoodScreenState.total += await jsonData['item']['total'];

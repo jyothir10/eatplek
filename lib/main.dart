@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
     ]);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: OnboardingScreen.id,
+        initialRoute: OrderScreen.id,
         routes: {
           OnboardingScreen.id: (context) => OnboardingScreen(),
           LoginScreen.id: (context) => LoginScreen(),

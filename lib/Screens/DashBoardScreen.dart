@@ -66,6 +66,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   cartInitialise(String resId, String resName, int noGuest, String time) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String? user_id = sharedPreferences.getString("id");
+    print(user_id);
     Map<String, String> headers = {
       "Content-Type": "application/json",
       "Token": sharedPreferences.getString("token").toString(),
