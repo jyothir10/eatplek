@@ -262,17 +262,23 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                children: const [
-                                  Text("Item",
+                                children: [
+                                  const Text("Item",
                                       style: invoiceStyle,
                                       textAlign: TextAlign.left), // Item
-                                  Text("Unit Price",
-                                      style: invoiceStyle,
-                                      textAlign: TextAlign.left), // Unit Price
-                                  Text("Quantity",
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        left:
+                                            MediaQuery.of(context).size.width *
+                                                .17),
+                                    child: const Text("Unit Price",
+                                        style: invoiceStyle,
+                                        textAlign: TextAlign.left),
+                                  ), // Unit Price
+                                  const Text("Quantity",
                                       style: invoiceStyle,
                                       textAlign: TextAlign.left), // Quantity
-                                  Text("Total",
+                                  const Text("Total",
                                       style: invoiceStyle,
                                       textAlign: TextAlign.left), // Total
                                 ],
@@ -281,11 +287,26 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                                 color: Color(0xff1c042e60),
                                 thickness: 1,
                               ),
-                              InvoiceListItem(
-                                  itemName: "Burger",
-                                  price: "100",
-                                  qty: "5",
-                                  total: "500"),
+                              Container(
+                                height: MediaQuery.of(context).size.height *
+                                    n *
+                                    .035,
+                                width: MediaQuery.of(context).size.width * .925,
+                                child: items.isNotEmpty
+                                    ? ListView.builder(
+                                        itemCount: n,
+                                        itemBuilder: (context, index) {
+                                          return InvoiceListItem(
+                                              itemName: items[index]['name'],
+                                              price: items[index]['price']
+                                                  .toString(),
+                                              qty: items[index]['quantity']
+                                                  .toString(),
+                                              total: items[index]['total']
+                                                  .toString());
+                                        })
+                                    : Container(),
+                              ),
                             ],
                           ),
                         ),
@@ -315,7 +336,8 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 15),
+                          padding: const EdgeInsets.only(
+                              right: 15, top: 7, bottom: 7),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [

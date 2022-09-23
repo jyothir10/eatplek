@@ -19,9 +19,11 @@ class InvoiceListItem extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(itemName,
-                style: invoiceListStyle,
-                textAlign: TextAlign.left), // Zinger Burger
+            Container(
+              width: MediaQuery.of(context).size.width * .21,
+              child: Text(itemName,
+                  style: invoiceListStyle, textAlign: TextAlign.left),
+            ), // Zinger Burger
             Text(price,
                 style: invoiceListStyle, textAlign: TextAlign.left), // 179
             Text(qty, style: invoiceListStyle, textAlign: TextAlign.left), // 1
