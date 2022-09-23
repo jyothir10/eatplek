@@ -37,13 +37,10 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
     var urlfinal = Uri.https(URL_Latest, '/order/filter/user/$userid');
 
     http.Response response = await http.get(urlfinal, headers: headers);
-    print(response.statusCode);
-    print(response.body);
+
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
       final jsonData = jsonDecode(response.body);
       orders = await jsonData['result'];
-
-      print(orders);
 
       setState(() {
         showSpinner = false;
@@ -152,11 +149,18 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
                                     item1: orders[index]['cart']['items'][0]
                                         ['name'],
                                     onTap: () {
-                                      Navigator.pushNamed(
-                                          context, InvoiceScreen.id);
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => InvoiceScreen(
+                                            orderId: orders[index]['id'],
+                                          ),
+                                        ),
+                                      );
                                     },
                                   );
-                                }),
+                                },
+                              ),
                       ),
                     ),
                   ),
