@@ -9,6 +9,7 @@ class OrderHistoryCard extends StatelessWidget {
   String status;
   int n;
   String item1;
+  void Function()? onTap;
   OrderHistoryCard({
     Key? key,
     required this.resname,
@@ -18,6 +19,7 @@ class OrderHistoryCard extends StatelessWidget {
     required this.status,
     required this.n,
     required this.item1,
+    required this.onTap,
   }) : super(key: key);
 
   @override
@@ -109,25 +111,23 @@ class OrderHistoryCard extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     // Zinger Burger
-                                    Text("$item1  +$n items",
-                                        style: const TextStyle(
-                                            color: Color(0xff000000),
-                                            fontWeight: FontWeight.w400,
-                                            fontFamily: "SFUIText",
-                                            fontStyle: FontStyle.normal,
-                                            fontSize: 11.0),
-                                        textAlign: TextAlign.left),
-                                    // ₹ 250
-                                    // Text("View",
-                                    //     style: const TextStyle(
-                                    //       decoration: TextDecoration.underline,
-                                    //       color: Color(0xff000000),
-                                    //       fontWeight: FontWeight.w700,
-                                    //       fontFamily: "SFUIText",
-                                    //       fontStyle: FontStyle.normal,
-                                    //       fontSize: 12.0,
-                                    //     ),
-                                    //     textAlign: TextAlign.left)
+                                    n > 0
+                                        ? Text("$item1  +$n items",
+                                            style: const TextStyle(
+                                                color: Color(0xff000000),
+                                                fontWeight: FontWeight.w400,
+                                                fontFamily: "SFUIText",
+                                                fontStyle: FontStyle.normal,
+                                                fontSize: 11.0),
+                                            textAlign: TextAlign.left)
+                                        : Text("$item1  ",
+                                            style: const TextStyle(
+                                                color: Color(0xff000000),
+                                                fontWeight: FontWeight.w400,
+                                                fontFamily: "SFUIText",
+                                                fontStyle: FontStyle.normal,
+                                                fontSize: 11.0),
+                                            textAlign: TextAlign.left),
                                   ],
                                 ),
                               ),
@@ -200,9 +200,7 @@ class OrderHistoryCard extends StatelessWidget {
                     ), // Delivered
                     InkWell(
                       radius: 5,
-                      onTap: () {
-                        // Navigator.pushNamed(context, InvoiceScreen.id);
-                      },
+                      onTap: onTap,
                       child: const Text("View Bill",
                           style: TextStyle(
                               decoration: TextDecoration.underline,
