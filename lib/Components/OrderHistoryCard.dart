@@ -198,35 +198,41 @@ class OrderHistoryCard extends StatelessWidget {
                             textAlign: TextAlign.left),
                       ],
                     ), // Delivered
+                    // InkWell(
+                    //   radius: 5,
+                    //   onTap: onTap,
+                    //   child: const Text("View Bill",
+                    //       style: TextStyle(
+                    //           decoration: TextDecoration.underline,
+                    //           color: Color(0xff284aff),
+                    //           fontWeight: FontWeight.w700,
+                    //           fontFamily: "SFUIText",
+                    //           fontStyle: FontStyle.normal,
+                    //           fontSize: 11),
+                    //       textAlign: TextAlign.left),
+                    // ), // View Bill
                     InkWell(
-                      radius: 5,
                       onTap: onTap,
-                      child: const Text("View Bill",
-                          style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              color: Color(0xff284aff),
-                              fontWeight: FontWeight.w700,
-                              fontFamily: "SFUIText",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 11),
-                          textAlign: TextAlign.left),
-                    ), // View Bill
-                    Card(
-                      color: primaryclr,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: // Repeat Order
-                          const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text("Repeat Order",
-                            style: TextStyle(
-                                color: Color(0xffffffff),
-                                fontWeight: FontWeight.w600,
-                                fontFamily: "SFUIText",
-                                fontStyle: FontStyle.normal,
-                                fontSize: 10.8),
-                            textAlign: TextAlign.left),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * .25,
+                        child: Card(
+                          color: primaryclr,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: // Repeat Order
+                              const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text("View Bill",
+                                style: TextStyle(
+                                    color: Color(0xffffffff),
+                                    fontWeight: FontWeight.w600,
+                                    fontFamily: "SFUIText",
+                                    fontStyle: FontStyle.normal,
+                                    fontSize: 10.9),
+                                textAlign: TextAlign.center),
+                          ),
+                        ),
                       ),
                     ),
                   ],
