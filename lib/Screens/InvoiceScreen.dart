@@ -290,7 +290,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                               Container(
                                 height: MediaQuery.of(context).size.height *
                                     n *
-                                    .035,
+                                    .039,
                                 width: MediaQuery.of(context).size.width * .925,
                                 child: items.isNotEmpty
                                     ? ListView.builder(
@@ -337,7 +337,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
-                              right: 15, top: 7, bottom: 7),
+                              right: 15, top: 9, bottom: 9),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
@@ -347,7 +347,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                                       fontWeight: FontWeight.w700,
                                       fontFamily: "SFUIText",
                                       fontStyle: FontStyle.normal,
-                                      fontSize: 10.0),
+                                      fontSize: 11.0),
                                   textAlign: TextAlign.left),
                               Text(totalAmount.toString(),
                                   style: const TextStyle(
@@ -355,7 +355,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                                       fontWeight: FontWeight.w700,
                                       fontFamily: "SFUIText",
                                       fontStyle: FontStyle.normal,
-                                      fontSize: 10.0),
+                                      fontSize: 11.0),
                                   textAlign:
                                       TextAlign.left), // Total Price: Rs 818/-
                             ],
