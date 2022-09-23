@@ -30,6 +30,7 @@ class _OrderScreenState extends State<OrderScreen> {
   bool showSpinner = true;
   String resname = "";
   List items = [];
+  String comments = "", option = "";
 
   //todo:update n as no:of orders
   final _razorpay = Razorpay();
@@ -67,6 +68,7 @@ class _OrderScreenState extends State<OrderScreen> {
 
     Map body1 = {
       "user_id": sharedPreferences.getString("id"),
+      "comments": comments,
     };
     final body = jsonEncode(body1);
 
@@ -116,6 +118,8 @@ class _OrderScreenState extends State<OrderScreen> {
       items = cart['items'];
       totalAmount = cart['total_amount'];
       status = cart['status'];
+      option = cart['type'];
+
       setState(() {
         showSpinner = false;
       });
@@ -267,9 +271,9 @@ class _OrderScreenState extends State<OrderScreen> {
                                             height: 12,
                                             width: 15,
                                           ),
-                                          const Text(
-                                            'Dine In',
-                                            style: TextStyle(
+                                          Text(
+                                            option,
+                                            style: const TextStyle(
                                               color: Colors.black,
                                               fontSize: 11,
                                               fontFamily: 'SFUIText',
@@ -417,7 +421,7 @@ class _OrderScreenState extends State<OrderScreen> {
                             children: [
                               Container(
                                 height:
-                                    MediaQuery.of(context).size.height * .135,
+                                    MediaQuery.of(context).size.height * .134,
                                 width: MediaQuery.of(context).size.width * .91,
                                 decoration: BoxDecoration(
                                   color: Color(0xd1e1e1e1),
@@ -456,10 +460,6 @@ class _OrderScreenState extends State<OrderScreen> {
                                           ],
                                         ),
                                       ),
-                                      const Padding(
-                                        padding: EdgeInsets.only(bottom: 9),
-                                        child: MySeparator(color: Colors.grey),
-                                      ),
                                       Padding(
                                         padding:
                                             const EdgeInsets.only(bottom: 9),
@@ -488,29 +488,37 @@ class _OrderScreenState extends State<OrderScreen> {
                                           ],
                                         ),
                                       ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          const Text(
-                                            'To Pay',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 11,
-                                              fontFamily: 'SFUIText',
-                                              fontWeight: FontWeight.w600,
+                                      const Padding(
+                                        padding:
+                                            EdgeInsets.only(bottom: 9, top: 1),
+                                        child: MySeparator(color: Colors.grey),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 5),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            const Text(
+                                              'To Pay',
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 11,
+                                                fontFamily: 'SFUIText',
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                             ),
-                                          ),
-                                          Text(
-                                            totalAmount.toString(),
-                                            style: const TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 12,
-                                              fontFamily: 'SFUIText',
-                                              fontWeight: FontWeight.w600,
+                                            Text(
+                                              totalAmount.toString(),
+                                              style: const TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 12,
+                                                fontFamily: 'SFUIText',
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       )
                                     ],
                                   ),
@@ -546,7 +554,7 @@ class _OrderScreenState extends State<OrderScreen> {
                               ),
                               child: TextField(
                                 onSubmitted: (val) {
-                                  print(val);
+                                  comments = val;
                                 },
                                 cursorColor: Colors.black,
                                 cursorWidth: 1,

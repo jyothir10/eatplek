@@ -74,8 +74,11 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     };
     var urlfinal = Uri.https(URL_Latest, '/cart');
 
-    print(time);
-    print(noGuest);
+    String typename = "Take-Away";
+
+    if (d == 0) {
+      typename = "Dine In";
+    }
 
     Map body1 = {
       "user_id": user_id,
@@ -83,6 +86,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
       "restaurant_name": resName,
       "number_of_guests": noGuest,
       "time": time,
+      "type": typename,
     };
     final body = jsonEncode(body1);
 
@@ -91,15 +95,15 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
 
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
       final jsonData = await jsonDecode(response.body);
-      print(jsonData);
 
       if (jsonData['message'] == "cart initialized") {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => FoodScreen(
-                    resId: resId,
-                  )),
+            builder: (context) => FoodScreen(
+              resId: resId,
+            ),
+          ),
         );
       }
 
