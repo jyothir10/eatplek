@@ -2,13 +2,14 @@ import 'dart:convert';
 import 'dart:ui';
 
 import 'package:eatplek/Components/BottomBar.dart';
+import 'package:eatplek/Components/OrderHistoryCard.dart';
 import 'package:eatplek/Constants.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../Components/OrderHistoryCard.dart';
 import 'DashBoardScreen.dart';
 
 class OrderHistoryScreen extends StatefulWidget {
@@ -98,7 +99,45 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 15),
-                    child: OrderHistoryCard(),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height -
+                          15 -
+                          AppBar().preferredSize.height,
+                      width: MediaQuery.of(context).size.width,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: ListView.builder(
+                            itemCount: orders.length,
+                            itemBuilder: (context, index) {
+                              String status = "Preparing";
+                              if (orders[index]['status'] == 0) {
+                                status = "Delivered";
+                              } else if (orders[index]['status'] == 1) {
+                                status = "Delayed";
+                              }
+
+                              DateTime d =
+                                  DateTime.parse(orders[index]["created_at"]);
+
+                              var formatter = new DateFormat('dd-MM-yyyy');
+                              String formattedDate = formatter.format(d);
+
+                              return OrderHistoryCard(
+                                resname: orders[index]['cart']
+                                    ['restaurant_name'],
+                                date: formattedDate.toString(),
+                                totalAmount: orders[index]['cart']
+                                        ['total_amount']
+                                    .toString(),
+                                time: orders[index]['cart']['time'].toString(),
+                                status: status,
+                                n: orders[index]['cart']['items'].length - 1,
+                                item1: orders[index]['cart']['items'][0]
+                                    ['name'],
+                              );
+                            }),
+                      ),
+                    ),
                   ),
                 ],
               ),
