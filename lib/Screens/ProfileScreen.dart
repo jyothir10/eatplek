@@ -1,12 +1,14 @@
 import 'package:eatplek/Components/BottomBar.dart';
 import 'package:eatplek/Components/ProfileButton.dart';
 import 'package:eatplek/Components/ProfileOption.dart';
+import 'package:eatplek/Screens/ContactUsScreen.dart';
 import 'package:eatplek/Screens/EditProfileScreen.dart';
 import 'package:eatplek/Screens/FeedbackScreen.dart';
 import 'package:eatplek/Screens/LoginScreen.dart';
 import 'package:eatplek/Screens/NotificationScreen.dart';
+import 'package:eatplek/Screens/RefundPolicyScreen.dart';
 import 'package:flutter/material.dart';
-
+import 'package:eatplek/Components/ProfileOption2.dart';
 import 'DashBoardScreen.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -116,11 +118,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
                     child: Container(
                       height: MediaQuery.of(context).size.height * .3,
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           ProfileOption(
                               text: "Edit Profile",
@@ -149,16 +151,100 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             img: 'Star',
                             onTap: () {},
                           ),
+                          const ProfileOption2(
+                            name: "Privacy Policy",
+                            icon: Icons.note_add_outlined,
+                            url:
+                                "https://www.privacypolicygenerator.info/live.php?token=QodIHXmWRXsLVGBtzyIneaLlyzAgQG0G",
+                          ),
+                          const ProfileOption2(
+                              name: "Terms and Conditions",
+                              icon: Icons.note,
+                              url:
+                                  "https://www.termsandconditionsgenerator.com/live.php?token=hfixwg5bdlwxlg7kcuqzbskqf59nr1xi"),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: const [
+                                  Padding(
+                                    padding: EdgeInsets.only(right: 11.5),
+                                    child: Icon(
+                                      Icons.attach_money_outlined,
+                                      size: 17,
+                                      color: Color(0x89292d32),
+                                    ),
+                                  ),
+                                  Text(
+                                    "Refund Policy",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 13,
+                                      fontFamily: 'SFUIText',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              GestureDetector(
+                                child: const Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 17,
+                                  color: Color(0x89292d32),
+                                ),
+                                onTap: (){
+                                  Navigator.pushNamed(context, RefundPolicyScreen.id);
+                                },
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: const [
+                                  Padding(
+                                    padding: EdgeInsets.only(right: 11.5),
+                                    child: Icon(
+                                      Icons.phone,
+                                      size: 17,
+                                      color: Color(0x89292d32),
+                                    ),
+                                  ),
+                                  Text(
+                                    "Contact Us",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 13,
+                                      fontFamily: 'SFUIText',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              GestureDetector(
+                                child: const Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 17,
+                                  color: Color(0x89292d32),
+                                ),
+                                onTap: (){
+                                  Navigator.pushNamed(context, ContactUsScreen.id);
+                                },
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),
                   ),
-                  ProfileButton(
-                    text: '       Log Out       ',
-                    onTap: () {
-                      //todo:Logout
-                      Navigator.pushReplacementNamed(context, LoginScreen.id);
-                    },
+                  Padding(
+                    padding: const EdgeInsets.only(top: 40),
+                    child: ProfileButton(
+                      text: '       Log Out       ',
+                      onTap: () {
+                        //todo:Logout
+                        Navigator.pushReplacementNamed(context, LoginScreen.id);
+                      },
+                    ),
                   ),
                 ],
               ),
