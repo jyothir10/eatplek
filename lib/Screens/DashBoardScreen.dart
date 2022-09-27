@@ -66,21 +66,27 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   cartInitialise(String resId, String resName, int noGuest, String time) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String? user_id = sharedPreferences.getString("id");
+    print(sharedPreferences.getString("token"));
+    print(user_id);
     Map<String, String> headers = {
       "Content-Type": "application/json",
       "Token": sharedPreferences.getString("token").toString(),
     };
     var urlfinal = Uri.https(URL_Latest, '/cart');
 
-    print(time);
-    print(noGuest);
+    String typename = "Take-Away";
+
+    if (d == 0) {
+      typename = "Dine In";
+    }
 
     Map body1 = {
       "user_id": user_id,
       "restaurant_id": resId,
       "restaurant_name": resName,
       "number_of_guests": noGuest,
-      "time": "2022-09-17T18:45:07.992Z"
+      "time": time,
+      "type": typename,
     };
     final body = jsonEncode(body1);
 
@@ -89,15 +95,15 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
 
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
       final jsonData = await jsonDecode(response.body);
-      print(jsonData);
 
       if (jsonData['message'] == "cart initialized") {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => FoodScreen(
-                    resId: resId,
-                  )),
+            builder: (context) => FoodScreen(
+              resId: resId,
+            ),
+          ),
         );
       }
 

@@ -130,6 +130,9 @@ class _LoginScreenState extends State<LoginScreen> {
         key: _scaffoldKey,
         body: ModalProgressHUD(
           inAsyncCall: showSpinner,
+          progressIndicator: CircularProgressIndicator(
+            color: primaryclr,
+          ),
           child: Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
