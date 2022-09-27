@@ -1,3 +1,4 @@
+import 'package:eatplek/Screens/ContactUsScreen.dart';
 import 'package:eatplek/Screens/DashBoardScreen.dart';
 import 'package:eatplek/Screens/EditProfileScreen.dart';
 import 'package:eatplek/Screens/FeedbackScreen.dart';
@@ -10,6 +11,7 @@ import 'package:eatplek/Screens/OrderHistoryScreen.dart';
 import 'package:eatplek/Screens/OrderScreen.dart';
 import 'package:eatplek/Screens/OtpScreen.dart';
 import 'package:eatplek/Screens/ProfileScreen.dart';
+import 'package:eatplek/Screens/RefundPolicyScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -44,6 +46,8 @@ class MyApp extends StatelessWidget {
           InvoiceScreen.id: (context) => InvoiceScreen(),
           FoodScreen.id: (context) => FoodScreen(),
           OrderScreen.id: (context) => OrderScreen(),
+          RefundPolicyScreen.id: (context) => RefundPolicyScreen(),
+          ContactUsScreen.id: (context) => ContactUsScreen(),
         });
   }
 }
