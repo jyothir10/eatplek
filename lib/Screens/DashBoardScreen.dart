@@ -7,6 +7,8 @@ import 'package:eatplek/Components/DashBoardCard.dart';
 import 'package:eatplek/Components/DashBoardTopItem.dart';
 import 'package:eatplek/Components/ProfileButton.dart';
 import 'package:eatplek/Constants.dart';
+import 'package:eatplek/services/local_notifications.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
@@ -480,7 +482,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
       type1 = false,
       type2 = false;
   var items = ['Home', 'Office'];
-  String dropdownvalue = 'Home', filter = "veg";
+  String dropdownvalue = 'Home', filter = "veg", notificationMsg = "";
   DateTime? currentBackPressTime;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -503,7 +505,32 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     // TODO: implement initState
     getRestaurants();
     getCordinates();
+    LocalNotificationService.initialise();
     super.initState();
+    //terminated msg
+    FirebaseMessaging.instance.getInitialMessage().then((event) {
+      if (event != null) {
+        setState(() {
+          notificationMsg = "${event.notification!.body}";
+          print("Foreground msg");
+        });
+      }
+    });
+    //Foreground msg
+    FirebaseMessaging.onMessage.listen((event) {
+      LocalNotificationService.showNotificationOnForeground(event);
+      setState(() {
+        notificationMsg = "${event.notification!.body}";
+        print("Foreground msg");
+      });
+    });
+    //bground msg
+    FirebaseMessaging.onMessageOpenedApp.listen((event) {
+      setState(() {
+        notificationMsg = "${event.notification!.body}";
+        print("bground msg");
+      });
+    });
   }
 
   @override
