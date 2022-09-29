@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "972078673774",
+    "project_id": "eatplek-164fa",
+    "storage_bucket": "eatplek-164fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:972078673774:android:54d9a8305ea3ee4fc4db7f",
+        "android_client_info": {
+          "package_name": "com.eatplek.eatplek"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "972078673774-vq47k04vg19uos5nb4jao8krj8e4m8jn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eatplek.eatplek",
+            "certificate_hash": "99676e2f2c83c10ac25655daeed6507fe0e75c55"
+          }
+        },
+        {
+          "client_id": "972078673774-ntrd41n33s13ndr4o0lap9931pnal5pj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbeJO1WOL-dmNQME9Z_epnkt6uCG27bdo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "972078673774-ntrd41n33s13ndr4o0lap9931pnal5pj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
