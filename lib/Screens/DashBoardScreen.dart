@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:ui';
-
 import 'package:eatplek/Components/BottomBar.dart';
 import 'package:eatplek/Components/ClearFilterButton.dart';
 import 'package:eatplek/Components/DashBoardCard.dart';
@@ -11,12 +10,9 @@ import 'package:eatplek/services/local_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:numberpicker/numberpicker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../Exceptions/api_exception.dart';
 import 'FoodScreen.dart';
 
@@ -29,7 +25,6 @@ class DashBoardScreen extends StatefulWidget {
 }
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
-  Placemark address = Placemark();
   int d = 1, t = 0, veg = 1, ac = 0, type = 0;
   static const except = {'exc': 'An error occured'};
   List restaurants = [], dres = [], tres = [];
@@ -114,36 +109,36 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
       APIException(response.statusCode, except);
   }
 
-  Future<Position?> getCordinates() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-
-    if (!serviceEnabled) {
-      return Future.error('Location services are disabled.');
-    }
-
-    permission = await Geolocator.checkPermission();
-
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error('Location permissions are denied');
-      }
-    }
-    if (permission == LocationPermission.deniedForever) {
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
-    }
-
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.best);
-
-    List<Placemark> placemarks =
-        await placemarkFromCoordinates(position.latitude, position.longitude);
-    address = placemarks[0];
-    setState(() {});
-  }
+  // Future<Position?> getCordinates() async {
+  //   bool serviceEnabled;
+  //   LocationPermission permission;
+  //   serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  //
+  //   if (!serviceEnabled) {
+  //     return Future.error('Location services are disabled.');
+  //   }
+  //
+  //   permission = await Geolocator.checkPermission();
+  //
+  //   if (permission == LocationPermission.denied) {
+  //     permission = await Geolocator.requestPermission();
+  //     if (permission == LocationPermission.denied) {
+  //       return Future.error('Location permissions are denied');
+  //     }
+  //   }
+  //   if (permission == LocationPermission.deniedForever) {
+  //     return Future.error(
+  //         'Location permissions are permanently denied, we cannot request permissions.');
+  //   }
+  //
+  //   Position position = await Geolocator.getCurrentPosition(
+  //       desiredAccuracy: LocationAccuracy.best);
+  //
+  //   List<Placemark> placemarks =
+  //       await placemarkFromCoordinates(position.latitude, position.longitude);
+  //   address = placemarks[0];
+  //   setState(() {});
+  // }
 
   _showDetailsCard(String resId, String resName) {
     int currentValue = 2;
@@ -504,7 +499,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   void initState() {
     // TODO: implement initState
     getRestaurants();
-    getCordinates();
     LocalNotificationService.initialise();
     super.initState();
     //terminated msg
@@ -515,6 +509,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
           print("Foreground msg");
         });
       }
+
     });
     //Foreground msg
     FirebaseMessaging.onMessage.listen((event) {
@@ -542,7 +537,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
         bottomNavigationBar: const BottomBar(
           index: 0,
         ),
-        appBar: buildAppBar(context, address), //look at bottom for code
+        appBar: buildAppBar(context), //look at bottom for code
         body: Container(
           color: Colors.white,
           width: MediaQuery.of(context).size.width,
@@ -1102,7 +1097,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     );
   }
 
-  PreferredSize buildAppBar(BuildContext context, Placemark address) {
+  PreferredSize buildAppBar(BuildContext context) {
     return PreferredSize(
       preferredSize: Size.fromHeight(74
           //MediaQuery.of(context).size.height * .09
@@ -1129,34 +1124,34 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 2),
-                      child: Image.asset("images/location.png",
-                          height: 18, color: primaryclr),
-                    ),
-                    address.locality == null
-                        ? const Text(
-                            "Location",
-                            style: TextStyle(
-                              color: Color(0xff1d1d1d),
-                              fontSize: 10,
-                              fontFamily: 'SFUIText',
-                            ),
-                          )
-                        : Text(
-                            address.locality.toString(),
-                            style: const TextStyle(
-                              color: Color(0xff1d1d1d),
-                              fontSize: 10,
-                              fontFamily: 'SFUIText',
-                            ),
-                          ),
-                  ],
-                ),
+                // Row(
+                //   children: [
+                //     Padding(
+                //       padding: const EdgeInsets.only(right: 2),
+                //       child: Image.asset("images/location.png",
+                //           height: 18, color: primaryclr),
+                //     ),
+                //     address.locality == null
+                //         ? const Text(
+                //             "Location",
+                //             style: TextStyle(
+                //               color: Color(0xff1d1d1d),
+                //               fontSize: 10,
+                //               fontFamily: 'SFUIText',
+                //             ),
+                //           )
+                //         : Text(
+                //             address.locality.toString(),
+                //             style: const TextStyle(
+                //               color: Color(0xff1d1d1d),
+                //               fontSize: 10,
+                //               fontFamily: 'SFUIText',
+                //             ),
+                //           ),
+                //   ],
+                // ),
                 Container(
                   height: 37,
                   width: 31,

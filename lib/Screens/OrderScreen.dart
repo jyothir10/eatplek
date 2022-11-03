@@ -46,7 +46,7 @@ class _OrderScreenState extends State<OrderScreen> {
   }
 
   var options = {
-    'key': 'rzp_test_7oSEtWonPIbah3',
+    'key': 'rzp_live_KH9lYPAZw6fkVM',
     'amount': 500, //in the smallest currency sub-unit.
     'name': 'Eatplek',
     'order_id': 'order_EMBFqjDHEEn80l', // Generate order_id using Orders API
@@ -638,7 +638,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                     onTap: () async {
                                       if (status == 0) {
                                         var options = {
-                                          'key': 'rzp_test_7oSEtWonPIbah3',
+                                          'key': 'rzp_live_KH9lYPAZw6fkVM',
                                           'amount':
                                               500, //in the smallest currency sub-unit.
                                           'name': 'Eatplek',
