@@ -26,7 +26,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   bool showSpinner = true, fetched = false;
   var profile = null;
 
-  getUser() async {
+  updateUser() async {
+    //todo:implement edit profile
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String? userid = sharedPreferences.getString("id");
     print(userid);
@@ -36,7 +37,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     };
     var urlfinal = Uri.https(URL_Latest, '/user/$userid');
 
-    http.Response response = await http.get(urlfinal, headers: headers);
+    http.Response response = await http.put(urlfinal, headers: headers);
 
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
       final jsonData = jsonDecode(response.body);
@@ -56,7 +57,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getUser();
+    updateUser();
   }
 
   @override

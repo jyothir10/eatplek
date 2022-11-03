@@ -90,6 +90,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         body: ModalProgressHUD(
           inAsyncCall: showSpinner,
+          progressIndicator: CircularProgressIndicator(
+            color: primaryclr,
+          ),
           child: SafeArea(
             child: SingleChildScrollView(
               child: Container(

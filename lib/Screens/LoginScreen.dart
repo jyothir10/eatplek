@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:eatplek/Components/LoginButton.dart';
 import 'package:eatplek/Constants.dart';
-import 'package:eatplek/Screens/DashBoardScreen.dart';
 import 'package:eatplek/Screens/OtpScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -71,7 +70,6 @@ class _LoginScreenState extends State<LoginScreen> {
     if (isRequestSucceeded(res.statusCode)) {
       status = true;
       final msg = await responseBody['message'];
-      print(msg);
 
       numbercontroller.clear();
       setState(() {
@@ -79,7 +77,6 @@ class _LoginScreenState extends State<LoginScreen> {
       });
 
       if (msg != null) {
-        print(number);
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -144,29 +141,29 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: 8, right: 15, bottom: 10),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.pushReplacementNamed(
-                                context, DashBoardScreen.id);
-                          },
-                          child: const Text(
-                            'Skip',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontFamily: 'SFUIText',
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.end,
+                  //   children: [
+                  //     Padding(
+                  //       padding: EdgeInsets.only(top: 8, right: 15, bottom: 10),
+                  //       child: InkWell(
+                  //         onTap: () {
+                  //           Navigator.pushReplacementNamed(
+                  //               context, DashBoardScreen.id);
+                  //         },
+                  //         child: const Text(
+                  //           '',
+                  //           style: TextStyle(
+                  //             color: Colors.white,
+                  //             fontSize: 16,
+                  //             fontFamily: 'SFUIText',
+                  //             fontWeight: FontWeight.w700,
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                   MediaQuery.of(context).viewInsets.bottom == 0
                       ? SizedBox(
                           width: MediaQuery.of(context).size.width,
