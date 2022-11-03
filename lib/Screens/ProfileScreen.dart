@@ -42,8 +42,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     http.Response response = await http.get(urlfinal, headers: headers);
 
-    print(response.body);
-
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
       final jsonData = jsonDecode(response.body);
       msg = await jsonData['message'];
