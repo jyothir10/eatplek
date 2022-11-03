@@ -72,6 +72,8 @@ class _OtpScreenState extends State<OtpScreen> {
       status = true;
       msg = await responseBody['message'];
 
+      print(responseBody);
+
       if (msg == "User logged in successfully") {
         sharedPreferences.setString("id", await responseBody['user']['id']);
         sharedPreferences.setString(
