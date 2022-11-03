@@ -24,6 +24,7 @@ class OrderHistoryScreen extends StatefulWidget {
 class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
   bool showSpinner = true, fetched = false;
   var orders = [];
+  var status;
 
   getOrders() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
@@ -38,11 +39,18 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
 
     http.Response response = await http.get(urlfinal, headers: headers);
 
+    print(response.body);
+
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
       final jsonData = jsonDecode(response.body);
-      orders = await jsonData['result'];
+
+      status = await jsonData['result'];
+      if (status != null) {
+        orders = await jsonData['result'];
+      }
 
       setState(() {
+        print("hello");
         showSpinner = false;
         fetched = true;
       });
