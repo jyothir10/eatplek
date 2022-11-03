@@ -46,6 +46,7 @@ class _OptionScreenState extends State<OptionScreen> {
     Map body1 = {
       "name": namecontroller.text.trim(),
       "id": sharedPreferences.getString("id").toString(),
+      "email": emailcontroller.text.trim(),
     };
     final body = jsonEncode(body1);
 

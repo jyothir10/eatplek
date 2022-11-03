@@ -26,7 +26,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  String name = 'Elizabeth Rachel Yohannan', msg = "";
+  String msg = "";
   bool showSpinner = true, fetched = false;
   var profile = null;
 
@@ -136,7 +136,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   Padding(
                                     padding: EdgeInsets.only(right: 8),
                                     child: Text(
-                                      'eli00@gmail.com', //todo:profile['email']
+                                      profile['email'],
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 10,
