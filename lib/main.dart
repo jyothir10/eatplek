@@ -4,6 +4,7 @@ import 'package:eatplek/Screens/EditProfileScreen.dart';
 import 'package:eatplek/Screens/FeedbackScreen.dart';
 import 'package:eatplek/Screens/FoodScreen.dart';
 import 'package:eatplek/Screens/InvoiceScreen.dart';
+import 'package:eatplek/Screens/LocationPermissionScreen.dart';
 import 'package:eatplek/Screens/LoginScreen.dart';
 import 'package:eatplek/Screens/NotificationScreen.dart';
 import 'package:eatplek/Screens/OnboardingScreen.dart';
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
     ]);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: OnboardingScreen.id,
+        initialRoute: LocationPermissionScreen.id,
         routes: {
           OnboardingScreen.id: (context) => OnboardingScreen(),
           LoginScreen.id: (context) => LoginScreen(),
@@ -62,6 +63,7 @@ class MyApp extends StatelessWidget {
           OrderScreen.id: (context) => OrderScreen(),
           RefundPolicyScreen.id: (context) => RefundPolicyScreen(),
           ContactUsScreen.id: (context) => ContactUsScreen(),
+          LocationPermissionScreen.id: (context) => LocationPermissionScreen(),
         });
   }
 }
