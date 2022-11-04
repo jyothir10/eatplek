@@ -4,6 +4,7 @@ import 'package:eatplek/Screens/EditProfileScreen.dart';
 import 'package:eatplek/Screens/FeedbackScreen.dart';
 import 'package:eatplek/Screens/FoodScreen.dart';
 import 'package:eatplek/Screens/InvoiceScreen.dart';
+import 'package:eatplek/Screens/LocationPermissionScreen.dart';
 import 'package:eatplek/Screens/LoginScreen.dart';
 import 'package:eatplek/Screens/NotificationScreen.dart';
 import 'package:eatplek/Screens/OnboardingScreen.dart';
@@ -52,7 +53,9 @@ class MyApp extends StatelessWidget {
           ProfileScreen.id: (context) => ProfileScreen(),
           EditProfileScreen.id: (context) => EditProfileScreen(),
           FeedbackScreen.id: (context) => FeedbackScreen(),
-          DashBoardScreen.id: (context) => DashBoardScreen(),
+          DashBoardScreen.id: (context) => DashBoardScreen(
+                permissionAllowed: true,
+              ),
           NotificationScreen.id: (context) => NotificationScreen(),
           OrderHistoryScreen.id: (context) => OrderHistoryScreen(),
           InvoiceScreen.id: (context) => InvoiceScreen(
@@ -62,6 +65,7 @@ class MyApp extends StatelessWidget {
           OrderScreen.id: (context) => OrderScreen(),
           RefundPolicyScreen.id: (context) => RefundPolicyScreen(),
           ContactUsScreen.id: (context) => ContactUsScreen(),
+          LocationPermissionScreen.id: (context) => LocationPermissionScreen(),
         });
   }
 }
