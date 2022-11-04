@@ -1,7 +1,13 @@
+import 'dart:convert';
+
 import 'package:eatplek/Components/EditProfileTextField.dart';
 import 'package:eatplek/Components/ProfileButton.dart';
 import 'package:eatplek/Screens/ProfileScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../Constants.dart';
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({Key? key}) : super(key: key);
@@ -12,17 +18,55 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
-  final myController1 = TextEditingController();
-  final myController2 = TextEditingController();
-  final myController3 = TextEditingController();
+  final nameController = TextEditingController();
+  final phoneController = TextEditingController();
+  final mailController = TextEditingController();
+
+  String msg = "";
+  bool showSpinner = true, fetched = false;
+  var profile = null;
+
+  updateUser() async {
+    //todo:implement edit profile
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String? userid = sharedPreferences.getString("id");
+    print(userid);
+
+    Map<String, String> headers = {
+      "Content-Type": "application/json",
+    };
+    var urlfinal = Uri.https(URL_Latest, '/user/$userid');
+
+    http.Response response = await http.put(urlfinal, headers: headers);
+
+    if ((response.statusCode >= 200) && (response.statusCode < 300)) {
+      final jsonData = jsonDecode(response.body);
+      msg = await jsonData['message'];
+      if (msg == "User retrieved successfully") {
+        profile = await jsonData['user'];
+      }
+
+      setState(() {
+        showSpinner = false;
+        fetched = true;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    updateUser();
+  }
 
   @override
   void dispose() {
     // Clean up the controller when the widget is removed from the
     // widget tree.
-    myController1.dispose();
-    myController2.dispose();
-    myController3.dispose();
+    nameController.dispose();
+    phoneController.dispose();
+    mailController.dispose();
     super.dispose();
   }
 
@@ -93,17 +137,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               child: Column(
                 children: [
                   EditProfileTextField(
-                    myController: myController1,
+                    myController: nameController,
                     text: 'Name',
                     type: TextInputType.name,
                   ),
                   EditProfileTextField(
-                    myController: myController2,
+                    myController: phoneController,
                     text: 'Phone',
                     type: TextInputType.number,
                   ),
                   EditProfileTextField(
-                    myController: myController3,
+                    myController: mailController,
                     text: 'E-mail(Optional)',
                     type: TextInputType.emailAddress,
                   ),

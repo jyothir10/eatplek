@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
+
 import 'package:eatplek/Components/BottomBar.dart';
 import 'package:eatplek/Components/ClearFilterButton.dart';
 import 'package:eatplek/Components/DashBoardCard.dart';
@@ -13,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:numberpicker/numberpicker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../Exceptions/api_exception.dart';
 import 'FoodScreen.dart';
 
@@ -509,7 +511,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
           print("Foreground msg");
         });
       }
-
     });
     //Foreground msg
     FirebaseMessaging.onMessage.listen((event) {
@@ -1155,16 +1156,16 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 Container(
                   height: 37,
                   width: 31,
-                  decoration: BoxDecoration(
-                    color: Color(0xfff0ecec),
-                    borderRadius: BorderRadius.circular(7),
-                  ),
+                  // decoration: BoxDecoration(
+                  //   color: Color(0xfff0ecec),
+                  //   borderRadius: BorderRadius.circular(7),
+                  // ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Image.asset(
-                      "images/search.png",
-                      color: primaryclr,
-                    ),
+                    // child: Image.asset(
+                    //   "images/search.png",
+                    //   color: primaryclr,
+                    // ),
                   ),
                 ),
               ],

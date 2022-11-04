@@ -112,6 +112,7 @@ class _OrderScreenState extends State<OrderScreen> {
     http.Response response = await http.get(urlfinal, headers: headers);
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
       final jsonData = jsonDecode(response.body);
+      print(response.body);
       cart = await jsonData['cart'];
 
       resname = cart['restaurant_name'];
