@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:ui';
-
 import 'package:eatplek/Components/BottomBar.dart';
 import 'package:eatplek/Components/ClearFilterButton.dart';
 import 'package:eatplek/Components/DashBoardCard.dart';
@@ -14,9 +13,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:numberpicker/numberpicker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../Exceptions/api_exception.dart';
 import 'FoodScreen.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
 
 class DashBoardScreen extends StatefulWidget {
   static const String id = '/dashboard';
@@ -32,6 +32,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   List restaurants = [], dres = [], tres = [];
   bool isEmpty = false;
   bool showList = false;
+  Placemark address = Placemark();
 
   getRestaurants() async {
     Map<String, String> headers = {
@@ -111,36 +112,37 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
       APIException(response.statusCode, except);
   }
 
-  // Future<Position?> getCordinates() async {
-  //   bool serviceEnabled;
-  //   LocationPermission permission;
-  //   serviceEnabled = await Geolocator.isLocationServiceEnabled();
-  //
-  //   if (!serviceEnabled) {
-  //     return Future.error('Location services are disabled.');
-  //   }
-  //
-  //   permission = await Geolocator.checkPermission();
-  //
-  //   if (permission == LocationPermission.denied) {
-  //     permission = await Geolocator.requestPermission();
-  //     if (permission == LocationPermission.denied) {
-  //       return Future.error('Location permissions are denied');
-  //     }
-  //   }
-  //   if (permission == LocationPermission.deniedForever) {
-  //     return Future.error(
-  //         'Location permissions are permanently denied, we cannot request permissions.');
-  //   }
-  //
-  //   Position position = await Geolocator.getCurrentPosition(
-  //       desiredAccuracy: LocationAccuracy.best);
-  //
-  //   List<Placemark> placemarks =
-  //       await placemarkFromCoordinates(position.latitude, position.longitude);
-  //   address = placemarks[0];
-  //   setState(() {});
-  // }
+  Future<Position?> getCordinates() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.best);
+
+    print("hi");
+    print(position);
+    List<Placemark> placemarks =
+        await placemarkFromCoordinates(position.latitude, position.longitude);
+    address = placemarks[0];
+    setState(() {});
+  }
 
   _showDetailsCard(String resId, String resName) {
     int currentValue = 2;
@@ -500,6 +502,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   @override
   void initState() {
     // TODO: implement initState
+    getCordinates();
     getRestaurants();
     LocalNotificationService.initialise();
     super.initState();
@@ -1125,49 +1128,30 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                // Row(
-                //   children: [
-                //     Padding(
-                //       padding: const EdgeInsets.only(right: 2),
-                //       child: Image.asset("images/location.png",
-                //           height: 18, color: primaryclr),
-                //     ),
-                //     address.locality == null
-                //         ? const Text(
-                //             "Location",
-                //             style: TextStyle(
-                //               color: Color(0xff1d1d1d),
-                //               fontSize: 10,
-                //               fontFamily: 'SFUIText',
-                //             ),
-                //           )
-                //         : Text(
-                //             address.locality.toString(),
-                //             style: const TextStyle(
-                //               color: Color(0xff1d1d1d),
-                //               fontSize: 10,
-                //               fontFamily: 'SFUIText',
-                //             ),
-                //           ),
-                //   ],
-                // ),
-                Container(
-                  height: 37,
-                  width: 31,
-                  // decoration: BoxDecoration(
-                  //   color: Color(0xfff0ecec),
-                  //   borderRadius: BorderRadius.circular(7),
-                  // ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    // child: Image.asset(
-                    //   "images/search.png",
-                    //   color: primaryclr,
-                    // ),
-                  ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 2),
+                  child: Image.asset("images/location.png",
+                      height: 18, color: primaryclr),
                 ),
+                address.locality == null
+                    ? const Text(
+                        "Location",
+                        style: TextStyle(
+                          color: Color(0xff1d1d1d),
+                          fontSize: 10,
+                          fontFamily: 'SFUIText',
+                        ),
+                      )
+                    : Text(
+                        address.locality.toString(),
+                        style: const TextStyle(
+                          color: Color(0xff1d1d1d),
+                          fontSize: 10,
+                          fontFamily: 'SFUIText',
+                        ),
+                      ),
               ],
             ),
           ),
