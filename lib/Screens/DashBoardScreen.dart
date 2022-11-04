@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
+
 import 'package:eatplek/Components/BottomBar.dart';
 import 'package:eatplek/Components/ClearFilterButton.dart';
 import 'package:eatplek/Components/DashBoardCard.dart';
@@ -10,17 +11,20 @@ import 'package:eatplek/services/local_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:numberpicker/numberpicker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../Exceptions/api_exception.dart';
 import 'FoodScreen.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:geocoding/geocoding.dart';
 
 class DashBoardScreen extends StatefulWidget {
   static const String id = '/dashboard';
-  const DashBoardScreen({Key? key}) : super(key: key);
+  bool permissionAllowed;
+  DashBoardScreen({required this.permissionAllowed, Key? key})
+      : super(key: key);
 
   @override
   State<DashBoardScreen> createState() => _DashBoardScreenState();
@@ -502,7 +506,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    getCordinates();
+    if (widget.permissionAllowed) {
+      getCordinates();
+    }
     getRestaurants();
     LocalNotificationService.initialise();
     super.initState();
