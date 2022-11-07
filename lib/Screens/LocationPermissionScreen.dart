@@ -68,7 +68,7 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> {
                       Padding(
                         padding: const EdgeInsets.only(top: 3),
                         child: Text(
-                          "Eatplek collects location data to enable the feature of showing the nearby restaurants in your locations only when the app is running. Agree to give access ? ",
+                          "Eatplek collects location data to enable the feature of showing the nearby restaurants in your locations even when the app is closed or not in use. Agree to give access ? ",
                           style: const TextStyle(
                               color: Colors.black,
                               fontSize: 11,
@@ -197,7 +197,7 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> {
                     Padding(
                       padding: EdgeInsets.only(top: 9),
                       child: Text(
-                        "Eatplek collects location data to enable the feature of showing the nearby restaurants in your locations only when the app is running. No location data will be collected while the ap is not in use. The collected location data will not be used for advertising.",
+                        "Eatplek collects location data to enable the feature of showing the nearby restaurants in your locations even when the app is closed or not in use. The collected location data will not be used for advertising.",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 15,
