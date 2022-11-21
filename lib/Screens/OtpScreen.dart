@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:eatplek/Components/LoginButton.dart';
 import 'package:eatplek/Constants.dart';
-import 'package:eatplek/Screens/optionScreen.dart';
+import 'package:eatplek/Screens/RegisterScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -80,7 +80,7 @@ class _OtpScreenState extends State<OtpScreen> {
             "token", await responseBody['user']['token']);
         name = await responseBody['user']['name'];
         if (name.isEmpty) {
-          Navigator.pushReplacementNamed(context, OptionScreen.id);
+          Navigator.pushReplacementNamed(context, RegisterScreen.id);
         } else {
           Navigator.pushNamedAndRemoveUntil(
               context, DashBoardScreen.id, (route) => false);
