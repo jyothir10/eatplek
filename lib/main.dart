@@ -8,7 +8,6 @@ import 'package:eatplek/Screens/LocationPermissionScreen.dart';
 import 'package:eatplek/Screens/LoginScreen.dart';
 import 'package:eatplek/Screens/NotificationScreen.dart';
 import 'package:eatplek/Screens/OnboardingScreen.dart';
-import 'package:eatplek/Screens/Order/Screens/OtpScreen.dart';
 import 'package:eatplek/Screens/OrderHistoryScreen.dart';
 import 'package:eatplek/Screens/ProfileScreen.dart';
 import 'package:eatplek/Screens/RefundPolicyScreen.dart';
@@ -17,6 +16,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'Screens/OrderScreen.dart';
 import 'Screens/RegisterScreen.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
