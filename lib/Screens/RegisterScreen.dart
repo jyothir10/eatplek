@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:eatplek/Components/optionScreenTextField.dart';
-import 'package:eatplek/Constants.dart';
-import 'package:eatplek/Screens/LocationPermissionScreen.dart';
+import 'package:eatplek/Constantsreen.dart';
+import 'package:eatplek/Screens/LoginScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -71,7 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             content: Text(
                 "A verification link has been sent to your email. Please verify to activate your account")));
         Navigator.pushNamedAndRemoveUntil(
-            context, LocationPermissionScreen.id, (route) => false);
+            context, LoginScreen.id, (route) => false);
       } else {
         if (status == false) {
           _scaffoldKey.currentState?.showSnackBar(
@@ -136,18 +136,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               fontStyle: FontStyle.normal,
                               fontSize: 24.0),
                           textAlign: TextAlign.left),
-                      // Padding(
-                      //   padding: EdgeInsets.only(top: 10),
-                      //   child: Text(
-                      //       "You can select any of one option from these \n(you can change it later)",
-                      //       style: TextStyle(
-                      //           color: Color(0xffffffff),
-                      //           fontWeight: FontWeight.w700,
-                      //           fontFamily: "SFUIText",
-                      //           fontStyle: FontStyle.normal,
-                      //           fontSize: 16.0),
-                      //       textAlign: TextAlign.left),
-                      // ),
                     ],
                   ),
                   optionScreenTextField(

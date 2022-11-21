@@ -8,9 +8,8 @@ import 'package:eatplek/Screens/LocationPermissionScreen.dart';
 import 'package:eatplek/Screens/LoginScreen.dart';
 import 'package:eatplek/Screens/NotificationScreen.dart';
 import 'package:eatplek/Screens/OnboardingScreen.dart';
+import 'package:eatplek/Screens/Order/Screens/OtpScreen.dart';
 import 'package:eatplek/Screens/OrderHistoryScreen.dart';
-import 'package:eatplek/Screens/OrderScreen.dart';
-import 'package:eatplek/Screens/OtpScreen.dart';
 import 'package:eatplek/Screens/ProfileScreen.dart';
 import 'package:eatplek/Screens/RefundPolicyScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -48,7 +47,7 @@ class MyApp extends StatelessWidget {
         routes: {
           OnboardingScreen.id: (context) => OnboardingScreen(),
           LoginScreen.id: (context) => LoginScreen(),
-          OtpScreen.id: (context) => OtpScreen(),
+          // OtpScreen.id: (context) => OtpScreen(),
           RegisterScreen.id: (context) => RegisterScreen(),
           ProfileScreen.id: (context) => ProfileScreen(),
           EditProfileScreen.id: (context) => EditProfileScreen(),

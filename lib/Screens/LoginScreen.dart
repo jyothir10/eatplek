@@ -2,13 +2,13 @@ import 'dart:convert';
 
 import 'package:eatplek/Components/LoginButton.dart';
 import 'package:eatplek/Constants.dart';
-import 'package:eatplek/Screens/DashBoardScreen.dart';
+import 'package:eatplek/Screens/LocationPermissionScreen.dart';
 import 'package:eatplek/Screens/RegisterScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+es.dart';
 import '../Exceptions/api_exception.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -84,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
         sharedPreferences.setString("id", await responseBody['user']['id']);
         sharedPreferences.setString(
             "token", await responseBody['user']['token']);
-        Navigator.pushReplacementNamed(context, DashBoardScreen.id);
+        Navigator.pushReplacementNamed(context, LocationPermissionScreen.id);
       } else {
         if (status == false) {
           emailcontroller.clear();
