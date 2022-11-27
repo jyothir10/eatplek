@@ -19,7 +19,7 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   DateTime? currentBackPressTime;
-  String id = "";
+  String? id = "";
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   void initState() {
     super.initState();
@@ -29,10 +29,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   startTime() async {
     var _duration = Duration(seconds: 4);
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    id = (await sharedPreferences.getString("id"))!;
+    id = (await sharedPreferences.getString("id"));
     return Timer(_duration, () {
       //Navigate to another screen or anyOther function, like i set duration 4 sec so this function run after 4 sec
-      if (id.isEmpty) {
+      if (id == null) {
         Navigator.pushReplacementNamed(context, LoginScreen.id);
       } else {
         Navigator.pushNamedAndRemoveUntil(
