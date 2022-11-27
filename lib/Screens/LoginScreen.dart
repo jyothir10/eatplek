@@ -2,7 +2,8 @@ import 'dart:convert';
 
 import 'package:eatplek/Components/LoginButton.dart';
 import 'package:eatplek/Constants.dart';
-import 'package:eatplek/Screens/OtpScreen.dart';
+import 'package:eatplek/Screens/LocationPermissionScreen.dart';
+import 'package:eatplek/Screens/RegisterScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -18,8 +19,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController numbercontroller = TextEditingController();
-
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passwordcontroller = TextEditingController();
+  bool isObscure = true;
   DateTime? currentBackPressTime;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -37,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Future.value(true);
   }
 
-  String number = "";
+  String email = "", password = "";
   bool showSpinner = false;
   bool status = false;
   Color buttonColour = Color(0xffc6c6cc);
@@ -55,13 +57,14 @@ class _LoginScreenState extends State<LoginScreen> {
     Map<String, String> headers = {
       "Content-Type": "application/json",
     };
-    number = numbercontroller.text.trim();
+
     Map body1 = {
-      "phone": numbercontroller.text.trim(),
+      "email": emailcontroller.text.trim(),
+      "password": passwordcontroller.text.trim(),
     };
     final body = jsonEncode(body1);
 
-    var urlfinal = Uri.https(URL_Latest, '/user');
+    var urlfinal = Uri.https(URL_Latest, '/user/login');
 
     var res = await http.post(urlfinal, headers: headers, body: body);
 
@@ -71,21 +74,20 @@ class _LoginScreenState extends State<LoginScreen> {
       status = true;
       final msg = await responseBody['message'];
 
-      numbercontroller.clear();
+      emailcontroller.clear();
+      passwordcontroller.clear();
       setState(() {
         showSpinner = false;
       });
 
-      if (msg != null) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => OtpScreen(phone: number),
-          ),
-        );
+      if (msg == "User logged in successfully") {
+        sharedPreferences.setString("id", await responseBody['user']['id']);
+        sharedPreferences.setString(
+            "token", await responseBody['user']['token']);
+        Navigator.pushReplacementNamed(context, LocationPermissionScreen.id);
       } else {
         if (status == false) {
-          numbercontroller.clear();
+          emailcontroller.clear();
           _scaffoldKey.currentState?.showSnackBar(
             SnackBar(
               behavior: SnackBarBehavior.floating,
@@ -108,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
           behavior: SnackBarBehavior.floating,
           duration: Duration(seconds: 1),
           content: Text(
-            responseBody["message"].toString(),
+            "No acccount found",
           ),
         ),
       );
@@ -167,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   MediaQuery.of(context).viewInsets.bottom == 0
                       ? SizedBox(
                           width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height * .65,
+                          height: MediaQuery.of(context).size.height * .57,
                           //child: SvgPicture.asset("images/logo.svg"),
                           child: Image.asset(
                             "images/login1.png",
@@ -202,14 +204,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         Padding(
                           padding: EdgeInsets.only(
                               left: 15,
-                              right: MediaQuery.of(context).size.width * .2),
+                              right: MediaQuery.of(context).size.width * .12),
                           child: TextField(
-                            controller: numbercontroller,
+                            controller: emailcontroller,
                             cursorColor: Colors.white,
-                            keyboardType: TextInputType.number,
+                            keyboardType: TextInputType.emailAddress,
                             onChanged: (text) {
-                              number = text;
-                              if (text.length == 10) {
+                              email = text;
+                              if (email.isNotEmpty & password.isNotEmpty) {
                                 setState(() {
                                   buttonColour = Colors.white;
                                 });
@@ -232,7 +234,69 @@ class _LoginScreenState extends State<LoginScreen> {
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.white),
                               ),
-                              labelText: 'Enter your number',
+                              labelText: 'E-mail',
+                              labelStyle: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'SFUIText',
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                              left: 15,
+                              right: MediaQuery.of(context).size.width * .12),
+                          child: TextField(
+                            controller: passwordcontroller,
+                            cursorColor: Colors.white,
+                            keyboardType: TextInputType.visiblePassword,
+                            obscureText: isObscure,
+                            onChanged: (text) {
+                              password = text;
+                              if (email.isNotEmpty & password.isNotEmpty) {
+                                setState(() {
+                                  buttonColour = Colors.white;
+                                });
+                              } else {
+                                setState(() {
+                                  buttonColour = Color(0xffc6c6cc);
+                                });
+                              }
+                            },
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontFamily: 'SFUIText',
+                              fontWeight: FontWeight.w500,
+                            ),
+                            decoration: InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              suffixIcon: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    isObscure == true
+                                        ? isObscure = false
+                                        : isObscure = true;
+                                  });
+                                },
+                                child: isObscure == true
+                                    ? Icon(
+                                        Icons.visibility,
+                                        color: Colors.white,
+                                      )
+                                    : Icon(
+                                        Icons.visibility_off,
+                                        color: Colors.white,
+                                      ),
+                              ),
+                              labelText: 'Password',
                               labelStyle: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -251,19 +315,56 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                               LoginButton(
                                 onPressed: () {
-                                  if (number.length == 10) {
+                                  if (email.isNotEmpty & password.isNotEmpty) {
                                     logIn();
                                   } else {
                                     _scaffoldKey.currentState?.showSnackBar(
                                         const SnackBar(
                                             behavior: SnackBarBehavior.floating,
                                             duration: Duration(seconds: 1),
-                                            content:
-                                                Text("Invalid mobile number")));
+                                            content: Text(
+                                                "Invalid email or password")));
                                   }
                                 },
-                                text: 'Get OTP',
+                                text: 'Log In',
                                 clr: buttonColour,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 15),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Don\'t have an account? ',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontFamily: 'SFUIText',
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                      context, RegisterScreen.id);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(3.0),
+                                  child: Text(
+                                    'Register',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontFamily: 'SFUIText',
+                                      fontWeight: FontWeight.w700,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ],
                           ),

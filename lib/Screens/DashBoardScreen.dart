@@ -37,6 +37,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   bool isEmpty = false;
   bool showList = false;
   Placemark address = Placemark();
+  String? mtoken = "";
 
   getRestaurants() async {
     Map<String, String> headers = {
@@ -91,6 +92,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
       "number_of_guests": noGuest,
       "time": time,
       "type": typename,
+      "device_token": mtoken,
     };
     final body = jsonEncode(body1);
 
@@ -503,6 +505,37 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     return Future.value(true);
   }
 
+  requestPermission() async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+    NotificationSettings settings = await messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      print("User granted permission");
+    } else if (settings.authorizationStatus ==
+        AuthorizationStatus.provisional) {
+      print("User granted provisional permission");
+    } else {
+      print("User declined permission");
+    }
+  }
+
+  getToken() async {
+    await FirebaseMessaging.instance.getToken().then((token) {
+      setState(() {
+        mtoken = token;
+        print("Device token: $mtoken");
+      });
+    });
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -511,6 +544,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     }
     getRestaurants();
     LocalNotificationService.initialise();
+    requestPermission();
+    getToken();
     super.initState();
     //terminated msg
     FirebaseMessaging.instance.getInitialMessage().then((event) {

@@ -9,8 +9,6 @@ import 'package:eatplek/Screens/LoginScreen.dart';
 import 'package:eatplek/Screens/NotificationScreen.dart';
 import 'package:eatplek/Screens/OnboardingScreen.dart';
 import 'package:eatplek/Screens/OrderHistoryScreen.dart';
-import 'package:eatplek/Screens/OrderScreen.dart';
-import 'package:eatplek/Screens/OtpScreen.dart';
 import 'package:eatplek/Screens/ProfileScreen.dart';
 import 'package:eatplek/Screens/RefundPolicyScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -18,7 +16,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'Screens/optionScreen.dart';
+import 'Screens/OrderScreen.dart';
+import 'Screens/RegisterScreen.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print('Handling a background message ${message.messageId}');
@@ -48,8 +47,8 @@ class MyApp extends StatelessWidget {
         routes: {
           OnboardingScreen.id: (context) => OnboardingScreen(),
           LoginScreen.id: (context) => LoginScreen(),
-          OtpScreen.id: (context) => OtpScreen(),
-          OptionScreen.id: (context) => OptionScreen(),
+          // OtpScreen.id: (context) => OtpScreen(),
+          RegisterScreen.id: (context) => RegisterScreen(),
           ProfileScreen.id: (context) => ProfileScreen(),
           EditProfileScreen.id: (context) => EditProfileScreen(),
           FeedbackScreen.id: (context) => FeedbackScreen(),
