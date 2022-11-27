@@ -21,7 +21,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
-
+  bool isObscure = true;
   DateTime? currentBackPressTime;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -110,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
           behavior: SnackBarBehavior.floating,
           duration: Duration(seconds: 1),
           content: Text(
-            responseBody["message"].toString(),
+            "No acccount found",
           ),
         ),
       );
@@ -208,7 +208,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: TextField(
                             controller: emailcontroller,
                             cursorColor: Colors.white,
-                            keyboardType: TextInputType.number,
+                            keyboardType: TextInputType.emailAddress,
                             onChanged: (text) {
                               email = text;
                               if (email.isNotEmpty & password.isNotEmpty) {
@@ -251,7 +251,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: TextField(
                             controller: passwordcontroller,
                             cursorColor: Colors.white,
-                            keyboardType: TextInputType.number,
+                            keyboardType: TextInputType.visiblePassword,
+                            obscureText: isObscure,
                             onChanged: (text) {
                               password = text;
                               if (email.isNotEmpty & password.isNotEmpty) {
@@ -270,12 +271,30 @@ class _LoginScreenState extends State<LoginScreen> {
                               fontFamily: 'SFUIText',
                               fontWeight: FontWeight.w500,
                             ),
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.white),
                               ),
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.white),
+                              ),
+                              suffixIcon: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    isObscure == true
+                                        ? isObscure = false
+                                        : isObscure = true;
+                                  });
+                                },
+                                child: isObscure == true
+                                    ? Icon(
+                                        Icons.visibility,
+                                        color: Colors.white,
+                                      )
+                                    : Icon(
+                                        Icons.visibility_off,
+                                        color: Colors.white,
+                                      ),
                               ),
                               labelText: 'Password',
                               labelStyle: TextStyle(
@@ -296,9 +315,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                               LoginButton(
                                 onPressed: () {
-                                  if (email.isNotEmpty &
-                                      password.isNotEmpty &
-                                      email.endsWith(".com")) {
+                                  if (email.isNotEmpty & password.isNotEmpty) {
                                     logIn();
                                   } else {
                                     _scaffoldKey.currentState?.showSnackBar(

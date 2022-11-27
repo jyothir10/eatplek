@@ -33,7 +33,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   getUser() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String? userid = sharedPreferences.getString("id");
-    print(userid);
 
     Map<String, String> headers = {
       "Content-Type": "application/json",
@@ -54,6 +53,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
         fetched = true;
       });
     }
+  }
+
+  logout() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.clear();
   }
 
   @override
@@ -300,7 +304,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               child: ProfileButton(
                                 text: '       Log Out       ',
                                 onTap: () {
-                                  //todo:Logout
+                                  logout();
                                   Navigator.pushReplacementNamed(
                                       context, LoginScreen.id);
                                 },

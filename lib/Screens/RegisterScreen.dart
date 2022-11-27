@@ -18,7 +18,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   String name = '', email = '', password = '', phone = '';
-  bool showSpinner = false;
+  bool showSpinner = false, isObscure = true;
   DateTime? currentBackPressTime;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   TextEditingController namecontroller = TextEditingController();
@@ -41,7 +41,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     Map<String, String> headers = {
       "Content-Type": "application/json",
-      "Token": sharedPreferences.getString("token").toString(),
     };
 
     Map body1 = {
