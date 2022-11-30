@@ -49,6 +49,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       }
 
       setState(() {
+        print(profile);
         showSpinner = false;
         fetched = true;
       });
