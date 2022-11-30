@@ -244,7 +244,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       name: "Privacy Policy",
                                       icon: Icons.note_add_outlined,
                                       url:
-                                          "https://www.privacypolicygenerator.info/live.php?token=QodIHXmWRXsLVGBtzyIneaLlyzAgQG0G",
+                                          "https://eatplek.com/privacy",
                                     ),
                                     const ProfileOption2(
                                         name: "Terms and Conditions",
