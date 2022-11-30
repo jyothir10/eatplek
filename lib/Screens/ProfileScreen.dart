@@ -93,6 +93,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
               fontSize: 14,
             ),
           ),
+          leading: InkWell(
+            onTap: () {
+              Navigator.pushReplacementNamed(context, DashBoardScreen.id);
+            },
+            child: const Icon(
+              Icons.arrow_back_outlined,
+              color: Color(0xff000000),
+            ),
+          ),
         ),
         body: ModalProgressHUD(
           inAsyncCall: showSpinner,
@@ -243,8 +252,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     const ProfileOption2(
                                       name: "Privacy Policy",
                                       icon: Icons.note_add_outlined,
-                                      url:
-                                          "https://eatplek.com/privacy",
+                                      url: "https://eatplek.com/privacy",
                                     ),
                                     const ProfileOption2(
                                         name: "Terms and Conditions",
