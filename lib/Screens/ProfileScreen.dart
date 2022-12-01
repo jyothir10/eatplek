@@ -26,7 +26,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  String msg = "";
+  String msg = "", name = "";
   bool showSpinner = true, fetched = false;
   var profile = null;
 
@@ -46,9 +46,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
       msg = await jsonData['message'];
       if (msg == "User retrieved successfully") {
         profile = await jsonData['user'];
+        name = profile['name'];
       }
 
       setState(() {
+        print(profile['name']);
         showSpinner = false;
         fetched = true;
       });
@@ -91,6 +93,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
               fontSize: 14,
             ),
           ),
+          leading: InkWell(
+            onTap: () {
+              Navigator.pushReplacementNamed(context, DashBoardScreen.id);
+            },
+            child: const Icon(
+              Icons.arrow_back_outlined,
+              color: Color(0xff000000),
+            ),
+          ),
         ),
         body: ModalProgressHUD(
           inAsyncCall: showSpinner,
@@ -113,27 +124,47 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             CircleAvatar(
                               backgroundColor: Color(0xffefeeee),
                               radius: 51.2,
-                              child: Text(
-                                profile['name'][0].toString(),
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 35.826087951660156,
-                                  fontFamily: 'SFUIText',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
+                              child: name.isNotEmpty
+                                  ? Text(
+                                      profile['name'][0].toString(),
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 35.826087951660156,
+                                        fontFamily: 'SFUIText',
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    )
+                                  : Text(
+                                      "U",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 35.826087951660156,
+                                        fontFamily: 'SFUIText',
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 9),
-                              child: Text(
-                                profile['name'],
-                                style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontFamily: 'SFUIText',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
+                              child: name.isNotEmpty
+                                  ? Text(
+                                      name,
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontFamily: 'SFUIText',
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    )
+                                  : Text(
+                                      "User",
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontFamily: 'SFUIText',
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 11),
@@ -158,14 +189,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(left: 8),
-                                    child: Text(
-                                      profile['phone'],
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 10,
-                                        fontFamily: 'SFUIText',
-                                      ),
-                                    ),
+                                    child:
+                                        profile['phone'].toString().isNotEmpty
+                                            ? Text(
+                                                profile['phone'],
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 10,
+                                                  fontFamily: 'SFUIText',
+                                                ),
+                                              )
+                                            : Text(
+                                                "+91 xxxxxxxxxx",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 10,
+                                                  fontFamily: 'SFUIText',
+                                                ),
+                                              ),
                                   ),
                                 ],
                               ),
@@ -211,8 +252,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     const ProfileOption2(
                                       name: "Privacy Policy",
                                       icon: Icons.note_add_outlined,
-                                      url:
-                                          "https://eatplek.com/privacy",
+                                      url: "https://eatplek.com/privacy",
                                     ),
                                     const ProfileOption2(
                                         name: "Terms and Conditions",

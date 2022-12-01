@@ -1,6 +1,6 @@
+import 'package:eatplek/Screens/CartScreen.dart';
 import 'package:eatplek/Screens/DashBoardScreen.dart';
 import 'package:eatplek/Screens/OrderHistoryScreen.dart';
-import 'package:eatplek/Screens/OrderScreen.dart';
 import 'package:eatplek/Screens/ProfileScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +16,7 @@ class _BottomBarState extends State<BottomBar> {
   int _selectedIndex = 0;
   final pages = [
     DashBoardScreen.id,
-    OrderScreen.id,
+    CartScreen.id,
     OrderHistoryScreen.id,
     ProfileScreen.id
   ];

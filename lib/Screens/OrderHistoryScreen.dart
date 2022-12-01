@@ -86,7 +86,9 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
           backgroundColor: Colors.white,
           elevation: 0,
           leading: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushReplacementNamed(context, DashBoardScreen.id);
+            },
             child: const Icon(
               Icons.arrow_back_outlined,
               color: Color(0xff000000),

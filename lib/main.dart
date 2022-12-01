@@ -16,7 +16,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'Screens/OrderScreen.dart';
+import 'Screens/CartScreen.dart';
 import 'Screens/RegisterScreen.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
                 orderId: "",
               ),
           FoodScreen.id: (context) => FoodScreen(),
-          OrderScreen.id: (context) => OrderScreen(),
+          CartScreen.id: (context) => CartScreen(),
           RefundPolicyScreen.id: (context) => RefundPolicyScreen(),
           ContactUsScreen.id: (context) => ContactUsScreen(),
           LocationPermissionScreen.id: (context) => LocationPermissionScreen(),

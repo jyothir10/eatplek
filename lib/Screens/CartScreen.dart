@@ -15,20 +15,20 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../Exceptions/api_exception.dart';
 import 'DashBoardScreen.dart';
 
-class OrderScreen extends StatefulWidget {
+class CartScreen extends StatefulWidget {
   static const String id = '/order';
-  const OrderScreen({Key? key}) : super(key: key);
+  const CartScreen({Key? key}) : super(key: key);
 
   @override
-  State<OrderScreen> createState() => _OrderScreenState();
+  State<CartScreen> createState() => _CartScreenState();
 }
 
-class _OrderScreenState extends State<OrderScreen> {
+class _CartScreenState extends State<CartScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   int n = 3, totalAmount = 0, status = -1;
   var cart;
   bool showSpinner = true;
-  String resname = "";
+  String resname = "", resId = "";
   List items = [];
   String comments = "", option = "";
 
@@ -116,6 +116,7 @@ class _OrderScreenState extends State<OrderScreen> {
       cart = await jsonData['cart'];
 
       resname = cart['restaurant_name'];
+      resId = cart['restaurant_id'];
       items = cart['items'];
       totalAmount = cart['total_amount'];
       status = cart['status'];
@@ -153,7 +154,7 @@ class _OrderScreenState extends State<OrderScreen> {
           centerTitle: true,
           leading: InkWell(
             onTap: () {
-              Navigator.pop(context);
+              Navigator.pushReplacementNamed(context, DashBoardScreen.id);
             },
             child: const Icon(
               Icons.arrow_back_outlined,
@@ -392,8 +393,14 @@ class _OrderScreenState extends State<OrderScreen> {
                                           ),
                                         ),
                                         onTap: () {
-                                          Navigator.pushNamed(
-                                              context, FoodScreen.id);
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => FoodScreen(
+                                                resId: resId,
+                                              ),
+                                            ),
+                                          );
                                         },
                                       ),
                                     ],
