@@ -10,7 +10,7 @@ const TextStyle editprofilestyle = TextStyle(
 );
 const Color primaryclr = Color(0xff042e60);
 
-const URL_Latest = 'eatplek.herokuapp.com';
+const URL_Latest = 'eatplek.onrender.com';
 
 const TextStyle invoiceListStyle = TextStyle(
     color: const Color(0xff000000),

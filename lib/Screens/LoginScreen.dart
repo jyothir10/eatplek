@@ -66,8 +66,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
     var urlfinal = Uri.https(URL_Latest, '/user/login');
 
+    print(urlfinal);
+
     var res = await http.post(urlfinal, headers: headers, body: body);
 
+    print("/HI");
+    print(res.statusCode);
     final responseBody = json.decode(res.body);
 
     if (isRequestSucceeded(res.statusCode)) {
