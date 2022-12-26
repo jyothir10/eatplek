@@ -42,7 +42,7 @@ dependencies:
   flutter_svg: ^1.1.1+1
   http: ^0.13.5
   shared_preferences: ^2.0.15
-  modal_progress_hud_nsn: ^0.2.1
+  modal_progress_hud_nsn: ^0.3.0
   cached_network_image: ^3.2.1
   flutter_local_notifications: ^9.8.0+1
   rxdart: ^0.27.5
@@ -51,8 +51,8 @@ dependencies:
   rename: ^2.0.1
   intl: ^0.17.0
   url_launcher: ^6.1.5
-  firebase_messaging: ^13.0.4
-  firebase_core: ^1.24.0
+  firebase_messaging: ^14.1.2
+  firebase_core: ^2.3.0
   overlay_support: ^2.0.1
 
 dev_dependencies:
