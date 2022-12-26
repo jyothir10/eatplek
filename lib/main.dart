@@ -53,7 +53,6 @@ class MyApp extends StatelessWidget {
           EditProfileScreen.id: (context) => EditProfileScreen(),
           FeedbackScreen.id: (context) => FeedbackScreen(),
           DashBoardScreen.id: (context) => DashBoardScreen(
-                permissionAllowed: true,
               ),
           NotificationScreen.id: (context) => NotificationScreen(),
           OrderHistoryScreen.id: (context) => OrderHistoryScreen(),

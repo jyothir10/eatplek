@@ -54,9 +54,6 @@ dependencies:
   firebase_messaging: ^14.1.2
   firebase_core: ^2.3.0
   overlay_support: ^2.0.1
-  geolocator: ^9.0.2
-  geocoding: ^2.0.5
-
 
 dev_dependencies:
   flutter_test:
