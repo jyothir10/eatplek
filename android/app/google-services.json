@@ -7,17 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:972078673774:android:54d9a8305ea3ee4fc4db7f",
+        "mobilesdk_app_id": "1:972078673774:android:0acc3a7e8887791ac4db7f",
         "android_client_info": {
-          "package_name": "com.eatplek.eatplek"
+          "package_name": "com.eatplek1.eatplek1"
         }
       },
       "oauth_client": [
         {
-          "client_id": "972078673774-vq47k04vg19uos5nb4jao8krj8e4m8jn.apps.googleusercontent.com",
+          "client_id": "972078673774-tmr1ppsk8rkdr144bbdt8tvqt5l95ssd.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.eatplek.eatplek",
+            "package_name": "com.eatplek1.eatplek1",
             "certificate_hash": "99676e2f2c83c10ac25655daeed6507fe0e75c55"
           }
         },
