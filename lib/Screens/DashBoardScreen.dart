@@ -16,7 +16,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:numberpicker/numberpicker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../Exceptions/api_exception.dart';
 import 'FoodScreen.dart';
 
