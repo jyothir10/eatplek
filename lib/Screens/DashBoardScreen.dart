@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:ui';
-
 import 'package:eatplek/Components/BottomBar.dart';
 import 'package:eatplek/Components/ClearFilterButton.dart';
 import 'package:eatplek/Components/DashBoardCard.dart';
@@ -11,8 +10,6 @@ import 'package:eatplek/services/local_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:numberpicker/numberpicker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,9 +19,6 @@ import 'FoodScreen.dart';
 
 class DashBoardScreen extends StatefulWidget {
   static const String id = '/dashboard';
-  bool permissionAllowed;
-  DashBoardScreen({required this.permissionAllowed, Key? key})
-      : super(key: key);
 
   @override
   State<DashBoardScreen> createState() => _DashBoardScreenState();
@@ -36,7 +30,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   List restaurants = [], dres = [], tres = [];
   bool isEmpty = false;
   bool showList = false;
-  Placemark address = Placemark();
+  //Placemark address = Placemark();
   String? mtoken = "";
 
   getRestaurants() async {
@@ -118,37 +112,37 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
       APIException(response.statusCode, except);
   }
 
-  Future<Position?> getCordinates() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return Future.error('Location services are disabled.');
-    }
-
-    permission = await Geolocator.checkPermission();
-
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error('Location permissions are denied');
-      }
-    }
-    if (permission == LocationPermission.deniedForever) {
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
-    }
-
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.best);
-
-    print("hi");
-    print(position);
-    List<Placemark> placemarks =
-        await placemarkFromCoordinates(position.latitude, position.longitude);
-    address = placemarks[0];
-    setState(() {});
-  }
+  // Future<Position?> getCordinates() async {
+  //   bool serviceEnabled;
+  //   LocationPermission permission;
+  //   serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  //   if (!serviceEnabled) {
+  //     return Future.error('Location services are disabled.');
+  //   }
+  //
+  //   permission = await Geolocator.checkPermission();
+  //
+  //   if (permission == LocationPermission.denied) {
+  //     permission = await Geolocator.requestPermission();
+  //     if (permission == LocationPermission.denied) {
+  //       return Future.error('Location permissions are denied');
+  //     }
+  //   }
+  //   if (permission == LocationPermission.deniedForever) {
+  //     return Future.error(
+  //         'Location permissions are permanently denied, we cannot request permissions.');
+  //   }
+  //
+  //   Position position = await Geolocator.getCurrentPosition(
+  //       desiredAccuracy: LocationAccuracy.best);
+  //
+  //   print("hi");
+  //   print(position);
+  //   List<Placemark> placemarks =
+  //       await placemarkFromCoordinates(position.latitude, position.longitude);
+  //   address = placemarks[0];
+  //   setState(() {});
+  // }
 
   _showDetailsCard(String resId, String resName) {
     int currentValue = 2;
@@ -538,10 +532,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    if (widget.permissionAllowed) {
-      getCordinates();
-    }
+    // if (widget.permissionAllowed) {
+    //   getCordinates();
+    // }
     getRestaurants();
     LocalNotificationService.initialise();
     requestPermission();
@@ -1144,7 +1137,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
 
   PreferredSize buildAppBar(BuildContext context) {
     return PreferredSize(
-      preferredSize: Size.fromHeight(74
+      preferredSize: Size.fromHeight(50
           //MediaQuery.of(context).size.height * .09
 
           ),
@@ -1165,36 +1158,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 spreadRadius: -1,
               ),
             ],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 2),
-                  child: Image.asset("images/location.png",
-                      height: 18, color: primaryclr),
-                ),
-                address.locality == null
-                    ? const Text(
-                        "Location",
-                        style: TextStyle(
-                          color: Color(0xff1d1d1d),
-                          fontSize: 10,
-                          fontFamily: 'SFUIText',
-                        ),
-                      )
-                    : Text(
-                        address.locality.toString(),
-                        style: const TextStyle(
-                          color: Color(0xff1d1d1d),
-                          fontSize: 10,
-                          fontFamily: 'SFUIText',
-                        ),
-                      ),
-              ],
-            ),
           ),
         ),
       ),

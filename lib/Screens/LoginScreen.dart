@@ -1,8 +1,7 @@
 import 'dart:convert';
-
 import 'package:eatplek/Components/LoginButton.dart';
 import 'package:eatplek/Constants.dart';
-import 'package:eatplek/Screens/LocationPermissionScreen.dart';
+import 'package:eatplek/Screens/DashBoardScreen.dart';
 import 'package:eatplek/Screens/RegisterScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -88,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
         sharedPreferences.setString("id", await responseBody['user']['id']);
         sharedPreferences.setString(
             "token", await responseBody['user']['token']);
-        Navigator.pushReplacementNamed(context, LocationPermissionScreen.id);
+        Navigator.pushReplacementNamed(context, DashBoardScreen.id);
       } else {
         if (status == false) {
           emailcontroller.clear();

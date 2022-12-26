@@ -116,7 +116,6 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => DashBoardScreen(
-                                                permissionAllowed: agreed,
                                               )));
                                 },
                                 style: ButtonStyle(
@@ -224,7 +223,6 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => DashBoardScreen(
-                              permissionAllowed: agreed,
                             ),
                           ));
                     },
