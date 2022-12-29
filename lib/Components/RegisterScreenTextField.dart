@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class optionScreenTextField extends StatelessWidget {
+class RegisterScreenTextField extends StatelessWidget {
   final String text;
   final void Function(String)? onchanged;
   final TextEditingController controller;
 
-  const optionScreenTextField({
+  const RegisterScreenTextField({
     Key? key,
     required this.text,
     required this.onchanged,

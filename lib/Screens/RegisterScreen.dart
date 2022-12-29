@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:eatplek/Components/optionScreenTextField.dart';
+import 'package:eatplek/Components/RegisterScreenTextField.dart';
 import 'package:eatplek/Constants.dart';
 import 'package:eatplek/Screens/LoginScreen.dart';
 import 'package:flutter/material.dart';
@@ -144,33 +144,90 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           textAlign: TextAlign.left),
                     ],
                   ),
-                  optionScreenTextField(
+                  RegisterScreenTextField(
                     controller: namecontroller,
                     onchanged: (value) {
                       name = value;
                     },
                     text: "Name",
                   ),
-                  optionScreenTextField(
+                  RegisterScreenTextField(
                     controller: emailcontroller,
                     onchanged: (value) {
                       email = value;
                     },
                     text: "Email",
                   ),
-                  optionScreenTextField(
+                  RegisterScreenTextField(
                     controller: phoneController,
                     onchanged: (value) {
                       phone = value;
                     },
                     text: "Phone",
                   ),
-                  optionScreenTextField(
-                    controller: passwordController,
-                    onchanged: (value) {
-                      password = value;
-                    },
-                    text: "Password",
+
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: Text("Password",
+                            style: const TextStyle(
+                                color: Color(0x61ffffff),
+                                fontWeight: FontWeight.w500,
+                                fontFamily: "SFUIText",
+                                fontStyle: FontStyle.normal,
+                                fontSize: 16.0),
+                            textAlign: TextAlign.left),
+                      ),
+                      TextField(
+                        obscureText: isObscure,
+                        controller: passwordController,
+                        onChanged: (value) {
+                          password = value;
+                        },
+                        style: const TextStyle(color: Colors.white),
+                        keyboardType: TextInputType.name,
+                        decoration: InputDecoration(
+                          fillColor: Colors.white,
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                            borderSide: BorderSide(
+                              color: Color(0xffffffff),
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                            borderSide: BorderSide(
+                              color: Color(0xffffffff),
+                            ),
+                          ),
+                          hintText: "",
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                isObscure == true
+                                    ? isObscure = false
+                                    : isObscure = true;
+                              });
+                            },
+                            child: isObscure == true
+                                ? Icon(
+                                    Icons.visibility,
+                                    color: Colors.white,
+                                  )
+                                : Icon(
+                                    Icons.visibility_off,
+                                    color: Colors.white,
+                                  ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   // MediaQuery.of(context).viewInsets.bottom == 0
                   //     ? Row(
