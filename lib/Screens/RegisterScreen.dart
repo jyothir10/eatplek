@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:eatplek/Components/optionScreenTextField.dart';
@@ -35,6 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   register() async {
     setState(() {
       showSpinner = true;
+      FocusManager.instance.primaryFocus?.unfocus();
     });
 
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
@@ -64,13 +66,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
       msg = await responseBody['message'];
 
       if (msg == "User registered successfully, verification email sent") {
-        _scaffoldKey.currentState?.showSnackBar(const SnackBar(
+        _scaffoldKey.currentState?.showSnackBar(
+          const SnackBar(
             behavior: SnackBarBehavior.floating,
             duration: Duration(seconds: 3),
             content: Text(
-                "A verification link has been sent to your email. Please verify to activate your account")));
-        Navigator.pushNamedAndRemoveUntil(
-            context, LoginScreen.id, (route) => false);
+                "A verification link has been sent to your email. Please verify to activate your account"),
+          ),
+        );
+        Timer(Duration(seconds: 3), () {
+          Navigator.pushNamedAndRemoveUntil(
+              context, LoginScreen.id, (route) => false);
+        });
       } else {
         if (status == false) {
           _scaffoldKey.currentState?.showSnackBar(
@@ -78,7 +85,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               behavior: SnackBarBehavior.floating,
               duration: Duration(seconds: 1),
               content: Text(
-                responseBody["error"].toString(),
+                "Could not register user!",
               ),
             ),
           );
@@ -94,7 +101,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           behavior: SnackBarBehavior.floating,
           duration: Duration(seconds: 1),
           content: Text(
-            responseBody["error"],
+            "Could not register user!",
           ),
         ),
       );

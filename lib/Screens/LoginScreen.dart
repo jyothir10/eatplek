@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:eatplek/Components/LoginButton.dart';
 import 'package:eatplek/Constants.dart';
 import 'package:eatplek/Screens/DashBoardScreen.dart';
@@ -50,8 +51,8 @@ class _LoginScreenState extends State<LoginScreen> {
   logIn() async {
     setState(() {
       showSpinner = true;
+      FocusManager.instance.primaryFocus?.unfocus();
     });
-    String url = "${URL_Latest}/user";
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map<String, String> headers = {
       "Content-Type": "application/json",
@@ -65,12 +66,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
     var urlfinal = Uri.https(URL_Latest, '/user/login');
 
-    print(urlfinal);
-
     var res = await http.post(urlfinal, headers: headers, body: body);
 
-    print("/HI");
-    print(res.statusCode);
     final responseBody = json.decode(res.body);
 
     if (isRequestSucceeded(res.statusCode)) {
@@ -92,11 +89,11 @@ class _LoginScreenState extends State<LoginScreen> {
         if (status == false) {
           emailcontroller.clear();
           _scaffoldKey.currentState?.showSnackBar(
-            SnackBar(
+            const SnackBar(
               behavior: SnackBarBehavior.floating,
               duration: Duration(seconds: 1),
               content: Text(
-                responseBody["message"].toString(),
+                "Could not login! Username/password incorrect",
               ),
             ),
           );
