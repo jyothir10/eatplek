@@ -51,8 +51,8 @@ class _LoginScreenState extends State<LoginScreen> {
   logIn() async {
     setState(() {
       showSpinner = true;
+      FocusManager.instance.primaryFocus?.unfocus();
     });
-    String url = "${URL_Latest}/user";
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map<String, String> headers = {
       "Content-Type": "application/json",
