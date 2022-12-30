@@ -68,13 +68,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   }
 
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    updateUser();
-  }
-
-  @override
   void dispose() {
     // Clean up the controller when the widget is removed from the
     // widget tree.
