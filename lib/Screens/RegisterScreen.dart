@@ -115,6 +115,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Color buttonColour = Color(0xffc6c6cc);
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    emailcontroller.dispose();
+    passwordController.dispose();
+    phoneController.dispose();
+    namecontroller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
