@@ -183,9 +183,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         : const EdgeInsets.symmetric(vertical: 25),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
                           children: const [
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 15),
@@ -202,9 +202,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                         Padding(
-                          padding: EdgeInsets.only(
-                              left: 15,
-                              right: MediaQuery.of(context).size.width * .12),
+                          padding: EdgeInsets.only(left: 15, right: 15),
                           child: TextField(
                             controller: emailcontroller,
                             cursorColor: Colors.white,
@@ -245,9 +243,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(
-                              left: 15,
-                              right: MediaQuery.of(context).size.width * .12),
+                          padding: EdgeInsets.only(left: 15, right: 15),
                           child: TextField(
                             controller: passwordcontroller,
                             cursorColor: Colors.white,
@@ -308,10 +304,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Padding(
                           padding: MediaQuery.of(context).viewInsets.bottom == 0
-                              ? EdgeInsets.only(top: 18, left: 15)
-                              : EdgeInsets.only(top: 50, left: 15),
+                              ? EdgeInsets.only(top: 18, left: 15, right: 15)
+                              : EdgeInsets.only(top: 50, left: 15, right: 15),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               LoginButton(
                                 onPressed: () {
