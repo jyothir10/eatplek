@@ -45,15 +45,6 @@ class _CartScreenState extends State<CartScreen> {
     getCart();
   }
 
-  var options = {
-    'key': 'rzp_live_KH9lYPAZw6fkVM',
-    'amount': 500, //in the smallest currency sub-unit.
-    'name': 'Eatplek',
-    'order_id': 'order_EMBFqjDHEEn80l', // Generate order_id using Orders API
-    'description': 'Pay',
-    'timeout': 300, // in seconds
-    'prefill': {'contact': '', 'email': ''}
-  };
   static const except = {'exc': 'An error occured'};
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) async {
@@ -643,11 +634,12 @@ class _CartScreenState extends State<CartScreen> {
                                 child: ProfileButton(
                                     text: "Proceed",
                                     onTap: () async {
+                                      getCart();
                                       if (status == 0) {
                                         var options = {
-                                          'key': 'rzp_live_KH9lYPAZw6fkVM',
-                                          'amount':
-                                              500, //in the smallest currency sub-unit.
+                                          'key': 'rzp_live_Q5QUWIWRPFicsg',
+                                          'amount': totalAmount *
+                                              100, //in the smallest currency sub-unit.
                                           'name': 'Eatplek',
                                           // Generate order_id using Orders API
                                           'description': 'Pay',
