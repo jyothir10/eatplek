@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
+
 import 'package:eatplek/Components/BottomBar.dart';
 import 'package:eatplek/Components/ClearFilterButton.dart';
 import 'package:eatplek/Components/DashBoardCard.dart';
@@ -13,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:numberpicker/numberpicker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../Exceptions/api_exception.dart';
 import 'FoodScreen.dart';
 
@@ -146,7 +148,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   _showDetailsCard(String resId, String resName) {
     int currentValue = 2;
     int currentValue1 = 5;
-    int persons = 2, guests = 1;
+    int persons = 1, guests = 1;
     final list = ['AM', 'PM'];
     String dropdownval = "AM";
     String hours = "01", min = "00", meridian = "AM", time = "";
@@ -264,8 +266,14 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                       onChanged: (value) {
                                                         setState(() {
                                                           currentValue = value;
+                                                          int intHours =
+                                                              (value - 1);
 
-                                                          hours = (value - 1)
+                                                          if (intHours <= 0) {
+                                                            intHours =
+                                                                intHours + 12;
+                                                          }
+                                                          hours = intHours
                                                               .toString();
                                                         });
                                                       }),
@@ -329,8 +337,15 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                         setState(() {
                                                           currentValue1 = value;
 
-                                                          min = (value - 5)
-                                                              .toString();
+                                                          int intMin =
+                                                              (value - 5);
+
+                                                          if (intMin <= 0) {
+                                                            intMin =
+                                                                intMin + 60;
+                                                          }
+                                                          min =
+                                                              intMin.toString();
                                                         });
                                                       }),
                                                 ),
@@ -439,6 +454,10 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                             persons = value;
 
                                                             guests = value - 1;
+                                                            if (guests < 0) {
+                                                              guests =
+                                                                  guests + 25;
+                                                            }
                                                           });
                                                         }),
                                                   ),
@@ -458,6 +477,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                 text: "Proceed",
                                 onTap: () {
                                   time = hours + ":" + min + " " + meridian;
+
+                                  print(time);
+                                  print(guests);
 
                                   cartInitialise(resId, resName, guests, time);
                                 }),
