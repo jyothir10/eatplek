@@ -248,7 +248,7 @@ class _CartScreenState extends State<CartScreen> {
                                     height: MediaQuery.of(context).size.height *
                                         .042,
                                     width:
-                                        MediaQuery.of(context).size.width * .2,
+                                        MediaQuery.of(context).size.width * .22,
                                     decoration: BoxDecoration(
                                       color: Color(0xd1e1e1e1),
                                       borderRadius: BorderRadius.circular(8),
