@@ -32,7 +32,7 @@
 //     if (currentBackPressTime == null ||
 //         now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
 //       currentBackPressTime = now;
-//       _scaffoldKey.currentState?.showSnackBar(const SnackBar(
+//       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
 //           behavior: SnackBarBehavior.floating,
 //           duration: Duration(seconds: 1),
 //           content: Text("Press back again to exit")));
@@ -87,7 +87,7 @@
 //         }
 //       } else {
 //         if (status == false) {
-//           _scaffoldKey.currentState?.showSnackBar(
+//           ScaffoldMessenger.of(context).showSnackBar(
 //             SnackBar(
 //               behavior: SnackBarBehavior.floating,
 //               duration: Duration(seconds: 1),
@@ -103,7 +103,7 @@
 //         throw APIException(res.statusCode, jsonDecode(res.body));
 //       }
 //     } else {
-//       _scaffoldKey.currentState?.showSnackBar(
+//       ScaffoldMessenger.of(context).showSnackBar(
 //         SnackBar(
 //           behavior: SnackBarBehavior.floating,
 //           duration: Duration(seconds: 1),
@@ -235,7 +235,7 @@
 //                               if (otp.length == 6 && otp.isNotEmpty) {
 //                                 logIn();
 //                               } else {
-//                                 _scaffoldKey.currentState?.showSnackBar(
+//                                 ScaffoldMessenger.of(context).showSnackBar(
 //                                     const SnackBar(
 //                                         behavior: SnackBarBehavior.floating,
 //                                         duration: Duration(seconds: 1),

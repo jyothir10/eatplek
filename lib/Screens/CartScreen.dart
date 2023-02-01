@@ -651,7 +651,8 @@ class _CartScreenState extends State<CartScreen> {
                                         };
                                         _razorpay.open(options);
                                       } else if (status == -1) {
-                                        _scaffoldKey.currentState?.showSnackBar(
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
                                           const SnackBar(
                                             behavior: SnackBarBehavior.floating,
                                             duration: Duration(seconds: 3),
@@ -660,7 +661,8 @@ class _CartScreenState extends State<CartScreen> {
                                           ),
                                         );
                                       } else if (status == 1) {
-                                        _scaffoldKey.currentState?.showSnackBar(
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
                                           const SnackBar(
                                             behavior: SnackBarBehavior.floating,
                                             duration: Duration(seconds: 2),

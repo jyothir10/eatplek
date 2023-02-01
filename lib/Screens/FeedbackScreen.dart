@@ -46,7 +46,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
 
       if (jsonData['message'] == "Feedback created") {
         showSpinner = false;
-        _scaffoldKey.currentState?.showSnackBar(const SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             behavior: SnackBarBehavior.floating,
             duration: Duration(seconds: 1),
             content: Text("Feedback sent successfully")));

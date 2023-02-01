@@ -66,7 +66,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       msg = await responseBody['message'];
 
       if (msg == "User registered successfully, verification email sent") {
-        _scaffoldKey.currentState?.showSnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             behavior: SnackBarBehavior.floating,
             duration: Duration(seconds: 3),
@@ -80,7 +80,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         });
       } else {
         if (status == false) {
-          _scaffoldKey.currentState?.showSnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               behavior: SnackBarBehavior.floating,
               duration: Duration(seconds: 1),
@@ -96,7 +96,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         throw APIException(res.statusCode, jsonDecode(res.body));
       }
     } else {
-      _scaffoldKey.currentState?.showSnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           behavior: SnackBarBehavior.floating,
           duration: Duration(seconds: 1),
@@ -418,7 +418,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       phone.isNotEmpty) {
                                     register();
                                   } else {
-                                    _scaffoldKey.currentState?.showSnackBar(
+                                    ScaffoldMessenger.of(context).showSnackBar(
                                         const SnackBar(
                                             behavior: SnackBarBehavior.floating,
                                             duration: Duration(seconds: 1),

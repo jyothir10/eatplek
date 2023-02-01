@@ -511,7 +511,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     if (currentBackPressTime == null ||
         now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
       currentBackPressTime = now;
-      _scaffoldKey.currentState?.showSnackBar(const SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           behavior: SnackBarBehavior.floating,
           duration: Duration(seconds: 1),
           content: Text("Press back again to exit")));
