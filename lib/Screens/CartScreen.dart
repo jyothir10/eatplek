@@ -248,7 +248,7 @@ class _CartScreenState extends State<CartScreen> {
                                     height: MediaQuery.of(context).size.height *
                                         .042,
                                     width:
-                                        MediaQuery.of(context).size.width * .2,
+                                        MediaQuery.of(context).size.width * .22,
                                     decoration: BoxDecoration(
                                       color: Color(0xd1e1e1e1),
                                       borderRadius: BorderRadius.circular(8),
@@ -448,7 +448,7 @@ class _CartScreenState extends State<CartScreen> {
                                               ),
                                             ),
                                             Text(
-                                              totalAmount.toString(),
+                                              "₹ ${totalAmount}",
                                               style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 11,
@@ -508,7 +508,7 @@ class _CartScreenState extends State<CartScreen> {
                                               ),
                                             ),
                                             Text(
-                                              totalAmount.toString(),
+                                              "₹ ${totalAmount}",
                                               style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 12,
@@ -618,7 +618,7 @@ class _CartScreenState extends State<CartScreen> {
                                   Padding(
                                     padding: const EdgeInsets.only(top: 3),
                                     child: Text(
-                                      totalAmount.toString(),
+                                      "₹ ${totalAmount}",
                                       style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 17.107439041137695,
