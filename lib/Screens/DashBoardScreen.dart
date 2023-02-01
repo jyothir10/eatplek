@@ -76,9 +76,13 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
 
     String typename = "Take-Away";
 
-    if (d == 0) {
+    if (d == 1) {
       typename = "Dine In";
+    } else {
+      noGuest = 0;
     }
+
+    print(typename);
 
     Map body1 = {
       "user_id": user_id,
@@ -477,9 +481,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                 text: "Proceed",
                                 onTap: () {
                                   time = hours + ":" + min + " " + meridian;
-
-                                  print(time);
-                                  print(guests);
 
                                   cartInitialise(resId, resName, guests, time);
                                 }),
