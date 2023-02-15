@@ -2,12 +2,10 @@ import 'dart:convert';
 
 import 'package:eatplek/Components/LoginButton.dart';
 import 'package:eatplek/Constants.dart';
-import 'package:eatplek/Screens/DashBoardScreen.dart';
-import 'package:eatplek/Screens/RegisterScreen.dart';
+import 'package:eatplek/Screens/OtpScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Exceptions/api_exception.dart';
 
@@ -19,9 +17,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController emailcontroller = TextEditingController();
-  TextEditingController passwordcontroller = TextEditingController();
-  bool isObscure = true;
+  TextEditingController phonecontroller = TextEditingController();
   DateTime? currentBackPressTime;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -39,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Future.value(true);
   }
 
-  String email = "", password = "";
+  String phone = "";
   bool showSpinner = false;
   bool status = false;
   Color buttonColour = Color(0xffc6c6cc);
@@ -53,18 +49,14 @@ class _LoginScreenState extends State<LoginScreen> {
       showSpinner = true;
       FocusManager.instance.primaryFocus?.unfocus();
     });
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map<String, String> headers = {
       "Content-Type": "application/json",
     };
 
-    Map body1 = {
-      "email": emailcontroller.text.trim(),
-      "password": passwordcontroller.text.trim(),
-    };
+    Map body1 = {"phone": phonecontroller.text.trim().toString()};
     final body = jsonEncode(body1);
 
-    var urlfinal = Uri.https(URL_Latest, '/user/login');
+    var urlfinal = Uri.https(URL_Latest, '/user');
 
     var res = await http.post(urlfinal, headers: headers, body: body);
 
@@ -74,34 +66,30 @@ class _LoginScreenState extends State<LoginScreen> {
       status = true;
       final msg = await responseBody['message'];
 
-      emailcontroller.clear();
-      passwordcontroller.clear();
-      setState(() {
-        showSpinner = false;
-      });
+      phonecontroller.clear();
 
-      if (msg == "User logged in successfully") {
-        sharedPreferences.setString("id", await responseBody['user']['id']);
-        sharedPreferences.setString(
-            "token", await responseBody['user']['token']);
-        Navigator.pushReplacementNamed(context, DashBoardScreen.id);
+      if (msg == "OTP sent successfully") {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => OtpScreen(
+                    phone: phone,
+                  )),
+        );
+
+        // Navigator.pushReplacementNamed(context, DashBoardScreen.id);
       } else {
-        if (status == false) {
-          emailcontroller.clear();
-          _scaffoldKey.currentState?.showSnackBar(
-            const SnackBar(
-              behavior: SnackBarBehavior.floating,
-              duration: Duration(seconds: 1),
-              content: Text(
-                "Could not login! Username/password incorrect",
-              ),
+        phonecontroller.clear();
+        _scaffoldKey.currentState?.showSnackBar(
+          const SnackBar(
+            behavior: SnackBarBehavior.floating,
+            duration: Duration(seconds: 1),
+            content: Text(
+              "Could not send OTP ! Please try again",
             ),
-          );
-          setState(() {
-            showSpinner = false;
-          });
-          print(status);
-        }
+          ),
+        );
+        print(status);
         throw APIException(res.statusCode, jsonDecode(res.body));
       }
     } else {
@@ -110,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
           behavior: SnackBarBehavior.floating,
           duration: Duration(seconds: 1),
           content: Text(
-            "No acccount found",
+            "Could not send OTP ! Please try again",
           ),
         ),
       );
@@ -119,13 +107,14 @@ class _LoginScreenState extends State<LoginScreen> {
       });
       throw APIException(res.statusCode, jsonDecode(res.body));
     }
+    setState(() {
+      showSpinner = false;
+    });
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
-    emailcontroller.dispose();
-    passwordcontroller.dispose();
+    phonecontroller.dispose();
     super.dispose();
   }
 
@@ -190,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ? const EdgeInsets.all(0.0)
                         : const EdgeInsets.symmetric(vertical: 25),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Row(
@@ -198,7 +187,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 15),
                               child: Text(
-                                'Log in',
+                                'Log In',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 36,
@@ -210,14 +199,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 15, right: 15),
+                          padding:
+                              EdgeInsets.only(left: 15, right: 15, top: 14),
                           child: TextField(
-                            controller: emailcontroller,
+                            controller: phonecontroller,
                             cursorColor: Colors.white,
-                            keyboardType: TextInputType.emailAddress,
+                            keyboardType: TextInputType.phone,
                             onChanged: (text) {
-                              email = text;
-                              if (email.isNotEmpty & password.isNotEmpty) {
+                              phone = text;
+                              if (phone.length == 10) {
                                 setState(() {
                                   buttonColour = Colors.white;
                                 });
@@ -229,7 +219,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                             style: const TextStyle(
                               color: Colors.white,
-                              fontSize: 16,
+                              fontSize: 18,
                               fontFamily: 'SFUIText',
                               fontWeight: FontWeight.w500,
                             ),
@@ -240,67 +230,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.white),
                               ),
-                              labelText: 'E-mail',
-                              labelStyle: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontFamily: 'SFUIText',
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 15, right: 15),
-                          child: TextField(
-                            controller: passwordcontroller,
-                            cursorColor: Colors.white,
-                            keyboardType: TextInputType.visiblePassword,
-                            obscureText: isObscure,
-                            onChanged: (text) {
-                              password = text;
-                              if (email.isNotEmpty & password.isNotEmpty) {
-                                setState(() {
-                                  buttonColour = Colors.white;
-                                });
-                              } else {
-                                setState(() {
-                                  buttonColour = Color(0xffc6c6cc);
-                                });
-                              }
-                            },
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontFamily: 'SFUIText',
-                              fontWeight: FontWeight.w500,
-                            ),
-                            decoration: InputDecoration(
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
-                              ),
-                              suffixIcon: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    isObscure == true
-                                        ? isObscure = false
-                                        : isObscure = true;
-                                  });
-                                },
-                                child: isObscure == true
-                                    ? Icon(
-                                        Icons.visibility,
-                                        color: Colors.white,
-                                      )
-                                    : Icon(
-                                        Icons.visibility_off,
-                                        color: Colors.white,
-                                      ),
-                              ),
-                              labelText: 'Password',
+                              labelText: 'Phone Number',
                               labelStyle: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -312,14 +242,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Padding(
                           padding: MediaQuery.of(context).viewInsets.bottom == 0
-                              ? EdgeInsets.only(top: 18, left: 15, right: 15)
+                              ? EdgeInsets.only(top: 58, left: 15, right: 15)
                               : EdgeInsets.only(top: 50, left: 15, right: 15),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               LoginButton(
                                 onPressed: () {
-                                  if (email.isNotEmpty & password.isNotEmpty) {
+                                  if (phone.length == 10) {
                                     logIn();
                                   } else {
                                     _scaffoldKey.currentState?.showSnackBar(
@@ -330,49 +260,49 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 "Invalid email or password")));
                                   }
                                 },
-                                text: 'Log In',
+                                text: 'Get OTP',
                                 clr: buttonColour,
                               ),
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Don\'t have an account? ',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                  fontFamily: 'SFUIText',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, RegisterScreen.id);
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.all(3.0),
-                                  child: Text(
-                                    'Register',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontFamily: 'SFUIText',
-                                      fontWeight: FontWeight.w700,
-                                      decoration: TextDecoration.underline,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: EdgeInsets.symmetric(
+                        //       horizontal: 15, vertical: 15),
+                        //   child: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.center,
+                        //     children: [
+                        //       Text(
+                        //         'Don\'t have an account? ',
+                        //         style: TextStyle(
+                        //           color: Colors.white,
+                        //           fontSize: 14,
+                        //           fontFamily: 'SFUIText',
+                        //           fontWeight: FontWeight.w500,
+                        //         ),
+                        //       ),
+                        //       InkWell(
+                        //         onTap: () {
+                        //           Navigator.pushNamed(
+                        //               context, RegisterScreen.id);
+                        //         },
+                        //         child: Padding(
+                        //           padding: const EdgeInsets.all(3.0),
+                        //           child: Text(
+                        //             'Register',
+                        //             style: TextStyle(
+                        //               color: Colors.white,
+                        //               fontSize: 14,
+                        //               fontFamily: 'SFUIText',
+                        //               fontWeight: FontWeight.w700,
+                        //               decoration: TextDecoration.underline,
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
