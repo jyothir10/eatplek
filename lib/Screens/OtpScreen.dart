@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:eatplek/Components/LoginButton.dart';
 import 'package:eatplek/Constants.dart';
+import 'package:eatplek/Screens/LoginScreen.dart';
 import 'package:eatplek/Screens/RegisterScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -46,7 +47,6 @@ class _OtpScreenState extends State<OtpScreen> {
   }
 
   logIn() async {
-    print("Hello${widget.phone}");
     setState(() {
       showSpinner = true;
     });
@@ -82,6 +82,7 @@ class _OtpScreenState extends State<OtpScreen> {
         sharedPreferences.setString(
             "token", await responseBody['user']['token']);
         name = await responseBody['user']['name'];
+        print(name);
         if (name.isEmpty) {
           Navigator.pushReplacementNamed(context, RegisterScreen.id);
         } else {
@@ -221,15 +222,21 @@ class _OtpScreenState extends State<OtpScreen> {
                   padding: const EdgeInsets.only(top: 15),
                   child: Column(
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.all(15.0),
-                        child: Text(
-                          'Resend OTP',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontFamily: 'SFUIText',
-                            fontWeight: FontWeight.w500,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushReplacementNamed(
+                              context, LoginScreen.id);
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.all(15.0),
+                          child: Text(
+                            'Resend OTP',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontFamily: 'SFUIText',
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                       ),

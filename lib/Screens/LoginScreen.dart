@@ -6,7 +6,6 @@ import 'package:eatplek/Screens/OtpScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Exceptions/api_exception.dart';
 
@@ -50,7 +49,6 @@ class _LoginScreenState extends State<LoginScreen> {
       showSpinner = true;
       FocusManager.instance.primaryFocus?.unfocus();
     });
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map<String, String> headers = {
       "Content-Type": "application/json",
     };

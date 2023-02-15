@@ -1,9 +1,8 @@
-import 'dart:async';
 import 'dart:convert';
 
 import 'package:eatplek/Components/RegisterScreenTextField.dart';
 import 'package:eatplek/Constants.dart';
-import 'package:eatplek/Screens/LoginScreen.dart';
+import 'package:eatplek/Screens/DashBoardScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -18,14 +17,13 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  String name = '', email = '', password = '', phone = '';
+  String name = '', email = '';
   bool showSpinner = false, isObscure = true;
   DateTime? currentBackPressTime;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   TextEditingController namecontroller = TextEditingController();
   TextEditingController emailcontroller = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
+
   bool status = false;
   String msg = "";
 
@@ -40,44 +38,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
 
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String? token = sharedPreferences.getString("token");
 
     Map<String, String> headers = {
       "Content-Type": "application/json",
+      "Token": token.toString(),
     };
 
     Map body1 = {
       "name": namecontroller.text.trim(),
       "email": emailcontroller.text.trim(),
-      "phone": phoneController.text.trim(),
-      "password": passwordController.text.trim(),
     };
     final body = jsonEncode(body1);
 
-    var urlfinal = Uri.https(URL_Latest, '/user/register');
+    var urlfinal = Uri.https(URL_Latest, '/user');
 
-    var res = await http.post(urlfinal, headers: headers, body: body);
+    var res = await http.put(urlfinal, headers: headers, body: body);
 
     final responseBody = json.decode(res.body);
-
-    print(responseBody);
 
     if (isRequestSucceeded(res.statusCode)) {
       status = true;
       msg = await responseBody['message'];
 
-      if (msg == "User registered successfully, verification email sent") {
-        _scaffoldKey.currentState?.showSnackBar(
-          const SnackBar(
-            behavior: SnackBarBehavior.floating,
-            duration: Duration(seconds: 3),
-            content: Text(
-                "A verification link has been sent to your email. Please verify to activate your account"),
-          ),
-        );
-        Timer(Duration(seconds: 3), () {
-          Navigator.pushNamedAndRemoveUntil(
-              context, LoginScreen.id, (route) => false);
-        });
+      if (msg == "User updated successfully") {
+        Navigator.pushNamedAndRemoveUntil(
+            context, DashBoardScreen.id, (route) => false);
       } else {
         if (status == false) {
           _scaffoldKey.currentState?.showSnackBar(
@@ -116,10 +102,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     emailcontroller.dispose();
-    passwordController.dispose();
-    phoneController.dispose();
     namecontroller.dispose();
     super.dispose();
   }
@@ -130,6 +113,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       key: _scaffoldKey,
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
+        progressIndicator: CircularProgressIndicator(
+          color: Colors.white,
+        ),
         child: Container(
           color: primaryclr,
           child: SafeArea(
@@ -158,6 +144,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     controller: namecontroller,
                     onchanged: (value) {
                       name = value;
+                      if (email.isNotEmpty & name.isNotEmpty) {
+                        buttonColour = Colors.white;
+                      }
                     },
                     text: "Name",
                   ),
@@ -165,80 +154,83 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     controller: emailcontroller,
                     onchanged: (value) {
                       email = value;
+                      if (email.isNotEmpty & name.isNotEmpty) {
+                        buttonColour = Colors.white;
+                      }
                     },
                     text: "Email",
                   ),
-                  RegisterScreenTextField(
-                    controller: phoneController,
-                    onchanged: (value) {
-                      phone = value;
-                    },
-                    text: "Phone",
-                  ),
-
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: Text("Password",
-                            style: const TextStyle(
-                                color: Color(0x61ffffff),
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "SFUIText",
-                                fontStyle: FontStyle.normal,
-                                fontSize: 16.0),
-                            textAlign: TextAlign.left),
-                      ),
-                      TextField(
-                        obscureText: isObscure,
-                        controller: passwordController,
-                        onChanged: (value) {
-                          password = value;
-                        },
-                        style: const TextStyle(color: Colors.white),
-                        keyboardType: TextInputType.name,
-                        decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                            borderSide: BorderSide(
-                              color: Color(0xffffffff),
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                            borderSide: BorderSide(
-                              color: Color(0xffffffff),
-                            ),
-                          ),
-                          hintText: "",
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                isObscure == true
-                                    ? isObscure = false
-                                    : isObscure = true;
-                              });
-                            },
-                            child: isObscure == true
-                                ? Icon(
-                                    Icons.visibility,
-                                    color: Colors.white,
-                                  )
-                                : Icon(
-                                    Icons.visibility_off,
-                                    color: Colors.white,
-                                  ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  // RegisterScreenTextField(
+                  //   controller: phoneController,
+                  //   onchanged: (value) {
+                  //     phone = value;
+                  //   },
+                  //   text: "Phone",
+                  // ),
+                  //
+                  // Column(
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   children: [
+                  //     Padding(
+                  //       padding: const EdgeInsets.only(bottom: 10),
+                  //       child: Text("Password",
+                  //           style: const TextStyle(
+                  //               color: Color(0x61ffffff),
+                  //               fontWeight: FontWeight.w500,
+                  //               fontFamily: "SFUIText",
+                  //               fontStyle: FontStyle.normal,
+                  //               fontSize: 16.0),
+                  //           textAlign: TextAlign.left),
+                  //     ),
+                  //     TextField(
+                  //       obscureText: isObscure,
+                  //       controller: passwordController,
+                  //       onChanged: (value) {
+                  //         password = value;
+                  //       },
+                  //       style: const TextStyle(color: Colors.white),
+                  //       keyboardType: TextInputType.name,
+                  //       decoration: InputDecoration(
+                  //         fillColor: Colors.white,
+                  //         enabledBorder: OutlineInputBorder(
+                  //           borderRadius: BorderRadius.all(
+                  //             Radius.circular(10),
+                  //           ),
+                  //           borderSide: BorderSide(
+                  //             color: Color(0xffffffff),
+                  //           ),
+                  //         ),
+                  //         focusedBorder: OutlineInputBorder(
+                  //           borderRadius: BorderRadius.all(
+                  //             Radius.circular(10),
+                  //           ),
+                  //           borderSide: BorderSide(
+                  //             color: Color(0xffffffff),
+                  //           ),
+                  //         ),
+                  //         hintText: "",
+                  //         suffixIcon: GestureDetector(
+                  //           onTap: () {
+                  //             setState(() {
+                  //               isObscure == true
+                  //                   ? isObscure = false
+                  //                   : isObscure = true;
+                  //             });
+                  //           },
+                  //           child: isObscure == true
+                  //               ? Icon(
+                  //                   Icons.visibility,
+                  //                   color: Colors.white,
+                  //                 )
+                  //               : Icon(
+                  //                   Icons.visibility_off,
+                  //                   color: Colors.white,
+                  //                 ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                   // MediaQuery.of(context).viewInsets.bottom == 0
                   //     ? Row(
                   //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -412,10 +404,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               height: MediaQuery.of(context).size.height * .05,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  if (email.isNotEmpty &
-                                      name.isNotEmpty &
-                                      password.isNotEmpty &
-                                      phone.isNotEmpty) {
+                                  if (email.isNotEmpty & name.isNotEmpty) {
                                     register();
                                   } else {
                                     _scaffoldKey.currentState?.showSnackBar(
