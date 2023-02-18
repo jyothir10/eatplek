@@ -293,20 +293,21 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                               Container(
                                 height: MediaQuery.of(context).size.height *
                                     n *
-                                    .039,
+                                    .033,
                                 width: MediaQuery.of(context).size.width * .925,
                                 child: items.isNotEmpty
                                     ? ListView.builder(
                                         itemCount: n,
                                         itemBuilder: (context, index) {
                                           return InvoiceListItem(
-                                              itemName: items[index]['name'],
-                                              price: items[index]['price']
-                                                  .toString(),
-                                              qty: items[index]['quantity']
-                                                  .toString(),
-                                              total: items[index]['total']
-                                                  .toString());
+                                            itemName: items[index]['name'],
+                                            price: items[index]['price']
+                                                .toString(),
+                                            qty: items[index]['quantity']
+                                                .toString(),
+                                            total: items[index]['total']
+                                                .toString()
+                                          );
                                         })
                                     : Container(),
                               ),
