@@ -457,6 +457,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                           setState(() {
                                                             persons = value;
 
+                                                            print(persons);
+
                                                             guests = value - 1;
                                                             if (guests < 0) {
                                                               guests =

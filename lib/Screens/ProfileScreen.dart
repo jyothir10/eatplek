@@ -8,7 +8,6 @@ import 'package:eatplek/Screens/ContactUsScreen.dart';
 import 'package:eatplek/Screens/EditProfileScreen.dart';
 import 'package:eatplek/Screens/FeedbackScreen.dart';
 import 'package:eatplek/Screens/LoginScreen.dart';
-import 'package:eatplek/Screens/NotificationScreen.dart';
 import 'package:eatplek/Screens/RefundPolicyScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -228,14 +227,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           Navigator.pushNamed(
                                               context, EditProfileScreen.id);
                                         }),
-                                    ProfileOption(
-                                      text: "Notifications",
-                                      img: 'notification',
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context, NotificationScreen.id);
-                                      },
-                                    ),
+                                    // ProfileOption(
+                                    //   text: "Notifications",
+                                    //   img: 'notification',
+                                    //   onTap: () {
+                                    //     Navigator.pushNamed(
+                                    //         context, NotificationScreen.id);
+                                    //   },
+                                    // ),
                                     ProfileOption(
                                       text: "Send Feedback",
                                       img: 'feedback',
