@@ -20,7 +20,7 @@ class EditProfileScreen extends StatefulWidget {
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
   final nameController = TextEditingController();
-  final phoneController = TextEditingController();
+  final emailController = TextEditingController();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   String msg = "";
   bool showSpinner = false;
@@ -36,7 +36,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     };
     Map body1 = {
       "name": nameController.text.trim(),
-      "phone": phoneController.text.trim(),
+      "email": emailController.text.trim(),
     };
 
     final body = jsonEncode(body1);
@@ -60,7 +60,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             content: Text("Could not update user")));
       }
       nameController.clear();
-      phoneController.clear();
+      emailController.clear();
       setState(() {
         showSpinner = false;
       });
@@ -72,7 +72,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     // Clean up the controller when the widget is removed from the
     // widget tree.
     nameController.dispose();
-    phoneController.dispose();
+    emailController.dispose();
     super.dispose();
   }
 
@@ -127,17 +127,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ),
                           ),
                         ),
-                        Positioned(
-                          top: 65,
-                          left: 65,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Image.asset(
-                              "images/edit_profile.png",
-                              height: 45,
-                            ),
-                          ),
-                        )
+                        // Positioned(
+                        //   top: 65,
+                        //   left: 65,
+                        //   child: InkWell(
+                        //     onTap: () {},
+                        //     child: Image.asset(
+                        //       "images/edit_profile.png",
+                        //       height: 45,
+                        //     ),
+                        //   ),
+                        // )
                       ],
                     )
                   : Container(),
@@ -151,9 +151,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       type: TextInputType.name,
                     ),
                     EditProfileTextField(
-                      myController: phoneController,
-                      text: 'Phone',
-                      type: TextInputType.number,
+                      myController: emailController,
+                      text: 'E-mail',
+                      type: TextInputType.emailAddress,
                     ),
                   ],
                 ),
