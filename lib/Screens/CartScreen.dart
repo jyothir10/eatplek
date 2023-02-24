@@ -651,23 +651,27 @@ class _CartScreenState extends State<CartScreen> {
                                         };
                                         _razorpay.open(options);
                                       } else if (status == -1) {
-                                        _scaffoldKey.currentState?.showSnackBar(
-                                          const SnackBar(
-                                            behavior: SnackBarBehavior.floating,
-                                            duration: Duration(seconds: 3),
-                                            content: Text(
-                                                "Sorry, Your order has not yet been approved by the restaurant!\nPlease wait a little bit"),
-                                          ),
-                                        );
+                                        ScaffoldMessenger.of(context)
+                                          ..showSnackBar(
+                                            const SnackBar(
+                                              behavior:
+                                                  SnackBarBehavior.floating,
+                                              duration: Duration(seconds: 3),
+                                              content: Text(
+                                                  "Sorry, Your order has not yet been approved by the restaurant!\nPlease wait a little bit"),
+                                            ),
+                                          );
                                       } else if (status == 1) {
-                                        _scaffoldKey.currentState?.showSnackBar(
-                                          const SnackBar(
-                                            behavior: SnackBarBehavior.floating,
-                                            duration: Duration(seconds: 2),
-                                            content: Text(
-                                                "Sorry, Your order has been rejected by the restaurant!"),
-                                          ),
-                                        );
+                                        ScaffoldMessenger.of(context)
+                                          ..showSnackBar(
+                                            const SnackBar(
+                                              behavior:
+                                                  SnackBarBehavior.floating,
+                                              duration: Duration(seconds: 2),
+                                              content: Text(
+                                                  "Sorry, Your order has been rejected by the restaurant!"),
+                                            ),
+                                          );
                                       }
                                     }),
                               ),
