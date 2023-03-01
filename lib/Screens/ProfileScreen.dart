@@ -243,6 +243,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             context, FeedbackScreen.id);
                                       },
                                     ),
+                                    const ProfileOption2(
+                                      name: "Rate us on Play Store/App Store",
+                                      icon: Icons.star_border_outlined,
+                                      url: "https://play.google.com/store/apps/details?id=com.eatplek1.eatplek1",
+                                    ),
                                     ProfileOption(
                                       text: "Rate us on Play Store/App Store",
                                       img: 'Star',
