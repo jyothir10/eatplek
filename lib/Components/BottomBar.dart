@@ -33,7 +33,6 @@ class _BottomBarState extends State<BottomBar> {
     return SizedBox(
       height: 75,
       child: BottomNavigationBar(
-        backgroundColor: Colors.red,
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
         currentIndex: widget.index,
