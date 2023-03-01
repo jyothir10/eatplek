@@ -49,15 +49,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       final jsonData = jsonDecode(response.body);
       msg = await jsonData['message'];
       if (msg == "User updated successfully") {
-        _scaffoldKey.currentState?.showSnackBar(const SnackBar(
-            behavior: SnackBarBehavior.floating,
-            duration: Duration(seconds: 1),
-            content: Text("User updated successfully")));
+        ScaffoldMessenger.of(context)
+          ..showSnackBar(const SnackBar(
+              behavior: SnackBarBehavior.floating,
+              duration: Duration(seconds: 1),
+              content: Text("User updated successfully")));
       } else {
-        _scaffoldKey.currentState?.showSnackBar(const SnackBar(
-            behavior: SnackBarBehavior.floating,
-            duration: Duration(seconds: 1),
-            content: Text("Could not update user")));
+        ScaffoldMessenger.of(context)
+          ..showSnackBar(const SnackBar(
+              behavior: SnackBarBehavior.floating,
+              duration: Duration(seconds: 1),
+              content: Text("Could not update user")));
       }
       nameController.clear();
       emailController.clear();

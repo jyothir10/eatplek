@@ -33,10 +33,11 @@ class _OtpScreenState extends State<OtpScreen> {
     if (currentBackPressTime == null ||
         now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
       currentBackPressTime = now;
-      _scaffoldKey.currentState?.showSnackBar(const SnackBar(
-          behavior: SnackBarBehavior.floating,
-          duration: Duration(seconds: 1),
-          content: Text("Press back again to exit")));
+      ScaffoldMessenger.of(context)
+        ..showSnackBar(const SnackBar(
+            behavior: SnackBarBehavior.floating,
+            duration: Duration(seconds: 1),
+            content: Text("Press back again to exit")));
       return Future.value(false);
     }
     return Future.value(true);
@@ -91,15 +92,16 @@ class _OtpScreenState extends State<OtpScreen> {
         }
       } else {
         if (status == false) {
-          _scaffoldKey.currentState?.showSnackBar(
-            SnackBar(
-              behavior: SnackBarBehavior.floating,
-              duration: Duration(seconds: 1),
-              content: Text(
-                responseBody["error"].toString(),
+          ScaffoldMessenger.of(context)
+            ..showSnackBar(
+              SnackBar(
+                behavior: SnackBarBehavior.floating,
+                duration: Duration(seconds: 1),
+                content: Text(
+                  responseBody["error"].toString(),
+                ),
               ),
-            ),
-          );
+            );
           setState(() {
             showSpinner = false;
           });
@@ -107,15 +109,16 @@ class _OtpScreenState extends State<OtpScreen> {
         throw APIException(res.statusCode, jsonDecode(res.body));
       }
     } else {
-      _scaffoldKey.currentState?.showSnackBar(
-        SnackBar(
-          behavior: SnackBarBehavior.floating,
-          duration: Duration(seconds: 1),
-          content: Text(
-            responseBody["error"],
+      ScaffoldMessenger.of(context)
+        ..showSnackBar(
+          SnackBar(
+            behavior: SnackBarBehavior.floating,
+            duration: Duration(seconds: 1),
+            content: Text(
+              responseBody["error"],
+            ),
           ),
-        ),
-      );
+        );
       setState(() {
         showSpinner = false;
       });
@@ -248,11 +251,11 @@ class _OtpScreenState extends State<OtpScreen> {
                               if (otp.length == 6 && otp.isNotEmpty) {
                                 logIn();
                               } else {
-                                _scaffoldKey.currentState?.showSnackBar(
-                                    const SnackBar(
-                                        behavior: SnackBarBehavior.floating,
-                                        duration: Duration(seconds: 1),
-                                        content: Text("Invalid OTP")));
+                                ScaffoldMessenger.of(context)
+                                  ..showSnackBar(const SnackBar(
+                                      behavior: SnackBarBehavior.floating,
+                                      duration: Duration(seconds: 1),
+                                      content: Text("Invalid OTP")));
                               }
                             },
                             text: "Next"),
