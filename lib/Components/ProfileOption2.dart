@@ -10,42 +10,42 @@ class ProfileOption2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
+    return Link(
+      target: LinkTarget.defaultTarget,
+      uri: Uri.parse(url),
+      builder: (context, followLink) => GestureDetector(
+        onTap: followLink,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Padding(
-              padding: EdgeInsets.only(right: 11.5),
-              child: Icon(
-                icon,
-                size: 17,
-                color: Color(0x89292d32),
-              ),
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: 11.5),
+                  child: Icon(
+                    icon,
+                    size: 17,
+                    color: Color(0x89292d32),
+                  ),
+                ),
+                Text(
+                  name,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 13,
+                    fontFamily: 'SFUIText',
+                  ),
+                ),
+              ],
             ),
-            Text(
-              name,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 13,
-                fontFamily: 'SFUIText',
-              ),
-            ),
-          ],
-        ),
-        Link(
-          target: LinkTarget.self,
-          uri: Uri.parse(url),
-          builder: (context, followLink) => GestureDetector(
-            child: const Icon(
+            const Icon(
               Icons.arrow_forward_ios,
               size: 17,
               color: Color(0x89292d32),
             ),
-            onTap: followLink,
-          ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
