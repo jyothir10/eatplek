@@ -45,9 +45,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     http.Response response =
         await http.put(urlfinal, headers: headers, body: body);
 
+    print(response.body);
+
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
       final jsonData = jsonDecode(response.body);
       msg = await jsonData['message'];
+      FocusManager.instance.primaryFocus?.unfocus();
       if (msg == "User updated successfully") {
         _scaffoldKey.currentState?.showSnackBar(const SnackBar(
             behavior: SnackBarBehavior.floating,
@@ -163,8 +166,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 child: ProfileButton(
                     text: "        Save        ",
                     onTap: () {
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, ProfileScreen.id, (route) => false);
+                      updateUser();
+                      Navigator.pushReplacementNamed(context, ProfileScreen.id);
                     }),
               ),
             ],
