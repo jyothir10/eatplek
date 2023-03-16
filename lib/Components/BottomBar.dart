@@ -31,7 +31,7 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 62,
+      height: 78,
       child: BottomNavigationBar(
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,

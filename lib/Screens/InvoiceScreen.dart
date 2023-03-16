@@ -214,42 +214,45 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                             ),
                           ],
                         ),
-                        Column(
-                          children: [
-                            Text(resname,
-                                style: const TextStyle(
-                                    color: primaryclr,
-                                    fontWeight: FontWeight.w700,
-                                    fontFamily: "SFUIText",
-                                    fontStyle: FontStyle.normal,
-                                    fontSize: 14.0),
-                                textAlign: TextAlign.left),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(location,
-                                      style: const TextStyle(
-                                          color: Color(0xff000000),
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: "SFUIText",
-                                          fontStyle: FontStyle.normal,
-                                          fontSize: 9.0),
-                                      textAlign: TextAlign.left),
-                                  // 9854654213
-                                  Text(resPhone,
-                                      style: const TextStyle(
-                                          color: Color(0xff000000),
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: "SFUIText",
-                                          fontStyle: FontStyle.normal,
-                                          fontSize: 9.0),
-                                      textAlign: TextAlign.left)
-                                ],
-                              ),
-                            ), // Chengannur,
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 5),
+                          child: Column(
+                            children: [
+                              Text(resname,
+                                  style: const TextStyle(
+                                      color: primaryclr,
+                                      fontWeight: FontWeight.w700,
+                                      fontFamily: "SFUIText",
+                                      fontStyle: FontStyle.normal,
+                                      fontSize: 14.0),
+                                  textAlign: TextAlign.left),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(location+" ",
+                                        style: const TextStyle(
+                                            color: Color(0xff000000),
+                                            fontWeight: FontWeight.w400,
+                                            fontFamily: "SFUIText",
+                                            fontStyle: FontStyle.normal,
+                                            fontSize: 9.0),
+                                        textAlign: TextAlign.left),
+                                    // 9854654213
+                                    Text(resPhone,
+                                        style: const TextStyle(
+                                            color: Color(0xff000000),
+                                            fontWeight: FontWeight.w400,
+                                            fontFamily: "SFUIText",
+                                            fontStyle: FontStyle.normal,
+                                            fontSize: 9.0),
+                                        textAlign: TextAlign.left)
+                                  ],
+                                ),
+                              ), // Chengannur,
+                            ],
+                          ),
                         ), // Ceylon Bake House Marian Drive
                         const DottedLine(
                           direction: Axis.horizontal,
@@ -290,20 +293,21 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                               Container(
                                 height: MediaQuery.of(context).size.height *
                                     n *
-                                    .039,
+                                    .033,
                                 width: MediaQuery.of(context).size.width * .925,
                                 child: items.isNotEmpty
                                     ? ListView.builder(
                                         itemCount: n,
                                         itemBuilder: (context, index) {
                                           return InvoiceListItem(
-                                              itemName: items[index]['name'],
-                                              price: items[index]['price']
-                                                  .toString(),
-                                              qty: items[index]['quantity']
-                                                  .toString(),
-                                              total: items[index]['total']
-                                                  .toString());
+                                            itemName: items[index]['name'],
+                                            price: items[index]['price']
+                                                .toString(),
+                                            qty: items[index]['quantity']
+                                                .toString(),
+                                            total: items[index]['total']
+                                                .toString()
+                                          );
                                         })
                                     : Container(),
                               ),
@@ -361,15 +365,18 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                             ],
                           ),
                         ),
-                        const Text("THANK YOU",
-                            style: TextStyle(
-                                letterSpacing: 5,
-                                color: primaryclr,
-                                fontWeight: FontWeight.w900,
-                                fontFamily: "SFUIText",
-                                fontStyle: FontStyle.normal,
-                                fontSize: 10.0),
-                            textAlign: TextAlign.left), // THANK YOU
+                        const Padding(
+                          padding: EdgeInsets.only(bottom: 8),
+                          child: Text("THANK YOU",
+                              style: TextStyle(
+                                  letterSpacing: 5,
+                                  color: primaryclr,
+                                  fontWeight: FontWeight.w900,
+                                  fontFamily: "SFUIText",
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 10.0),
+                              textAlign: TextAlign.left),
+                        ), // THANK YOU
                         Container(
                           color: primaryclr,
                           height: MediaQuery.of(context).size.height * .038,

@@ -66,15 +66,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
             context, DashBoardScreen.id, (route) => false);
       } else {
         if (status == false) {
-          _scaffoldKey.currentState?.showSnackBar(
-            SnackBar(
-              behavior: SnackBarBehavior.floating,
-              duration: Duration(seconds: 1),
-              content: Text(
-                "Could not register user!",
+          ScaffoldMessenger.of(context)
+            ..showSnackBar(
+              SnackBar(
+                behavior: SnackBarBehavior.floating,
+                duration: Duration(seconds: 1),
+                content: Text(
+                  "Could not register user!",
+                ),
               ),
-            ),
-          );
+            );
           setState(() {
             showSpinner = false;
           });
@@ -82,15 +83,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
         throw APIException(res.statusCode, jsonDecode(res.body));
       }
     } else {
-      _scaffoldKey.currentState?.showSnackBar(
-        SnackBar(
-          behavior: SnackBarBehavior.floating,
-          duration: Duration(seconds: 1),
-          content: Text(
-            "Could not register user!",
+      ScaffoldMessenger.of(context)
+        ..showSnackBar(
+          SnackBar(
+            behavior: SnackBarBehavior.floating,
+            duration: Duration(seconds: 1),
+            content: Text(
+              "Could not register user!",
+            ),
           ),
-        ),
-      );
+        );
       setState(() {
         showSpinner = false;
       });
@@ -407,12 +409,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   if (email.isNotEmpty & name.isNotEmpty) {
                                     register();
                                   } else {
-                                    _scaffoldKey.currentState?.showSnackBar(
-                                        const SnackBar(
-                                            behavior: SnackBarBehavior.floating,
-                                            duration: Duration(seconds: 1),
-                                            content: Text(
-                                                "Please fill all details")));
+                                    ScaffoldMessenger.of(context)
+                                      ..showSnackBar(const SnackBar(
+                                          behavior: SnackBarBehavior.floating,
+                                          duration: Duration(seconds: 1),
+                                          content:
+                                              Text("Please fill all details")));
                                   }
                                 },
                                 style: ButtonStyle(

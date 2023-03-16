@@ -26,10 +26,11 @@ class _LoginScreenState extends State<LoginScreen> {
     if (currentBackPressTime == null ||
         now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
       currentBackPressTime = now;
-      _scaffoldKey.currentState?.showSnackBar(const SnackBar(
-          behavior: SnackBarBehavior.floating,
-          duration: Duration(seconds: 1),
-          content: Text("Press back again to exit")));
+      ScaffoldMessenger.of(context)
+        ..showSnackBar(const SnackBar(
+            behavior: SnackBarBehavior.floating,
+            duration: Duration(seconds: 1),
+            content: Text("Press back again to exit")));
       return Future.value(false);
     }
     return Future.value(true);
@@ -80,8 +81,23 @@ class _LoginScreenState extends State<LoginScreen> {
         // Navigator.pushReplacementNamed(context, DashBoardScreen.id);
       } else {
         phonecontroller.clear();
-        _scaffoldKey.currentState?.showSnackBar(
-          const SnackBar(
+        ScaffoldMessenger.of(context)
+          ..showSnackBar(
+            const SnackBar(
+              behavior: SnackBarBehavior.floating,
+              duration: Duration(seconds: 1),
+              content: Text(
+                "Could not send OTP ! Please try again",
+              ),
+            ),
+          );
+        print(status);
+        throw APIException(res.statusCode, jsonDecode(res.body));
+      }
+    } else {
+      ScaffoldMessenger.of(context)
+        ..showSnackBar(
+          SnackBar(
             behavior: SnackBarBehavior.floating,
             duration: Duration(seconds: 1),
             content: Text(
@@ -89,19 +105,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
         );
-        print(status);
-        throw APIException(res.statusCode, jsonDecode(res.body));
-      }
-    } else {
-      _scaffoldKey.currentState?.showSnackBar(
-        SnackBar(
-          behavior: SnackBarBehavior.floating,
-          duration: Duration(seconds: 1),
-          content: Text(
-            "Could not send OTP ! Please try again",
-          ),
-        ),
-      );
       setState(() {
         showSpinner = false;
       });
@@ -252,12 +255,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                   if (phone.length == 10) {
                                     logIn();
                                   } else {
-                                    _scaffoldKey.currentState?.showSnackBar(
-                                        const SnackBar(
-                                            behavior: SnackBarBehavior.floating,
-                                            duration: Duration(seconds: 1),
-                                            content: Text(
-                                                "Invalid email or password")));
+                                    ScaffoldMessenger.of(context)
+                                      ..showSnackBar(const SnackBar(
+                                          behavior: SnackBarBehavior.floating,
+                                          duration: Duration(seconds: 1),
+                                          content: Text(
+                                              "Invalid email or password")));
                                   }
                                 },
                                 text: 'Get OTP',

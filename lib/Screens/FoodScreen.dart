@@ -645,51 +645,54 @@ class _FoodScreenState extends State<FoodScreen> {
         height: MediaQuery.of(context).size.height * .087,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(
-            decoration: BoxDecoration(
-              color: primaryclr,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            width: MediaQuery.of(context).size.width * .9,
-            height: MediaQuery.of(context).size.height * .058,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // 1 Item
-                      // ₹ 179
-                      // Container(
-                      //   child: Text(total.toString(),
-                      //       style: const TextStyle(
-                      //           color: Color(0xffffffff),
-                      //           fontWeight: FontWeight.w600,
-                      //           fontFamily: "SFUIText",
-                      //           fontStyle: FontStyle.normal,
-                      //           fontSize: 14.6),
-                      //       textAlign: TextAlign.left),
-                      // )
-                    ],
-                  ),
-                  // View Cart
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushReplacementNamed(context, CartScreen.id);
-                    },
-                    child: const Text("View Cart",
-                        style: TextStyle(
-                            color: Color(0xffffffff),
-                            fontWeight: FontWeight.w600,
-                            fontFamily: "SFUIText",
-                            fontStyle: FontStyle.normal,
-                            fontSize: 13),
-                        textAlign: TextAlign.left),
-                  )
-                ],
+          child: InkWell(
+            onTap: () {
+              Navigator.pushReplacementNamed(context, CartScreen.id);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: primaryclr,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              width: MediaQuery.of(context).size.width * .9,
+              height: MediaQuery.of(context).size.height * .058,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // 1 Item
+                        // ₹ 179
+                        // Container(
+                        //   child: Text(total.toString(),
+                        //       style: const TextStyle(
+                        //           color: Color(0xffffffff),
+                        //           fontWeight: FontWeight.w600,
+                        //           fontFamily: "SFUIText",
+                        //           fontStyle: FontStyle.normal,
+                        //           fontSize: 14.6),
+                        //       textAlign: TextAlign.left),
+                        // )
+                      ],
+                    ),
+                    // View Cart
+                    InkWell(
+
+                      child: const Text("View Cart",
+                          style: TextStyle(
+                              color: Color(0xffffffff),
+                              fontWeight: FontWeight.w600,
+                              fontFamily: "SFUIText",
+                              fontStyle: FontStyle.normal,
+                              fontSize: 13),
+                          textAlign: TextAlign.left),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
