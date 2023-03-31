@@ -340,13 +340,15 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                       onChanged: (value) {
                                                         setState(() {
                                                           currentValue1 = value;
-
                                                           int intMin =
                                                               (value - 5);
 
-                                                          if (intMin <= 0) {
+                                                          if (intMin < 0) {
                                                             intMin =
                                                                 intMin + 60;
+                                                          }
+                                                          if (intMin == 0) {
+                                                            intMin = 0;
                                                           }
                                                           min =
                                                               intMin.toString();
@@ -471,7 +473,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                                   guests + 25;
                                                             }
                                                           });
-                                                          print(guests);
                                                         }),
                                                   ),
                                                 ],

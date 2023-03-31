@@ -31,7 +31,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     id = (await sharedPreferences.getString("id"));
     return Timer(_duration, () {
-      //Navigate to another screen or anyOther function, like i set duration 4 sec so this function run after 4 sec
       if (id == null) {
         Navigator.pushReplacementNamed(context, LoginScreen.id);
       } else {
