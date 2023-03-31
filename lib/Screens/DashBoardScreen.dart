@@ -347,9 +347,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                                                             intMin =
                                                                 intMin + 60;
                                                           }
-                                                          if (intMin == 0) {
-                                                            intMin = 0;
-                                                          }
                                                           min =
                                                               intMin.toString();
                                                         });
