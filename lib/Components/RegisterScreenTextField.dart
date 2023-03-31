@@ -33,7 +33,6 @@ class RegisterScreenTextField extends StatelessWidget {
           onChanged: onchanged,
           cursorColor: Colors.white,
           style: const TextStyle(color: Colors.white, fontSize: 18),
-          keyboardType: TextInputType.name,
           decoration: const InputDecoration(
             fillColor: Colors.white,
             enabledBorder: OutlineInputBorder(
