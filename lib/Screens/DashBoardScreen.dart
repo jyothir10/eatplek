@@ -43,7 +43,11 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     http.Response response = await http.get(urlfinal, headers: headers);
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
       final jsonData = jsonDecode(response.body);
-      restaurants = await jsonData['restaurants'];
+      if (jsonData['restaurants'] == null) {
+        restaurants = [];
+      } else {
+        restaurants = await jsonData['restaurants'];
+      }
       if (restaurants.length == 0) {
         isEmpty = true;
         showList = true;

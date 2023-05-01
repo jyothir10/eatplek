@@ -246,8 +246,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     const ProfileOption2(
                                       name: "Rate us on Play Store/App Store",
                                       icon: Icons.star_border_outlined,
-                                      url: "https://play.google.com/store/apps/details?id=com.eatplek1.eatplek1",
-
+                                      url:
+                                          "https://play.google.com/store/apps/details?id=com.eatplek1.eatplek1",
                                     ),
                                     const ProfileOption2(
                                       name: "Privacy Policy",
@@ -271,12 +271,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           Row(
                                             children: const [
                                               Padding(
-                                                padding:
-                                                    EdgeInsets.only(right: 11.5),
+                                                padding: EdgeInsets.only(
+                                                    right: 11.5),
                                                 child: Icon(
                                                   Icons.attach_money_outlined,
                                                   size: 17,
-                                                  color: Color(0x89292d32),
+                                                  color: Colors.black,
                                                 ),
                                               ),
                                               Text(
@@ -309,12 +309,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           Row(
                                             children: const [
                                               Padding(
-                                                padding:
-                                                    EdgeInsets.only(right: 11.5),
+                                                padding: EdgeInsets.only(
+                                                    right: 11.5),
                                                 child: Icon(
                                                   Icons.phone,
                                                   size: 17,
-                                                  color: Color(0x89292d32),
+                                                  color: Colors.black,
                                                 ),
                                               ),
                                               Text(
