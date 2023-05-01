@@ -21,6 +21,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
   TextEditingController feedbackController = TextEditingController();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   bool showSpinner = false;
+  String feedback = "";
 
   giveFeedback() async {
     setState(() {
@@ -32,14 +33,12 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
     var urlfinal = Uri.https(URL_Latest, '/feedback');
 
     Map body1 = {
-      "feedback": feedbackController.text.trim(),
+      "feedback": feedback,
     };
     final body = jsonEncode(body1);
 
     http.Response response =
         await http.post(urlfinal, headers: headers, body: body);
-
-    print(response.body);
 
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
       final jsonData = await jsonDecode(response.body);
@@ -140,6 +139,9 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                           height: 1.5),
                     ),
                   ),
+                  onChanged: (value) {
+                    feedback = value;
+                  },
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 21),

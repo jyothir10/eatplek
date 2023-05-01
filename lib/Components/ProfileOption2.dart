@@ -6,7 +6,9 @@ class ProfileOption2 extends StatelessWidget {
   final String name;
   final String url;
   final IconData icon;
-  const ProfileOption2({Key? key, required this.name, required this.url, required this.icon}) : super(key: key);
+  const ProfileOption2(
+      {Key? key, required this.name, required this.url, required this.icon})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class ProfileOption2 extends StatelessWidget {
                   child: Icon(
                     icon,
                     size: 17,
-                    color: Color(0x89292d32),
+                    color: Colors.black,
                   ),
                 ),
                 Text(
