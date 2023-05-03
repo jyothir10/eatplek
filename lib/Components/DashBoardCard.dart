@@ -27,6 +27,7 @@ class DashBoardCard extends StatelessWidget {
           elevation: 0,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
@@ -35,7 +36,7 @@ class DashBoardCard extends StatelessWidget {
                     child: CachedNetworkImage(
                       width: MediaQuery.of(context).size.width * .36,
                       height: MediaQuery.of(context).size.height * .12,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                       imageUrl: img,
                       placeholder: (context, url) => const Center(
                           child: CircularProgressIndicator(
@@ -47,7 +48,7 @@ class DashBoardCard extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width * .05),
+                        left: MediaQuery.of(context).size.width * .05, top: 0),
                     child: Container(
                       height: MediaQuery.of(context).size.height * .12,
                       child: Column(
@@ -55,50 +56,37 @@ class DashBoardCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           // Zinger Burger
-                          Text(text,
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * .45,
+                            child: Text(text,
+                                style: const TextStyle(
+                                    color: Color(0xff000000),
+                                    fontWeight: FontWeight.w600,
+                                    fontFamily: "SFUIText",
+                                    fontStyle: FontStyle.normal,
+                                    fontSize: 17.5),
+                                textAlign: TextAlign.left),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * .45,
+                            child: Text(
+                              types,
                               style: const TextStyle(
-                                  color: Color(0xff000000),
-                                  fontWeight: FontWeight.w600,
-                                  fontFamily: "SFUIText",
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: 17.5),
-                              textAlign: TextAlign.left),
-                          // ₹ 179
-                          // Padding(
-                          //     padding: EdgeInsets.symmetric(vertical: 6.2),
-                          //     child: Row(
-                          //       children: [
-                          //         Icon(
-                          //           Icons.star,
-                          //           color: Color(0xffffb800),
-                          //           size: 13.5,
-                          //         ),
-                          //         Text(
-                          //           '$rating($feeds Feeds)',
-                          //           style: TextStyle(
-                          //             color: Color(0xff1d1d1d),
-                          //             fontSize: 11.266666412353516,
-                          //             fontFamily: 'SFUIText',
-                          //             fontWeight: FontWeight.w600,
-                          //           ),
-                          //         ),
-                          //       ],
-                          //     )),
-                          // French Fires
-                          Text(
-                            types,
-                            style: const TextStyle(
-                              color: Color(0xff1d1d1d),
-                              fontSize: 10.140000343322754,
-                              fontFamily: 'SFUIText',
+                                color: Color(0xff1d1d1d),
+                                fontSize: 10.140000343322754,
+                                fontFamily: 'SFUIText',
+                              ),
                             ),
                           ),
-                          Text(
-                            location,
-                            style: TextStyle(
-                              color: Color(0xff1d1d1d),
-                              fontSize: 10.140000343322754,
-                              fontFamily: 'SFUIText',
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * .45,
+                            child: Text(
+                              location,
+                              style: TextStyle(
+                                color: Color(0xff1d1d1d),
+                                fontSize: 10.140000343322754,
+                                fontFamily: 'SFUIText',
+                              ),
                             ),
                           ),
                         ],
