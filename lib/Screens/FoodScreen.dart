@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:eatplek/Constants.dart';
 import 'package:eatplek/Screens/CartScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../Exceptions/api_exception.dart';
 
 final key = GlobalKey();
@@ -200,7 +202,7 @@ class _FoodScreenState extends State<FoodScreen> {
               left: MediaQuery.of(context).size.width * .047,
               child: Container(
                 height: 121,
-                width: MediaQuery.of(context).size.width * .906,
+                width: MediaQuery.of(context).size.width * .91,
                 child: Card(
                   elevation: 5,
                   shape: RoundedRectangleBorder(
@@ -216,7 +218,7 @@ class _FoodScreenState extends State<FoodScreen> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
-                                          horizontal: 5, vertical: 8),
+                                          horizontal: 5, vertical: 5),
                                       child: Row(
                                         children: [
                                           ClipRRect(
@@ -243,7 +245,7 @@ class _FoodScreenState extends State<FoodScreen> {
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsets.only(left: 10),
+                                                const EdgeInsets.only(left: 5),
                                             child: Container(
                                               height: 96,
                                               child: Column(
@@ -264,53 +266,82 @@ class _FoodScreenState extends State<FoodScreen> {
                                                           CrossAxisAlignment
                                                               .start,
                                                       children: [
-                                                        Text(restaurant["name"],
-                                                            style: const TextStyle(
-                                                                color: Color(
-                                                                    0xff1d1d1d),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w700,
-                                                                fontFamily:
-                                                                    "SFUIText",
-                                                                fontStyle:
-                                                                    FontStyle
-                                                                        .normal,
-                                                                fontSize: 18.5),
-                                                            textAlign:
-                                                                TextAlign.left),
-                                                        Text(restaurant["type"],
-                                                            style: const TextStyle(
-                                                                color: Color(
-                                                                    0xff1d1d1d),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
-                                                                fontFamily:
-                                                                    "SFUIText",
-                                                                fontStyle:
-                                                                    FontStyle
-                                                                        .normal,
-                                                                fontSize: 10.5),
-                                                            textAlign:
-                                                                TextAlign.left),
-                                                        Text(
-                                                            restaurant[
-                                                                "location"],
-                                                            style: const TextStyle(
-                                                                color: Color(
-                                                                    0xff1d1d1d),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
-                                                                fontFamily:
-                                                                    "SFUIText",
-                                                                fontStyle:
-                                                                    FontStyle
-                                                                        .normal,
-                                                                fontSize: 10.5),
-                                                            textAlign:
-                                                                TextAlign.left),
+                                                        SizedBox(
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              .47,
+                                                          child: Text(
+                                                              restaurant[
+                                                                  "name"],
+                                                              style: const TextStyle(
+                                                                  color: Color(
+                                                                      0xff1d1d1d),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w700,
+                                                                  fontFamily:
+                                                                      "SFUIText",
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .normal,
+                                                                  fontSize: 18),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .left),
+                                                        ),
+                                                        SizedBox(
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              .47,
+                                                          child: Text(
+                                                              restaurant[
+                                                                  "type"],
+                                                              style: const TextStyle(
+                                                                  color: Color(
+                                                                      0xff1d1d1d),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400,
+                                                                  fontFamily:
+                                                                      "SFUIText",
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .normal,
+                                                                  fontSize:
+                                                                      10.5),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .left),
+                                                        ),
+                                                        SizedBox(
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              .47,
+                                                          child: Text(
+                                                              restaurant[
+                                                                  "location"],
+                                                              style: const TextStyle(
+                                                                  color: Color(
+                                                                      0xff1d1d1d),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400,
+                                                                  fontFamily:
+                                                                      "SFUIText",
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .normal,
+                                                                  fontSize: 10),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .left),
+                                                        ),
                                                       ],
                                                     ),
                                                   ),
@@ -681,7 +712,6 @@ class _FoodScreenState extends State<FoodScreen> {
                     ),
                     // View Cart
                     InkWell(
-
                       child: const Text("View Cart",
                           style: TextStyle(
                               color: Color(0xffffffff),
