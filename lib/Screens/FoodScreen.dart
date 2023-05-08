@@ -48,7 +48,7 @@ class _FoodScreenState extends State<FoodScreen> {
     Map<String, String> headers = {
       "Content-Type": "application/json",
     };
-    var urlfinal = Uri.https(URL_Latest, '/restaurant/${widget.resId}');
+    var urlfinal = Uri.http(URL_Latest, '/restaurant/${widget.resId}');
 
     http.Response response = await http.get(urlfinal, headers: headers);
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
@@ -70,7 +70,7 @@ class _FoodScreenState extends State<FoodScreen> {
       "Content-Type": "application/json",
     };
     var urlfinal =
-        Uri.https(URL_Latest, '/food/filter/restaurant/${widget.resId}');
+        Uri.http(URL_Latest, '/food/filter/restaurant/${widget.resId}');
 
     http.Response response = await http.get(urlfinal, headers: headers);
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
@@ -111,7 +111,7 @@ class _FoodScreenState extends State<FoodScreen> {
     final Map<String, String> _queryParameters = <String, String>{
       'category': categoryId,
     };
-    var urlfinal = Uri.https(URL_Latest,
+    var urlfinal = Uri.http(URL_Latest,
         '/food/filter/restaurant/${widget.resId}', _queryParameters);
 
     http.Response response = await http.get(urlfinal, headers: headers);
@@ -845,7 +845,7 @@ class _FoodScreenCardState extends State<FoodScreenCard> {
       "Content-Type": "application/json",
       "Token": sharedPreferences.getString("token").toString(),
     };
-    var urlfinal = Uri.https(URL_Latest, '/cart');
+    var urlfinal = Uri.http(URL_Latest, '/cart');
 
     Map body1 = {
       "user_id": sharedPreferences.getString("id"),

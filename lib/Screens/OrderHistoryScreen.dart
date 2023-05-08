@@ -35,7 +35,7 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
       "Content-Type": "application/json",
       "Token": token.toString(),
     };
-    var urlfinal = Uri.https(URL_Latest, '/order/filter/user/$userid');
+    var urlfinal = Uri.http(URL_Latest, '/order/filter/user/$userid');
 
     http.Response response = await http.get(urlfinal, headers: headers);
 

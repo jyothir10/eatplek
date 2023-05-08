@@ -55,7 +55,7 @@ class _CartScreenState extends State<CartScreen> {
       "Content-Type": "application/json",
       "Token": sharedPreferences.getString("token").toString(),
     };
-    var urlfinal = Uri.https(URL_Latest, '/order');
+    var urlfinal = Uri.http(URL_Latest, '/order');
 
     Map body1 = {
       "user_id": sharedPreferences.getString("id"),
@@ -98,7 +98,7 @@ class _CartScreenState extends State<CartScreen> {
       "Content-Type": "application/json",
       "Token": token.toString(),
     };
-    var urlfinal = Uri.https(URL_Latest, '/cart/$userid');
+    var urlfinal = Uri.http(URL_Latest, '/cart/$userid');
 
     http.Response response = await http.get(urlfinal, headers: headers);
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {

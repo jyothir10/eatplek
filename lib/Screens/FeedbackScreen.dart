@@ -30,7 +30,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
     Map<String, String> headers = {
       "Content-Type": "application/json",
     };
-    var urlfinal = Uri.https(URL_Latest, '/feedback');
+    var urlfinal = Uri.http(URL_Latest, '/feedback');
 
     Map body1 = {
       "feedback": feedback,

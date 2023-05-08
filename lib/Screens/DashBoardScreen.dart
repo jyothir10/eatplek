@@ -38,7 +38,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     Map<String, String> headers = {
       "Content-Type": "application/json",
     };
-    var urlfinal = Uri.https(URL_Latest, '/restaurant');
+    var urlfinal = Uri.http(URL_Latest, '/restaurant');
 
     http.Response response = await http.get(urlfinal, headers: headers);
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
@@ -76,7 +76,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
       "Content-Type": "application/json",
       "Token": sharedPreferences.getString("token").toString(),
     };
-    var urlfinal = Uri.https(URL_Latest, '/cart');
+    var urlfinal = Uri.http(URL_Latest, '/cart');
 
     String typename = "Take-Away";
 

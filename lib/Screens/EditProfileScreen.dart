@@ -40,7 +40,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     };
 
     final body = jsonEncode(body1);
-    var urlfinal = Uri.https(URL_Latest, '/user');
+    var urlfinal = Uri.http(URL_Latest, '/user');
 
     http.Response response =
         await http.put(urlfinal, headers: headers, body: body);

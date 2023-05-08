@@ -51,7 +51,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     };
     final body = jsonEncode(body1);
 
-    var urlfinal = Uri.https(URL_Latest, '/user');
+    var urlfinal = Uri.http(URL_Latest, '/user');
 
     var res = await http.put(urlfinal, headers: headers, body: body);
 
