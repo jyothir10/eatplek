@@ -36,7 +36,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     Map<String, String> headers = {
       "Content-Type": "application/json",
     };
-    var urlfinal = Uri.https(URL_Latest, '/user/$userid');
+    var urlfinal = Uri.http(URL_Latest, '/user/$userid');
 
     http.Response response = await http.get(urlfinal, headers: headers);
 
