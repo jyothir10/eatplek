@@ -57,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
     Map body1 = {"phone": phonecontroller.text.trim().toString()};
     final body = jsonEncode(body1);
 
-    var urlfinal = Uri.https(URL_Latest, '/user');
+    var urlfinal = Uri.http(URL_Latest, '/user');
 
     var res = await http.post(urlfinal, headers: headers, body: body);
 

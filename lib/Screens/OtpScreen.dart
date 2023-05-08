@@ -64,7 +64,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
     final body = jsonEncode(body1);
 
-    var urlfinal = Uri.https(URL_Latest, '/user/login');
+    var urlfinal = Uri.http(URL_Latest, '/user/login');
 
     var res = await http.post(urlfinal, headers: headers, body: body);
 
