@@ -70,8 +70,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   cartInitialise(String resId, String resName, int noGuest, String time) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String? user_id = sharedPreferences.getString("id");
-    print(sharedPreferences.getString("token"));
-    print(user_id);
+
     Map<String, String> headers = {
       "Content-Type": "application/json",
       "Token": sharedPreferences.getString("token").toString(),
@@ -86,8 +85,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
       noGuest = 0;
     }
 
-    print(typename);
-
     Map body1 = {
       "user_id": user_id,
       "restaurant_id": resId,
@@ -101,6 +98,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
 
     http.Response response =
         await http.post(urlfinal, headers: headers, body: body);
+
+    print(response.body);
 
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
       final jsonData = await jsonDecode(response.body);

@@ -39,6 +39,7 @@ class _FoodScreenState extends State<FoodScreen> {
   bool showList1 = false;
   bool isCategory = false;
   String price = "non_ac_price";
+  bool isAc = true;
 
   mysetstate() {
     setState(() {});
@@ -51,13 +52,16 @@ class _FoodScreenState extends State<FoodScreen> {
     var urlfinal = Uri.http(URL_Latest, '/restaurant/${widget.resId}');
 
     http.Response response = await http.get(urlfinal, headers: headers);
+    print(response.body);
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
       final jsonData = jsonDecode(response.body);
       restaurant = await jsonData['restaurant'];
+      print(response.body);
       if (restaurant.length == 0) {
         isEmpty = true;
         showList = true;
       } else {
+        isAc = restaurant['ac'];
         showList = true;
       }
       setState(() {});
@@ -485,52 +489,54 @@ class _FoodScreenState extends State<FoodScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        children: [
-                          Switch(
-                            value: ac,
-                            activeColor: primaryclr,
-                            onChanged: (value) {
-                              setState(() {
-                                ac = value;
-                                non = !ac;
-                                price = "ac_price";
-                              });
-                            },
-                          ),
-                          // Veg
-                          const Text(
-                            'AC',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 10,
-                              fontFamily: 'SFUIText',
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          Switch(
-                            value: non,
-                            activeColor: primaryclr,
-                            onChanged: (value) {
-                              setState(() {
-                                non = value;
-                                ac = !non;
-                                price = "non_ac_price";
-                              });
-                            },
-                          ),
-                          // Veg
-                          const Text(
-                            'Non-AC',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 10,
-                              fontFamily: 'SFUIText',
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
+                      isAc
+                          ? Row(
+                              children: [
+                                Switch(
+                                  value: ac,
+                                  activeColor: primaryclr,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      ac = value;
+                                      non = !ac;
+                                      price = "ac_price";
+                                    });
+                                  },
+                                ),
+                                // Veg
+                                const Text(
+                                  'AC',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 10,
+                                    fontFamily: 'SFUIText',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                Switch(
+                                  value: non,
+                                  activeColor: primaryclr,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      non = value;
+                                      ac = !non;
+                                      price = "non_ac_price";
+                                    });
+                                  },
+                                ),
+                                // Veg
+                                const Text(
+                                  'Non-AC',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 10,
+                                    fontFamily: 'SFUIText',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            )
+                          : Container(),
                       InkWell(
                         onTap: () {
                           _scaffoldKey.currentState!.openDrawer();
