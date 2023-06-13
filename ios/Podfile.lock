@@ -153,13 +153,13 @@ SPEC CHECKSUMS:
   FirebaseMessaging: 6b7052cc3da7bc8e5f72bef871243e8f04a14eed
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
-  fluttertoast: eb263d302cc92e04176c053d2385237e9f43fad0
+  fluttertoast: fafc4fa4d01a6a9e4f772ecd190ffa525e9e2d9c
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   GoogleDataTransport: f0308f5905a745f94fb91fea9c6cbaf3831cb1bd
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
   modal_progress_hud_nsn: f6fb744cd060653d66ed8f325360ef3650eb2fde
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
-  package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
+  package_info_plus: fd030dabf36271f146f1f3beacd48f564b0f17f7
   path_provider_foundation: eaf5b3e458fc0e5fbb9940fb09980e853fe058b8
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   razorpay-pod: b129f60de5f0d0952bebfb9480a10909d4fd6b6d
