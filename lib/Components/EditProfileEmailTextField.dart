@@ -1,21 +1,17 @@
 import 'package:eatplek/Constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-class EditProfileTextField extends StatelessWidget {
+class EditProfileEmailTextField extends StatelessWidget {
   final TextEditingController myController;
   final String text;
   final TextInputType type;
   final int maxLength;
-  final List<TextInputFormatter>? inputFormatters;
-
-  const EditProfileTextField({
+  const EditProfileEmailTextField({
     Key? key,
     required this.myController,
     required this.text,
     required this.type,
     required this.maxLength,
-    required this.inputFormatters,
   }) : super(key: key);
 
   @override
@@ -39,7 +35,6 @@ class EditProfileTextField extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 21),
             child: TextField(
-              inputFormatters: inputFormatters,
               maxLength: maxLength,
               controller: myController,
               keyboardType: type,
