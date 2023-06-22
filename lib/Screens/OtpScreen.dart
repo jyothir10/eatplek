@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:eatplek/Components/LoginButton.dart';
@@ -227,6 +228,9 @@ class _OtpScreenState extends State<OtpScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
+                          // Timer(Duration(seconds: 30), () {
+
+                          // });
                           Navigator.pushReplacementNamed(
                               context, LoginScreen.id);
                         },

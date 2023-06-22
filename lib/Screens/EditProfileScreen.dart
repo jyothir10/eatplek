@@ -154,11 +154,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       myController: nameController,
                       text: 'Name',
                       type: TextInputType.name,
+                      maxLength: 30,
                     ),
                     EditProfileTextField(
                       myController: emailController,
                       text: 'E-mail',
                       type: TextInputType.emailAddress,
+                      maxLength: 35,
                     ),
                   ],
                 ),

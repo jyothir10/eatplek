@@ -5,11 +5,13 @@ class EditProfileTextField extends StatelessWidget {
   final TextEditingController myController;
   final String text;
   final TextInputType type;
+  final int maxLength;
   const EditProfileTextField({
     Key? key,
     required this.myController,
     required this.text,
     required this.type,
+    required this.maxLength,
   }) : super(key: key);
 
   @override
@@ -33,6 +35,7 @@ class EditProfileTextField extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 21),
             child: TextField(
+              maxLength: maxLength,
               controller: myController,
               keyboardType: type,
               cursorColor: const Color(0x80000000),
