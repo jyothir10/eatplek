@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-class RegisterScreenTextField extends StatelessWidget {
+class RegisterScreenEmailTextField extends StatelessWidget {
   final String text;
   final void Function(String)? onchanged;
   final TextEditingController controller;
   final TextInputType type;
   final int maxLength;
-  final List<TextInputFormatter>? inputFormatters;
 
-  const RegisterScreenTextField({
+  const RegisterScreenEmailTextField({
     Key? key,
     required this.text,
     required this.onchanged,
     required this.controller,
     required this.type,
     required this.maxLength,
-    required this.inputFormatters,
   }) : super(key: key);
 
   @override
@@ -36,7 +33,6 @@ class RegisterScreenTextField extends StatelessWidget {
               textAlign: TextAlign.left),
         ),
         TextField(
-          inputFormatters: inputFormatters,
           maxLength: maxLength,
           keyboardType: type,
           controller: controller,

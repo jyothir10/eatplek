@@ -4,10 +4,12 @@ import 'package:eatplek/Components/EditProfileTextField.dart';
 import 'package:eatplek/Components/ProfileButton.dart';
 import 'package:eatplek/Screens/ProfileScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../Components/EditProfileEmailTextField.dart';
 import '../Constants.dart';
 
 class EditProfileScreen extends StatefulWidget {
@@ -154,11 +156,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       myController: nameController,
                       text: 'Name',
                       type: TextInputType.name,
+                      maxLength: 30,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
+                      ],
                     ),
-                    EditProfileTextField(
+                    EditProfileEmailTextField(
                       myController: emailController,
                       text: 'E-mail',
                       type: TextInputType.emailAddress,
+                      maxLength: 35,
                     ),
                   ],
                 ),

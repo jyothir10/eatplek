@@ -39,7 +39,8 @@ class _FoodScreenState extends State<FoodScreen> {
   bool showList1 = false;
   bool isCategory = false;
   String price = "non_ac_price";
-  bool isAc = true;
+  bool isAc = false;
+  bool isNonAc = true;
 
   mysetstate() {
     setState(() {});
@@ -52,7 +53,6 @@ class _FoodScreenState extends State<FoodScreen> {
     var urlfinal = Uri.http(URL_Latest, '/restaurant/${widget.resId}');
 
     http.Response response = await http.get(urlfinal, headers: headers);
-    print(response.body);
     if ((response.statusCode >= 200) && (response.statusCode < 300)) {
       final jsonData = jsonDecode(response.body);
       restaurant = await jsonData['restaurant'];
@@ -62,6 +62,7 @@ class _FoodScreenState extends State<FoodScreen> {
         showList = true;
       } else {
         isAc = restaurant['ac'];
+        isNonAc = restaurant['non_ac'];
         showList = true;
       }
       setState(() {});
@@ -489,7 +490,7 @@ class _FoodScreenState extends State<FoodScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      isAc
+                      isAc && isNonAc
                           ? Row(
                               children: [
                                 Switch(

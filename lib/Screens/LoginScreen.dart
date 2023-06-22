@@ -205,6 +205,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           padding:
                               EdgeInsets.only(left: 15, right: 15, top: 14),
                           child: TextField(
+                            maxLength: 10,
                             controller: phonecontroller,
                             cursorColor: Colors.white,
                             keyboardType: TextInputType.phone,
@@ -259,8 +260,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ..showSnackBar(const SnackBar(
                                           behavior: SnackBarBehavior.floating,
                                           duration: Duration(seconds: 1),
-                                          content: Text(
-                                              "Invalid email or password")));
+                                          content:
+                                              Text("Invalid phone number")));
                                   }
                                 },
                                 text: 'Get OTP',

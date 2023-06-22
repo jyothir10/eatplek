@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:eatplek/Components/ProfileButton.dart';
 import 'package:eatplek/Constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
@@ -118,7 +119,11 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                   cursorColor: primaryclr,
                   keyboardType: TextInputType.multiline,
                   maxLines: 9,
+                  maxLength: 250,
                   textAlign: TextAlign.start,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
+                  ],
                   decoration: InputDecoration(
                     alignLabelWithHint: true,
                     focusColor: primaryclr,
