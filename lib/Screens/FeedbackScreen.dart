@@ -122,7 +122,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                   maxLength: 250,
                   textAlign: TextAlign.start,
                   inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
+                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
                   ],
                   decoration: InputDecoration(
                     alignLabelWithHint: true,
