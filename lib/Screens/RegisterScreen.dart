@@ -156,7 +156,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     type: TextInputType.text,
                     maxLength: 30,
                     inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
+                      FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
                     ],
                   ),
                   RegisterScreenEmailTextField(
